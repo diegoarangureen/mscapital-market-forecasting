@@ -1,0 +1,8 @@
+numpy
+scipy
+pandas
+pyarrow
+lightgbm
+lz4
+zstandard
+kagglesdk
