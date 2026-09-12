@@ -103,7 +103,7 @@ def agg_order(path, ns):
 
 def agg_market(path, ns):
     cols = ['sample_id','seconds_before_predict','transaction_avgprice','transaction_volume','transaction_count',
-            'ask_price_1','bid_price_1','ask_volume_1','bid_volume_1','ask_volume_2','bid_volume_2']
+            'ask_price_1','bid_price_1','ask_volume_1','bid_volume_1','ask_price_2','bid_price_2','ask_volume_2','bid_volume_2']
     mn  = np.full(ns, np.inf, np.float32); mx = np.full(ns, -np.inf, np.float32)
     dH = {h: np.full(ns, np.inf, np.float32) for h in (30,60,120,300)}
     nbars = np.zeros(ns)
