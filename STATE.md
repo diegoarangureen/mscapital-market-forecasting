@@ -21,3 +21,17 @@ NEXT: cluster samples into slots (chunked corr, thr ~0.55, union-find) -> slot v
 - Month y-means tiny but month70 mean = 16 SE from 0 (market drift exists within months).
 - y autocorr ~0 at all lags within month (sample_id not time-ordered).
 - Prices normalized ~1.0 (4658 month-61 samples have px=0 gaps = no-data samples?); 179 bars/10-min window, event-driven.
+
+## SLOT FINDING RESOLVED - NEGATIVE (16:47)
+Twin pairs by fingerprint corr (0.3-0.5) show label corr 0.005-0.007 vs random 0.008: forward returns do NOT co-move across samples with similar windows. Fingerprint twins are selection noise (max over 3k candidates, noise ceiling ~0.36 at 117 dims). No market factor in the TARGET. Slot/market-factor path closed. Lesson: validate with labels before building.
+Remaining levers: (1) X6 OFI/microprice/Kyle per-sample features (in pipeline), (2) sequence models on raw 179-bar series (CPU-only: days - likely what leader does), (3) minor: calibration/blends.
+
+## 16:55 update
+- X2 rebuilt (train+test, 58 feats, keys identical to champion). X6 built: kyle_lambda, ofi1, ofi1_late, ofi2 (CKS event-OFI from market bars L1/L2, Kyle lambda from signed trades).
+- Univariate ICs: kyle -0.0004, ofi1 +0.0043, ofi1_late +0.0111, ofi2 -0.0104 (weak; GBM combo pending).
+- eval6.py running: X2+X6 champion-params 3-seed -> compare vs 0.125774/0.127385.
+- Fingerprints fpR/fpV collected for train+test (30-pt grid) - reusable for any future slot/cluster work (but slot path closed on label evidence).
+
+## 17:06 - X6 NEGATIVE
+X2+X6 seedavg centered val 0.118248 (seeds 0.1137/0.1124/0.1152) vs champion 0.127385. OFI/Kyle features hurt. CKS/microprice/Kyle path closed at GBM level.
+NEXT: verify X2 rebuild reproduces champion (single seed should be ~0.1232); then next structural lever.
