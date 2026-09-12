@@ -50,7 +50,7 @@ def parse_ipc_file(path):
         blocks.append((off, metalen, bodylen))
     # schema
     sch = fb.table(1)
-    fvp, nf = sch.vector(2)  # fields vector (offsets)
+    fvp, nf = sch.vector(1)  # fields vector (slot 1, not 2)
     fields = []
     for i in range(nf):
         fo = struct.unpack_from('<I', footer, fvp + 4*i)[0]
