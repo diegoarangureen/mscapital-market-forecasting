@@ -1,5 +1,6 @@
 # Small GRU over 60x6 bar sequences. Signal check on a train subset first.
-import numpy as np, gc, time, json, sys
+import numpy as np, gc, time, json, sys, ctypes
+_libc = ctypes.CDLL('libc.so.6')
 import pyarrow.feather as feather
 lab = feather.read_table('/tmp/mscapital/train/label.feather').to_pandas().sort_values('sample_id').reset_index(drop=True)
 y = lab.target.values.astype(np.float64)*1000.0; month = lab.month.values
@@ -9,7 +10,7 @@ yv = lab_target = None
 import pyarrow.feather as feather2
 lab2 = feather2.read_table('/tmp/mscapital/train/label.feather').to_pandas().sort_values('sample_id')
 yv = lab2.target.values[va]; del lab2; gc.collect()
-SUB = int(sys.argv[1]) if len(sys.argv)>1 else 400000   # train subset size
+SUB = int(sys.argv[1]) if len(sys.argv)>1 else 200000   # train subset size
 ns = 1257637; STEPS=60; CH=6
 X = np.memmap('/tmp/work/seq_train.f16', dtype=np.float16, mode='r', shape=(ns,STEPS,CH))
 def cos(a,b): return float(a@b/(np.linalg.norm(a)*np.linalg.norm(b)+1e-30))
@@ -22,7 +23,7 @@ mu = rows.reshape(-1,CH).mean(0); sd = rows.reshape(-1,CH).std(0)+1e-6
 del rows; gc.collect()
 np.save('/tmp/work/seq_mu.npy', mu); np.save('/tmp/work/seq_sd.npy', sd)
 import torch, torch.nn as nn
-torch.set_num_threads(2)
+torch.set_num_threads(1)
 class Net(nn.Module):
     def __init__(self):
         super().__init__()
@@ -44,7 +45,7 @@ def run(seed, epochs=8):
     torch.manual_seed(seed)
     net = Net(); opt = torch.optim.AdamW(net.parameters(), lr=2e-3, weight_decay=1e-5)
     best=-1; bestp=None; bad=0
-    n=len(tr_idx); bs=4096
+    n=len(tr_idx); bs=1024
     for ep in range(epochs):
         perm = torch.randperm(n); net.train(); t0=time.time()
         for i in range(0,n,bs):
@@ -53,11 +54,14 @@ def run(seed, epochs=8):
             pred = net(xb)
             loss = ((pred-yt[idx])**2).mean()
             opt.zero_grad(); loss.backward(); opt.step()
+            del xb, pred, loss
+            if (i//bs) % 10 == 0: _libc.malloc_trim(0)
         net.eval(); pv=[]
         with torch.no_grad():
-            for i in range(0,len(va_idx),32768):
-                pv.append(net(load_batch(va_idx[i:i+32768])).numpy())
+            for i in range(0,len(va_idx),4096):
+                pv.append(net(load_batch(va_idx[i:i+4096])).numpy())
         pv=np.concatenate(pv)
+        gc.collect()
         c = cos(pv, yv)
         print(f'  seed{seed} ep{ep} valcos {c:.6f} ({round(time.time()-t0)}s)', flush=True)
         if c>best: best=c; bestp=pv; bad=0
