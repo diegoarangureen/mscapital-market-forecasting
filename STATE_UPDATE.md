@@ -17,3 +17,8 @@
 - ref 56213569, public LB 0.113 (previous best 0.110, GBM v4). Description "GBM v4 + MLP blend".
 - Refit preds saved: refit_gbm_test.npy, refit_mlp_test.npy (in src/recovered/). mlp_best_epochs {0:8,1:9,2:15}, x2 iters [110,116,77].
 - Val->LB mapping: val 0.1274 -> LB 0.110; val 0.1311 -> LB 0.113. Gap remains large; next levers must close val-LB transfer.
+
+## 2026-09-13 21:45 - structural finding: test regime = late months
+- Per-month val cosine flat 0.10-0.17 except month 70 (hardest, 0.097-0.107). LB 0.113 ~= month-70 level: test (months 71+) follows the late regime. Late val (66-70) is a better selection metric; blend w=0.5 optimal on both (late 0.13542).
+- Feature drift PSI train->test: activity/count features drift hardest (ord_nnew 0.130, ord_ncan 0.126, mk_cnt_total 0.125, tx_n 0.095).
+- Queue: E3 log1p count features (running, /tmp/e3.log), E2 recency ramp re-scored on late val (eval_recency2.py), then cohort GBM, 1D-CNN on bar series.
