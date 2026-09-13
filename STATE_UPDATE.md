@@ -12,3 +12,8 @@
 - ROBUSTNESS (train 0-50, val 51-60): GBM 0.122894 centered, MLP 0.116482, blend 50/50 = 0.124462. Blend beats GBM on BOTH splits (+0.0048 main, +0.0016 shift). GO for submission.
 - Running: mlp_epochs.py -> /tmp/work/mlp_best_epochs.json (log /tmp/mlp_epochs.log, marker EPOCHS_DONE).
 - NEXT: run final_blend.py (GBM refit 0-70 @1.1x iters [110,116,77] + MLP refit @1.1x best epochs + 50/50 unit blend + nodata zero + clip + submission_blend.csv; marker FINAL_BLEND_DONE, log /tmp/final.log). Then submit via submit.py pattern (fix path to submission_blend.csv, description "GBM v4 + MLP blend"). Check quota first via list_submissions. Then leaderboard screenshot via cloud browser and report LB+rank to parent.
+
+## 2026-09-13 21:07 CEST - SUBMITTED blend v1
+- ref 56213569, public LB 0.113 (previous best 0.110, GBM v4). Description "GBM v4 + MLP blend".
+- Refit preds saved: refit_gbm_test.npy, refit_mlp_test.npy (in src/recovered/). mlp_best_epochs {0:8,1:9,2:15}, x2 iters [110,116,77].
+- Val->LB mapping: val 0.1274 -> LB 0.110; val 0.1311 -> LB 0.113. Gap remains large; next levers must close val-LB transfer.
