@@ -10,8 +10,10 @@ bl[nodata] = 0.0
 ref = pd.read_csv('/tmp/work/submission_blend.csv')
 print('ref cols:', list(ref.columns), 'rows:', len(ref), flush=True)
 ycol = [c for c in ref.columns if c != ref.columns[0]][0]
-lo, hi = np.quantile(np.load('/tmp/work/refit_gbm_train.npy'), [0.001, 0.999])
-print('clip range from train preds:', lo, hi, flush=True)
+ptr = 0.5*unit(np.load('/tmp/work/refit_gbm_train.npy')) + 0.5*unit(np.load('/tmp/work/refit_mlp_train.npy'))
+lo, hi = np.quantile(ptr, [0.001, 0.999])
+print('clip range from blended train preds (unit space):', lo, hi, flush=True)
+bl = np.clip(bl, lo, hi)
 out = ref.copy()
 out[ycol] = bl
 out.to_csv('/tmp/work/submission_pseudo.csv', index=False)
