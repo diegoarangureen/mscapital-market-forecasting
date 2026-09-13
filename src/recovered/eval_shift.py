@@ -14,7 +14,7 @@ P0 = dict(objective='regression', learning_rate=0.05, num_leaves=127, min_data_i
           feature_fraction=0.8, bagging_fraction=0.7, bagging_freq=1, lambda_l2=1.0,
           num_threads=2, verbose=-1)
 yv = y[va]
-dva = lgb.Dataset(X[va], label=y[va], feature_name=keys)
+dva = lgb.Dataset(X[va], label=y[va], feature_name=keys, free_raw_data=False)
 vp=[]
 for seed in (7,42,123):
     dtr = lgb.Dataset(X[tr], label=y[tr], feature_name=keys)
