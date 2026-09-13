@@ -1,0 +1,15 @@
+{
+ "0": {
+  "full": 0.123587,
+  "late": 0.126569
+ },
+ "31": {
+  "full": 0.12058,
+  "late": 0.124171
+ },
+ "41": {
+  "full": 0.112626,
+  "late": 0.112155
+ },
+ "note": "killed 46/51 - monotone degradation clear, less data = worse"
+}

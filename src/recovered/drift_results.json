@@ -1,0 +1,23 @@
+{
+ "top_drift_feats": [
+  "mk_spread_mean",
+  "mk_relspread_mean",
+  "ord_nnew",
+  "ord_ncan",
+  "mk_cnt_total",
+  "mk_spread",
+  "mk_vol_total",
+  "tx_n",
+  "mk_px_vol",
+  "tx_vol"
+ ],
+ "0": {
+  "full": 0.123587,
+  "late": 0.126569
+ },
+ "5": {
+  "full": 0.121439,
+  "late": 0.124322
+ },
+ "note": "killed 10/20 - dropping drift features hurts late val too; they carry real signal"
+}
