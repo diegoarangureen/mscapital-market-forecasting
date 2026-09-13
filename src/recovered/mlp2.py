@@ -3,9 +3,9 @@ import numpy as np, gc, time
 import pyarrow.feather as feather
 lab = feather.read_table('/tmp/mscapital/train/label.feather').to_pandas().sort_values('sample_id')
 y = lab.target.values.astype(np.float64)*1000.0; month = lab.month.values
-tr = month<=50; va = (month>=51)&(month<=60)
+tr = month<=60; va = month>=61
 yv = lab.target.values[va].copy()
-del lab; gc.collect()
+lab = lab[[]]; del lab; gc.collect()
 n_total = len(y)
 X2 = np.load('/tmp/work/X2_train.npy'); d2 = X2.shape[1]
 X6 = np.load('/tmp/work/X6_train.npy'); d6 = X6.shape[1]
@@ -64,8 +64,11 @@ for seed in (0,1,2):
     p,b=run(seed); vp.append(p); print('mlp seed',seed,'best',round(b,6),flush=True)
 m=np.mean(vp,0)
 u=(m-m.mean())/m.std()
-print('SHIFT MLP seedavg:', round(cos(m,yv),6), 'centered:', round(cos(u,yv),6), flush=True)
-g = np.load('/tmp/work/shift_gbm_val.npy'); gu=(g-g.mean())/g.std()
-bl = 0.5*gu+0.5*u
-print('SHIFT BLEND 50/50:', round(cos(bl,yv),6), flush=True)
-print('SHIFT_DONE', flush=True)
+print('MLP seedavg:', round(cos(m,yv),6), 'centered:', round(cos(u,yv),6), flush=True)
+np.save('/tmp/work/mlp_seedavg_val.npy', m)
+g = np.load('/tmp/work/x2base_seedavg_val.npy'); gu=(g-g.mean())/g.std()
+print('corr(gbm,mlp):', round(float(np.corrcoef(gu,u)[0,1]),4), flush=True)
+for w in (0.2,0.3,0.4,0.5,0.55,0.6,0.65,0.7,0.8,1.0):
+    bl = (1-w)*gu + w*u
+    print(f'blend w_mlp={w}: {cos(bl,yv):.6f}', flush=True)
+print('MLP_DONE', flush=True)
