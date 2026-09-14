@@ -122,3 +122,7 @@
 - X2+X17 0.123613 (plano), xall17 0.132169 (+0.00005), shift 0.127842 (-0.0006). Trades ejecutan en el touch: dist de trades es casi degenerada, split por tamano no aporta. Fuera.
 - Familia geography minada: dentro X12 (orders dist), X13 (trades dist + orders rms), X16 (orders whale split); fuera X14 (bandas), X17 (trades whale).
 - Siguiente: X18 = imbalance de COLOCACION (new-can neto) en zona near-mid vs far por cubeta.
+
+## Sept 14 ~10:00 CEST — X18 verdict: DEAD END
+- x2x18 0.124667, xall18 0.131526 (< 0.132116), shift 0.128342 (plano). Net placement por zonas no aporta sobre X12/X13/X16. Familia geography CERRADA.
+- Siguiente: diversidad de modelo — MLP puro sobre las 246 feats del GBM (sin fp views) para blend de 3 vias.
