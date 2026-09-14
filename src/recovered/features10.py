@@ -1,6 +1,6 @@
 # X10: finer sbp bucketization (6 buckets) + per-bucket first/last price return.
 # Buckets: [0,30),[30,90),[90,180),[180,300),[300,450),[450,600). 10 stats/bucket -> 60 feats.
-import sys, numpy as np, time, ctypes
+import sys, numpy as np, time, ctypes, gc
 sys.path.insert(0,'/tmp/work')
 _libc = ctypes.CDLL('libc.so.6')
 from streamcol2 import ziter
@@ -55,12 +55,22 @@ def build(split, ns):
         _libc.malloc_trim(0)
     print(split, 'stream done', round(time.time()-t0), 's', flush=True)
     nn = np.maximum(n, 1).astype(f64)
-    mean_t = st/nn; var_t = np.maximum(st2/nn - mean_t**2, 0)
-    mean_p = sp/nn; var_p = np.maximum(sp2/nn - mean_p**2, 0)
-    cov = stp/nn - mean_t*mean_p
-    slope = cov/np.maximum(var_t, 1e-9)
-    pstd = np.sqrt(var_p)/np.maximum(np.abs(mean_p),1e-9)
-    ret = (lastp - firstp)/np.maximum(firstp, 1e-9)
+    B = 1<<20
+    # in-place reuse: slope->stp, pstd->sp2, ret->lastp; means into s* accumulators
+    for lo in range(0, N, B):
+        hi = min(lo+B, N)
+        nb_ = nn[lo:hi]
+        mt = st[lo:hi]/nb_; vt = np.maximum(st2[lo:hi]/nb_ - mt**2, 0)
+        mp = sp[lo:hi]/nb_; vp = np.maximum(sp2[lo:hi]/nb_ - mp**2, 0)
+        stp[lo:hi] = (stp[lo:hi]/nb_ - mt*mp)/np.maximum(vt, 1e-9)      # slope
+        sp2[lo:hi] = np.sqrt(vp)/np.maximum(np.abs(mp),1e-9)            # pstd
+        lastp[lo:hi] = (lastp[lo:hi]-firstp[lo:hi])/np.maximum(firstp[lo:hi],1e-9)  # ret
+        sspread[lo:hi] /= nb_; srel[lo:hi] /= nb_
+        simb1[lo:hi] /= nb_; simb2[lo:hi] /= nb_; smicro[lo:hi] /= nb_
+    slope = stp; pstd = sp2; ret = lastp
+    spreadm = sspread; relm = srel; imb1m = simb1; imb2m = simb2; microm = smicro
+    del st, st2, sp, firstp, maxsbp, minsbp
+    gc.collect(); _libc.malloc_trim(0)
     feats = {}
     nb_ = n.reshape(ns, NB)
     total_bars = nb_.sum(1).astype(f64)
@@ -69,11 +79,11 @@ def build(split, ns):
         f = {}
         f[f'c{bi}_slope'] = slope[bi::NB]
         f[f'c{bi}_pstd'] = pstd[bi::NB]
-        f[f'c{bi}_spread'] = (sspread/nn)[bi::NB]
-        f[f'c{bi}_relspread'] = (srel/nn)[bi::NB]
-        f[f'c{bi}_imb1'] = (simb1/nn)[bi::NB]
-        f[f'c{bi}_imb2'] = (simb2/nn)[bi::NB]
-        f[f'c{bi}_micro'] = (smicro/nn)[bi::NB]
+        f[f'c{bi}_spread'] = spreadm[bi::NB]
+        f[f'c{bi}_relspread'] = relm[bi::NB]
+        f[f'c{bi}_imb1'] = imb1m[bi::NB]
+        f[f'c{bi}_imb2'] = imb2m[bi::NB]
+        f[f'c{bi}_micro'] = microm[bi::NB]
         f[f'c{bi}_maxtv'] = maxtv[bi::NB]
         f[f'c{bi}_barfrac'] = frac[:, bi]
         f[f'c{bi}_ret'] = ret[bi::NB]

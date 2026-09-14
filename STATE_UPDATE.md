@@ -40,3 +40,12 @@
 - Structural: month-70 blend cos 0.107 ≈ LB 0.113 → LB measures late regime. No temporal leak in test (sbp 0..597 all pre-predict).
 - CHAMPION unchanged: GBM(58)+MLP(121) 50/50 unit blend, refit 0-70, LB 0.113, rank ~198.
 - Box note: nan_to_num on huge arrays OOMs (3 full bool masks) — always blockwise. glibc heap creep needs malloc_trim; background jobs >1.2GB spike-killed, prefer foreground for builds.
+
+## Sept 14 ~06:45 CEST — X10 (bucketed fino 6 cubetas + retorno por cubeta)
+- features10.py: 6 cubetas sbp [0,30,90,180,300,450,600], 10 stats/cubeta (las 9 de X7 + ret first->last price) = 60 feats. Build train (1257637,60) 89s + test (647896,60) 48s. OOM inicial en fase derive -> fix in-place reuse de buffers (commit).
+- gbm_x10.py (X2+X789+X10, 210 feats, tr<=60/va>=61, seeds 7/42, iters 104/103):
+  solo full 0.125039 / late 0.128726 (X2+X7 ref 0.124663/0.127993).
+  blend gbmX10+mlp 50/50: full 0.131743 / late 0.136141.
+  blend X10/X789/mlp 25/25/50: full 0.132396 / late 0.136997 (~= v5 0.13237/0.13706, NO mejor).
+- Lectura: X10 redundante encima de X789 (misma familia). Test limpio corriendo: X2+X10 vs X2+X7 (reemplazo) + shift evals (gbm_x10_ab.py).
+- Disco: 100% -> borrados mlp60_Xstd (869M, dead end r3), x789 memmaps stale; 2.3G libres.
