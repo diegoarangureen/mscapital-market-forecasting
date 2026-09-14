@@ -107,3 +107,8 @@
 ## Sept 14 ~09:25 CEST — X16 (whale geography) fuerte en val, shift neutro
 - X2+X16: 0.128829 (mejor adicion single). xall16 (246f): 0.132116 (+0.0030). Blend late 0.140090 (+0.0016 vs v6).
 - Shift 51-60: 0.128442 vs 0.128812 (-0.0004, nivel ruido). Decidiendo con 2a ventana forward (train<=55, val 56-65) A/B 214f vs 246f corriendo.
+
+## Sept 14 ~09:35 CEST — X16 IN. v7 (246f) refit corriendo
+- Evidencia X16: val +0.0030 (0.132116), blend late +0.0016 (0.140090), X2+X16 shift +0.0037, midwindow (tr55/va56-65) 246f 0.131409 vs 214f 0.130587 (+0.0008), full-config shift 51-60 -0.0004 (ruido).
+- refit_x7816.py: 246f, seeds 7/42/123 @1.1x (122/156/139). -> submission_v7x7816.csv reemplaza v6 al terminar.
+- Limpieza disco: borradas matrices X10/X11/X14/X15 (dead ends) y .f32 viejos. 1.6G libres.
