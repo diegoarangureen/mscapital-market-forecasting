@@ -142,3 +142,8 @@
 - Refit 5 seeds (7/42/123/2024/31337, iters 1.1x = [122,156,139,129,134]) completo tras tormenta de VM forks/OOM ~13:10-14:10; script idempotente con skip-if-exists (refit_x7816c.py).
 - submission_v7x7816.csv reconstruido: 0.5*unit(GBM246 5seed) + 0.5*unit(MLP refit), clip q0.1/99.9, 17 filas no-data a 0. Train cos in-sample 0.220339.
 - Plan intacto: 02:00 CEST submit v7 (ahora 5-seed) primero, v8 segundo.
+
+## 2026-09-14 ~15:05 — X19 (fill-ratio) en evaluación
+- Nueva familia: ratio ejecución/colocación por (sid, sbp-bucket, side) — linked order+transaction streams; GBM no puede dividir entre streams. 32 feats (fill, fillnet, exec_logratio, cancelover x 4 buckets x 2 sides).
+- Hipótesis: presión de demanda vs provision de liquidez por zona temporal. Temporal-bucket ya cubierto por X7/X8/X9 (X19 no duplica: es cross-stream ratio).
+- Eval corriendo: x2x19, xall19 (278f) val + shift vs refs 0.132116/0.128442 (gbm_x19_ab.py).
