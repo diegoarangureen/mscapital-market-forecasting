@@ -99,3 +99,7 @@
 - v6 se queda con 214f (X789+X12+X13): submission_v6x7813.csv staged. Subir tras reset ~02:00 CEST.
 - Familias cerradas hoy: X10 (neutro), X11 (neutro), X12 (+), X13 (+), X14 (redundante), X15 (mixto).
 - Ideas agotadas en per-sample obvias. Proximas opciones: (a) geography por bandas de volumen (dist solo de ordenes grandes), (b) ensemble diversity: MLP con X12/X13 anadidas a sus 121 feats, (c) 3er modelo diverso (extra trees / linear sobre ranks) para blend de 3 vias.
+
+## Sept 14 ~08:37 CEST — MLP+X12X13 dead end; X16 en build
+- MLP con X12/X13 (185f): solo 0.126175/0.130731 (muy ruidoso: seed0 0.1198, seed1 0.1265). Blend gbm+newMLP late 0.137752 < 0.138456. NO mejora. v6 sigue: 214f GBM + MLP original.
+- X16 (whale geography: dist/absdist separado por orden grande vs pequena vs media) construyendo.
