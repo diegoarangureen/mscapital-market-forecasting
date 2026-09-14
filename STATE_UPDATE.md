@@ -112,3 +112,8 @@
 - Evidencia X16: val +0.0030 (0.132116), blend late +0.0016 (0.140090), X2+X16 shift +0.0037, midwindow (tr55/va56-65) 246f 0.131409 vs 214f 0.130587 (+0.0008), full-config shift 51-60 -0.0004 (ruido).
 - refit_x7816.py: 246f, seeds 7/42/123 @1.1x (122/156/139). -> submission_v7x7816.csv reemplaza v6 al terminar.
 - Limpieza disco: borradas matrices X10/X11/X14/X15 (dead ends) y .f32 viejos. 1.6G libres.
+
+## Sept 14 ~09:40 CEST — v7 STAGED (246f con X16)
+- submission_v7x7816.csv: refit 246f + MLP 50/50, in-sample 0.221116. Reemplaza v6 (v6x7813.csv conservada como fallback).
+- A las ~02:00 CEST (reset cuota): subir v7 primero. Si LB v7 >= LB v5, considerar v6 como 2a sonda.
+- X17 (whale trade geography) en build.
