@@ -103,3 +103,7 @@
 ## Sept 14 ~08:37 CEST — MLP+X12X13 dead end; X16 en build
 - MLP con X12/X13 (185f): solo 0.126175/0.130731 (muy ruidoso: seed0 0.1198, seed1 0.1265). Blend gbm+newMLP late 0.137752 < 0.138456. NO mejora. v6 sigue: 214f GBM + MLP original.
 - X16 (whale geography: dist/absdist separado por orden grande vs pequena vs media) construyendo.
+
+## Sept 14 ~09:25 CEST — X16 (whale geography) fuerte en val, shift neutro
+- X2+X16: 0.128829 (mejor adicion single). xall16 (246f): 0.132116 (+0.0030). Blend late 0.140090 (+0.0016 vs v6).
+- Shift 51-60: 0.128442 vs 0.128812 (-0.0004, nivel ruido). Decidiendo con 2a ventana forward (train<=55, val 56-65) A/B 214f vs 246f corriendo.
