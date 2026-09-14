@@ -22,3 +22,21 @@
 - Per-month val cosine flat 0.10-0.17 except month 70 (hardest, 0.097-0.107). LB 0.113 ~= month-70 level: test (months 71+) follows the late regime. Late val (66-70) is a better selection metric; blend w=0.5 optimal on both (late 0.13542).
 - Feature drift PSI train->test: activity/count features drift hardest (ord_nnew 0.130, ord_ncan 0.126, mk_cnt_total 0.125, tx_n 0.095).
 - Queue: E3 log1p count features (running, /tmp/e3.log), E2 recency ramp re-scored on late val (eval_recency2.py), then cohort GBM, 1D-CNN on bar series.
+
+## Sept 14 00:00-05:00 — Round 3: systematic pivot attempts (all dead ends except pseudo-sims)
+- Seq GRU (60x6 bar seqs, 150K-200K subset): NEGATIVE signal (seedavg -0.017; blend worsens). Family discarded.
+- Month-cohort GBM (train on 31/41-60): monotone worse (0.1236→0.1126). More data always wins.
+- Drift-feature ablation (drop top-5 PSI): hurts late val (0.1266→0.1243). Drifting features carry real signal.
+- Pseudo-labeling (self-training on forward months, w=0.1, confident half): POSITIVE in 2/3 forward sims (+0.0023 late on eval61-70, +0.0009 on eval66-70, neutral on 51-60). Applied to test: v2 LB 0.113 (=v1), v3 (GBM+MLP both pseudo) LB 0.112. LB-neutral at 3-decimal resolution.
+- Adversarial importance weighting: AUC 0.74 (strong shift train-vs-forward) but weighted training hurts (0.1186 vs 0.1216). Dead.
+- Ridge 3rd model: hurts blend at any weight. Dead.
+- Blend weight sweep: flat 0.45-0.50. No lever.
+- Diverse-config GBM (B_deep/C_shallow): blend +0.0002 full = noise. Dead.
+- Big MLP (512-256-128): 0.1158 vs small 0.1251. Overfits. Dead.
+- Rank-target GBM: solo 0.085, blend hurts. Dead.
+- Fingerprint-view GBM: solo 0.040, blend hurts. Dead.
+- 60-grid fingerprints (10s) for MLP: 0.1155 vs 30-grid 0.125. Noisier cells. Dead.
+- LB probes (refs 56217171/56217183): blend 0.113 > GBM-only 0.110 > MLP-only 0.109. Diversity transfers; late-val ranking does NOT rank close variants on LB.
+- Structural: month-70 blend cos 0.107 ≈ LB 0.113 → LB measures late regime. No temporal leak in test (sbp 0..597 all pre-predict).
+- CHAMPION unchanged: GBM(58)+MLP(121) 50/50 unit blend, refit 0-70, LB 0.113, rank ~198.
+- Box note: nan_to_num on huge arrays OOMs (3 full bool masks) — always blockwise. glibc heap creep needs malloc_trim; background jobs >1.2GB spike-killed, prefer foreground for builds.
