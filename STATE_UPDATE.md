@@ -56,3 +56,8 @@
 - X789+X10 shift: 0.124458 vs X789 solo 0.12496 (anadir X10 EMPEORA shift -> overfit de cubetas finas).
 - Conclusion: mas granularidad temporal NO ayuda; familia bucketed-by-sbp saturada con X7/X8/X9. No submission (regla 4).
 - Siguiente: X11 familia estructural nueva (microestructura: Kyle lambda / Amihud por cubeta + time-to-event).
+
+## Sept 14 ~07:00 CEST — X11 verdict: DEAD END
+- x2x11 main val 0.123528 (vs X2 0.123587), x789x11 0.126161/0.130117 (vs X789 0.126590/0.131000 - peor), shift 0.123422 (vs X2 0.122894, ruido).
+- Conclusion: ranges hi-lo / tv-range / sbp-span / time-to-event no aportan sobre X2 ni X789. Dos familias cerradas hoy (X10, X11).
+- Siguiente: X12 = geografia de precios de ordenes (distancia al mid por cubeta, 2 pasadas) - lo no minado de order.feather.
