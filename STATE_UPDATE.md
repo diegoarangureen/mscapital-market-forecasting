@@ -69,3 +69,10 @@
 - Shift X2+X12: 0.124715 vs X2 0.122894 (+0.0018, positivo). Shift X789+X12 corriendo (ref X789 0.12496).
 - BLEND gbmX789X12+mlp 50/50: full 0.133496 / late 0.138168 (v5: 0.132370/0.137060, +0.0011 ambos). w=0.55 late 0.138209.
 - PLAN v6: si shift champion-config positivo -> refit 0-70 3 seeds @1.1x, blend 50/50 MLP, zero no-data, clip, submission tras reset cuota ~02:00 CEST 15 sept.
+
+## Sept 14 ~07:35 CEST — v6 STAGED (esperando reset cuota ~02:00 CEST 15 sept)
+- x789x12shift: 0.127664 vs X789 shift 0.12496 (+0.0027) — EVIDENCIA COMPLETA positiva.
+- Refit X2+X7+X8+X9+X12 (182f) meses 0-70, seeds 7/42/123 @1.1x (109/97/102 it): modelos x7812_seed*.txt, refit_x7812_{test,train}.npy.
+- submission_v6x7812.csv: 50/50 blend con refit_mlp, nodata=0, clip 0.1/99.9. In-sample train cos 0.203819.
+- OOM fix en refit_x7812.py: test mode ya no construye la matriz train.
+- Siguiente: X13 (trade geography + rms dist de ordenes) features13.py commiteado, build pendiente.
