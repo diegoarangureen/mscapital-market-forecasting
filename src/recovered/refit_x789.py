@@ -19,7 +19,14 @@ params = dict(objective='regression', learning_rate=0.05, num_leaves=127,
               min_data_in_leaf=500, feature_fraction=0.8, bagging_fraction=0.7,
               bagging_freq=1, lambda_l2=1.0, verbose=-1, num_threads=2)
 iters = [144, 116, 118]  # 1.1x of [131,105,~107]
-if which=='test':
+if which=='trainmodels':
+    for seed,nr in zip((7,42,123), iters):
+        p=dict(params); p['seed']=seed
+        ds=lgb.Dataset(X,y); m=lgb.train(p,ds,num_boost_round=nr)
+        m.save_model(f'/tmp/work/x789_seed{seed}.txt')
+        print('model seed',seed,'saved',flush=True); del ds,m; gc.collect()
+    print('MODELS_DONE', flush=True)
+elif which=='test':
     p0t = np.load('/tmp/work/X2_test.npy'); nt = len(p0t)
     Xt = np.empty((nt,150), np.float32); Xt[:,:d0]=p0t; del p0t; gc.collect()
     col=d0
@@ -30,20 +37,19 @@ if which=='test':
         blk = Xt[st:st+100000]; m_ = ~np.isfinite(blk); blk[m_]=0.0; del m_
     print('test matrix ready', flush=True)
     preds=[]
-    for seed,nr in zip((7,42,123), iters):
-        p=dict(params); p['seed']=seed
-        ds=lgb.Dataset(X,y); m=lgb.train(p,ds,num_boost_round=nr)
-        preds.append(m.predict(Xt)); print('seed',seed,'done',flush=True); del ds,m; gc.collect()
+    for seed in (7,42,123):
+        m = lgb.Booster(model_file=f'/tmp/work/x789_seed{seed}.txt')
+        out = np.empty(nt)
+        for st in range(0,nt,200000): out[st:st+200000]=m.predict(Xt[st:st+200000])
+        preds.append(out); print('seed',seed,'predicted',flush=True); del m,out; gc.collect()
     np.save('/tmp/work/refit_x789_test.npy', np.mean(preds,0))
     print('X789_REFIT_TEST_DONE', flush=True)
-else:
+elif which=='trainpred':
     preds=[]
-    for seed,nr in zip((7,42,123), iters):
-        p=dict(params); p['seed']=seed
-        ds=lgb.Dataset(X,y); m=lgb.train(p,ds,num_boost_round=nr)
-        # train preds in blocks to avoid big temp
+    for seed in (7,42,123):
+        m = lgb.Booster(model_file=f'/tmp/work/x789_seed{seed}.txt')
         out = np.empty(n)
         for st in range(0,n,200000): out[st:st+200000]=m.predict(X[st:st+200000])
-        preds.append(out); print('seed',seed,'done',flush=True); del ds,m,out; gc.collect()
+        preds.append(out); print('seed',seed,'predicted',flush=True); del m,out; gc.collect()
     np.save('/tmp/work/refit_x789_train.npy', np.mean(preds,0))
     print('X789_REFIT_TRAIN_DONE', flush=True)
