@@ -89,3 +89,7 @@
 - Refit 214f OK (memmap fix): x7813_seed{7,42,123}.txt, refit_x7813_{test,train}.npy.
 - submission_v6x7813.csv (blend 50/50 MLP, nodata=0, clip 0.1/99.9, in-sample 0.210435). v6x7812 descartada.
 - PENDIENTE: subir tras reset cuota ~02:00 CEST 15 sept via submit3.py. Reportar LB+rank.
+
+## Sept 14 ~08:20 CEST — X14 verdict: DEAD END (redundante)
+- xall14 (246f) val 0.128344 < X789X12X13 0.129131; shift 0.127747 < 0.128812. Bandas de distancia ya cubiertas por dist/rms de X12/X13. No incluir.
+- X15 en build: level spacing del libro (askgap/bidgap/L1 vol share/L1-L2 volgap por cubeta).
