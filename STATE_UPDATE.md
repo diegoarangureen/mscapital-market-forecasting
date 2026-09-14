@@ -61,3 +61,11 @@
 - x2x11 main val 0.123528 (vs X2 0.123587), x789x11 0.126161/0.130117 (vs X789 0.126590/0.131000 - peor), shift 0.123422 (vs X2 0.122894, ruido).
 - Conclusion: ranges hi-lo / tv-range / sbp-span / time-to-event no aportan sobre X2 ni X789. Dos familias cerradas hoy (X10, X11).
 - Siguiente: X12 = geografia de precios de ordenes (distancia al mid por cubeta, 2 pasadas) - lo no minado de order.feather.
+
+## Sept 14 ~07:10 CEST — X12 POSITIVE (geografia de precios de ordenes)
+- features12.py: distancia volume-weighted al mid de cubeta (2 pasadas: mid por (sid,bucket) de market, luego stream order) x (4 cubetas x new/can x buy/sell) = 32 feats. Build train+test OK.
+- X2+X12: 0.127005 (vs X2 0.123587, +0.0034 - mayor salto que X7).
+- X789+X12 (182f): 0.128181 full / late (vs X789 0.126590, +0.0016 incremental).
+- Shift X2+X12: 0.124715 vs X2 0.122894 (+0.0018, positivo). Shift X789+X12 corriendo (ref X789 0.12496).
+- BLEND gbmX789X12+mlp 50/50: full 0.133496 / late 0.138168 (v5: 0.132370/0.137060, +0.0011 ambos). w=0.55 late 0.138209.
+- PLAN v6: si shift champion-config positivo -> refit 0-70 3 seeds @1.1x, blend 50/50 MLP, zero no-data, clip, submission tras reset cuota ~02:00 CEST 15 sept.
