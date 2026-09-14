@@ -49,3 +49,10 @@
   blend X10/X789/mlp 25/25/50: full 0.132396 / late 0.136997 (~= v5 0.13237/0.13706, NO mejor).
 - Lectura: X10 redundante encima de X789 (misma familia). Test limpio corriendo: X2+X10 vs X2+X7 (reemplazo) + shift evals (gbm_x10_ab.py).
 - Disco: 100% -> borrados mlp60_Xstd (869M, dead end r3), x789 memmaps stale; 2.3G libres.
+
+## Sept 14 ~06:50 CEST — X10 verdict: DEAD END
+- x2x10 (X2+X10, 118f) main val: 0.124701 vs X2+X7 0.124663 (empate).
+- x2x10 shift (tr<=50, va 51-60): 0.125640 vs X2+X7 0.125788 (peor).
+- X789+X10 shift: 0.124458 vs X789 solo 0.12496 (anadir X10 EMPEORA shift -> overfit de cubetas finas).
+- Conclusion: mas granularidad temporal NO ayuda; familia bucketed-by-sbp saturada con X7/X8/X9. No submission (regla 4).
+- Siguiente: X11 familia estructural nueva (microestructura: Kyle lambda / Amihud por cubeta + time-to-event).
