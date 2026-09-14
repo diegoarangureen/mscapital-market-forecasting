@@ -132,3 +132,8 @@
 - Blend 3way GBM246 40% + oldMLP 30% + MLP246 30%: 0.136630/0.140778 — MEJOR que v7 (0.135883/0.140090) en ambos.
 - Refit MLP246 meses 0-70 corriendo (epochs 10/4/7 = 1.1x best). -> v8 3-way. Plan submission 02:00 CEST: v7 (2way, evidencia completa) y v8 (3way) como sondas.
 - Fix memoria: nan_to_num/clip blockwise (full-matrix OOM a 1.6GB anon).
+
+## Sept 14 ~10:47 CEST — v8 STAGED (3-way)
+- Refit MLP246 OK (train cos 0.156/0.134/0.146 por seed). refit_mlp246_{train,test}.npy.
+- submission_v8_3way.csv = 0.4*GBM246 + 0.3*MLP + 0.3*MLP246, nodata=0, clip. In-sample 0.207896.
+- Plan 02:00 CEST: submit v7 (2way) primero, v8 (3way) segundo. Comparar LB para decidir la linea.
