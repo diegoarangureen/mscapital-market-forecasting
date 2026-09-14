@@ -76,3 +76,11 @@
 - submission_v6x7812.csv: 50/50 blend con refit_mlp, nodata=0, clip 0.1/99.9. In-sample train cos 0.203819.
 - OOM fix en refit_x7812.py: test mode ya no construye la matriz train.
 - Siguiente: X13 (trade geography + rms dist de ordenes) features13.py commiteado, build pendiente.
+
+## Sept 14 ~07:50 CEST — X13 POSITIVE (trade geography + rms dist ordenes)
+- features13.py: (a) trade price vs bucket mid por (cubeta,side): dist + absdist vol-weighted = 16; (b) rms dist de ordenes por (cubeta,new/can,side) = 16. Total 32.
+- X2+X13: 0.127720 (mejor que X2+X12 0.127005).
+- Champion (X789+X12+X13, 214f): val 0.129131 (+0.0010 vs X789X12), SHIFT 0.128812 (+0.0011 vs 0.127664) — doble positivo.
+- Blend +MLP 50/50: full 0.134095 / late 0.138456 (nuevo mejor; v5 0.132370/0.137060).
+- Refit 214f en cadena (trainmodels->test->trainpred) corriendo; submission v6 se rebuena con X13 al terminar. Cuota resetea ~02:00 CEST.
+- Nota: X2+X12+X13 shift bajaba (0.123621) pero en config completa el shift SUBE — la interaccion con X789 importa.
