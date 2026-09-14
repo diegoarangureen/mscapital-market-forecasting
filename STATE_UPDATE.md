@@ -93,3 +93,9 @@
 ## Sept 14 ~08:20 CEST — X14 verdict: DEAD END (redundante)
 - xall14 (246f) val 0.128344 < X789X12X13 0.129131; shift 0.127747 < 0.128812. Bandas de distancia ya cubiertas por dist/rms de X12/X13. No incluir.
 - X15 en build: level spacing del libro (askgap/bidgap/L1 vol share/L1-L2 volgap por cubeta).
+
+## Sept 14 ~08:31 CEST — X15 verdict: FUERA (val+, shift-)
+- xall15 (230f) val 0.129908 (+0.0008) PERO shift 0.127971 < 0.128812 (-0.0008). Regla 4: sin evidencia forward-sim fuerte -> NO entra en v6.
+- v6 se queda con 214f (X789+X12+X13): submission_v6x7813.csv staged. Subir tras reset ~02:00 CEST.
+- Familias cerradas hoy: X10 (neutro), X11 (neutro), X12 (+), X13 (+), X14 (redundante), X15 (mixto).
+- Ideas agotadas en per-sample obvias. Proximas opciones: (a) geography por bandas de volumen (dist solo de ordenes grandes), (b) ensemble diversity: MLP con X12/X13 anadidas a sus 121 feats, (c) 3er modelo diverso (extra trees / linear sobre ranks) para blend de 3 vias.
