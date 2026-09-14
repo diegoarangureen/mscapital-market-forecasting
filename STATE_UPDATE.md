@@ -137,3 +137,8 @@
 - Refit MLP246 OK (train cos 0.156/0.134/0.146 por seed). refit_mlp246_{train,test}.npy.
 - submission_v8_3way.csv = 0.4*GBM246 + 0.3*MLP + 0.3*MLP246, nodata=0, clip. In-sample 0.207896.
 - Plan 02:00 CEST: submit v7 (2way) primero, v8 (3way) segundo. Comparar LB para decidir la linea.
+
+## 2026-09-14 ~15:00 — v7 reconstruida con GBM246 5-seed
+- Refit 5 seeds (7/42/123/2024/31337, iters 1.1x = [122,156,139,129,134]) completo tras tormenta de VM forks/OOM ~13:10-14:10; script idempotente con skip-if-exists (refit_x7816c.py).
+- submission_v7x7816.csv reconstruido: 0.5*unit(GBM246 5seed) + 0.5*unit(MLP refit), clip q0.1/99.9, 17 filas no-data a 0. Train cos in-sample 0.220339.
+- Plan intacto: 02:00 CEST submit v7 (ahora 5-seed) primero, v8 segundo.
