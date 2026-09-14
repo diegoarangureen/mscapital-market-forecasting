@@ -147,3 +147,8 @@
 - Nueva familia: ratio ejecución/colocación por (sid, sbp-bucket, side) — linked order+transaction streams; GBM no puede dividir entre streams. 32 feats (fill, fillnet, exec_logratio, cancelover x 4 buckets x 2 sides).
 - Hipótesis: presión de demanda vs provision de liquidez por zona temporal. Temporal-bucket ya cubierto por X7/X8/X9 (X19 no duplica: es cross-stream ratio).
 - Eval corriendo: x2x19, xall19 (278f) val + shift vs refs 0.132116/0.128442 (gbm_x19_ab.py).
+
+## 2026-09-14 ~21:30 — X19 (fill-ratio) MUERTA
+- x2x19 solo 0.123059 < X2 0.123587; xall19 (278f) 0.131503 < 246f 0.132116; shift 0.128174 < 0.128442. Las 3 pruebas negativas. Familia fill-ratio cerrada.
+- Matrices X19 borradas. Estado de familias: geography (X12/X13/X16) IN, todo lo demás probado muerto: X10/11/14/15/17/18/19.
+- Siguiente hito: 02:00 CEST submit v7 (5-seed) + v8 probe.
