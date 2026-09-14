@@ -84,3 +84,8 @@
 - Blend +MLP 50/50: full 0.134095 / late 0.138456 (nuevo mejor; v5 0.132370/0.137060).
 - Refit 214f en cadena (trainmodels->test->trainpred) corriendo; submission v6 se rebuena con X13 al terminar. Cuota resetea ~02:00 CEST.
 - Nota: X2+X12+X13 shift bajaba (0.123621) pero en config completa el shift SUBE — la interaccion con X789 importa.
+
+## Sept 14 ~07:57 CEST — v6 FINAL staged (X12+X13)
+- Refit 214f OK (memmap fix): x7813_seed{7,42,123}.txt, refit_x7813_{test,train}.npy.
+- submission_v6x7813.csv (blend 50/50 MLP, nodata=0, clip 0.1/99.9, in-sample 0.210435). v6x7812 descartada.
+- PENDIENTE: subir tras reset cuota ~02:00 CEST 15 sept via submit3.py. Reportar LB+rank.
