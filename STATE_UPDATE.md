@@ -117,3 +117,8 @@
 - submission_v7x7816.csv: refit 246f + MLP 50/50, in-sample 0.221116. Reemplaza v6 (v6x7813.csv conservada como fallback).
 - A las ~02:00 CEST (reset cuota): subir v7 primero. Si LB v7 >= LB v5, considerar v6 como 2a sonda.
 - X17 (whale trade geography) en build.
+
+## Sept 14 ~09:50 CEST — X17 verdict: DEAD END
+- X2+X17 0.123613 (plano), xall17 0.132169 (+0.00005), shift 0.127842 (-0.0006). Trades ejecutan en el touch: dist de trades es casi degenerada, split por tamano no aporta. Fuera.
+- Familia geography minada: dentro X12 (orders dist), X13 (trades dist + orders rms), X16 (orders whale split); fuera X14 (bandas), X17 (trades whale).
+- Siguiente: X18 = imbalance de COLOCACION (new-can neto) en zona near-mid vs far por cubeta.
