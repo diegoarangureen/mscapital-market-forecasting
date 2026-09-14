@@ -126,3 +126,9 @@
 ## Sept 14 ~10:00 CEST — X18 verdict: DEAD END
 - x2x18 0.124667, xall18 0.131526 (< 0.132116), shift 0.128342 (plano). Net placement por zonas no aporta sobre X12/X13/X16. Familia geography CERRADA.
 - Siguiente: diversidad de modelo — MLP puro sobre las 246 feats del GBM (sin fp views) para blend de 3 vias.
+
+## Sept 14 ~10:25 CEST — MLP246 (puro 246f) suma en blend 3 vias
+- MLP246 solo: 0.128149/0.132194 (seed0 0.1283, seed1 0.1216).
+- Blend 3way GBM246 40% + oldMLP 30% + MLP246 30%: 0.136630/0.140778 — MEJOR que v7 (0.135883/0.140090) en ambos.
+- Refit MLP246 meses 0-70 corriendo (epochs 10/4/7 = 1.1x best). -> v8 3-way. Plan submission 02:00 CEST: v7 (2way, evidencia completa) y v8 (3way) como sondas.
+- Fix memoria: nan_to_num/clip blockwise (full-matrix OOM a 1.6GB anon).
