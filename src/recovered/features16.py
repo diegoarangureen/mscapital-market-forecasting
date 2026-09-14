@@ -26,7 +26,6 @@ def build(split, ns):
     # pass2: per (sid,bucket) median volume -> need 2 passes over orders; approximate median with mean volume per (sid,bucket,act)
     CL2 = 2
     sv2 = np.zeros(N*CL2, f64); nv2 = np.zeros(N*CL2, f64)
-    import numpy as np
     for sid, sbp, pr, v, side, act in ziter(f'/tmp/mscapital/{split}/order.feather',
             ['sample_id','seconds_before_predict','price','volume','side','order_action'], elems=1<<19):
         b = np.searchsorted(edges, sbp.astype(f64))
