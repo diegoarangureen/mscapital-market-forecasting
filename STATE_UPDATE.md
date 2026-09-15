@@ -152,3 +152,9 @@
 - x2x19 solo 0.123059 < X2 0.123587; xall19 (278f) 0.131503 < 246f 0.132116; shift 0.128174 < 0.128442. Las 3 pruebas negativas. Familia fill-ratio cerrada.
 - Matrices X19 borradas. Estado de familias: geography (X12/X13/X16) IN, todo lo demás probado muerto: X10/11/14/15/17/18/19.
 - Siguiente hito: 02:00 CEST submit v7 (5-seed) + v8 probe.
+
+## 2026-09-15 02:10 CEST — LB v7 y v8
+- v7 (ref 56241229, GBM246 5-seed + MLP 50/50): LB 0.116 (vs v5 0.114). Nuevo mejor LB.
+- v8 (ref 56241246, 3-way 0.4/0.3/0.3): LB 0.116 — empate con v7 a resolución del LB.
+- LB val->LB: blend val 0.1359-0.1366 se traduce en +0.002 LB. LB sigue comprimido en 3 decimales.
+- Cuota restante hoy: 3/5.
