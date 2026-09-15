@@ -158,3 +158,8 @@
 - v8 (ref 56241246, 3-way 0.4/0.3/0.3): LB 0.116 — empate con v7 a resolución del LB.
 - LB val->LB: blend val 0.1359-0.1366 se traduce en +0.002 LB. LB sigue comprimido en 3 decimales.
 - Cuota restante hoy: 3/5. Rank actual: 197/214 con 0.116 (mismo rank que ayer, score mayor; leaderboard CSV via API, 214 equipos).
+
+## 2026-09-15 02:18 — probe estructural: y rank-transform por mes
+- Hipótesis: entrenar con y = rank pct por mes ([-1,1]) en vez de y raw mejora generalización cross-régimen (métrica cos es invariante a escala global pero no a mezcla de regímenes).
+- Eval: gbm_xrank_ab.py, 246f, val full + shift, refs rawY 0.132116 / shift 0.128442. Preds evaluados contra y RAW (la métrica real).
+- Leaderboard screenshot rank 197 entregado a parent 02:17. Cuota 3/5 intacta.
