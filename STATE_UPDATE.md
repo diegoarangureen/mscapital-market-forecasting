@@ -163,3 +163,7 @@
 - Hipótesis: entrenar con y = rank pct por mes ([-1,1]) en vez de y raw mejora generalización cross-régimen (métrica cos es invariante a escala global pero no a mezcla de regímenes).
 - Eval: gbm_xrank_ab.py, 246f, val full + shift, refs rawY 0.132116 / shift 0.128442. Preds evaluados contra y RAW (la métrica real).
 - Leaderboard screenshot rank 197 entregado a parent 02:17. Cuota 3/5 intacta.
+
+## 2026-09-15 04:10 — rank-y MUERTO
+- Rank-y (per-month pct rank): val 0.088312 vs 0.132116 raw; shift 0.097293 vs 0.128442. best_iter=1 en ambos — early stopping por L2 no sirve con targets rankeados y la info cross-month de escala (std por mes varía 2.6x) sí carga señal para cos. Descartado.
+- corr(rank_y, raw_y)=0.86; month std range 0.0019-0.0050. Dato útil: la métrica cos premia acertar magnitudes de meses volátiles.
