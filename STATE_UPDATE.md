@@ -172,3 +172,7 @@
 - xallcos (GBM 246f, early-stop on cos feval, idea from public LGBM baseline): val 0.132069 vs L2-ES ref 0.132116; shift 0.128442 = ref exactly.
 - No gain on either axis -> NOT a v9 component. Cycle logged per Diego's loop (search->check->optimize->ceiling->restart).
 - Next: MLP v2 (cos-loss+EMA) verdict pending; then X20 (window-deltas + cross-stream interactions, UnseenAnchor v3-style, gained on all their folds).
+
+## 2026-09-16 00:56 — MLP v2 (cos-loss + EMA 0.999) verdict: NEGATIVE, closed
+- New MLP solo seed0 0.12623 (old MLP246 solo 0.128149). Blend gbm+newMLP 0.135729/0.138873 vs gbm+oldMLP 0.135883/0.140090. 3-way 0.136033/0.140061 vs ref 0.136630/0.140778.
+- cos-loss+EMA loses on both val and shift -> keep old MLP. Idea from public RealMLP kernel does not transfer to our MLP246.
