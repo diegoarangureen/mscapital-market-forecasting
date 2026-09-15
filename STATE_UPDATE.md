@@ -167,3 +167,8 @@
 ## 2026-09-15 04:10 — rank-y MUERTO
 - Rank-y (per-month pct rank): val 0.088312 vs 0.132116 raw; shift 0.097293 vs 0.128442. best_iter=1 en ambos — early stopping por L2 no sirve con targets rankeados y la info cross-month de escala (std por mes varía 2.6x) sí carga señal para cos. Descartado.
 - corr(rank_y, raw_y)=0.86; month std range 0.0019-0.0050. Dato útil: la métrica cos premia acertar magnitudes de meses volátiles.
+
+## 2026-09-15 15:38 — cos-ES GBM verdict: TIE, closed
+- xallcos (GBM 246f, early-stop on cos feval, idea from public LGBM baseline): val 0.132069 vs L2-ES ref 0.132116; shift 0.128442 = ref exactly.
+- No gain on either axis -> NOT a v9 component. Cycle logged per Diego's loop (search->check->optimize->ceiling->restart).
+- Next: MLP v2 (cos-loss+EMA) verdict pending; then X20 (window-deltas + cross-stream interactions, UnseenAnchor v3-style, gained on all their folds).
