@@ -157,4 +157,4 @@
 - v7 (ref 56241229, GBM246 5-seed + MLP 50/50): LB 0.116 (vs v5 0.114). Nuevo mejor LB.
 - v8 (ref 56241246, 3-way 0.4/0.3/0.3): LB 0.116 — empate con v7 a resolución del LB.
 - LB val->LB: blend val 0.1359-0.1366 se traduce en +0.002 LB. LB sigue comprimido en 3 decimales.
-- Cuota restante hoy: 3/5.
+- Cuota restante hoy: 3/5. Rank actual: 197/214 con 0.116 (mismo rank que ayer, score mayor; leaderboard CSV via API, 214 equipos).
