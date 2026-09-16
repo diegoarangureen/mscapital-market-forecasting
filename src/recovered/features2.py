@@ -197,7 +197,10 @@ if __name__ == '__main__':
         print(f'{split} {name} done {time.time()-t:.0f}s total_feats={len(out)}', flush=True)
         gc.collect()
     keys = sorted(out)
-    X = np.stack([out[k] for k in keys], axis=1).astype(np.float32)
+    X = np.empty((ns, len(keys)), np.float32)
+    for j, k_ in enumerate(keys):
+        X[:, j] = out.pop(k_)  # cast to float32 + free the float64 column
+        gc.collect()
     np.save(f'/tmp/work/X2_{split}.npy', X)
     np.save(f'/tmp/work/X2_{split}_keys.npy', np.array(keys))
     print('saved', X.shape, flush=True)
