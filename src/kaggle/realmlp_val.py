@@ -26,7 +26,11 @@ print('device:', device, 'n_ens', N_ENS, 'epochs', EPOCHS, flush=True)
 X_all = np.load(f'{DATA}/full_train.npy')          # (1257637, 246) float32, NaN->0
 y_all = np.load(f'{DATA}/full_y.npy').astype(np.float32)
 month = np.load(f'{DATA}/full_month.npy')
-tr = month <= 60; va = month >= 61
+TR_MAX = int(os.environ.get('TR_MAX', '60'))
+VA_LO = int(os.environ.get('VA_LO', '61'))
+VA_HI = int(os.environ.get('VA_HI', '70'))
+TAG = os.environ.get('TAG', 'main')
+tr = month <= TR_MAX; va = (month >= VA_LO) & (month <= VA_HI)
 late = month >= 66
 Xtr = X_all[tr]; ytr = y_all[tr]
 Xva = X_all[va]; yva = y_all[va]
@@ -199,9 +203,9 @@ for ep in range(EPOCHS):
     if c_full > best_cos:
         best_cos = c_full
         best_state = {k: v.cpu().clone() for k, v in ema.ema_state.items()}
-        np.save('/kaggle/working/val_pred.npy', pv)
+        np.save(f'/kaggle/working/val_pred_{TAG}.npy', pv)
 
 json.dump({'best_val_cos': best_cos, 'n_ens': N_ENS, 'epochs': EPOCHS, 'seed': SEED,
-           'device': device.type}, open('/kaggle/working/metrics.json', 'w'))
-torch.save(best_state, '/kaggle/working/best_ema.pt')
+           'device': device.type}, open(f'/kaggle/working/metrics_{TAG}.json', 'w'))
+torch.save(best_state, f'/kaggle/working/best_ema_{TAG}.pt')
 print('DONE best val_cos', best_cos, flush=True)
