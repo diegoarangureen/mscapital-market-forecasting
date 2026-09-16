@@ -76,3 +76,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 ## 2026-09-17 00:14 CEST — X21 CONFIRMED (shift positive)
 - Shift sim (tr<=50 -> 51-60): 276f 0.134280 vs 246f 0.133253 => +0.00103. All gates positive: val +0.00264, late +0.00293, shift +0.00103.
 - X21 included. Matrix champion now 276f. Next: X22 (early-window dynamics + cross-stream) to chain gains before refit+submission; 276f val 0.14383 alone is under the 0.144-clear submission bar.
+
+## 2026-09-17 00:59 CEST — COS-DOMINANT LOSS: big gain
+- lambda_cos 0.01 -> 1.0 on 276f: val 0.147721 (+0.00389 vs 0.143830), late 0.153287 (+0.00637 vs 0.146919). Clears the 0.144 bar on val.
+- Source of idea: top-team levers (direct cosine optimization). Shift sim running (mscapital-cos-shift-val). If positive -> strong v10 candidate (refit 0-70, 276f, cos loss).
+- x22-303f first run ERRORED (mount race suspected); re-pushed wrapped as mscapital-x22w-303f-val.
+- LB 00:59: unchanged (221, top1 0.172, gate10 0.160, us 173 @ 0.124).
