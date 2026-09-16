@@ -20,13 +20,13 @@ def _exact(gen, nbytes_target):
     if buf:
         yield buf
 
-def ziter(path, names, elems=1<<21):
+def ziter(path, names, elems=1<<20):
     """yield aligned numpy chunk lists, exactly `elems` rows per yield (last may be shorter)"""
     idxs = names_idx(path, names)
     gens = []
     for i, n in zip(idxs, names):
         # discover dtype itemsize via one probe generator
-        g = stream_column(path, i, chunk=1<<22)
+        g = stream_column(path, i, chunk=1<<20)
         first = next(g)
         item = first.dtype.itemsize
         target = elems * item
