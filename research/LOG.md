@@ -66,3 +66,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Baseline to beat: val 0.141185 / late 0.143986 (same recipe, 246f). Gate: net positive on val AND forward-sims.
 - Kernel debug saga: NameError XTRA (defined after use) caused 3 fast ERRORs; fresh-slug mount rule reconfirmed; quota fine (17134s/108000s used, refresh 2026-09-19).
 - LB 22:20: unchanged (221 teams, top1 0.172, gate10 0.160, us 173 @ 0.124).
+
+## 2026-09-16 23:29 CEST — X21 (276f) val: POSITIVE, shift sim running
+- mscapital-x21d-val COMPLETE: val(61-70) 0.143830 vs baseline 0.141185 => +0.00264. late(66-70) 0.146919 vs 0.143986 => +0.00293.
+- Early-window microstructure (10/30/60s) carries real new signal. X22 (drafted) extends the family if shift confirms.
+- Shift sim kernel mscapital-x21-shift-val running (tr<=50 -> 51-60; baseline RealMLP 246f shift = 0.133253).
+- Gate for refit+submit: shift net positive AND refit val >= 0.144 clear. Submissions 1/5 used, reset ~02:00.
