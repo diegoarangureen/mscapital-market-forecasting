@@ -1,4 +1,4 @@
-# RealMLP champion recipe on 246f + optional extra family (XTRA dataset, e.g. X21 30f -> 276f).
+# RealMLP (PBLD + NTPLinear + EMA + weighted MSE + 0.01*cos) on the 246f champion matrix.
 # Architecture adapted from public kernel yunsuxiaozi/rfmf-realmlp (all-numerical, RQ aux dropped -
 # RQ target aux tested negative by UnseenAnchor). Runs on CPU or GPU.
 import os, math, json, time
@@ -14,7 +14,6 @@ LR = float(os.environ.get('LR', '1e-3'))
 BS = int(os.environ.get('BS', '256'))
 DATA = os.environ.get('DATA', '/kaggle/input/datasets/diegoaranguren/mscapital-matrices')
 XTRA = os.environ.get('XTRA', '/kaggle/input/datasets/diegoaranguren/mscapital-x21')
-XTRA2 = os.environ.get('XTRA2', '/kaggle/input/datasets/diegoaranguren/mscapital-x22')
 
 def set_seed(s):
     import random
@@ -26,20 +25,16 @@ print('device:', device, 'n_ens', N_ENS, 'epochs', EPOCHS, flush=True)
 
 # ---------- data ----------
 X_all = np.load(f'{DATA}/full_train.npy')          # (1257637, 246) float32, NaN->0
-if os.environ.get('USE_XTRA', '1') == '1':
-    Xt = np.load(f'{XTRA}/X21_train.npy').astype(np.float32)
-    assert Xt.shape[0] == X_all.shape[0], Xt.shape
-    X_all = np.concatenate([X_all, np.nan_to_num(Xt)], axis=1)
-    Xt2 = np.load(f'{XTRA2}/X22_train.npy').astype(np.float32)
-    assert Xt2.shape[0] == X_all.shape[0], Xt2.shape
-    X_all = np.concatenate([X_all, np.nan_to_num(Xt2)], axis=1)
-    print('XTRA+XTRA2 attached ->', X_all.shape, flush=True)
+Xt = np.load(f'{XTRA}/X21_train.npy').astype(np.float32)
+assert Xt.shape[0] == X_all.shape[0]
+X_all = np.concatenate([X_all, np.nan_to_num(Xt)], axis=1)
+print('X21 attached ->', X_all.shape, flush=True)
 y_all = np.load(f'{DATA}/full_y.npy').astype(np.float32)
 month = np.load(f'{DATA}/full_month.npy')
-TR_MAX = int(os.environ.get('TR_MAX', '60'))
-VA_LO = int(os.environ.get('VA_LO', '61'))
-VA_HI = int(os.environ.get('VA_HI', '70'))
-TAG = os.environ.get('TAG', 'x22')
+TR_MAX = int(os.environ.get('TR_MAX', '70'))
+VA_LO = int(os.environ.get('VA_LO', '71'))
+VA_HI = int(os.environ.get('VA_HI', '71'))
+TAG = os.environ.get('TAG', 'refit70x21cos')
 tr = month <= TR_MAX; va = (month >= VA_LO) & (month <= VA_HI)
 late = month >= 66
 Xtr = X_all[tr]; ytr = y_all[tr]
@@ -154,7 +149,7 @@ def cos_np(p, t):
     p = p - p.mean(); t = t - t.mean()
     return float((p * t).sum() / (np.linalg.norm(p) + 1e-8) / (np.linalg.norm(t) + 1e-8))
 
-def loss_fn(y_pred, y_true, lambda_cos=0.01):
+def loss_fn(y_pred, y_true, lambda_cos=1.0):
     ypf = y_pred.reshape(-1)
     ytf = y_true.unsqueeze(1).expand(-1, y_pred.shape[1]).reshape(-1)
     w = torch.where(torch.abs(ytf) > 0.001, 0.5, 1.0)
@@ -187,7 +182,7 @@ def evaluate():
             preds.append(model(Xva_t[i:i+2048]).mean(dim=1).cpu())
     return torch.cat(preds).numpy()
 
-best_cos = -1; best_state = None; best_pv = None; t0 = time.time()
+best_cos = -1; best_state = None; t0 = time.time()
 steps_per_epoch = (len(ytr_t) + BS - 1) // BS
 total_steps = steps_per_epoch * EPOCHS
 for ep in range(EPOCHS):
@@ -205,18 +200,59 @@ for ep in range(EPOCHS):
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step(); ema.update()
-    orig = ema.apply()
-    pv = evaluate()
-    ema.restore(orig)
-    c_full = cos_np(pv, yva); c_late = cos_np(pv[late_mask], yva[late_mask])
-    print(f'ep {ep+1}/{EPOCHS} val_cos {c_full:.6f} late_cos {c_late:.6f} elapsed {time.time()-t0:.0f}s', flush=True)
-    if c_full > best_cos:
-        best_cos = c_full
+    if len(Xva_t) > 0:
+        orig = ema.apply()
+        pv = evaluate()
+        ema.restore(orig)
+        c_full = cos_np(pv, yva); c_late = cos_np(pv[late_mask], yva[late_mask])
+        print(f'ep {ep+1}/{EPOCHS} val_cos {c_full:.6f} late_cos {c_late:.6f} elapsed {time.time()-t0:.0f}s', flush=True)
+        if c_full > best_cos:
+            best_cos = c_full
+            best_state = {k: v.cpu().clone() for k, v in ema.ema_state.items()}
+            np.save(f'/kaggle/working/val_pred_{TAG}.npy', pv)
+    else:
+        print(f'ep {ep+1}/{EPOCHS} (no val split) elapsed {time.time()-t0:.0f}s', flush=True)
         best_state = {k: v.cpu().clone() for k, v in ema.ema_state.items()}
-        best_pv = pv.copy()
-        np.save(f'/kaggle/working/val_pred_{TAG}.npy', pv)
 
 json.dump({'best_val_cos': best_cos, 'n_ens': N_ENS, 'epochs': EPOCHS, 'seed': SEED,
            'device': device.type}, open(f'/kaggle/working/metrics_{TAG}.json', 'w'))
 torch.save(best_state, f'/kaggle/working/best_ema_{TAG}.pt')
 print('DONE best val_cos', best_cos, flush=True)
+
+# ---------- test prediction + submission ----------
+import pandas as pd, pyarrow.feather as feather
+Xte = np.load(f'{DATA}/full_test.npy')
+Xte = np.concatenate([Xte, np.nan_to_num(np.load(f'{XTRA}/X21_test.npy').astype(np.float32))], axis=1)
+names = np.load(f'{DATA}/full_names.npy', allow_pickle=True).tolist()
+kin = {k: i for i, k in enumerate(names)}
+nodata = (Xte[:, kin['X2:tx_n']] == 0) & (Xte[:, kin['X2:mk_nbars']] == 0)
+print('no-data test samples:', int(nodata.sum()), flush=True)
+Xte = scale(Xte).astype(np.float32)
+Xte_t = torch.tensor(Xte).to(device)
+# load best EMA state
+model.load_state_dict({k: v.to(device) for k, v in best_state.items()}, strict=False)
+model.eval()
+preds = []
+with torch.no_grad():
+    for i in range(0, len(Xte_t), 4096):
+        preds.append(model(Xte_t[i:i+4096]).mean(dim=1).cpu())
+pte = torch.cat(preds).numpy()
+np.save('/kaggle/working/test_pred.npy', pte)
+# submission assembly: sample_submission from competition data
+import glob
+cand = sorted(glob.glob('/kaggle/input/competitions/*/submission.csv') + glob.glob('/kaggle/input/*/sample_submission.csv') + glob.glob('/kaggle/input/*/submission.csv'))
+sub = pd.read_csv(cand[0])
+print('sample_submission cols:', list(sub.columns), len(sub), flush=True)
+# clip to train pred quantiles
+tr_pred = []
+with torch.no_grad():
+    for i in range(0, len(Xtr_t), 8192):
+        tr_pred.append(model(Xtr_t[i:i+8192]).mean(dim=1).cpu())
+ptr = torch.cat(tr_pred).numpy()
+lo, hi = np.quantile(ptr, 0.001), np.quantile(ptr, 0.999)
+pte[nodata] = 0.0
+pte_c = np.clip(pte, lo, hi)
+tcol = [c for c in sub.columns if c != 'sample_id'][0]
+sub[tcol] = pte_c
+sub.to_csv('/kaggle/working/submission.csv', index=False)
+print('SUBMISSION_WRITTEN', pte_c.mean(), pte_c.std(), flush=True)
