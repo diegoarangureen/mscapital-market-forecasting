@@ -59,3 +59,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Same val split (61-70) where RealMLP/246f gets 0.1412. GRU v1 (60x6 every-3rd-bar) was 0.0162; v2 (120x8 per-second) 0.0197.
 - VERDICT: raw per-second bar sequences carry ~nothing for the target under direct supervised GRU. Sequence arm CLOSED (also deprioritizes CNN-Transformer on same input).
 - Track B remaining: TabM-mini on 246f (diversity), NN-oriented features, research restart for structural ideas.
+
+## 2026-09-16 22:32 CEST — X21 built + 276f val running
+- X21 (30 cols, early windows [0,10),[10,30),[30,60): microprice dev, spread, L1 imb, signed vol/amt/frac, order new-pressure, cancel imbalance, net placement). Train 60s+2570s+2609s passes; test fast. All finite, all 30 cols nonzero.
+- Dataset diegoaranguren/mscapital-x21 READY (4 files). Val kernel: mscapital-x21d-val v1 (fresh slug), champion config n_ens=16 ep=9, 276f = 246f + X21 hstack (realmlp_val_x21.py).
+- Baseline to beat: val 0.141185 / late 0.143986 (same recipe, 246f). Gate: net positive on val AND forward-sims.
+- Kernel debug saga: NameError XTRA (defined after use) caused 3 fast ERRORs; fresh-slug mount rule reconfirmed; quota fine (17134s/108000s used, refresh 2026-09-19).
+- LB 22:20: unchanged (221 teams, top1 0.172, gate10 0.160, us 173 @ 0.124).
