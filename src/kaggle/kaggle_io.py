@@ -72,3 +72,13 @@ def download_kernel_file(c, owner, slug, file_name, out_dir='/tmp/work'):
     path = os.path.join(out_dir, f'{slug}_{file_name}')
     open(path, 'wb').write(data.content)
     return path
+
+def leaderboard(c, competition='ms-capital-real-financial-market-forecasting'):
+    import io, zipfile, csv, json
+    tok = os.environ['KAGGLE_API_TOKEN']
+    url = f'https://api.kaggle.com/v1/competitions.CompetitionApiService/DownloadLeaderboard'
+    r = requests.post(url, data=json.dumps({'competition_name': competition}),
+                      headers={'Authorization': f'Bearer {tok}', 'Content-Type': 'application/json'}, timeout=180)
+    r.raise_for_status()
+    z = zipfile.ZipFile(io.BytesIO(r.content))
+    return list(csv.DictReader(io.TextIOWrapper(z.open(z.namelist()[0]), encoding='utf-8')))
