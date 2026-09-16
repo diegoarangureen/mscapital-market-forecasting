@@ -155,7 +155,8 @@ print('params:', sum(p.numel() for p in model.parameters()), flush=True)
 scale_p = [p for n, p in model.named_parameters() if 'scale' in n]
 pbld_p = [p for n, p in model.named_parameters() if 'num_embed' in n]
 bias_p = [p for n, p in model.named_parameters() if 'bias' in n]
-rest = [p for n, p in model.named_parameters() if p not in scale_p + pbld_p + bias_p]
+_grouped = {id(q) for q in scale_p + pbld_p + bias_p}
+rest = [p for n, p in model.named_parameters() if id(p) not in _grouped]
 opt = torch.optim.AdamW([
     {'params': scale_p, 'lr': LR * 20.0, 'weight_decay': 1e-3},
     {'params': pbld_p,  'lr': LR * 0.093, 'weight_decay': 1e-2},
