@@ -1,17 +1,18 @@
-# GRU over 60x6 bar sequences (market stream). GPU kernel. Val protocol: tr<=60 -> va 61-70 (+late 66-70).
+# GRU over 120x8 bar sequences (market streams, per-second). GPU kernel. Val protocol: tr<=60 -> va 61-70 (+late 66-70).
 import os, math, json, time
 import numpy as np
 import torch
 import torch.nn as nn
 
 SEED = int(os.environ.get('SEED', '2026'))
-EPOCHS = int(os.environ.get('EPOCHS', '12'))
+EPOCHS = int(os.environ.get('EPOCHS', '16'))
 LR = float(os.environ.get('LR', '2e-3'))
 BS = int(os.environ.get('BS', '1024'))
 HID = int(os.environ.get('HID', '96'))
 TR_MAX = int(os.environ.get('TR_MAX', '60'))
 VA_LO = int(os.environ.get('VA_LO', '61'))
-TAG = os.environ.get('TAG', 'seq')
+TAG = os.environ.get('TAG', 'seq2')
+SEQDATA = os.environ.get('SEQDATA', '/kaggle/input/datasets/diegoaranguren/mscapital-seq2')
 DATA = os.environ.get('DATA', '/kaggle/input/datasets/diegoaranguren/mscapital-matrices')
 
 def set_seed(s):
@@ -21,8 +22,8 @@ set_seed(SEED)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('device:', device, flush=True)
 
-NS_TR, NS_TE, STEPS, CH = 1257637, 647896, 60, 6
-X_all = np.memmap(f'{DATA}/seq_train.f16', dtype=np.float16, mode='r', shape=(NS_TR, STEPS, CH))
+NS_TR, NS_TE, STEPS, CH = 1257637, 647896, 120, 8
+X_all = np.memmap(f'{SEQDATA}/seq2_train.f16', dtype=np.float16, mode='r', shape=(NS_TR, STEPS, CH))
 y_all = np.load(f'{DATA}/full_y.npy').astype(np.float32) * 1000.0
 month = np.load(f'{DATA}/full_month.npy')
 tr = month <= TR_MAX; va = month >= VA_LO
