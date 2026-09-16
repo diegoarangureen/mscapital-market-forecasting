@@ -39,3 +39,10 @@ CNN+GRU over 60x6 every-3rd-bar market sequences: val_cos 0.0162 after 12 epochs
 
 ## Sandbox wipe #4 (2026-09-16 ~16:24)
 All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels unaffected. Recovery rerun from repo.
+
+## 2026-09-16 20:27 CEST — seq2 dataset + seq-gru v2 kernel
+- Dataset diegoaranguren/mscapital-seq2 READY: seq2_train.f16 (2414663040B), seq2_test.f16 (1243960320B), 1257637/647896 samples x 120 steps x 8ch f16.
+- seq_gru_val.py patched for seq2 (STEPS=120, CH=8, EPOCHS=16, TAG=seq2); kernel pushed as mscapital-seq2-gru-val v3, GPU, datasets: mscapital-matrices + mscapital-seq2.
+- GRU v1 (60x6, every-3rd-bar market-only) had NO signal (val 0.016). v2 test: per-second 120x8 sequences.
+- kaggle_io.py: added push_kernel/kernel_status/download_kernel_file/leaderboard helpers.
+- LB 19:46: 221 teams, top1 0.172, gate10 0.160, us 173 @ 0.124 (unchanged).
