@@ -195,15 +195,19 @@ for ep in range(EPOCHS):
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step(); ema.update()
-    orig = ema.apply()
-    pv = evaluate()
-    ema.restore(orig)
-    c_full = cos_np(pv, yva); c_late = cos_np(pv[late_mask], yva[late_mask])
-    print(f'ep {ep+1}/{EPOCHS} val_cos {c_full:.6f} late_cos {c_late:.6f} elapsed {time.time()-t0:.0f}s', flush=True)
-    if c_full > best_cos:
-        best_cos = c_full
+    if len(Xva_t) > 0:
+        orig = ema.apply()
+        pv = evaluate()
+        ema.restore(orig)
+        c_full = cos_np(pv, yva); c_late = cos_np(pv[late_mask], yva[late_mask])
+        print(f'ep {ep+1}/{EPOCHS} val_cos {c_full:.6f} late_cos {c_late:.6f} elapsed {time.time()-t0:.0f}s', flush=True)
+        if c_full > best_cos:
+            best_cos = c_full
+            best_state = {k: v.cpu().clone() for k, v in ema.ema_state.items()}
+            np.save(f'/kaggle/working/val_pred_{TAG}.npy', pv)
+    else:
+        print(f'ep {ep+1}/{EPOCHS} (no val split) elapsed {time.time()-t0:.0f}s', flush=True)
         best_state = {k: v.cpu().clone() for k, v in ema.ema_state.items()}
-        np.save(f'/kaggle/working/val_pred_{TAG}.npy', pv)
 
 json.dump({'best_val_cos': best_cos, 'n_ens': N_ENS, 'epochs': EPOCHS, 'seed': SEED,
            'device': device.type}, open(f'/kaggle/working/metrics_{TAG}.json', 'w'))
