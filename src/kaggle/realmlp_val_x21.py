@@ -13,6 +13,7 @@ EPOCHS = int(os.environ.get('EPOCHS', '9'))
 LR = float(os.environ.get('LR', '1e-3'))
 BS = int(os.environ.get('BS', '256'))
 DATA = os.environ.get('DATA', '/kaggle/input/datasets/diegoaranguren/mscapital-matrices')
+XTRA = os.environ.get('XTRA', '/kaggle/input/datasets/diegoaranguren/mscapital-x21')
 
 def set_seed(s):
     import random
@@ -35,7 +36,6 @@ TR_MAX = int(os.environ.get('TR_MAX', '60'))
 VA_LO = int(os.environ.get('VA_LO', '61'))
 VA_HI = int(os.environ.get('VA_HI', '70'))
 TAG = os.environ.get('TAG', 'x21')
-XTRA = os.environ.get('XTRA', '/kaggle/input/datasets/diegoaranguren/mscapital-x21')
 tr = month <= TR_MAX; va = (month >= VA_LO) & (month <= VA_HI)
 late = month >= 66
 Xtr = X_all[tr]; ytr = y_all[tr]
