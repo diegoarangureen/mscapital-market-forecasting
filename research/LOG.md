@@ -53,3 +53,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - DECISION: no submission. Seed ensembling adds ~+0.0005 over mean single, noise-level. Track A (squeeze RealMLP) looking tapped out near val ~0.144.
 - Kernel naming lesson: pushing to an existing kernel slug whose dataset list CHANGED fails to mount the new dataset (FileNotFoundError at /kaggle/input/datasets/...). Fresh kernel slug mounts fine. mscapital-seq2-gru-val lineage abandoned; GRU v2 running as mscapital-gru-seq2-val v1.
 - GPU spend today: ~1.7h seeds (5x16ens) + GRU2 running. Cumulative ~6.5-7h of 30h week.
+
+## 2026-09-16 21:13 CEST — GRU v2 on seq2: NO SIGNAL (Track B, sequence arm)
+- mscapital-gru-seq2-val v1 COMPLETE in ~30min: best val_cos 0.01968 (16 epochs, hid 96, BS 1024, OneCycle 2e-3).
+- Same val split (61-70) where RealMLP/246f gets 0.1412. GRU v1 (60x6 every-3rd-bar) was 0.0162; v2 (120x8 per-second) 0.0197.
+- VERDICT: raw per-second bar sequences carry ~nothing for the target under direct supervised GRU. Sequence arm CLOSED (also deprioritizes CNN-Transformer on same input).
+- Track B remaining: TabM-mini on 246f (diversity), NN-oriented features, research restart for structural ideas.
