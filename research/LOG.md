@@ -29,3 +29,13 @@ RealMLP solo refit 0-70, 9 epochs, n_ens=16, submission ref 56279103.
 LB 0.116 -> 0.124 (+0.008): val gain (+0.009) transferred almost 1:1. Champion v7/v8 replaced.
 17 no-data rows zeroed, clip q0.1/99.9 of train preds. LB: 220 teams, top1 0.172, top10 gate 0.159.
 Gap to gate: 0.035. Next: seed-ensemble RealMLP (GPU cheap), n_ens/epochs ablation, TabM, features for NN.
+
+## Seed ensemble val (2026-09-16 16:20) — MARGINAL +
+3 seeds (2026/7/42), RealMLP val 61-70. Singles (last epoch): 0.14041/0.14264/0.14311; best-epoch bests: 0.14118/0.14264/0.14415. Ensemble of unit-normalized last-epoch preds: 0.14317.
+Ensemble vs single-model best ~ +0.002. Positive direction, weak magnitude. Plan: 5-seed ensemble of BEST-epoch preds as v10 candidate (expect val ~0.144-0.145).
+
+## GRU seq v1 (2026-09-16 16:25) — NO SIGNAL, build too thin
+CNN+GRU over 60x6 every-3rd-bar market sequences: val_cos 0.0162 after 12 epochs (rising but tiny). Hypothesis: 6-channel market-only subsampled sequences lack the information UnseenAnchor's seq models used (per-second resampled ALL streams). Also check zero-sequence coverage. Not abandoned, needs richer build; deprioritized vs RealMLP squeeze.
+
+## Sandbox wipe #4 (2026-09-16 ~16:24)
+All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels unaffected. Recovery rerun from repo.
