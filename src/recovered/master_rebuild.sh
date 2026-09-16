@@ -18,7 +18,6 @@ for f in features2 features12 features13 features16; do
   done
 done
 echo "MATRICES_DONE $(date -u +%H:%M)"
-python3 -u gbm_xcos_ab.py
-echo "XCOS_CHAIN_DONE"
-python3 -u mlp246_v2.py
+[ -f /tmp/work/X20_train.npy ] || python3 -u features20.py
+if [ ! -f /tmp/work/X20AB_DONE ]; then python3 -u gbm_x20_ab.py; touch /tmp/work/X20AB_DONE; fi
 echo "ALL_DONE"
