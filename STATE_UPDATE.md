@@ -176,3 +176,9 @@
 ## 2026-09-16 00:56 — MLP v2 (cos-loss + EMA 0.999) verdict: NEGATIVE, closed
 - New MLP solo seed0 0.12623 (old MLP246 solo 0.128149). Blend gbm+newMLP 0.135729/0.138873 vs gbm+oldMLP 0.135883/0.140090. 3-way 0.136033/0.140061 vs ref 0.136630/0.140778.
 - cos-loss+EMA loses on both val and shift -> keep old MLP. Idea from public RealMLP kernel does not transfer to our MLP246.
+
+## 2026-09-16 11:03 — Kaggle kernel pipeline LIVE (Diego approved GPU move)
+- Dataset upload via kagglesdk blob API works: kaggle.com/datasets/diegoaranguren/mscapital-matrices (private).
+- Kernel push/run/download-output works: kaggle.com/code/diegoaranguren/mscapital-smoke.
+- BLOCKER: GPU needs phone-verified account (smoke kernel got gpu=False). Asked Diego via parent to verify phone in Kaggle settings.
+- CPU kernels already a stable base (4c/13GB/12h, no wipes). Helper: src/kaggle/kaggle_io.py.
