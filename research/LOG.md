@@ -82,3 +82,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Source of idea: top-team levers (direct cosine optimization). Shift sim running (mscapital-cos-shift-val). If positive -> strong v10 candidate (refit 0-70, 276f, cos loss).
 - x22-303f first run ERRORED (mount race suspected); re-pushed wrapped as mscapital-x22w-303f-val.
 - LB 00:59: unchanged (221, top1 0.172, gate10 0.160, us 173 @ 0.124).
+
+## 2026-09-17 01:46 CEST — cos loss CONFIRMED, v10 refit launched
+- Shift sim cos+276f: 0.136149 vs 0.133253 (246f mse) / 0.134280 (276f mse) => +0.0019. All gates positive.
+- Cos loss evidence: val 0.147721 / late 0.153287 / shift 0.136149. Gate (val>=0.144 + robustness) PASSED.
+- v10 = refit 0-70, 276f, lambda_cos=1.0, n_ens=16, ep=9: kernel mscapital-v10-refit-x21cos RUNNING (ETA ~02:25). On COMPLETE: download submission.csv + test_pred.npy, verify (647896 rows, no-data zeroed, clipped), submit via blob flow.
+- x22 NameError XTRA2 fixed (definition order); 303f val re-running as mscapital-x22f-303f-val (old loss) to measure X22 marginal value.
+- LB 00:59 unchanged (221, top1 0.172, gate10 0.160, us 173 @ 0.124).
