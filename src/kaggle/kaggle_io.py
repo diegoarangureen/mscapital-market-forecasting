@@ -64,7 +64,7 @@ def kernel_status(c, owner, slug):
 
 def download_kernel_file(c, owner, slug, file_name, out_dir='/tmp/work'):
     r = ApiDownloadKernelOutputRequest()
-    r.owner_slug = owner; r.kernel_slug = slug; r.file_name = file_name
+    r.owner_slug = owner; r.kernel_slug = slug; r.file_path = file_name
     red = c.kernels.kernels_api_client.download_kernel_output(r)
     url = red.url
     data = requests.get(url, timeout=600)

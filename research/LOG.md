@@ -46,3 +46,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - GRU v1 (60x6, every-3rd-bar market-only) had NO signal (val 0.016). v2 test: per-second 120x8 sequences.
 - kaggle_io.py: added push_kernel/kernel_status/download_kernel_file/leaderboard helpers.
 - LB 19:46: 221 teams, top1 0.172, gate10 0.160, us 173 @ 0.124 (unchanged).
+
+## 2026-09-16 20:44 CEST — 5-seed ensemble verdict (Track A)
+- Seeds 2026/7/42/123/31337, best-epoch val(61-70): 0.14118 / 0.14264 / 0.14415 / 0.14215 / 0.14146. Mean 0.14232.
+- Ensemble (mean of best-epoch preds): 0.14287. Below v10 bar (>=0.144 clear) and below best single seed (0.14415).
+- DECISION: no submission. Seed ensembling adds ~+0.0005 over mean single, noise-level. Track A (squeeze RealMLP) looking tapped out near val ~0.144.
+- Kernel naming lesson: pushing to an existing kernel slug whose dataset list CHANGED fails to mount the new dataset (FileNotFoundError at /kaggle/input/datasets/...). Fresh kernel slug mounts fine. mscapital-seq2-gru-val lineage abandoned; GRU v2 running as mscapital-gru-seq2-val v1.
+- GPU spend today: ~1.7h seeds (5x16ens) + GRU2 running. Cumulative ~6.5-7h of 30h week.
