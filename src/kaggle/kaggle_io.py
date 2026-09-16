@@ -40,3 +40,35 @@ def new_version(c, owner, slug, file_tokens, notes):
     r = ApiCreateDatasetVersionRequest()
     r.owner_slug = owner; r.dataset_slug = slug; r.body = body
     return c.datasets.dataset_api_client.create_dataset_version(r)
+
+# ---- kernel helpers ----
+from kagglesdk.kernels.types.kernels_api_service import (ApiSaveKernelRequest,
+    ApiGetKernelSessionStatusRequest, ApiDownloadKernelOutputRequest)
+
+def push_kernel(c, owner, slug, title, script_path, datasets=(), kernels=(), gpu=True, timeout_s=36000):
+    r = ApiSaveKernelRequest()
+    r.slug = f'{owner}/{slug}'; r.new_title = title
+    r.text = open(script_path).read()
+    r.language = 'python'; r.kernel_type = 'script'
+    r.is_private = True; r.enable_gpu = gpu; r.enable_internet = False
+    r.session_timeout_seconds = timeout_s
+    if datasets: r.dataset_data_sources = list(datasets)
+    if kernels: r.kernel_data_sources = list(kernels)
+    return c.kernels.kernels_api_client.save_kernel(r)
+
+def kernel_status(c, owner, slug):
+    r = ApiGetKernelSessionStatusRequest()
+    r.user_name = owner; r.kernel_slug = slug
+    resp = c.kernels.kernels_api_client.get_kernel_session_status(r)
+    return str(getattr(resp, 'status', resp))
+
+def download_kernel_file(c, owner, slug, file_name, out_dir='/tmp/work'):
+    r = ApiDownloadKernelOutputRequest()
+    r.owner_slug = owner; r.kernel_slug = slug; r.file_name = file_name
+    red = c.kernels.kernels_api_client.download_kernel_output(r)
+    url = red.url
+    data = requests.get(url, timeout=600)
+    os.makedirs(out_dir, exist_ok=True)
+    path = os.path.join(out_dir, f'{slug}_{file_name}')
+    open(path, 'wb').write(data.content)
+    return path
