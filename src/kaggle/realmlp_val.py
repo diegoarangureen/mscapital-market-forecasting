@@ -177,7 +177,7 @@ def evaluate():
             preds.append(model(Xva_t[i:i+2048]).mean(dim=1).cpu())
     return torch.cat(preds).numpy()
 
-best_cos = -1; best_state = None; t0 = time.time()
+best_cos = -1; best_state = None; best_pv = None; t0 = time.time()
 steps_per_epoch = (len(ytr_t) + BS - 1) // BS
 total_steps = steps_per_epoch * EPOCHS
 for ep in range(EPOCHS):
@@ -203,6 +203,7 @@ for ep in range(EPOCHS):
     if c_full > best_cos:
         best_cos = c_full
         best_state = {k: v.cpu().clone() for k, v in ema.ema_state.items()}
+        best_pv = pv.copy()
         np.save(f'/kaggle/working/val_pred_{TAG}.npy', pv)
 
 json.dump({'best_val_cos': best_cos, 'n_ens': N_ENS, 'epochs': EPOCHS, 'seed': SEED,

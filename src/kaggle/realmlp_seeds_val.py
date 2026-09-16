@@ -153,7 +153,7 @@ def loss_fn(y_pred, y_true, lambda_cos=0.01):
     cos = (pc * tc).sum() / (pc.norm() + 1e-8) / (tc.norm() + 1e-8)
     return mse + lambda_cos * (1 - cos)
 
-SEEDS = [int(s) for s in os.environ.get('SEEDS', '2026,7,42').split(',')]
+SEEDS = [int(s) for s in os.environ.get('SEEDS', '2026,7,42,123,31337').split(',')]
 val_preds = {}
 for SEED in SEEDS:
     set_seed(SEED)
@@ -215,13 +215,14 @@ for SEED in SEEDS:
     torch.save(best_state, f'/kaggle/working/best_ema_{TAG}.pt')
     print('DONE best val_cos', best_cos, flush=True)
 
-    val_preds[SEED] = pv if 'pv' in dir() else None
+    val_preds[SEED] = best_pv if best_pv is not None else pv
 import json as _json
 res = {}
 stack = None
 for sd, p in val_preds.items():
     if p is None: continue
-    res[str(sd)] = float(( (p-p.mean()) @ (yva-yva.mean()) ) / (np.linalg.norm(p-p.mean())*np.linalg.norm(yva-yva.mean())+1e-30))
+    pc = p - p.mean(); yc = yva - yva.mean()
+    res[str(sd)] = float(pc @ yc / (np.linalg.norm(pc)*np.linalg.norm(yc)+1e-30))
     stack = p if stack is None else stack + (p-p.mean())/(p.std()+1e-30)
 if stack is not None:
     ens = stack
