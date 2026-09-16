@@ -18,3 +18,8 @@ Pending: shift forward-sim (tr<=50 -> 51-60, GBM ref 0.128442), blend val with G
 Val 61-70, unit-normalized preds. GBM 246f (2-seed regen): 0.13262 val / 0.13320 late. RealMLP: 0.14119 / 0.14399.
 Corr(RealMLP, GBM) = 0.9028 (high). Blend grid w_rlm 0.3..0.7: best 0.14153 @ 0.7 — +0.0003 vs solo, noise-level.
 Conclusion: RealMLP dominates; blend adds nothing meaningful. v9 candidate = RealMLP solo refit 0-70 (9 epochs, best from val curve) pending shift check.
+
+## RealMLP shift forward-sim (2026-09-16 13:20) — POSITIVE
+tr<=50 -> val 51-60. best val_cos 0.133253 (ep9) vs GBM shift ref 0.128442: +0.0048 CLEAR.
+Curve healthy (rises to ep9-10). late_cos n/a (no months>=66 in this split).
+V9 DECIDED: RealMLP solo refit 0-70, 9 epochs (val curve best), submission pending refit kernel.
