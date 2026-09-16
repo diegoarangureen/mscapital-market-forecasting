@@ -217,6 +217,10 @@ print('DONE best val_cos', best_cos, flush=True)
 # ---------- test prediction + submission ----------
 import pandas as pd, pyarrow.feather as feather
 Xte = np.load(f'{DATA}/full_test.npy')
+names = np.load(f'{DATA}/full_names.npy', allow_pickle=True).tolist()
+kin = {k: i for i, k in enumerate(names)}
+nodata = (Xte[:, kin['X2:tx_n']] == 0) & (Xte[:, kin['X2:mk_nbars']] == 0)
+print('no-data test samples:', int(nodata.sum()), flush=True)
 Xte = scale(Xte).astype(np.float32)
 Xte_t = torch.tensor(Xte).to(device)
 # load best EMA state
@@ -230,7 +234,7 @@ pte = torch.cat(preds).numpy()
 np.save('/kaggle/working/test_pred.npy', pte)
 # submission assembly: sample_submission from competition data
 import glob
-cand = sorted(glob.glob('/kaggle/input/competitions/*/sample_submission.csv') + glob.glob('/kaggle/input/*/sample_submission.csv'))
+cand = sorted(glob.glob('/kaggle/input/competitions/*/submission.csv') + glob.glob('/kaggle/input/*/sample_submission.csv') + glob.glob('/kaggle/input/*/submission.csv'))
 sub = pd.read_csv(cand[0])
 print('sample_submission cols:', list(sub.columns), len(sub), flush=True)
 # clip to train pred quantiles
@@ -240,6 +244,7 @@ with torch.no_grad():
         tr_pred.append(model(Xtr_t[i:i+8192]).mean(dim=1).cpu())
 ptr = torch.cat(tr_pred).numpy()
 lo, hi = np.quantile(ptr, 0.001), np.quantile(ptr, 0.999)
+pte[nodata] = 0.0
 pte_c = np.clip(pte, lo, hi)
 tcol = [c for c in sub.columns if c != 'sample_id'][0]
 sub[tcol] = pte_c
