@@ -8,8 +8,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 SEED = int(os.environ.get('SEED', '2026'))
-N_ENS = int(os.environ.get('N_ENS', '8'))
-EPOCHS = int(os.environ.get('EPOCHS', '10'))
+N_ENS = int(os.environ.get('N_ENS', '16'))
+EPOCHS = int(os.environ.get('EPOCHS', '9'))
 LR = float(os.environ.get('LR', '1e-3'))
 BS = int(os.environ.get('BS', '256'))
 DATA = os.environ.get('DATA', '/kaggle/input/datasets/diegoaranguren/mscapital-matrices')
