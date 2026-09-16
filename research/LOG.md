@@ -23,3 +23,9 @@ Conclusion: RealMLP dominates; blend adds nothing meaningful. v9 candidate = Rea
 tr<=50 -> val 51-60. best val_cos 0.133253 (ep9) vs GBM shift ref 0.128442: +0.0048 CLEAR.
 Curve healthy (rises to ep9-10). late_cos n/a (no months>=66 in this split).
 V9 DECIDED: RealMLP solo refit 0-70, 9 epochs (val curve best), submission pending refit kernel.
+
+## V9 SUBMITTED (2026-09-16 15:00) — LB 0.124, rank 173/220
+RealMLP solo refit 0-70, 9 epochs, n_ens=16, submission ref 56279103.
+LB 0.116 -> 0.124 (+0.008): val gain (+0.009) transferred almost 1:1. Champion v7/v8 replaced.
+17 no-data rows zeroed, clip q0.1/99.9 of train preds. LB: 220 teams, top1 0.172, top10 gate 0.159.
+Gap to gate: 0.035. Next: seed-ensemble RealMLP (GPU cheap), n_ens/epochs ablation, TabM, features for NN.
