@@ -66,7 +66,13 @@ for cand in ['/kaggle/input/mscapital-build-xs75b', '/kaggle/input/kernels/diego
              '/kaggle/input/datasets/diegoaranguren/mscapital-xs75', '/kaggle/input/mscapital-xs75']:
     if Path(cand).exists() and (Path(cand)/'XS_train.npy').exists():
         xs_dir = cand; break
+if xs_dir is None:
+    import subprocess
+    r = subprocess.run(['find','/kaggle/input','-name','XS_train.npy','-maxdepth','5'], capture_output=True, text=True, timeout=60)
+    lines = [l for l in r.stdout.strip().split('\n') if l.strip()]
+    if lines: xs_dir = str(Path(lines[0]).parent)
 assert xs_dir, 'XS75 not found'
+print('XS dir:', xs_dir, flush=True)
 XS = np.load(f'{xs_dir}/XS_train.npy').astype(np.float32)
 assert XS.shape[0] == X_all.shape[0]
 X_all = np.concatenate([X_all, np.nan_to_num(XS)], axis=1)
