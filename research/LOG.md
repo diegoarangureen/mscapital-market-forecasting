@@ -125,3 +125,7 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 ## 2026-09-17 05:56 CEST — advdrop PASS, v11 refit running
 - advdrop shift 0.137205 (best shift reading; cos276f 0.136149, x22cos 0.137157). Gates: val 0.148940 / late 0.154390 / shift 0.137205 / advAUC 0.657.
 - v11 = advdrop 303f+cos refit 0-70: kernel mscapital-v11b-refit-advdrop RUNNING (ETA ~06:35). Then verify + submit (2/5).
+
+## 2026-09-17 06:22 CEST — v11 SUBMITTED (ref 56294572)
+- v11 = advdrop 303f+cos refit 0-70. Verified: 647896 rows, 17 no-data zeros, clipped [-0.222, 0.230], no NaN.
+- Awaiting score. If flat again at 0.124: transfer gap robust to feature-regime dropping too -> next lever is model-side (holdout+early-stop submission instead of refit, per bestwater intel) or regime-conditional.
