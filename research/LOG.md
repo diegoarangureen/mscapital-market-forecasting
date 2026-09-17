@@ -143,3 +143,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - bestwater intel ("holdout+ES beats refit here") did NOT produce an LB jump. The procedure is NOT the bottleneck.
 - CONCLUSION: the 0.123-0.124 plateau is structural for this feature family/model class. Val gains 0.141->0.149 never transferred. Next levers: different signal source (seq3 engineered per-second GRU, building), jump-research track (papers/repos), shift-targeted validation for model selection.
 - Submissions used today: 1 (v12). Remaining: 4.
+
+## 2026-09-17 08:13 CEST — seq3 datasets LIVE + GRU val kernel pushed
+- Datasets: mscapital-seq3-train + mscapital-seq3-test (120 steps x 12 channels, uniform 1s grid, market+tx+ORDER streams; first time the order-flow stream enters a sequence model here).
+- Channel 5 (tx signed volume) stored as signed log1p after float16 overflow fix.
+- Kernel diegoaranguren/mscapital-seq3-gru-val pushed (1-layer GRU + MLP head per JS8 lesson). Val protocol tr<=60 -> 61-70. Verdict expected ~09:00.
+- If seq3 val ~0.02 like seq1/seq2: sequence arm is definitively dead with three independent builds; jump research pivots fully to tabular shift-robustness + community mining via cloud browser.
