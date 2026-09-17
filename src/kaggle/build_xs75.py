@@ -41,10 +41,13 @@ if d0726 is None:
     for line in r.stdout.strip().split('\n'):
         if '0726' in line.lower(): d0726 = str(Path(line).parent); break
 assert d0726, '0726 not found'
-te726 = pd.read_csv(f'{d0726}/test.csv', usecols=['sample_id','month']).sort_values('sample_id').reset_index(drop=True)
-month_te = te726['month'].values
-assert len(month_te) == Xte.shape[0]
-print('test months:', np.unique(month_te), flush=True)
+te_ids = pd.read_csv(f'{d0726}/test.csv', usecols=['sample_id'])['sample_id'].values
+assert len(te_ids) == Xte.shape[0], f'0726 test rows {len(te_ids)} != {Xte.shape[0]}'
+assert len(np.unique(te_ids)) == len(te_ids), '0726 test sample_ids not unique'
+assert np.array_equal(np.sort(te_ids), np.arange(len(te_ids))), '0726 test ids are not a permutation of 0..n-1'
+# no month labels exist for test -> global-test XS (bestwater's test variant): single group
+month_te = np.zeros(len(te_ids), dtype=np.int64)
+print('test alignment verified; global-test XS (1 group)', flush=True)
 
 import lightgbm as lgb
 rng = np.random.default_rng(42)
