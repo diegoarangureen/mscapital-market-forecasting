@@ -1,47 +1,83 @@
 # MSCapital: Real Financial Market Forecasting
 
-Kaggle competition solution and write-up for
-[MS Capital: Real Financial Market Forecasting](https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting).
+End-to-end research project for the Kaggle competition
+[MS Capital: Real Financial Market Forecasting](https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting)
+(~650k high-frequency market windows; metric: cosine similarity between the
+predicted and realized return vectors).
 
-Public leaderboard: **0.110** (rank 197/206 as of Sep 11, 2026). Validation cosine: **0.1274**.
+**Current standing: public leaderboard 0.139, rank 118/223** (as of Sep 17, 2026).
+Top of board is 0.172; top-10 cut is 0.160. Work is active and updated daily.
+
+## Results trajectory
+
+| Date | Submission | Recipe | Public LB |
+|------|-----------|--------|-----------|
+| Sep 11 | v6 | LightGBM, 58 microstructure features | 0.110 |
+| Sep 15 | v9 | RealMLP 246f, refit-on-full | 0.124 |
+| Sep 17 | v13 | RealMLP 455f, 5 purged folds x 3 seeds, holdout + early stopping, 15-model average | **0.139** |
+
+Every experiment - including the dead ends - is logged with numbers in
+[research/LOG.md](research/LOG.md) and [EXPERIMENTS.md](EXPERIMENTS.md).
 
 ## The problem
 
 Each sample is a 10-minute window of high-frequency activity for one asset:
 raw trades (price, size, aggressor side), order-book events (L1/L2), and
-market bars. The target is the forward return of the window, and the
-competition metric is **cosine similarity** between the predicted and true
-target vectors, not a per-sample error. The task is therefore to rank a
-population of ~650k test windows so that the prediction *vector* points in
-the same direction as the realized-return vector - global direction matters,
-per-sample magnitude much less.
+market bars. The target is the forward return of the window, and the metric
+is **cosine similarity** between prediction and target vectors, not a
+per-sample error - so the task is to make the prediction *vector* point in
+the same direction as the realized-return vector across ~650k test windows.
 
-## Approach
+## Current approach (v13, LB 0.139)
 
-- **Honest validation.** Train months 0-60, validate on months 61-70, and a
-  robustness check on a shifted split (train 0-50, validate 51-60, cosine
-  0.1208) to confirm the validation estimate is not a lucky month range.
-- **58 microstructure features per sample**, built in a single constant-memory
-  streaming pass: trade/order/book aggregates, multi-horizon bar returns
-  (30s to 10min), volume windows and acceleration, trend slopes, volatility,
-  spread and book-imbalance means, short-horizon trade-flow imbalance, price
-  dispersion, recency-weighted trade timing.
-- **LightGBM** with bagging 0.7 (chosen by coordinate sweep), early stopping
-  on validation, 3-seed averaging, refit on all labelled months with 1.1x
-  iterations.
-- **Cosine-aware post-processing:** mean-center predictions (the target is
-  approximately mean-zero, so centering adds ~0.0016 for free), zero the 17
-  test samples with no underlying data, clip to the 0.1/99.9 percentile band
-  of train predictions.
+- **Features (455).** 298 proprietary microstructure features (trade, order
+  flow, book, multi-horizon bar statistics) with adversarial-validation
+  pruning of regime-shifted columns, plus 152 public domain features shared
+  by the community (yunsuxiaozi's rfmf-0726 set). Sample-id alignment to the
+  competition matrices is verified by permutation assertions in-kernel.
+- **Model.** RealMLP - an ensemble-MLP with periodic
+  boundary/linear-block embeddings (PBLD), NTP-linear layers and EMA
+  weights - trained with a weighted MSE + cosine hybrid loss on the raw
+  target, label-noise regularization, grouped learning rates and a
+  flat-then-anneal schedule.
+- **Inference protocol.** 5 purged time-series folds (validation months
+  40-44/50-54/55-59/60-64/65-70, training restricted to earlier months)
+  x 3 seeds, every model holdout + early-stopped on its own validation
+  window; the submission is the average of all 15 models. This is the
+  protocol that finally transferred validation gains (+0.018 cosine) to the
+  leaderboard (+0.015) after four procedurally different submissions had
+  landed flat at 0.123-0.124.
+- **Post-processing.** Zero the 17 no-data test rows, clip to the 0.1/99.9
+  percentile band of train predictions.
 
-## Memory constraint as an engineering problem
+## What the experiment ledger shows
 
-The data ships as single-batch LZ4-compressed feather files whose decompressed
-record batches exceed 2 GB of RAM, so `pyarrow` cannot materialize them. The
-repo therefore includes a minimal flatbuffers/Arrow-IPC parser
-(`src/arrow_parse.py`) and chunked column readers (`src/stream_columns.py`)
-that decompress one buffer chunk at a time, letting the feature builder run
-in constant memory.
+Closed research lines, each with numbers in the log: sequence models (GRUs
+over uniform 1s grids, incl. order-flow streams), adversarial feature
+pruning beyond the accepted 5 columns, DANN gradient-reversal domain
+adaptation, online learning (impossible in this submission format),
+auxiliary targets from future bars, multi-head MLP (TabM-style)
+architectures, and ensembles that dilute the champion. The distribution
+shift between late-train and test is diffuse (adversarial AUC stays ~0.78
+after pruning), which is why alignment approaches fail and feature
+engineering is where the gains live.
+
+## Engineering notes
+
+- The data ships as single-batch LZ4-compressed feather files whose
+  decompressed record batches exceed 2 GB, so the repo includes a minimal
+  flatbuffers/Arrow-IPC parser (`src/arrow_parse.py`) and chunked column
+  readers for constant-memory feature building.
+- The full research loop (feature builds, GPU training kernels, validation,
+  Kaggle submission, leaderboard tracking) is automated end-to-end; kernels
+  and datasets are versioned in `src/kaggle/`.
+
+## Repo map
+
+- `src/` - feature builders, trainers, the Arrow-IPC streaming parser
+- `src/kaggle/` - Kaggle kernels (validation and submission) and API tooling
+- `research/` - experiment log, discussion mining, reference reimplementations
+- `EXPERIMENTS.md` - the 30+ experiment ledger with numbers
 
 ## Reproduce
 
@@ -52,17 +88,3 @@ python3 src/build_features.py train 1257637 /path/to/data /path/to/work
 python3 src/build_features.py test  647896  /path/to/data /path/to/work
 python3 src/train_model.py /path/to/data /path/to/work   # writes submission.csv
 ```
-
-## What did NOT work (and why it matters)
-
-A 30-experiment ledger with numbers is in [EXPERIMENTS.md](EXPERIMENTS.md).
-The short version: L2 order-book features, additional microstructure signals
-(11 features), trade-sign inference (Lee-Ready tick rule, bulk volume
-classification), extra-trees, and dart boosting all landed at or below the
-champion; hyper-parameter differences under ~0.002 validation cosine are
-seed noise. The provided `side` column already is the true aggressor
-(IC +0.075 vs +0.027 for the best tick-rule reconstruction), and no two
-samples share the same underlying market window, so there is no cross-sample
-leakage to harvest legitimately. The remaining gap to the top of the
-leaderboard (0.172) looks structural - cross-asset factors or sequential
-models - not a tuning problem.
