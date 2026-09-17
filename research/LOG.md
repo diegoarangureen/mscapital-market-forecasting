@@ -199,3 +199,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 ## 2026-09-18 00:02 - X23 built (148 stream aggregates), x678 val launched
 - X23: 12 stats x 12 channels (mean/std/min/max/q10/q90/last30/first30/diff/std_last30/ac1/ac5) + 4 cross-channel correlations from the seq3 order-flow grid. Built from existing seq3 datasets (CPU, 4 min). Files in kernel output mscapital-build-x23.
 - mscapital-x678-val running: champion recipe on 530f+X23 = 678f, val tr<=60/61-70. Baseline to beat: x530 0.173447/0.181450.
+
+## 2026-09-18 01:32 - x678 (530f + X23 stream aggregates): val 0.175217 / late 0.184091
+- +0.0018 over x530 (0.173447/0.181450). Diminishing but positive; the order-flow stream helps tabular too (as seq3 hinted).
+- Val ladder: 298f 0.1489 -> +152 public 0.1671 -> +XS75 0.1734 -> +X23 0.1752.
+- corr(x678,x530)=0.978; ensemble ~flat vs pure x678.
+- Question for v14/v15: kfold530 lands ~03:00; kfold678 would be the stronger submission but costs another ~5h GPU. Decision point at kfold530 completion.
