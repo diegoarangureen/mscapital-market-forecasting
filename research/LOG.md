@@ -94,3 +94,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - X22 (303f, lambda_cos 0.01): val 0.145410 (+0.00158 vs 276f), late 0.148259 (+0.00134). Positive; shift sim pending.
 - v10 refit first run ERRORED fast, cause unknown (transient suspected - identical wrapped script now RUNNING past the failure point as mscapital-v10w-refit).
 - Launched mscapital-x22cos-303f-val: 303f + cos loss. If > 0.14772 clear, v11 = 303f+cos refit.
+
+## 2026-09-17 02:56 CEST — 303f+cos best yet; v10b refit + shift running
+- x22cos (303f + cos): val 0.149518 (+0.00180 vs cos276f), late 0.154895 (+0.00161). X22 adds on top of cos loss.
+- v10 refit failure cause: no competition_data_sources attached -> submission.csv template glob empty (IndexError line 244). Fixed: push with comps=['ms-capital-real-financial-market-forecasting']; push_kernel now takes comps=.
+- RUNNING: mscapital-v10b-refit (276f+cos refit 0-70, with comp source) + mscapital-x22cos-shift (303f+cos, tr<=50->51-60).
+- Plan: v10b completes ~03:35 -> submit (gated: all 3 positive). If x22cos shift positive -> v11 = 303f+cos refit (realmlp_test_x22cos.py) -> 2nd submission.

@@ -45,7 +45,7 @@ def new_version(c, owner, slug, file_tokens, notes):
 from kagglesdk.kernels.types.kernels_api_service import (ApiSaveKernelRequest,
     ApiGetKernelSessionStatusRequest, ApiDownloadKernelOutputRequest)
 
-def push_kernel(c, owner, slug, title, script_path, datasets=(), kernels=(), gpu=True, timeout_s=36000):
+def push_kernel(c, owner, slug, title, script_path, datasets=(), kernels=(), gpu=True, timeout_s=36000, comps=()):
     r = ApiSaveKernelRequest()
     r.slug = f'{owner}/{slug}'; r.new_title = title
     r.text = open(script_path).read()
@@ -54,6 +54,7 @@ def push_kernel(c, owner, slug, title, script_path, datasets=(), kernels=(), gpu
     r.session_timeout_seconds = timeout_s
     if datasets: r.dataset_data_sources = list(datasets)
     if kernels: r.kernel_data_sources = list(kernels)
+    if comps: r.competition_data_sources = list(comps)
     return c.kernels.kernels_api_client.save_kernel(r)
 
 def kernel_status(c, owner, slug):
