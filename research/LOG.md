@@ -89,3 +89,8 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - v10 = refit 0-70, 276f, lambda_cos=1.0, n_ens=16, ep=9: kernel mscapital-v10-refit-x21cos RUNNING (ETA ~02:25). On COMPLETE: download submission.csv + test_pred.npy, verify (647896 rows, no-data zeroed, clipped), submit via blob flow.
 - x22 NameError XTRA2 fixed (definition order); 303f val re-running as mscapital-x22f-303f-val (old loss) to measure X22 marginal value.
 - LB 00:59 unchanged (221, top1 0.172, gate10 0.160, us 173 @ 0.124).
+
+## 2026-09-17 02:23 CEST — X22 positive (old loss); v10 refit re-running; 303f+cos queued
+- X22 (303f, lambda_cos 0.01): val 0.145410 (+0.00158 vs 276f), late 0.148259 (+0.00134). Positive; shift sim pending.
+- v10 refit first run ERRORED fast, cause unknown (transient suspected - identical wrapped script now RUNNING past the failure point as mscapital-v10w-refit).
+- Launched mscapital-x22cos-303f-val: 303f + cos loss. If > 0.14772 clear, v11 = 303f+cos refit.
