@@ -181,3 +181,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Own private kernel output mounts work as kernel_data_sources.
 - mhmlp-v1 root cause: dataset path mismatch (lineage-pinned mounts). Kernel logs arrive as JSON string - json.loads before iterating.
 - Next: mscapital-x530-val running (champion + 152 public + XS75 = 530f, val tr<=60/61-70).
+
+## 2026-09-17 21:00 - x530 (champion + 152 public + XS75): val 0.173447 / late 0.181450
+- XS75 adds +0.0063 val over x455 (0.167133/0.174921). Second consecutive val breakthrough layer.
+- Ladder now: 298f 0.1489 -> +152 public 0.1671 -> +XS75 0.1734. Matches bestwater's 689f construction (462 own + 152 public + 75 XS) minus his extra own features.
+- corr(x530, x455) = 0.958; ensembles of the two are worse than pure x530 (x530 dominates).
+- Implication: v14 candidate = kfold protocol on 530f (once v13 LB lands and a GPU slot frees).
