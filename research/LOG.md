@@ -100,3 +100,8 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - v10 refit failure cause: no competition_data_sources attached -> submission.csv template glob empty (IndexError line 244). Fixed: push with comps=['ms-capital-real-financial-market-forecasting']; push_kernel now takes comps=.
 - RUNNING: mscapital-v10b-refit (276f+cos refit 0-70, with comp source) + mscapital-x22cos-shift (303f+cos, tr<=50->51-60).
 - Plan: v10b completes ~03:35 -> submit (gated: all 3 positive). If x22cos shift positive -> v11 = 303f+cos refit (realmlp_test_x22cos.py) -> 2nd submission.
+
+## 2026-09-17 03:41 CEST — v10 SUBMITTED (ref 56291244), v11 refit running
+- v10 = 276f+cos refit 0-70. Submission verified: 647896 rows, 17 no-data zeros, clipped, no NaN. Blob flow OK (INBOX blob type).
+- x22cos shift: 0.137157 vs cos276f shift 0.136149 => +0.0010. X22 CONFIRMED all gates. 303f+cos: val 0.149518/late 0.154895/shift 0.137157.
+- v11 = 303f+cos refit 0-70: kernel mscapital-v11-refit-x22cos RUNNING (ETA ~04:20). Submit after v10 LB lands (transfer-gap read).
