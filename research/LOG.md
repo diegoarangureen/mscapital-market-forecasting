@@ -117,3 +117,7 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Top discriminators: spread family (x22_d_spr_0L, x21_m2_spread, x21_m1_spread), imb, book slopes, tx vol. => spread/vol regime differs between late-train and test. Explains flat v10 transfer.
 - Per-month AUC vs test: 0.63-0.82, no monotone time trend (month 50 most different 0.82; 53/56/68 least). Test is not simply "a later month".
 - Experiment launched: mscapital-advdrop-val = 303f+cos minus top-5 adversarial discriminators (idx 301,267,268,299,257). If val holds >=~0.1485, those cols were regime noise and the model should transfer better -> refit+submit candidate.
+
+## 2026-09-17 05:12 CEST — advdrop: cheap robustness
+- Drop top-5 adversarial cols: val 0.148940 (-0.00058), late 0.154390 (-0.00051) vs full 303f+cos. Adversarial AUC 0.6954 -> 0.6568.
+- Shift sim running (mscapital-advdrop-shift). Gate: >= ~0.136 (cos276f shift 0.136149). If pass -> refit advdrop 303f (realmlp_test_x22cos.py + DROP) -> submit as v11.
