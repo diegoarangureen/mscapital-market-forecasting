@@ -138,13 +138,13 @@ class RealMLP(nn.Module):
         for i in range(n_ens):
             mask[i, i::n_ens // 2] = False
         self.register_buffer('feature_mask', mask)
-    def forward(self, x_num, lambd=0.0):
+    def forward(self, x_num, lambd=None):
         x = x_num.unsqueeze(1).expand(-1, self.n_ens, -1)
         x = self.num_embed(x)
         x = x * self.feature_mask.unsqueeze(0).float()
         f = self.shared(x)
         pred = self.reg_head(f).squeeze(-1)   # (batch, n_ens)
-        if lambd > 0:
+        if lambd is not None:
             logits = self.adv_head(GradReverse.apply(f, lambd))
             return pred, logits
         return pred
