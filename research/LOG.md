@@ -121,3 +121,7 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 ## 2026-09-17 05:12 CEST — advdrop: cheap robustness
 - Drop top-5 adversarial cols: val 0.148940 (-0.00058), late 0.154390 (-0.00051) vs full 303f+cos. Adversarial AUC 0.6954 -> 0.6568.
 - Shift sim running (mscapital-advdrop-shift). Gate: >= ~0.136 (cos276f shift 0.136149). If pass -> refit advdrop 303f (realmlp_test_x22cos.py + DROP) -> submit as v11.
+
+## 2026-09-17 05:56 CEST — advdrop PASS, v11 refit running
+- advdrop shift 0.137205 (best shift reading; cos276f 0.136149, x22cos 0.137157). Gates: val 0.148940 / late 0.154390 / shift 0.137205 / advAUC 0.657.
+- v11 = advdrop 303f+cos refit 0-70: kernel mscapital-v11b-refit-advdrop RUNNING (ETA ~06:35). Then verify + submit (2/5).
