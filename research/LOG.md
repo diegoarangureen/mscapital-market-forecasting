@@ -111,3 +111,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - READING: transfer gap ate the whole val gain (v9 gap 0.0172; v10 gap ~0.024). Val 61-70 gains do NOT linearly transfer to test. The bottleneck is now shift-robustness, not val.
 - v11 (303f+cos refit) artifact READY but HELD: its val edge over v10 (+0.0018) is below LB resolution given v10's flat transfer; submitting it would be LB-probing, against the submissions rule.
 - New priority: ideas that target the transfer gap directly (latest-window validation for selection, shift-robust feature choice, regime-conditional models).
+
+## 2026-09-17 04:28 CEST — adversarial validation + advdrop experiment
+- Adversarial AUC late-train(66-70) vs test on X21+X22 (57f): 0.6954. Real distribution shift.
+- Top discriminators: spread family (x22_d_spr_0L, x21_m2_spread, x21_m1_spread), imb, book slopes, tx vol. => spread/vol regime differs between late-train and test. Explains flat v10 transfer.
+- Per-month AUC vs test: 0.63-0.82, no monotone time trend (month 50 most different 0.82; 53/56/68 least). Test is not simply "a later month".
+- Experiment launched: mscapital-advdrop-val = 303f+cos minus top-5 adversarial discriminators (idx 301,267,268,299,257). If val holds >=~0.1485, those cols were regime noise and the model should transfer better -> refit+submit candidate.
