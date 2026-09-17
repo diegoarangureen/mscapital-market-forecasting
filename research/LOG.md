@@ -168,3 +168,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - READING: shift signal is DIFFUSE - removing 20 features barely reduces separability. The whole feature distribution moved (regime level), not a few bad columns. Feature pruning cannot fix transfer. Consistent with v11/v12 flatness.
 - Discard criterion: adversarial pruning as transfer fix is closed; advdrop-5 stays in the champion only because it didn't hurt val.
 - Next structural candidate: DANN-style domain-adversarial head on RealMLP (gradient reversal vs month/regime classifier) - forces regime-invariant representation; measurable in val + shift-sim. NOT on UnseenAnchor negatives list (CORAL/SSL is, DANN isn't).
+
+## 2026-09-17 16:15 - mhmlp-v2 (multi-head MLP 455f+XS75) result
+- Val cos full(61-70): 0.159045, late(66-70): 0.165921. Beats old champion (0.148940/0.154390) but LOSES to x455 RealMLP (0.167133/0.174921).
+- v1 died with blank-log ERROR (likely OOM); v2 (K_HEADS 32, BS 1024) ran clean.
+- Ensemble test: corr(x455, mhmlp)=0.848; weighted ensembles (w 0.5-0.7) all WORSE than pure x455 (0.1592-0.1595 vs 0.1671). mhmlp too weak to add diversity value.
+- Verdict: multi-head MLP is not the jump. RealMLP (PBLD+NTP) remains best arch on 455f. kfold455 (15-model fold-avg) is the v13 candidate, running.
