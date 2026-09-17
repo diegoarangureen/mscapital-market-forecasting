@@ -129,3 +129,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 ## 2026-09-17 06:22 CEST — v11 SUBMITTED (ref 56294572)
 - v11 = advdrop 303f+cos refit 0-70. Verified: 647896 rows, 17 no-data zeros, clipped [-0.222, 0.230], no NaN.
 - Awaiting score. If flat again at 0.124: transfer gap robust to feature-regime dropping too -> next lever is model-side (holdout+early-stop submission instead of refit, per bestwater intel) or regime-conditional.
+
+## 2026-09-17 07:03 CEST — v12 SUBMITTED: holdout+ES (ref 56295402)
+- Kernel mscapital-holdout-advdrop COMPLETE: RealMLP 303f-5adv cos-loss, train<=60 with early stop on 61-70, predicts test with best-epoch EMA (best_val_cos 0.14894, matches advdrop val run).
+- Submission verified: 647896 rows, no NaN, 17 zeroed no-data rows, clipped, corr 0.919 vs v11 refit preds.
+- Parent authorized 06:25 ("Luz verde para la submission holdout cuando el kernel termine").
+- HYPOTHESIS (bestwater intel): holdout+early-stop beats refit-on-full in this comp. v9/v10/v11 refits all flat at 0.123-0.124. If v12 > 0.124, the whole refit procedure changes.
+- seq3 (120x12 engineered per-second channels incl. order-flow stream) building locally; GRU val next.
