@@ -62,7 +62,7 @@ assert X726.shape[0] == X_all.shape[0], X726.shape
 X_all = np.concatenate([X_all, X726], axis=1)
 # ---------- XS75 (from mscapital-build-xs75 kernel output or dataset) ----------
 xs_dir = None
-for cand in ['/kaggle/input/mscapital-build-xs75', '/kaggle/input/kernels/diegoaranguren/mscapital-build-xs75',
+for cand in ['/kaggle/input/mscapital-build-xs75b', '/kaggle/input/kernels/diegoaranguren/mscapital-build-xs75b', '/kaggle/input/mscapital-build-xs75', '/kaggle/input/kernels/diegoaranguren/mscapital-build-xs75',
              '/kaggle/input/datasets/diegoaranguren/mscapital-xs75', '/kaggle/input/mscapital-xs75']:
     if Path(cand).exists() and (Path(cand)/'XS_train.npy').exists():
         xs_dir = cand; break
