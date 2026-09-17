@@ -156,3 +156,8 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Order-flow stream nearly doubled sequence signal (0.0197 -> 0.0364) but tabular RealMLP sits at 0.149 val. Sequences capture ~25% of tabular signal at best; ensemble contribution negligible.
 - DECISION: sequence arm closed after three independent builds. Discard criterion documented: val_cos < 0.10 (would need >= ~0.10 to justify ensemble weight).
 - Jump track next: (a) harder adversarial feature pruning (iterative drop by adv-AUC contribution, measure shift-sim), (b) MSCapital discussion mining via cloud browser (bestwater intel source), (c) UnseenAnchor ensemble intel re-read.
+
+## 2026-09-17 11:11 CEST — SANDBOX WIPE + RECOVERY
+- Sandbox rebuilt between 09:00 and 09:42 (all /tmp state lost). Detected 09:42, recovered via recover.sh (repo clone, pip, 8.6GB feathers re-downloaded). RESTORE_DONE 11:10 (matrices + X21/X22 npys re-downloaded from Kaggle datasets).
+- Hardening: streamcol2.py and adv_iter.py were local-only at wipe; both now committed to repo (src/). All datasets/kernels unaffected (Kaggle-side).
+- adv_iter (iterative adversarial pruning, 303f, late-train 66-70 vs test, k=5/10/15/20/30) relaunched 11:11.
