@@ -195,3 +195,7 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Alignment of 0726 features verified by permutation assert before submitting.
 - Submissions today: 4/5 used (v10, v11, v12, v13). 1 left, reserved.
 - v14 candidate launched 22:29: mscapital-kfold530 (15-model fold-avg on 530f = +XS75; x530 val was 0.173447/0.181450).
+
+## 2026-09-18 00:02 - X23 built (148 stream aggregates), x678 val launched
+- X23: 12 stats x 12 channels (mean/std/min/max/q10/q90/last30/first30/diff/std_last30/ac1/ac5) + 4 cross-channel correlations from the seq3 order-flow grid. Built from existing seq3 datasets (CPU, 4 min). Files in kernel output mscapital-build-x23.
+- mscapital-x678-val running: champion recipe on 530f+X23 = 678f, val tr<=60/61-70. Baseline to beat: x530 0.173447/0.181450.
