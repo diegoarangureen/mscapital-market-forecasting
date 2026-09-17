@@ -187,3 +187,11 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Ladder now: 298f 0.1489 -> +152 public 0.1671 -> +XS75 0.1734. Matches bestwater's 689f construction (462 own + 152 public + 75 XS) minus his extra own features.
 - corr(x530, x455) = 0.958; ensembles of the two are worse than pure x530 (x530 dominates).
 - Implication: v14 candidate = kfold protocol on 530f (once v13 LB lands and a GPU slot frees).
+
+## 2026-09-17 22:25 - v13 LB 0.139 (rank 118/223) - TRANSFER CONFIRMED
+- kfold455 (RealMLP 455f, 5 purged folds x 3 seeds, holdout+ES, 15-model avg): LB 0.139, +0.015 over the 0.123-0.124 plateau. Rank 173 -> 118. Gate10 0.160, top1 0.172.
+- Kernel OOF: 61-70 0.1678, 66-70 0.1745. Per-fold val cos 0.1419-0.1724 (later folds stronger). 15/15 models trained, 24465s total.
+- First val->LB transfer of the project. The 0726 public features broke the ceiling exactly as external evidence (bestwater 0.142) suggested.
+- Alignment of 0726 features verified by permutation assert before submitting.
+- Submissions today: 4/5 used (v10, v11, v12, v13). 1 left, reserved.
+- v14 candidate launched 22:29: mscapital-kfold530 (15-model fold-avg on 530f = +XS75; x530 val was 0.173447/0.181450).
