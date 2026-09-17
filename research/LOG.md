@@ -149,3 +149,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Channel 5 (tx signed volume) stored as signed log1p after float16 overflow fix.
 - Kernel diegoaranguren/mscapital-seq3-gru-val pushed (1-layer GRU + MLP head per JS8 lesson). Val protocol tr<=60 -> 61-70. Verdict expected ~09:00.
 - If seq3 val ~0.02 like seq1/seq2: sequence arm is definitively dead with three independent builds; jump research pivots fully to tabular shift-robustness + community mining via cloud browser.
+
+## 2026-09-17 08:58 CEST — seq3 VERDICT: val_cos 0.0364. SEQUENCE ARM DEAD.
+- seq3 GRU (120x12 engineered per-second channels, market+tx+order streams): best val_cos 0.0364.
+- Lineage: seq1 raw GRU 0.016, seq2 120x8 market-only engineered 0.0197, seq3 +order-flow channels 0.0364.
+- Order-flow stream nearly doubled sequence signal (0.0197 -> 0.0364) but tabular RealMLP sits at 0.149 val. Sequences capture ~25% of tabular signal at best; ensemble contribution negligible.
+- DECISION: sequence arm closed after three independent builds. Discard criterion documented: val_cos < 0.10 (would need >= ~0.10 to justify ensemble weight).
+- Jump track next: (a) harder adversarial feature pruning (iterative drop by adv-AUC contribution, measure shift-sim), (b) MSCapital discussion mining via cloud browser (bestwater intel source), (c) UnseenAnchor ensemble intel re-read.
