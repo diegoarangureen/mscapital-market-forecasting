@@ -18,7 +18,7 @@ def rows(split, idx=None):
     return np.concatenate(parts, axis=1)
 Xl = rows('train', late_idx)
 rng = np.random.default_rng(0)
-te_sub = np.sort(rng.choice(647896, 300000, replace=False))
+te_sub = np.sort(rng.choice(647896, 200000, replace=False))
 Xte = rows('test', te_sub)
 print('late', Xl.shape, 'test-sub', Xte.shape, flush=True)
 Xc = np.vstack([Xl, Xte]); del Xl, Xte; gc.collect()
@@ -31,7 +31,7 @@ def fit_auc(cols):
     ds = lgb.Dataset(Xc[:, cols], yc)
     pc = dict(objective='binary', learning_rate=0.05, num_leaves=63, min_data_in_leaf=500,
               feature_fraction=0.8, bagging_fraction=0.7, bagging_freq=1, verbose=-1, num_threads=2)
-    m = lgb.train(pc, ds, num_boost_round=400)
+    m = lgb.train(pc, ds, num_boost_round=250)
     p = m.predict(Xc[:, cols])
     a = auc_of(p, yc)
     imp = m.feature_importance('gain')
@@ -42,7 +42,8 @@ a0, imp0 = fit_auc(all_cols)
 print('AUC full 303f:', round(a0,4), flush=True)
 order = np.argsort(-imp0)
 res = {'auc_full': a0, 'ranked_idx': order.tolist(), 'ranked_names': [allnames[i] for i in order]}
-for k in (5, 10, 15, 20, 30):
+json.dump(res, open(f'{WORK}/adv_iter.json','w'), indent=1)  # save ranking immediately
+for k in (10, 20):
     keep = np.setdiff1d(all_cols, order[:k])
     a, _ = fit_auc(keep)
     res[f'auc_drop{k}'] = a

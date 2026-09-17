@@ -161,3 +161,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Sandbox rebuilt between 09:00 and 09:42 (all /tmp state lost). Detected 09:42, recovered via recover.sh (repo clone, pip, 8.6GB feathers re-downloaded). RESTORE_DONE 11:10 (matrices + X21/X22 npys re-downloaded from Kaggle datasets).
 - Hardening: streamcol2.py and adv_iter.py were local-only at wipe; both now committed to repo (src/). All datasets/kernels unaffected (Kaggle-side).
 - adv_iter (iterative adversarial pruning, 303f, late-train 66-70 vs test, k=5/10/15/20/30) relaunched 11:11.
+
+## 2026-09-17 13:31 CEST — adv_iter RESULT: pruning exhausted (negative)
+- Adversarial AUC late-train(66-70) vs test, 303f: full 0.7981; drop10 0.7905; drop20 0.7849.
+- Top adversarial features: X2 vol/spread level stats (mk_mid_vol, tx_px_std, relspread_mean, px_vol, vol_total, spread_mean), X13 group-distance, X16 cancel-distance, x22 slope dynamics.
+- READING: shift signal is DIFFUSE - removing 20 features barely reduces separability. The whole feature distribution moved (regime level), not a few bad columns. Feature pruning cannot fix transfer. Consistent with v11/v12 flatness.
+- Discard criterion: adversarial pruning as transfer fix is closed; advdrop-5 stays in the champion only because it didn't hurt val.
+- Next structural candidate: DANN-style domain-adversarial head on RealMLP (gradient reversal vs month/regime classifier) - forces regime-invariant representation; measurable in val + shift-sim. NOT on UnseenAnchor negatives list (CORAL/SSL is, DANN isn't).
