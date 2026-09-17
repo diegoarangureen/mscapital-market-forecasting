@@ -87,7 +87,7 @@ def build(split):
         sid=sid[ok]; s=s[ok]; v=v[ok].astype(f32); side=side[ok]
         sgn = np.where(side==0, f32(1.0), f32(-1.0))
         W = np.empty((len(sid),3), f32)
-        W[:,0]=v*sgn; W[:,1]=v; W[:,2]=1.0
+        W[:,0]=np.sign(v*sgn)*np.log1p(np.abs(v*sgn)); W[:,1]=v; W[:,2]=1.0
         return sid, s, W
     run_pass([5,6,7], tx_rows, 'transaction',
              ['sample_id','seconds_before_predict','price','volume','side'],

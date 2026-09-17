@@ -136,3 +136,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Parent authorized 06:25 ("Luz verde para la submission holdout cuando el kernel termine").
 - HYPOTHESIS (bestwater intel): holdout+early-stop beats refit-on-full in this comp. v9/v10/v11 refits all flat at 0.123-0.124. If v12 > 0.124, the whole refit procedure changes.
 - seq3 (120x12 engineered per-second channels incl. order-flow stream) building locally; GRU val next.
+
+## 2026-09-17 07:18 CEST — v12 SCORED: 0.124 (ref 56295402) — holdout+ES FLAT
+- v12 (holdout<=60 + early stop, best-epoch EMA, no refit) scored public LB 0.124.
+- VERDICT: holdout+ES == refit-on-full within LB resolution. Full family: v9 0.124, v10 0.124, v11 0.123, v12 0.124.
+- bestwater intel ("holdout+ES beats refit here") did NOT produce an LB jump. The procedure is NOT the bottleneck.
+- CONCLUSION: the 0.123-0.124 plateau is structural for this feature family/model class. Val gains 0.141->0.149 never transferred. Next levers: different signal source (seq3 engineered per-second GRU, building), jump-research track (papers/repos), shift-targeted validation for model selection.
+- Submissions used today: 1 (v12). Remaining: 4.
