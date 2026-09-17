@@ -105,3 +105,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - v10 = 276f+cos refit 0-70. Submission verified: 647896 rows, 17 no-data zeros, clipped, no NaN. Blob flow OK (INBOX blob type).
 - x22cos shift: 0.137157 vs cos276f shift 0.136149 => +0.0010. X22 CONFIRMED all gates. 303f+cos: val 0.149518/late 0.154895/shift 0.137157.
 - v11 = 303f+cos refit 0-70: kernel mscapital-v11-refit-x22cos RUNNING (ETA ~04:20). Submit after v10 LB lands (transfer-gap read).
+
+## 2026-09-17 04:26 CEST — v10 LB FLAT: 0.124 (ref 56291244)
+- v10 (276f+cos, val 0.1477/+0.0065 vs v9) scored public LB 0.124 — identical to v9 at 3-decimal precision.
+- READING: transfer gap ate the whole val gain (v9 gap 0.0172; v10 gap ~0.024). Val 61-70 gains do NOT linearly transfer to test. The bottleneck is now shift-robustness, not val.
+- v11 (303f+cos refit) artifact READY but HELD: its val edge over v10 (+0.0018) is below LB resolution given v10's flat transfer; submitting it would be LB-probing, against the submissions rule.
+- New priority: ideas that target the transfer gap directly (latest-window validation for selection, shift-robust feature choice, regime-conditional models).
