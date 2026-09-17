@@ -174,3 +174,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - v1 died with blank-log ERROR (likely OOM); v2 (K_HEADS 32, BS 1024) ran clean.
 - Ensemble test: corr(x455, mhmlp)=0.848; weighted ensembles (w 0.5-0.7) all WORSE than pure x455 (0.1592-0.1595 vs 0.1671). mhmlp too weak to add diversity value.
 - Verdict: multi-head MLP is not the jump. RealMLP (PBLD+NTP) remains best arch on 455f. kfold455 (15-model fold-avg) is the v13 candidate, running.
+
+## 2026-09-17 19:30 - XS75 built + 0726 alignment verified
+- build-xs75b (CPU kernel): XS75 = 30 within-month pct-rank + 15 within-month z + 30 cross-feature rank, LGBM-gain top30 selection from 298f-advdrop base. Train within-month; test GLOBAL (no month labels exist for test - matches bestwater's global-test variant).
+- CRITICAL verification: yunsuxiaozi rfmf-0726data sample_ids are SHUFFLED but are an exact permutation of 0..n-1 for both train (1,257,637) and test (647,896). sort_values('sample_id') restores alignment - validates x455 val result AND kfold455/v13 test features.
+- Own private kernel output mounts work as kernel_data_sources.
+- mhmlp-v1 root cause: dataset path mismatch (lineage-pinned mounts). Kernel logs arrive as JSON string - json.loads before iterating.
+- Next: mscapital-x530-val running (champion + 152 public + XS75 = 530f, val tr<=60/61-70).
