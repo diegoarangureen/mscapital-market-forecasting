@@ -83,3 +83,9 @@ def leaderboard(c, competition='ms-capital-real-financial-market-forecasting'):
     r.raise_for_status()
     z = zipfile.ZipFile(io.BytesIO(r.content))
     return list(csv.DictReader(io.TextIOWrapper(z.open(z.namelist()[0]), encoding='utf-8')))
+
+def gpu_quota():
+    tok = os.environ['KAGGLE_API_TOKEN']
+    r = requests.post('https://www.kaggle.com/api/v1/kernels.KernelsApiService/GetAcceleratorQuotaStatistics',
+                      headers={'Authorization': f'Bearer {tok}', 'Content-Type':'application/json'}, json={}, timeout=60)
+    return r.json()

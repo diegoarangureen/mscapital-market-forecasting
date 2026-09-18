@@ -222,3 +222,7 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Dataset diegoaranguren/mscapital-x24 created (train 1257637x41, test 647896x41, float32, no NaNs).
 - One broadcasting bug (signed-flow-drift dividing N3 vector by ns slice) fixed after first push errored; logs fetched via list_kernel_session_output.
 - Next: val 455f+X23+X24 (and 455+X24) once GPU quota refreshes (~Sep 19). kfold678c still running (analysis only).
+
+## 2026-09-18 10:27 - GPU quota confirmed: refresh 2026-09-19T00:00:00Z (02:00 CEST)
+- GetAcceleratorQuotaStatistics: GPU used 126936s / 108000s weekly, refresh Sep 19 02:00 CEST. TPU quota untouched (72000s available) - potential avenue if GPU wait becomes the bottleneck (needs torch_xla port, not started).
+- Val scripts written and committed for post-refresh queue: realmlp_val_496.py (455f+X24) and realmlp_val_644.py (455f+X23+X24).
