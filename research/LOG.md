@@ -226,3 +226,8 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 ## 2026-09-18 10:27 - GPU quota confirmed: refresh 2026-09-19T00:00:00Z (02:00 CEST)
 - GetAcceleratorQuotaStatistics: GPU used 126936s / 108000s weekly, refresh Sep 19 02:00 CEST. TPU quota untouched (72000s available) - potential avenue if GPU wait becomes the bottleneck (needs torch_xla port, not started).
 - Val scripts written and committed for post-refresh queue: realmlp_val_496.py (455f+X24) and realmlp_val_644.py (455f+X23+X24).
+
+## 2026-09-18 13:27 - kfold678c complete (analysis only, contains XS75)
+- OOF cos: 61-70 0.172203, 66-70 0.182436, 40-64 0.149658. 15/15 models, 33931s.
+- vs kfold530 (v14): +0.0021/+0.0044 - X23 keeps adding on OOF, as in single val (0.1752 vs 0.1734).
+- NOT a submission candidate: late OOF 0.1824 < 0.185 threshold and the build contains XS75, whose val/OOF gains were shown to invert on LB (v14 0.135 < v13 0.139). The X23 contribution must be re-measured without XS (x603 val, queued for GPU refresh 02:00 CEST Sep 19).
