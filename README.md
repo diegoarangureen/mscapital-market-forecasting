@@ -5,7 +5,7 @@ End-to-end research project for the Kaggle competition
 (~650k high-frequency market windows; metric: cosine similarity between the
 predicted and realized return vectors).
 
-**Current standing: public leaderboard 0.139, rank 118/223** (as of Sep 17, 2026).
+**Current standing: public leaderboard 0.139, rank 118/223** (as of Sep 18, 2026).
 Top of board is 0.172; top-10 cut is 0.160. Work is active and updated daily.
 
 ## Results trajectory
@@ -15,6 +15,7 @@ Top of board is 0.172; top-10 cut is 0.160. Work is active and updated daily.
 | Sep 11 | v6 | LightGBM, 58 microstructure features | 0.110 |
 | Sep 15 | v9 | RealMLP 246f, refit-on-full | 0.124 |
 | Sep 17 | v13 | RealMLP 455f, 5 purged folds x 3 seeds, holdout + early stopping, 15-model average | **0.139** |
+| Sep 18 | v14 | v13 + 75 cross-sectional rank features (XS75) | 0.135 (negative; see below) |
 
 Every experiment - including the dead ends - is logged with numbers in
 [research/LOG.md](research/LOG.md) and [EXPERIMENTS.md](EXPERIMENTS.md).
@@ -52,7 +53,10 @@ the same direction as the realized-return vector across ~650k test windows.
 
 ## What the experiment ledger shows
 
-Closed research lines, each with numbers in the log: sequence models (GRUs
+Closed research lines, each with numbers in the log: cross-sectional /
+transductive feature families (within-month ranks computed against global
+test - they lift validation and OOF cosine but lose on the public
+leaderboard, v13 0.139 vs v14 0.135), sequence models (GRUs
 over uniform 1s grids, incl. order-flow streams), adversarial feature
 pruning beyond the accepted 5 columns, DANN gradient-reversal domain
 adaptation, online learning (impossible in this submission format),

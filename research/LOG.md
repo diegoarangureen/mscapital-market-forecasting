@@ -216,3 +216,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Public LB stays 0.139 (Kaggle keeps best submission). v13 remains champion artifact.
 - v15 (kfold678c incl XS75) still running for the data point but disfavored for submission under this evidence.
 - GPU QUOTA EXHAUSTED (30h weekly, hit at x603-val push 06:52; refresh ~Sep 19). x603 val (455f+X23, no XS) queued. kfold678c already running continues to ~10:50.
+
+## 2026-09-18 09:05 - X24 built (41 absolute per-sample microstructure features)
+- CPU kernel mscapital-build-x24b (~7 min/split): log-volume moments, signed-flow moments and drift, spread/imbalance volatility per early/mid/late bucket, order cancel/new dynamics. All absolute per-sample (no cross-sectional/transductive computation) - designed to be LB-safe under the XS75 lesson.
+- Dataset diegoaranguren/mscapital-x24 created (train 1257637x41, test 647896x41, float32, no NaNs).
+- One broadcasting bug (signed-flow-drift dividing N3 vector by ns slice) fixed after first push errored; logs fetched via list_kernel_session_output.
+- Next: val 455f+X23+X24 (and 455+X24) once GPU quota refreshes (~Sep 19). kfold678c still running (analysis only).
