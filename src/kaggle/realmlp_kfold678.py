@@ -298,14 +298,15 @@ for seed in SEEDS:
                 vp.append(model(Xva_t[i:i+4096]).mean(dim=1).cpu())
             oof[va_mask] = torch.cat(vp).numpy()
             Xte_s = apply_scale(Xte, med, fac)
-            Xte_t = torch.tensor(Xte_s)
-            if device.type == 'cuda': Xte_t = Xte_t.to(device)
             tp = []
-            for i in range(0, len(Xte_t), 4096):
-                tp.append(model(Xte_t[i:i+4096]).mean(dim=1).cpu())
+            for i in range(0, len(Xte_s), 8192):
+                xb = torch.tensor(Xte_s[i:i+8192])
+                if device.type == 'cuda': xb = xb.to(device)
+                tp.append(model(xb).mean(dim=1).cpu())
+                del xb
             test_preds += torch.cat(tp).numpy()
             n_models += 1
-        del model, opt, ema, Xtr_t, ytr_t, Xva_t, Xte_t, Xtr, Xva
+        del model, opt, ema, Xtr_t, ytr_t, Xva_t, Xtr, Xva
         if device.type == 'cuda': torch.cuda.empty_cache()
 
 test_preds /= n_models
