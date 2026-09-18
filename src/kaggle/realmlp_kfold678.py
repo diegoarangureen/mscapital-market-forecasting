@@ -299,8 +299,8 @@ for seed in SEEDS:
             oof[va_mask] = torch.cat(vp).numpy()
             Xte_s = apply_scale(Xte, med, fac)
             tp = []
-            for i in range(0, len(Xte_s), 8192):
-                xb = torch.tensor(Xte_s[i:i+8192])
+            for i in range(0, len(Xte_s), 1024):
+                xb = torch.tensor(Xte_s[i:i+1024])
                 if device.type == 'cuda': xb = xb.to(device)
                 tp.append(model(xb).mean(dim=1).cpu())
                 del xb
