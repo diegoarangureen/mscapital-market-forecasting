@@ -209,3 +209,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 ## 2026-09-18 06:50 - kfold530 kernel complete (v14 candidate)
 - OOF cos: 61-70 0.170137, 66-70 0.178068, 40-64 0.149967. vs kfold455 (v13): +0.0023/+0.0035 - consistent with val ladder.
 - 15/15 models, 28571s. Submission.csv verified (647896 rows, ids match, 17 nodata zeros).
+
+## 2026-09-18 06:51 - v14 (kfold530, +XS75): LB 0.135 - NEGATIVE vs v13 0.139
+- XS75 gains in val (+0.006) and kfold OOF (+0.0023) but LOSES 0.004 on LB. Cross-sectional features (within-month train ranks, global-test) do not transfer to the public test regime.
+- Second family showing val/OOF vs LB divergence; lesson: features with cross-sectional/transductive computation need the same computability story on test, and even then may not transfer.
+- Public LB stays 0.139 (Kaggle keeps best submission). v13 remains champion artifact.
+- v15 (kfold678c incl XS75) still running for the data point but disfavored for submission under this evidence.
+- GPU QUOTA EXHAUSTED (30h weekly, hit at x603-val push 06:52; refresh ~Sep 19). x603 val (455f+X23, no XS) queued. kfold678c already running continues to ~10:50.
