@@ -66,7 +66,7 @@ month = np.load(f'{DATA}/full_month.npy')
 TR_MAX = int(os.environ.get('TR_MAX', '60'))
 VA_LO = int(os.environ.get('VA_LO', '61'))
 VA_HI = int(os.environ.get('VA_HI', '70'))
-TAG = os.environ.get('TAG', 'kfold455')
+TAG = os.environ.get('TAG', 'x455w')
 tr = month <= TR_MAX; va = (month >= VA_LO) & (month <= VA_HI)
 late = month >= 66
 Xtr = X_all[tr]; ytr = y_all[tr]
