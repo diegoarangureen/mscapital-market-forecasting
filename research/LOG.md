@@ -205,3 +205,7 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Val ladder: 298f 0.1489 -> +152 public 0.1671 -> +XS75 0.1734 -> +X23 0.1752.
 - corr(x678,x530)=0.978; ensemble ~flat vs pure x678.
 - Question for v14/v15: kfold530 lands ~03:00; kfold678 would be the stronger submission but costs another ~5h GPU. Decision point at kfold530 completion.
+
+## 2026-09-18 06:50 - kfold530 kernel complete (v14 candidate)
+- OOF cos: 61-70 0.170137, 66-70 0.178068, 40-64 0.149967. vs kfold455 (v13): +0.0023/+0.0035 - consistent with val ladder.
+- 15/15 models, 28571s. Submission.csv verified (647896 rows, ids match, 17 nodata zeros).
