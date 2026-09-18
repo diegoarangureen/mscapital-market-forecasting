@@ -242,3 +242,6 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Audit result: zero-price rows = train 0.47% / test 0.72% of market rows; 0.56%/0.82% of samples affected. Given typical relative spreads ~1e-3, one unmasked zero-row (relative spread +/-2) dominates a sample's spread mean -> real corruption for affected samples.
 - build_x24c: empty-level rows masked out of all price stats; dead-row incidence kept as 8 new liquidity-void features (frac empty ask/bid per bucket, void drift, void asymmetry). Shapes verified: 1257637x49 / 647896x49, no NaNs.
 - Val variants ready for GPU refresh: realmlp_val_504.py (455f+X24c), realmlp_val_652.py (455f+X23+X24c). These supersede x496/x644.
+
+## 2026-09-18 16:24 - val A/B queued: x455w (no downweight of high-|y| rows)
+- Hypothesis (senanuretin kernel): cosine factors over partitions with weights ||y_g||*||p_g|| - high-magnitude targets dominate the metric. Our loss DOWNweights |y|>0.001 rows (w=0.5), fighting the metric. x455w = champion 455f val recipe with w=1 everywhere. Queued for GPU refresh; compare vs x455 val baseline (0.1671/0.1749).
