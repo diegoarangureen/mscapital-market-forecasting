@@ -112,7 +112,7 @@ def build(split):
     feats.append(np.log1p(np.maximum(e(t_n),0)) - np.log1p(np.maximum(l(t_n),0)))  # trade accel
     feats.append(e(imb/nm) - l(imb/nm))                                          # imb drift
     feats.append(e(spread/nm) - l(spread/nm))                                    # spread drift
-    feats.append(e(tsv1/np.maximum(e(tv),1e-9)) - l(tsv1/np.maximum(l(tv),1e-9)))# signed flow drift
+    feats.append(e(tsv1/np.maximum(tv,1e-9)) - l(tsv1/np.maximum(tv,1e-9)))# signed flow drift
     # order dynamics
     on = np.maximum(o_n, 1.0)
     feats.append((o_can_b + o_can_s) / np.maximum(o_new_b + o_new_s, 1e-9))      # cancel/new
