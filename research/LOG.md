@@ -237,3 +237,8 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - ACTIONABLE: our features22.py and build_x24.py compute mid=(a1+b1)/2 and spread=(a1-b1)/mid WITHOUT masking zero-price rows. If zeros are common, spread/mid/micro features carry systematic garbage. Auditing incidence now (mscapital-audit-zeros CPU kernel; local train/market.feather is truncated - footer corrupt - noted for re-download).
 - Cosine weighting implication: our loss DOWNweights |y|>0.001 samples (w=0.5), but cosine weights by ||y|| - high-magnitude rows matter more on the metric. Tension worth a val A/B later.
 - bestwater/ktpu-tabm-cos-v6-3seed pulled and is byte-identical to research/reference/bestwater_tabm_v6.py (already mined). pavloivanin EDA new but low votes.
+
+## 2026-09-18 14:58 - X24c built (49 cols) + dataset mscapital-x24c
+- Audit result: zero-price rows = train 0.47% / test 0.72% of market rows; 0.56%/0.82% of samples affected. Given typical relative spreads ~1e-3, one unmasked zero-row (relative spread +/-2) dominates a sample's spread mean -> real corruption for affected samples.
+- build_x24c: empty-level rows masked out of all price stats; dead-row incidence kept as 8 new liquidity-void features (frac empty ask/bid per bucket, void drift, void asymmetry). Shapes verified: 1257637x49 / 647896x49, no NaNs.
+- Val variants ready for GPU refresh: realmlp_val_504.py (455f+X24c), realmlp_val_652.py (455f+X23+X24c). These supersede x496/x644.
