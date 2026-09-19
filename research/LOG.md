@@ -255,3 +255,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - mscapital-x24 dataset (unused now) still has prefixed names - fix if ever needed.
 - ~1h of 403s on kernels get/status endpoints (~02:47-03:47) resolved on its own - transient Kaggle auth flakiness; list_kernels kept working throughout.
 - Pushed 03:48: mscapital-x603c (455f+X23, kernels=0726+build-x23) and mscapital-x504c (455f+X24c, datasets=+x24c). ETA ~1h each.
+
+## 2026-09-19 05:20 - x603 val 0.169080, x504 val 0.167843: both WITHIN NOISE of x455 (0.1671)
+- x603 (455f+X23 no XS): +0.0020 over x455 - below the 0.004 fold-std noise floor. X23 without XS does NOT clearly add; the apparent X23 gain at 678f was riding on XS.
+- x504 (455f+X24c): +0.0007 - flat.
+- Consequence: no kfold submission justified by these. v13 (455f) remains champion at LB 0.139. The val ceiling around 0.167-0.175 has not moved without the LB-toxic XS layer.
+- x652c (455f+X23+X24c) and x455w (no downweight A/B) launched 05:20.
+- Open direction: gains must come from something orthogonal - better targets/loss (455w test), post-hoc calibration, or a structurally different feature family.
