@@ -12,6 +12,15 @@ N_ENS = int(os.environ.get('N_ENS', '16'))
 EPOCHS = int(os.environ.get('EPOCHS', '9'))
 LR = float(os.environ.get('LR', '1e-3'))
 BS = int(os.environ.get('BS', '256'))
+def _resolve(fname):
+    from pathlib import Path
+    import subprocess
+    for cand in [Path('/kaggle/input')]:
+        r = subprocess.run(['find', str(cand), '-name', fname, '-maxdepth', '6'], capture_output=True, text=True, timeout=90)
+        ls = [l for l in r.stdout.strip().split('\n') if l.strip()]
+        if ls: return str(Path(ls[0]).parent)
+    raise FileNotFoundError(fname)
+
 DATA = os.environ.get('DATA', '') or _resolve('full_train.npy')
 XTRA = os.environ.get('XTRA', '') or _resolve('X21_train.npy')
 XTRA2 = os.environ.get('XTRA2', '') or _resolve('X22_train.npy')
@@ -24,14 +33,6 @@ set_seed(SEED)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('device:', device, 'n_ens', N_ENS, 'epochs', EPOCHS, flush=True)
 
-def _resolve(fname):
-    from pathlib import Path
-    import subprocess
-    for cand in [Path('/kaggle/input')]:
-        r = subprocess.run(['find', str(cand), '-name', fname, '-maxdepth', '6'], capture_output=True, text=True, timeout=90)
-        ls = [l for l in r.stdout.strip().split('\n') if l.strip()]
-        if ls: return str(Path(ls[0]).parent)
-    raise FileNotFoundError(fname)
 
 # ---------- data ----------
 X_all = np.load(f'{DATA}/full_train.npy')          # (1257637, 246) float32, NaN->0
