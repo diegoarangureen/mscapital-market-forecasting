@@ -272,3 +272,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Differences vs our champion: (1) they split by ROW ORDER (first 800k samples) not by month; (2) they drop |corr|>=0.9 pairs + constant columns from the 0726 set (~100 cols dropped) - we keep all 152; (3) they quantile-bin high-cardinality numerics into categoricals and feed a categorical embedding layer alongside numerics; (4) RQ aux target (we dropped it, tested negative by UnseenAnchor); (5) y rounded to 4 decimals.
 - Our numeric-only 455f beats their public LB, but two untested-by-us elements remain: correlation pruning and binned-categorical embeddings.
 - Queued: realmlp_val_455corr.py (corr-prune |r|>=0.9 fit on train<=60). Binned-cat embeddings parked (bigger change, lower prior).
+
+## 2026-09-19 09:04 - x472 0.167634, x455corr 0.165400: flat again. 7/7 flat vals.
+- x472 (455f+X25 trade arrival/impact): +0.0005. Third feature family (X23, X24c, X25) flat without XS.
+- x455corr (|corr|>=0.9 prune of 0726): -0.0017 vs x455. Correlation pruning closed (neutral-to-negative).
+- The 455f recipe is robustly at its local ceiling: 7 consecutive controlled vals within +/-0.002 of 0.1671.
+- Pivot: (1) kfold455 5-seed re-run saving per-model OOF preds -> enables post-hoc shrinkage calibration + slightly better averaging; (2) keep mining for structural ideas.
