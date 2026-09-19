@@ -245,3 +245,7 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 
 ## 2026-09-18 16:24 - val A/B queued: x455w (no downweight of high-|y| rows)
 - Hypothesis (senanuretin kernel): cosine factors over partitions with weights ||y_g||*||p_g|| - high-magnitude targets dominate the metric. Our loss DOWNweights |y|>0.001 rows (w=0.5), fighting the metric. x455w = champion 455f val recipe with w=1 everywhere. Queued for GPU refresh; compare vs x455 val baseline (0.1671/0.1749).
+
+## 2026-09-19 02:07 - GPU quota refreshed (0s/108000s, next refresh Sep 26), val queue firing
+- mscapital-x603-valb (455f+X23 no XS) and mscapital-x504-valb (455f+X24c) RUNNING. x652 and x455w queued behind them (max 2 GPU sessions).
+- Mount regression found+fixed: datasets now land under a new /kaggle/input layout, hardcoded /kaggle/input/datasets/<owner>/<slug> paths broke. All val scripts now resolve mounts by filename search (find /kaggle/input -name). CancelKernelSession is 403 via kagglesdk - dead kernels must error out on their own.
