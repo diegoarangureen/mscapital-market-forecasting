@@ -5,7 +5,7 @@ End-to-end research project for the Kaggle competition
 (~650k high-frequency market windows; metric: cosine similarity between the
 predicted and realized return vectors).
 
-**Current standing: public leaderboard 0.139, rank 118/223** (as of Sep 18, 2026).
+**Current standing: public leaderboard 0.139, rank 118/223** (as of Sep 19, 2026).
 Top of board is 0.172; top-10 cut is 0.160. Work is active and updated daily.
 
 ## Results trajectory
@@ -16,6 +16,12 @@ Top of board is 0.172; top-10 cut is 0.160. Work is active and updated daily.
 | Sep 15 | v9 | RealMLP 246f, refit-on-full | 0.124 |
 | Sep 17 | v13 | RealMLP 455f, 5 purged folds x 3 seeds, holdout + early stopping, 15-model average | **0.139** |
 | Sep 18 | v14 | v13 + 75 cross-sectional rank features (XS75) | 0.135 (negative; see below) |
+
+Since v14, four controlled validation A/Bs on the champion (order-flow stream
+aggregates, masked microstructure + liquidity-void features, loss reweighting,
+model capacity) all landed within the fold-to-fold noise floor (~0.004 cosine)
+- documented with numbers in the log. Current work: structurally different
+feature families and calibration, not incremental feature stacking.
 
 Every experiment - including the dead ends - is logged with numbers in
 [research/LOG.md](research/LOG.md) and [EXPERIMENTS.md](EXPERIMENTS.md).
