@@ -262,3 +262,8 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Consequence: no kfold submission justified by these. v13 (455f) remains champion at LB 0.139. The val ceiling around 0.167-0.175 has not moved without the LB-toxic XS layer.
 - x652c (455f+X23+X24c) and x455w (no downweight A/B) launched 05:20.
 - Open direction: gains must come from something orthogonal - better targets/loss (455w test), post-hoc calibration, or a structurally different feature family.
+
+## 2026-09-19 06:06 - x652 0.168738, x455w 0.166260: both flat. 455f stack at local ceiling.
+- x652 (455f+X23+X24c): no interaction. x455w (w=1, no downweight of big targets): 0.1663 vs 0.1671 - no gain, hypothesis dead (or neutral). Four post-quota vals all within noise of x455.
+- Standing: v13 LB 0.139 champion; no new submission candidate; feature adds X23/X24c closed as flat-without-XS.
+- Next lever launched: x455cap (N_ENS 24, EPOCHS 12) capacity A/B on the champion recipe.
