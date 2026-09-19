@@ -286,3 +286,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Same config, two seeds: 0.0034 spread. The x603 +0.002 "gain" over x455 (0.1671) was seed noise. Seed-variance range ~0.003-0.004 matches the senanuretin fold-std noise floor.
 - X23 does not add without XS. kfold603 is dead as v15 path. 8/8 controlled vals flat.
 - Meta-lesson confirmed with own numbers: single-val deltas <0.004 are uninterpretable; only kfold-OOF or LB can arbitrate deltas of that size.
+
+## 2026-09-19 20:09 - kfold455s5 KILLED by 10h session timeout at 22/25 models; v2 relaunched
+- v1 (pushed 09:04, timeout 36000s) hit the session timeout during seed 99 fold 4. Saves were end-of-run only, so ALL output lost (~39.6k GPU s burned, 0 artifacts). My design flaw, logged.
+- Fix (realmlp_kfold455s5v2.py): incremental saves after every model (oof_models_*_partial.npy, test_models_*_partial.npy, metrics_*_partial.json), FOLD_IDX env filter, timeout 43200s (12h; projected need ~39.2k s).
+- Relaunched 20:09 as diegoaranguren/mscapital-kfold455-5seed-v2-incremental-save (RUNNING). ETA ~07:10 CEST Sep 20. GPU quota after v1: 53.0k s left this week; v2 uses ~39k, leaves ~14k.
+- If v2 also times out: partials survive; a complementary FOLD_IDX run completes the matrix.
