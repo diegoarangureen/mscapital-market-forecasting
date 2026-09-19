@@ -281,3 +281,8 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 
 ## 2026-09-19 09:04 - kfold455s5 launched (parent-approved)
 - 5 seeds x 5 folds = 25 models, saves oof_models_kfold455s5.npy (25 x 1.26M) + test_models (25 x 648k) for offline shrinkage calibration. ETA ~13h (~22:15 CEST). Uses ~47k of 108k GPU seconds.
+
+## 2026-09-19 10:57 - x603 seed replication: 0.165685 (seed42) vs 0.169080 (seed2026) - X23 line CLOSED
+- Same config, two seeds: 0.0034 spread. The x603 +0.002 "gain" over x455 (0.1671) was seed noise. Seed-variance range ~0.003-0.004 matches the senanuretin fold-std noise floor.
+- X23 does not add without XS. kfold603 is dead as v15 path. 8/8 controlled vals flat.
+- Meta-lesson confirmed with own numbers: single-val deltas <0.004 are uninterpretable; only kfold-OOF or LB can arbitrate deltas of that size.
