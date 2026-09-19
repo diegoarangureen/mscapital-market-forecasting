@@ -278,3 +278,6 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - x455corr (|corr|>=0.9 prune of 0726): -0.0017 vs x455. Correlation pruning closed (neutral-to-negative).
 - The 455f recipe is robustly at its local ceiling: 7 consecutive controlled vals within +/-0.002 of 0.1671.
 - Pivot: (1) kfold455 5-seed re-run saving per-model OOF preds -> enables post-hoc shrinkage calibration + slightly better averaging; (2) keep mining for structural ideas.
+
+## 2026-09-19 09:04 - kfold455s5 launched (parent-approved)
+- 5 seeds x 5 folds = 25 models, saves oof_models_kfold455s5.npy (25 x 1.26M) + test_models (25 x 648k) for offline shrinkage calibration. ETA ~13h (~22:15 CEST). Uses ~47k of 108k GPU seconds.
