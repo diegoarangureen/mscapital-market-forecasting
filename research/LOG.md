@@ -249,3 +249,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 ## 2026-09-19 02:07 - GPU quota refreshed (0s/108000s, next refresh Sep 26), val queue firing
 - mscapital-x603-valb (455f+X23 no XS) and mscapital-x504-valb (455f+X24c) RUNNING. x652 and x455w queued behind them (max 2 GPU sessions).
 - Mount regression found+fixed: datasets now land under a new /kaggle/input layout, hardcoded /kaggle/input/datasets/<owner>/<slug> paths broke. All val scripts now resolve mounts by filename search (find /kaggle/input -name). CancelKernelSession is 403 via kagglesdk - dead kernels must error out on their own.
+
+## 2026-09-19 03:50 - mount layout fully mapped; x603c + x504c RUNNING
+- Probe kernel revealed true layout: datasets at /kaggle/input/datasets/<owner>/<slug>/, kernel outputs at /kaggle/input/notebooks/<owner>/<slug>/. Two bugs found: (1) X23 was passed as a dataset but lives in kernel output mscapital-build-x23 -> silent no-mount; (2) dataset uploads kept the local filename prefix (mscapital-build-x24c_X24c_train.npy) because ApiDatasetNewFile ignores the intended name and upload_file names the blob by basename -> exact-name find missed. Fixed via new dataset version of mscapital-x24c with clean names (X24c_train/test.npy).
+- mscapital-x24 dataset (unused now) still has prefixed names - fix if ever needed.
+- ~1h of 403s on kernels get/status endpoints (~02:47-03:47) resolved on its own - transient Kaggle auth flakiness; list_kernels kept working throughout.
+- Pushed 03:48: mscapital-x603c (455f+X23, kernels=0726+build-x23) and mscapital-x504c (455f+X24c, datasets=+x24c). ETA ~1h each.
