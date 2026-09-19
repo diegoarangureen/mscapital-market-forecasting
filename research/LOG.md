@@ -267,3 +267,8 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - x652 (455f+X23+X24c): no interaction. x455w (w=1, no downweight of big targets): 0.1663 vs 0.1671 - no gain, hypothesis dead (or neutral). Four post-quota vals all within noise of x455.
 - Standing: v13 LB 0.139 champion; no new submission candidate; feature adds X23/X24c closed as flat-without-XS.
 - Next lever launched: x455cap (N_ENS 24, EPOCHS 12) capacity A/B on the champion recipe.
+
+## 2026-09-19 08:20 - Mining yunsuxiaozi/rfmf-realmlp (the public kernel our recipe descends from)
+- Differences vs our champion: (1) they split by ROW ORDER (first 800k samples) not by month; (2) they drop |corr|>=0.9 pairs + constant columns from the 0726 set (~100 cols dropped) - we keep all 152; (3) they quantile-bin high-cardinality numerics into categoricals and feed a categorical embedding layer alongside numerics; (4) RQ aux target (we dropped it, tested negative by UnseenAnchor); (5) y rounded to 4 decimals.
+- Our numeric-only 455f beats their public LB, but two untested-by-us elements remain: correlation pruning and binned-categorical embeddings.
+- Queued: realmlp_val_455corr.py (corr-prune |r|>=0.9 fit on train<=60). Binned-cat embeddings parked (bigger change, lower prior).
