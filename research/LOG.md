@@ -334,3 +334,11 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - rs1/rs2 zombie GPU sessions can't be cancelled/deleted; they auto-timeout (12h max). GPU batch slots may be held meanwhile. rs random search ABANDONED (results unreachable, rerun costs ~3.3k of the 4.7k s GPU left; marginal expected gain).
 - tpuval455b (title==slug) RUNNING and readable. TPU port validation in flight.
 - Vault Kaggle password stale (invalidLogin); vault request sent to Diego via parent/WhatsApp.
+
+## 2026-09-20 18:40 - Random search CLOSED (flat); TPU v1 failure root-caused
+- rs1 (N_ENS8 EP7 LR2e-3 BS256): best val 0.16659 @ ep6 - within noise of champion 0.1671, flat.
+- rs2 (N_ENS8 EP7 LR5e-4 BS512): 0.15786, still climbing at ep7 - undertrained, worse.
+- Random search conclusion: champion recipe (N_ENS16 EP9 LR1e-3 BS256) is locally optimal; no hyperparam gain available at search resolution. CLOSED.
+- tpuval455 v1 FAILED at 2617s: XLA "LLVM compilation error: Cannot allocate memory" -> segfault. Cause: per-step LR updates (flat_anneal per step) invalidate the compiled graph every step -> recompilation memory bomb. bestwater's TPU code updates lr per EPOCH (CosineAnnealingLR T_max=EPOCHS). Also its Logs panel showed Accelerator: None - CPU-vs-TPU unconfirmed; HW probes added.
+- Fix: realmlp_tpu.py now per-epoch LR + hardware probes (get_memory_info, xr device count, jax.devices). tpuval455c pushed (title==slug). tpuval455b (old code) still running as CPU/TPU data point.
+- Kaggle web login recovered (Diego updated vault password). Wedged-kernel results read via browser Logs tab.
