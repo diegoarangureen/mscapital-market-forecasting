@@ -320,3 +320,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - DECISION per parent gate: feature engineering CLOSED. Fourth feature family flat (X23, X24c, X25, X26) without XS. Aggregation ceiling reached earlier -> next axis = RealMLP hyperparameter random search (parent-authorized fallback, Sep 20 11:18).
 - 14:20 GPU quota: 6404 s left (resets Sep 26 02:00 CEST). TPU 72k s untouched -> TPU port spike started.
 - 14:25 random search launched: rs1 (N_ENS8 EP7 LR2e-3 BS256), rs2 (N_ENS8 EP7 LR5e-4 BS512) running; rs3 (N_ENS8 EP12 LR1e-3 BS256) queued (max 2 concurrent GPU batch sessions). ~1.5-2k s each, leaves ~2k s buffer.
+
+## 2026-09-20 16:20 - TPU UNLOCKED (TpuV5E8 + python-tpuvm docker image)
+- Root cause of spikes 1-3 failing: default image lacks torch_xla AND machine_shape must be TpuV5E8 with docker_image gcr.io/kaggle-private-byod/python-tpuvm@sha256:a2111cb9... (metadata mined from bestwater/ktpu-tabm-cos-v6-3seed via API; his kernel source + kgpu-tabm-cos689 saved to /tmp/work).
+- spike4: torch 2.8.0+cpu + torch_xla 2.8.0, device xla:0, training works. TPU quota 72k s = 20h.
+- realmlp_tpu.py (realmlp_rs + XLA device/step) launched as diegoaranguren/tpuval455: exact champion replication (455f, N_ENS16, EP9, BS256, LR1e-3). Validates port if val cos ~= 0.1671. Then path to kfold455x5seed on TPU.
+- bestwater reference numbers (his kernel docstrings): GPU TabM cos689 raw pool=0.16379, raw last=0.18697; TPU v6 matches GPU config, 3 seeds ~50-60 min on v5e-8.
+- rs1/rs2 still API-wedged 403 but consuming GPU quota (~1.6k s gone, 4.7k left); results only via cloud browser session logs later.
