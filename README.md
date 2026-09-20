@@ -14,7 +14,7 @@ Top of board is 0.172; top-10 cut is 0.160. Work is active and updated daily.
 |------|-----------|--------|-----------|
 | Sep 11 | v6 | LightGBM, 58 microstructure features | 0.110 |
 | Sep 15 | v9 | RealMLP 246f, refit-on-full | 0.124 |
-| Sep 17 | v13 | RealMLP 455f, 5 purged folds x 3 seeds, holdout + early stopping, 15-model average | **0.139** |
+| Sep 17 | v13 | RealMLP 450f, 5 purged folds x 3 seeds, holdout + early stopping, 15-model average | **0.139** |
 | Sep 18 | v14 | v13 + 75 cross-sectional rank features (XS75) | 0.135 (negative; see below) |
 | Sep 20 | v15 | v13 recipe, 5 folds x 5 seeds (25 models) | 0.138 (flat; OOF +0.0005 did not transfer) |
 
@@ -33,6 +33,21 @@ with a 25-model OOF tensor available, every post-hoc calibration tried
 The equal-weight k-fold mean is the ceiling for this recipe; further gains
 have to come from new features or architecture.
 
+Latest research (Sep 20-21): a faithful reimplementation of the strongest
+public architecture (bestwater's TabM, Apache 2.0) trained on our 450f
+matrix landed at OOF 0.152 vs the champion's 0.168 - confirming the public
+architecture's edge comes from its author's 462 private features, not the
+network. A loss-balance sweep on the champion (cosine weight 1.0 vs 0.1)
+came back negative, confirming the champion training recipe as a local
+optimum. Cross-reading a second independent public research program (a
+130-experiment released toolkit, CC BY 4.0, mirrored in `reference/`) shows
+the same wall: months of sequence-model work there produced +0.001 forward
+deltas and closed with "no verified improvement beyond 0.152". The public
+plateau is real; the current line is auxiliary-target training (RQ-KMeans
+target-code head) and TPU-scale seed/fold replication for robustness.
+Historical note: the "455f" tag was an early miscount; the build is 450
+columns (298 proprietary + 152 public).
+
 Every experiment - including the dead ends - is logged with numbers in
 [research/LOG.md](research/LOG.md) and [EXPERIMENTS.md](EXPERIMENTS.md).
 
@@ -47,7 +62,7 @@ the same direction as the realized-return vector across ~650k test windows.
 
 ## Current approach (v13, LB 0.139)
 
-- **Features (455).** 298 proprietary microstructure features (trade, order
+- **Features (450).** 298 proprietary microstructure features (trade, order
   flow, book, multi-horizon bar statistics) with adversarial-validation
   pruning of regime-shifted columns, plus 152 public domain features shared
   by the community (yunsuxiaozi's rfmf-0726 set). Sample-id alignment to the
