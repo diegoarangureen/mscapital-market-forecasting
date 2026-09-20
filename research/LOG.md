@@ -365,3 +365,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - YangQ fusion pack (lb0142): 60% MultiStream CNN-Transformer + 40% RealMLP 8 miembros; su RealMLP también es familia PBLD → convergencia de evidencia: el camino es afinar nuestro single model, no más fusión.
 - X28a LANZADO (22:16): kernel diegoaranguren/mscapital-x28a-lc01 — campeón exacto salvo lambda_cos 1.0→0.1, seed 2026, solo fold5 (65-70). Comparación: campeón fold5 seed2026 = 0.17009 (1821s). Gate señal: +0.004 (ruido val). Coste ~1.8k s de los ~3.3k GPU restantes; deja ~1.5k buffer. Script: src/kaggle/realmlp_x28a_lc01.py.
 - Si señal: confirmar fold4 + panel completo tras reset GPU (Sep 26) o en TPU si Persona; luego RQ aux (X28b). Licencia notebook Yunsu: None → reimplementación de ideas, no copia literal.
+
+## Sep 20 23:15 — Sandbox wipe recuperado; X28a v1 falló por data source, v2 lanzado
+- Wipe de /tmp entre 22:16 y 23:11: repo re-clonado desde GitHub (commits intactos), creds Kaggle restauradas (~/.kaggle/access_token), kagglesdk reinstalado.
+- X28a v1 ERROR a los 35s: AssertionError '0726 not found' — el script fusiona las 152 features públicas del kernel-data-source yunsuxiaozi/rfmf-0726data y no lo adjunté. Consumo ~35s GPU solamente.
+- X28a v2 lanzado (23:13) con kernels=('yunsuxiaozi/rfmf-0726data',). ETA ~23:45.
+- Lección: los kernels campeones llevan TRES datasets + UN kernel data source (rfmf-0726data); documentado para futuros pushes.
