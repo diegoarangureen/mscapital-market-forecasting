@@ -371,3 +371,13 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - X28a v1 ERROR a los 35s: AssertionError '0726 not found' — el script fusiona las 152 features públicas del kernel-data-source yunsuxiaozi/rfmf-0726data y no lo adjunté. Consumo ~35s GPU solamente.
 - X28a v2 lanzado (23:13) con kernels=('yunsuxiaozi/rfmf-0726data',). ETA ~23:45.
 - Lección: los kernels campeones llevan TRES datasets + UN kernel data source (rfmf-0726data); documentado para futuros pushes.
+
+## Sep 21 00:20 — X28a NEGATIVO: lambda_cos 0.1 = 0.168294 vs campeón 1.0 = 0.170090 (fold5 seed2026)
+- Log del kernel (web, línea "seed 2026 fold 5: best val cos 0.168294 (1933s)"): -0.0018 vs campeón. Dirección negativa, dentro de ruido pero SIN señal → palanca loss-balance CERRADA: lambda_cos=1.0 del campeón es óptimo local; no probar 0.01 (dirección opuesta empeora).
+- La evidencia de ZWQ1037 (0.01 > MSE plano en su 379f/4-miembros) NO transfiere a nuestro 455f/16-miembros: régimen distinto. Lección: sus ablaciones orientan hipótesis pero requieren validación propia.
+- Crash post-training (línea 308, sample_submission no encontrado — sin competition data adjunta): solo afecta al CSV final, métricas ya registradas en log. Kernel errored no expone ficheros vía API.
+- Nota: el log muestra "(1257637, 450)" — el build real produce 450 columnas, no 455 (el tag 455f es histórico). Verificar contra build campeón antes de documentar el número en README.
+- GPU: ~1.6k s restantes tras v2 (2165s) → bajo el mínimo para otra pantalla (1.9k). Sin más runs GPU hasta reset Sep 26 00:00 UTC.
+- Infra: wipe de sandbox ~23:00 + caída del proveedor 00:13-00:18 (admission full) — recuperado todo, sin pérdida (repo en GitHub, creds en prompts).
+- X28b (RQ aux head) queda encolado para post-reset o TPU. TPU: Persona sigue pendiente.
+- Decisión sobre datos locales: /tmp/mscapital (9GB) no se reconstruye de momento — el trabajo actual es kernel-side; arrays pequeños (full_y/full_month) se bajarán del dataset mscapital-matrices cuando hagan falta para paneles.
