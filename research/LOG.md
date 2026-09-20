@@ -292,3 +292,13 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Fix (realmlp_kfold455s5v2.py): incremental saves after every model (oof_models_*_partial.npy, test_models_*_partial.npy, metrics_*_partial.json), FOLD_IDX env filter, timeout 43200s (12h; projected need ~39.2k s).
 - Relaunched 20:09 as diegoaranguren/mscapital-kfold455-5seed-v2-incremental-save (RUNNING). ETA ~07:10 CEST Sep 20. GPU quota after v1: 53.0k s left this week; v2 uses ~39k, leaves ~14k.
 - If v2 also times out: partials survive; a complementary FOLD_IDX run completes the matrix.
+
+## 2026-09-20 10:10 - kfold455s5v2 COMPLETE: 25/25 models, OOF 0.16827/0.17522; calibration lines tested and CLOSED
+- Run: 42,160s (11.7h, just under the 12h timeout). OOF 61-70: 0.168274 (v13 kfold455: 0.1678, +0.0005); 66-70: 0.175222 (v13: 0.1745, +0.0007); 40-64: 0.147749 (month-difficulty skew confirmed again).
+- Per-fold val cos 0.142-0.172 across seeds; seed spread within folds ~0.003 (consistent with known noise floor).
+- Shrinkage grid (per-row std across 25 OOF preds, weight = 1/(1+lam*sn_norm)): ALL lambdas HURT (-0.002 at lam0.25 to -0.035 at lam4.0). Rank-based top-q shrink also hurts. DEAD: model disagreement is signal, not noise.
+- Anti-shrinkage (amplify high-disagreement rows): catastrophic (-0.09 at lam-0.5). Confirms direction.
+- Robust aggregation: median -0.0002, trimmed mean -0.0009 vs plain mean. DEAD.
+- Greedy forward model selection (select on months 40-64, eval 61-70/66-70): all-25 equal mean is best; selection does not transfer. DEAD.
+- Conclusion: s5 value = variance reduction of the exact v13 recipe (25 vs 15 models). OOF delta +0.0005/+0.0007 - inside noise floor but structurally >= 0 by construction. Submission decision escalated to parent (his pre-set condition "OOF supera a v13" is literally met on both windows; margin is inside noise).
+- Artifacts: oof_models_kfold455s5.npy (25x1.26M), test_models_kfold455s5.npy (25x648k), metrics_kfold455s5.json in /tmp/work; kernel output at diegoaranguren/mscapital-kfold455-5seed-v2-incremental-save.
