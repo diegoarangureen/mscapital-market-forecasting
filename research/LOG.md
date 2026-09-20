@@ -313,3 +313,8 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - build_x26.py pushed as diegoaranguren/mscapital-build-x26-ofi-vpin-volume-clock (CPU). Features: CKS OFI (L1+L2, valid-masked), OFI accel, Roll spread, Amihud, microprice tail, VPIN K=10/20 (volume-clock, midpoint-bucket rule - chunk-carry vectorization unit-tested against exact reference).
 - Formula validation: stefan-jansen ML4T ch.8 (Amihud |r|/dollarvol, Roll 2*sqrt(-cov), OFI trade-based) - mine match standard definitions; CKS OFI per Cont-Kukanov-Stoikov.
 - If X26 val (455f+X26) < +0.004: feature engineering CLOSED. Next lever per iamltpn (5th, public): single-model training. Open-source candidates: (a) RealMLP hyperparameter random search (lr/epochs/n_ens/hidden, ~1.5k GPU s per config, 5-6 configs fit the weekly quota) - highest prior, champion arch has never been tuned, only carried; (b) ModernNCA (public, instance-based inductive bias, memory-heavy on 1.26M rows - risky on P100); (c) FT-Transformer tabular (low prior: bestwater's Transformer LB-negative).
+
+## 2026-09-20 14:20 - X26 (OFI/VPIN volume-clock, 469f) FLAT: val 0.16797 vs champion 0.1671 (+0.0009, gate +0.004 NOT cleared)
+- Kernel diegoaranguren/x26val469 (slugs mscapital-val-x26-469f/-v2 bricked server-side 403/409; fresh short slug works).
+- Panel on saved val preds: overall 0.1674, no66 0.1482, recent 0.1477, worst month 70 (0.1263), monthly std 0.0122. X26 adds nothing beyond noise.
+- DECISION per parent gate: feature engineering CLOSED. Fourth feature family flat (X23, X24c, X25, X26) without XS. Aggregation ceiling reached earlier -> next axis = RealMLP hyperparameter random search (parent-authorized fallback, Sep 20 11:18).
