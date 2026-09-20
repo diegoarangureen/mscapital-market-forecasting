@@ -327,3 +327,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - realmlp_tpu.py (realmlp_rs + XLA device/step) launched as diegoaranguren/tpuval455: exact champion replication (455f, N_ENS16, EP9, BS256, LR1e-3). Validates port if val cos ~= 0.1671. Then path to kfold455x5seed on TPU.
 - bestwater reference numbers (his kernel docstrings): GPU TabM cos689 raw pool=0.16379, raw last=0.18697; TPU v6 matches GPU config, 3 seeds ~50-60 min on v5e-8.
 - rs1/rs2 still API-wedged 403 but consuming GPU quota (~1.6k s gone, 4.7k left); results only via cloud browser session logs later.
+
+## 2026-09-20 18:20 - Root cause of wedged kernels: slug != title
+- Kernels pushed with title-derived ref != slug wedge server-side: 403 on every session endpoint (status/output/cancel/delete), zombie sessions. Wedged: val-x26-469f v1+v2, rs1, rs2 (all had title != slug). Working ones had title == slug (x26val469, tpu-spike*, builds).
+- FIX: kaggle_io.push_kernel now forces new_title = slug.
+- rs1/rs2 zombie GPU sessions can't be cancelled/deleted; they auto-timeout (12h max). GPU batch slots may be held meanwhile. rs random search ABANDONED (results unreachable, rerun costs ~3.3k of the 4.7k s GPU left; marginal expected gain).
+- tpuval455b (title==slug) RUNNING and readable. TPU port validation in flight.
+- Vault Kaggle password stale (invalidLogin); vault request sent to Diego via parent/WhatsApp.

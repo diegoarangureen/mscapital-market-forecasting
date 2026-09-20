@@ -47,7 +47,9 @@ from kagglesdk.kernels.types.kernels_api_service import (ApiSaveKernelRequest,
 
 def push_kernel(c, owner, slug, title, script_path, datasets=(), kernels=(), gpu=True, timeout_s=36000, comps=()):
     r = ApiSaveKernelRequest()
-    r.slug = f'{owner}/{slug}'; r.new_title = title
+    # LESSON (Sep 20): if slug-derived name != title-derived name the kernel wedges server-side
+    # (403 on ALL session endpoints, undeletable zombie). Force title == slug.
+    r.slug = f'{owner}/{slug}'; r.new_title = slug
     r.text = open(script_path).read()
     r.language = 'python'; r.kernel_type = 'script'
     r.is_private = True; r.enable_gpu = gpu; r.enable_internet = False
