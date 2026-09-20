@@ -235,13 +235,14 @@ for seed in SEEDS:
         total_steps = steps_per_epoch * EPOCHS
         for ep in range(EPOCHS):
             model.train()
+            ep_progress = ep / max(EPOCHS - 1, 1)
+            for g, bl in zip(opt.param_groups, base_lrs):
+                g['lr'] = flat_anneal(bl, ep_progress)
             perm = torch.randperm(len(ytr_t), device=Xtr_t.device)
             for i in range(0, len(ytr_t), BS):
                 idx = perm[i:i+BS]
                 step = ep * steps_per_epoch + i // BS
                 progress = min(step / total_steps, 1.0)
-                for g, bl in zip(opt.param_groups, base_lrs):
-                    g['lr'] = flat_anneal(bl, progress)
                 by = ytr_t[idx] + torch.randn_like(ytr_t[idx]) * (0.005 * (1 - progress))
                 opt.zero_grad()
                 loss = loss_fn(model(Xtr_t[idx]), by)
