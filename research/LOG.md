@@ -318,3 +318,5 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Kernel diegoaranguren/x26val469 (slugs mscapital-val-x26-469f/-v2 bricked server-side 403/409; fresh short slug works).
 - Panel on saved val preds: overall 0.1674, no66 0.1482, recent 0.1477, worst month 70 (0.1263), monthly std 0.0122. X26 adds nothing beyond noise.
 - DECISION per parent gate: feature engineering CLOSED. Fourth feature family flat (X23, X24c, X25, X26) without XS. Aggregation ceiling reached earlier -> next axis = RealMLP hyperparameter random search (parent-authorized fallback, Sep 20 11:18).
+- 14:20 GPU quota: 6404 s left (resets Sep 26 02:00 CEST). TPU 72k s untouched -> TPU port spike started.
+- 14:25 random search launched: rs1 (N_ENS8 EP7 LR2e-3 BS256), rs2 (N_ENS8 EP7 LR5e-4 BS512) running; rs3 (N_ENS8 EP12 LR1e-3 BS256) queued (max 2 concurrent GPU batch sessions). ~1.5-2k s each, leaves ~2k s buffer.
