@@ -349,3 +349,4 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - This also explains: API machine_shape/enable_tpu/create_kernel_session all silently ignored; all "TPU" sessions ran on CPU (Accelerator: None; jax CpuDevice; HW world 1 1). spike4's xla:0 was XLA:CPU.
 - tpuval455b crashed OOM at ~2617s (per-step lr recompile bomb on CPU XLA). tpuval455c (per-epoch lr) still running on CPU - may complete and validate the port numerics anyway.
 - Compute now: GPU 4.7k s until Sep 26 02:00 CEST reset. TPU 72k s waits on Diego's verification.
+- 20:10 tpuval455c also OOM (LLVM compile, 2255s) despite per-epoch lr: every lr change forces a fresh XLA graph compile and host RAM accumulates executables. CPU-XLA port validation ABANDONED. TPU path parked until Diego's Persona verification. GPU 4.7k s preserved for submission-path runs.
