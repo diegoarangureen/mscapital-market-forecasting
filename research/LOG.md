@@ -350,3 +350,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - tpuval455b crashed OOM at ~2617s (per-step lr recompile bomb on CPU XLA). tpuval455c (per-epoch lr) still running on CPU - may complete and validate the port numerics anyway.
 - Compute now: GPU 4.7k s until Sep 26 02:00 CEST reset. TPU 72k s waits on Diego's verification.
 - 20:10 tpuval455c also OOM (LLVM compile, 2255s) despite per-epoch lr: every lr change forces a fresh XLA graph compile and host RAM accumulates executables. CPU-XLA port validation ABANDONED. TPU path parked until Diego's Persona verification. GPU 4.7k s preserved for submission-path runs.
+
+## Sep 20 21:20 — TabM@455f flat → línea cerrada; blend marginal
+- TabM (arch bestwater reimplementada, Apache 2.0) @455f, folds 60-64/65-70, seed 2026: fold4 0.14442, fold5 0.15720, OOF 61-70 0.15206. Bar 0.165 → standalone muerto. La ventaja de bestwater (pool 0.1638 @689f) viene de sus 462 features privadas, no de la arquitectura.
+- Blend check (RealMLP 25-model OOF + TabM OOF): preds TabM con std 114× la de RealMLP (cosine loss sobre target raw) → z-score obligatorio. Blend z-scored: +0.0013 OOF con peso tuneado en la misma ventana (overfit); forward-sim honesto (w fit 61-64 → eval 65-70): +0.0010 (0.17392 vs 0.17291), 66-70 +0.0009. Correlación r,t = 0.83 → poca diversidad.
+- Decisión: +0.001 < resolución LB (regla 0.002) y < ruido val → NO es evidencia fuerte para v16. Línea TabM parada y documentada. Test preds de TabM guardadas por si un futuro v16 las quiere de diversidad barata, pero no justifican submission por sí solas.
+- X27 (depth-cross) depriorizado: EXP030 de ZWQ1037 falló -0.0011 sobre TabM fuerte (features de árbol solo ayudan a baselines débiles).
+- Estado cómputo: GPU ~3.2-3.5k s hasta reset Sep 26 (reservada para submission path); TPU 72k s intacta pero bloqueada en verificación Persona (pendiente Diego).
