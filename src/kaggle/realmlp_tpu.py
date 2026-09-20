@@ -41,6 +41,21 @@ print('XLA:', XLA, flush=True)
 set_seed(SEED)
 device = xm.xla_device() if XLA else torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('device:', device, 'n_ens', N_ENS, 'epochs', EPOCHS, flush=True)
+if XLA:
+    try:
+        print('HW:', xm.get_memory_info(device), flush=True)
+    except Exception as e:
+        print('HW probe1:', str(e)[:200], flush=True)
+    try:
+        import torch_xla.runtime as xr
+        print('HW world:', xr.world_size(), xr.addressable_device_count(), flush=True)
+    except Exception as e:
+        print('HW probe2:', str(e)[:200], flush=True)
+    try:
+        import jax
+        print('jax devices:', jax.devices(), flush=True)
+    except Exception as e:
+        print('jax probe:', str(e)[:200], flush=True)
 
 
 # ---------- data ----------
@@ -278,13 +293,14 @@ steps_per_epoch = (len(ytr_t) + BS - 1) // BS
 total_steps = steps_per_epoch * EPOCHS
 for ep in range(EPOCHS):
     model.train()
+    ep_progress = ep / max(EPOCHS - 1, 1)
+    for g, bl in zip(opt.param_groups, base_lrs):
+        g['lr'] = flat_anneal(bl, ep_progress)
     perm = torch.randperm(len(ytr_t), device=Xtr_t.device)
     for i in range(0, len(ytr_t), BS):
         idx = perm[i:i+BS]
         step = ep * steps_per_epoch + i // BS
         progress = min(step / total_steps, 1.0)
-        for g, bl in zip(opt.param_groups, base_lrs):
-            g['lr'] = flat_anneal(bl, progress)
         by = ytr_t[idx] + torch.randn_like(ytr_t[idx]) * (0.005 * (1 - progress))
         opt.zero_grad()
         loss = loss_fn(model(Xtr_t[idx]), by)
