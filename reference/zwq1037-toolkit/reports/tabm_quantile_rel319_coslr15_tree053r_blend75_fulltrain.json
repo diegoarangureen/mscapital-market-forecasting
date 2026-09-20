@@ -1,0 +1,64 @@
+{
+  "output_stem": "tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain",
+  "training_months": "0-70",
+  "feature_count": 319,
+  "train_rows": 1257637,
+  "test_rows": 647896,
+  "tabm_epochs": 15,
+  "learning_rate_schedule": {
+    "type": "smooth cosine decay",
+    "initial": 0.002,
+    "minimum": 0.0001,
+    "schedule_length_epochs": 20,
+    "stopped_after_epoch": 15
+  },
+  "selection_basis": "same epoch comparison across three forward windows; epoch 15 smooth improved 40-49 and 50-59 and was nearly neutral overall on 60-70",
+  "blend": {
+    "tabm_weight": 0.75,
+    "xgboost_weight": 0.25
+  },
+  "training_seconds": 187.47465180000108,
+  "target_mean": -1.234546054454605e-05,
+  "target_standard_deviation": 0.0026175985504568538,
+  "model_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\models\\tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain_tabm.pt",
+  "preprocessing_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\submissions\\tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain\\quantile_preprocessing.npz",
+  "dropped_public_features": [
+    "m_sp_mean_60",
+    "t_avg_signed_vol",
+    "x_sec_price_mid_diff",
+    "m_imb_mean_60",
+    "m_imb_std",
+    "m_imb_last",
+    "t_max_time_gap",
+    "t_avg_time_gap",
+    "t_time_gap_std",
+    "t_large_buy_90",
+    "t_large_sell_95",
+    "x_large_trade_imbalance"
+  ],
+  "outputs": {
+    "mean": {
+      "output_name": "tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain_mean",
+      "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain_mean.csv",
+      "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain_mean_test.feather",
+      "tabm_norm": 0.28197777236687827,
+      "tree_norm": 0.2922687217307499,
+      "prediction_mean": 1.9773979190018855e-05,
+      "prediction_std": 0.0012037427334998232,
+      "prediction_min": -0.03422324806689083,
+      "prediction_max": 0.048709574525697845
+    },
+    "trim1": {
+      "output_name": "tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain_trim1",
+      "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain_trim1.csv",
+      "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain_trim1_test.feather",
+      "tabm_norm": 0.2778440409252561,
+      "tree_norm": 0.2922687217307499,
+      "prediction_mean": 1.9307181465513853e-05,
+      "prediction_std": 0.0012040795255511393,
+      "prediction_min": -0.03408322636035794,
+      "prediction_max": 0.04894900840227811
+    }
+  },
+  "submission_status": "prepared_not_uploaded"
+}

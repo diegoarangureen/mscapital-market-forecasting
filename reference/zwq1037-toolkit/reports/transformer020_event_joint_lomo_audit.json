@@ -1,0 +1,40 @@
+{
+  "experiment": "EXP-BLEND-005-TRANSFORMER020-EVENT-JOINT-LOMO-AUDIT",
+  "frozen_weights": {
+    "raw": 0.4,
+    "event": 0.6
+  },
+  "rows": [
+    {
+      "held_out_month": 62,
+      "three_month_selected_raw_weight": 0.30000000000000004,
+      "held_out_delta_selected": 0.0021635939994456843,
+      "held_out_delta_frozen_40_60": 0.002365165961441512
+    },
+    {
+      "held_out_month": 63,
+      "three_month_selected_raw_weight": 0.6000000000000001,
+      "held_out_delta_selected": 0.00037461066901917084,
+      "held_out_delta_frozen_40_60": 0.0015581084741517759
+    },
+    {
+      "held_out_month": 64,
+      "three_month_selected_raw_weight": 0.2,
+      "held_out_delta_selected": 0.001286147155662859,
+      "held_out_delta_frozen_40_60": 0.0021883645186516476
+    },
+    {
+      "held_out_month": 65,
+      "three_month_selected_raw_weight": 0.5,
+      "held_out_delta_selected": 0.0005140347929248335,
+      "held_out_delta_frozen_40_60": 0.0006516732313420759
+    }
+  ],
+  "frozen_positive_held_out_months": 4,
+  "selected_positive_held_out_months": 4,
+  "selected_weight_range": [
+    0.2,
+    0.6000000000000001
+  ],
+  "interpretation": "Weights remain frozen at 40/60; this audit measures whether their gain is concentrated in one selection month."
+}

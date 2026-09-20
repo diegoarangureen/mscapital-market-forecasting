@@ -1,0 +1,15 @@
+{
+  "status": "prepared_not_submitted",
+  "raw_candidate": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\transformer020_raw_full_v26\\transformer_raw_full\\standalone_factorized_transformer379_raw_full_e5.csv",
+  "event_candidate": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\market_conditioned_event_residual_full_v28\\market_conditioned_event_residual_full\\standalone_market_conditioned_event_residual_full.csv",
+  "raw_weight": 0.4,
+  "event_weight": 0.6,
+  "output": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_transformer020raw40_event60.csv",
+  "owned_mass": 0.5288310279173348,
+  "mean_effective_transformer_weight": 0.24239745485680306,
+  "correlation_with_scored_0p152": 0.996800936622963,
+  "delta_std": 0.07485966324400707,
+  "rows": 647896,
+  "group_common_preserved": true,
+  "formal_submission": false
+}

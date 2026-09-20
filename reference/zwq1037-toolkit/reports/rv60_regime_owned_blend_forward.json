@@ -1,0 +1,99 @@
+{
+  "regime": "tertiles of realized_volatility_60 fitted on months62-65",
+  "thresholds": [
+    0.0,
+    0.0011346661097680528
+  ],
+  "chosen": {
+    "0": {
+      "recipe": "base",
+      "selection_cosine": 0.0,
+      "base_cosine": 0.0,
+      "selection_delta": 0.0,
+      "scores": {
+        "base": 0.0,
+        "more_transformer": 0.0,
+        "more_tabm": 0.0,
+        "more_gru": 0.0,
+        "more_realmlp": 0.0,
+        "balanced": 0.0,
+        "tabm_transformer": 0.0
+      }
+    },
+    "1": {
+      "recipe": "more_realmlp",
+      "selection_cosine": 0.1861955236551155,
+      "base_cosine": 0.184853453813126,
+      "selection_delta": 0.0013420698419894794,
+      "scores": {
+        "base": 0.184853453813126,
+        "more_transformer": 0.18251010279552926,
+        "more_tabm": 0.18592675022455452,
+        "more_gru": 0.18445852040468674,
+        "more_realmlp": 0.1861955236551155,
+        "balanced": 0.18571726671923003,
+        "tabm_transformer": 0.1833478247605241
+      }
+    },
+    "2": {
+      "recipe": "more_tabm",
+      "selection_cosine": 0.14437285754795554,
+      "base_cosine": 0.1427341463944166,
+      "selection_delta": 0.0016387111535389465,
+      "scores": {
+        "base": 0.1427341463944166,
+        "more_transformer": 0.14071333372154637,
+        "more_tabm": 0.14437285754795554,
+        "more_gru": 0.14198245066480095,
+        "more_realmlp": 0.14310068749019433,
+        "balanced": 0.14287956511242988,
+        "tabm_transformer": 0.14241428686874055
+      }
+    }
+  },
+  "overall": {
+    "selection_base": 0.1628029182928791,
+    "selection_dynamic": 0.16426425580000104,
+    "selection_delta": 0.0014613375071219348,
+    "forward_base": 0.16503505962426074,
+    "forward_dynamic": 0.16559441122776566,
+    "forward_delta": 0.0005593516035049262
+  },
+  "monthly_forward_delta": {
+    "67": 0.002429431316009506,
+    "68": -0.0012606772897011675,
+    "69": -3.867919269456843e-06,
+    "70": 0.0011152706138659318
+  },
+  "fixed_recipe_scores": {
+    "base": {
+      "selection": 0.1628029182928791,
+      "forward": 0.16503505962426074
+    },
+    "more_transformer": {
+      "selection": 0.16064546711001532,
+      "forward": 0.16359593105866985
+    },
+    "more_tabm": {
+      "selection": 0.16413813984210748,
+      "forward": 0.16528011873293028
+    },
+    "more_gru": {
+      "selection": 0.16223309510243966,
+      "forward": 0.1649355036846707
+    },
+    "more_realmlp": {
+      "selection": 0.16365998424494504,
+      "forward": 0.1652636176221982
+    },
+    "balanced": {
+      "selection": 0.16330786369894754,
+      "forward": 0.1653069703387927
+    },
+    "tabm_transformer": {
+      "selection": 0.16189441350873748,
+      "forward": 0.1641809895282539
+    }
+  },
+  "limitation": "owned 36% proxy only; public block has no OOF"
+}

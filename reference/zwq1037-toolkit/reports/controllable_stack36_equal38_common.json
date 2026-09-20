@@ -1,0 +1,80 @@
+{
+  "run_name": "controllable_stack36",
+  "weights_before_common_component": {
+    "gpu_tabm142": 0.2,
+    "tpu_tabm142": 0.12,
+    "yangq_blend142": 0.32,
+    "own_tabm379": 0.162,
+    "own_realmlp379": 0.0612,
+    "factorized_transformer": 0.1368
+  },
+  "sources": {
+    "gpu_tabm142": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_cos689\\output\\submission.csv",
+    "tpu_tabm142": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_tpu_v6\\output\\submission.csv",
+    "yangq_blend142": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\yangq_lb142\\output\\submission.csv",
+    "own_tabm379": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_order20_seed42_fulltrain.csv",
+    "own_realmlp379": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_rq16_yunsu_e8_fulltrain.csv",
+    "factorized_transformer": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_transformer_fulltrain\\factorized_transformer\\factorized_transformer379_full_e4.csv"
+  },
+  "test_prediction_correlation": [
+    [
+      1.0,
+      0.9858550033541634,
+      0.8414838201843132,
+      0.8246318832802965,
+      0.8152860587069155,
+      0.8280065346194974
+    ],
+    [
+      0.9858550033541635,
+      1.0,
+      0.8460027539664037,
+      0.8263524913993886,
+      0.8113117415099089,
+      0.8299898821452599
+    ],
+    [
+      0.8414838201843132,
+      0.8460027539664037,
+      1.0,
+      0.8325599516380657,
+      0.8218028109842037,
+      0.8442454954161617
+    ],
+    [
+      0.8246318832802965,
+      0.8263524913993887,
+      0.8325599516380657,
+      1.0,
+      0.9069590185799868,
+      0.8749272397472216
+    ],
+    [
+      0.8152860587069156,
+      0.811311741509909,
+      0.8218028109842038,
+      0.9069590185799868,
+      1.0,
+      0.8524189949868584
+    ],
+    [
+      0.8280065346194972,
+      0.8299898821452599,
+      0.8442454954161616,
+      0.8749272397472216,
+      0.8524189949868584,
+      0.9999999999999999
+    ]
+  ],
+  "before_vs_after_common": 0.9999647507418921,
+  "prediction": {
+    "mean": -0.014190371172413695,
+    "std": 0.9375382369082473,
+    "min": -19.891587072383803,
+    "max": 18.525852761329006,
+    "finite": true
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\controllable_stack36_equal38_common.csv",
+  "no_common_output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\controllable_stack36_no_common.csv",
+  "submission_status": "prepared_not_submitted"
+}

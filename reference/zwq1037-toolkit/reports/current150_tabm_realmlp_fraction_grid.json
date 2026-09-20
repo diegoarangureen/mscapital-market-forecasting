@@ -1,0 +1,75 @@
+{
+  "run_name": "current150_tabm_realmlp_fraction_grid",
+  "base_public_lb": 0.15,
+  "tabm_evidence": "standalone public LB 0.134 -> 0.140",
+  "realmlp_evidence": "late local cosine 0.154668 -> 0.155592",
+  "outputs": [
+    {
+      "run_name": "current150_tabmfrac1p0_realmlpfrac0p5",
+      "tabm_fraction": 1.0,
+      "realmlp_fraction": 0.5,
+      "effective_tabm_slot_weight": 0.15,
+      "effective_realmlp_slot_weight": 0.025,
+      "correlation_with_current_best": 0.9995777121519008,
+      "rows": 647896,
+      "finite": true,
+      "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p0_realmlpfrac0p5.csv"
+    },
+    {
+      "run_name": "current150_tabmfrac1p0_realmlpfrac1p0",
+      "tabm_fraction": 1.0,
+      "realmlp_fraction": 1.0,
+      "effective_tabm_slot_weight": 0.15,
+      "effective_realmlp_slot_weight": 0.05,
+      "correlation_with_current_best": 0.9994477429673594,
+      "rows": 647896,
+      "finite": true,
+      "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p0_realmlpfrac1p0.csv"
+    },
+    {
+      "run_name": "current150_tabmfrac1p25_realmlpfrac0p5",
+      "tabm_fraction": 1.25,
+      "realmlp_fraction": 0.5,
+      "effective_tabm_slot_weight": 0.1875,
+      "effective_realmlp_slot_weight": 0.025,
+      "correlation_with_current_best": 0.9993734261647105,
+      "rows": 647896,
+      "finite": true,
+      "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p25_realmlpfrac0p5.csv"
+    },
+    {
+      "run_name": "current150_tabmfrac1p25_realmlpfrac1p0",
+      "tabm_fraction": 1.25,
+      "realmlp_fraction": 1.0,
+      "effective_tabm_slot_weight": 0.1875,
+      "effective_realmlp_slot_weight": 0.05,
+      "correlation_with_current_best": 0.9992263763791551,
+      "rows": 647896,
+      "finite": true,
+      "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p25_realmlpfrac1p0.csv"
+    },
+    {
+      "run_name": "current150_tabmfrac1p5_realmlpfrac0p5",
+      "tabm_fraction": 1.5,
+      "realmlp_fraction": 0.5,
+      "effective_tabm_slot_weight": 0.22499999999999998,
+      "effective_realmlp_slot_weight": 0.025,
+      "correlation_with_current_best": 0.9991277765196103,
+      "rows": 647896,
+      "finite": true,
+      "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p5_realmlpfrac0p5.csv"
+    },
+    {
+      "run_name": "current150_tabmfrac1p5_realmlpfrac1p0",
+      "tabm_fraction": 1.5,
+      "realmlp_fraction": 1.0,
+      "effective_tabm_slot_weight": 0.22499999999999998,
+      "effective_realmlp_slot_weight": 0.05,
+      "correlation_with_current_best": 0.9989636876011588,
+      "rows": 647896,
+      "finite": true,
+      "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p5_realmlpfrac1p0.csv"
+    }
+  ],
+  "submission_status": "diagnostic_candidates_not_submitted"
+}

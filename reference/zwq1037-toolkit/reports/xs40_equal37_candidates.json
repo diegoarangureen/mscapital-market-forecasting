@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "test_group_count": 37,
+  "group_size_min": 17510,
+  "group_size_max": 17511,
+  "runs": {
+    "fulltrain": {
+      "source": "tabm_relative319_xs40_seed42_fulltrain",
+      "scale": 0.002617598550456336,
+      "prediction_std": 0.00034638964289633584,
+      "old_correlation": 0.9990367633288241,
+      "submission_path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_seed42_fulltrain_equal37.csv"
+    },
+    "holdout059": {
+      "source": "tabm_relative319_xs40_seed42_holdout059",
+      "scale": 0.0025566575396711324,
+      "prediction_std": 0.0003563459770417504,
+      "old_correlation": 0.9991757206728364,
+      "submission_path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_seed42_holdout059_equal37.csv"
+    }
+  }
+}

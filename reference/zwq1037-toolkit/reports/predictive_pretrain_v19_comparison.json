@@ -1,0 +1,16 @@
+{
+  "experiment": "factorized_transformer_predictive_pretrain_v19",
+  "split": "train0-59_purge60-61_valid62-70_ex66",
+  "old_factorized_transformer_cosine": 0.1553845145,
+  "candidate_cosine": 0.1472553320926952,
+  "delta": -0.0081291824073048,
+  "pass_threshold_delta": 0.001,
+  "passed": false,
+  "pretrain_rmse": 0.00047100326628424227,
+  "zero_return_rmse": 0.0006218921625986695,
+  "pretrain_rmse_reduction_fraction": 0.24262871505554184,
+  "gpu_count": 2,
+  "gpu_names": ["Tesla T4", "Tesla T4"],
+  "next_action": "reject_predictive_pretraining_no_fulltrain",
+  "result_file": "data/interim/kaggle_outputs/multistream_predictive_pretrain_v19/factorized_transformer_predictive_pretrain/result.json"
+}

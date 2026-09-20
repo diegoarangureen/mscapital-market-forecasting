@@ -1,0 +1,176 @@
+{
+  "project_root": "..",
+  "policy": {
+    "version": "2026-09-12-v1",
+    "minimum_gain_one_primary": 0.001,
+    "maximum_loo_regression": 0.001,
+    "description": "All four primary deltas nonnegative, including 62-70 no66 with a two-month gap after training through 59; at least one >=0.001; every primary leave-one-month delta >=-0.001. Retrospective for existing results, frozen prospectively for new experiments."
+  },
+  "groups": [
+    {
+      "name": "seed42_trim1_capacity",
+      "baseline_name": "relative319_d256",
+      "baseline": [
+        {
+          "path": "data/interim/tree_experiments/EXP-TABM-016-RELATIVE-SCALE-ADD12/train049_valid5059/validation_predictions.feather",
+          "column": "b001_trim1",
+          "train_end": 49,
+          "valid_start": 50,
+          "valid_end": 59
+        },
+        {
+          "path": "data/interim/tree_experiments/EXP-TABM-016-RELATIVE-SCALE-ADD12/train059_valid6070/validation_predictions.feather",
+          "column": "b001_trim1",
+          "train_end": 59,
+          "valid_start": 60,
+          "valid_end": 70
+        }
+      ],
+      "candidates": [
+        {
+          "name": "relative319_d384",
+          "sources": [
+            {
+              "path": "data/interim/tree_experiments/EXP-TABM-020-RELATIVE319-D384/train049_valid5059/validation_predictions.feather",
+              "column": "b001_trim1",
+              "train_end": 49,
+              "valid_start": 50,
+              "valid_end": 59
+            },
+            {
+              "path": "data/interim/tree_experiments/EXP-TABM-020-RELATIVE319-D384/train059_valid6070/validation_predictions.feather",
+              "column": "b001_trim1",
+              "train_end": 59,
+              "valid_start": 60,
+              "valid_end": 70
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "seed137_trim1_features",
+      "baseline_name": "baseline307",
+      "baseline": [
+        {
+          "path": "data/interim/tree_experiments/EXP-TABM-019-RELATIVE-ADD12-SEED137-PAIRED/baseline307/train049_valid5059/validation_predictions.feather",
+          "column": "b001_trim1",
+          "train_end": 49,
+          "valid_start": 50,
+          "valid_end": 59
+        },
+        {
+          "path": "data/interim/tree_experiments/EXP-TABM-019-RELATIVE-ADD12-SEED137-PAIRED/baseline307/train059_valid6070/validation_predictions.feather",
+          "column": "b001_trim1",
+          "train_end": 59,
+          "valid_start": 60,
+          "valid_end": 70
+        }
+      ],
+      "candidates": [
+        {
+          "name": "relative319",
+          "sources": [
+            {
+              "path": "data/interim/tree_experiments/EXP-TABM-019-RELATIVE-ADD12-SEED137-PAIRED/relative_add12/train049_valid5059/validation_predictions.feather",
+              "column": "b001_trim1",
+              "train_end": 49,
+              "valid_start": 50,
+              "valid_end": 59
+            },
+            {
+              "path": "data/interim/tree_experiments/EXP-TABM-019-RELATIVE-ADD12-SEED137-PAIRED/relative_add12/train059_valid6070/validation_predictions.feather",
+              "column": "b001_trim1",
+              "train_end": 59,
+              "valid_start": 60,
+              "valid_end": 70
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "seed137_mean_features",
+      "baseline_name": "baseline307",
+      "baseline": [
+        {
+          "path": "data/interim/tree_experiments/EXP-TABM-019-RELATIVE-ADD12-SEED137-PAIRED/baseline307/train049_valid5059/validation_predictions.feather",
+          "column": "b001_mean",
+          "train_end": 49,
+          "valid_start": 50,
+          "valid_end": 59
+        },
+        {
+          "path": "data/interim/tree_experiments/EXP-TABM-019-RELATIVE-ADD12-SEED137-PAIRED/baseline307/train059_valid6070/validation_predictions.feather",
+          "column": "b001_mean",
+          "train_end": 59,
+          "valid_start": 60,
+          "valid_end": 70
+        }
+      ],
+      "candidates": [
+        {
+          "name": "relative319",
+          "sources": [
+            {
+              "path": "data/interim/tree_experiments/EXP-TABM-019-RELATIVE-ADD12-SEED137-PAIRED/relative_add12/train049_valid5059/validation_predictions.feather",
+              "column": "b001_mean",
+              "train_end": 49,
+              "valid_start": 50,
+              "valid_end": 59
+            },
+            {
+              "path": "data/interim/tree_experiments/EXP-TABM-019-RELATIVE-ADD12-SEED137-PAIRED/relative_add12/train059_valid6070/validation_predictions.feather",
+              "column": "b001_mean",
+              "train_end": 59,
+              "valid_start": 60,
+              "valid_end": 70
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "seed42_mean_tree_change",
+      "baseline_name": "old_xgb",
+      "baseline": [
+        {
+          "path": "data/interim/tree_experiments/EXP-TREE-069-RELATIVE319/train049_valid5059/validation_predictions.feather",
+          "column": "blend_old_xgb",
+          "train_end": 49,
+          "valid_start": 50,
+          "valid_end": 59
+        },
+        {
+          "path": "data/interim/tree_experiments/EXP-TREE-069-RELATIVE319/train059_valid6070/validation_predictions.feather",
+          "column": "blend_old_xgb",
+          "train_end": 59,
+          "valid_start": 60,
+          "valid_end": 70
+        }
+      ],
+      "candidates": [
+        {
+          "name": "relative319_xgb",
+          "sources": [
+            {
+              "path": "data/interim/tree_experiments/EXP-TREE-069-RELATIVE319/train049_valid5059/validation_predictions.feather",
+              "column": "blend_relative_xgb",
+              "train_end": 49,
+              "valid_start": 50,
+              "valid_end": 59
+            },
+            {
+              "path": "data/interim/tree_experiments/EXP-TREE-069-RELATIVE319/train059_valid6070/validation_predictions.feather",
+              "column": "blend_relative_xgb",
+              "train_end": 59,
+              "valid_start": 60,
+              "valid_end": 70
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

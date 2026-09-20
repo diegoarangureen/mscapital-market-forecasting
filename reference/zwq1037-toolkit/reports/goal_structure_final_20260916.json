@@ -1,0 +1,13 @@
+{
+  "goal": "RealMLP numerical skip and 10-token multiwindow factorized Transformer",
+  "incumbent_submission_id": 56270670,
+  "incumbent_public_score": 0.151,
+  "local_results": {
+    "realmlp_numerical_skip": {"baseline": 0.15396996342598498, "candidate": 0.1525699765576948, "delta": -0.0013999868682901817, "decision": "reject"},
+    "tabm_rank16_cross": {"baseline": 0.1610283971294998, "candidate": 0.11641845227929201, "delta": -0.04460994485020778, "decision": "reject"},
+    "multiwindow_transformer": {"old_single": 0.15538451466822448, "new_single": 0.1537512657699694, "old_new_validation_correlation": 0.9097790809027907, "current_owned_proxy_half_replacement_delta": 0.0004447667233339059, "decision": "fulltrain_and_half_replace"}
+  },
+  "fulltrain": {"kaggle_kernel_version": 15, "train_rows": 1257637, "test_rows": 647896, "epochs": 3, "lr_schedule_epochs": 4, "visible_gpu_count": 2, "prediction_file": "data/interim/kaggle_outputs/multistream_transformer_multiwindow_v15_full/factorized_transformer/factorized_transformer379_multiwindow10_full_e3.csv"},
+  "submission": {"id": 56275973, "file": "outputs/submissions/current151_structure_transformer50.csv", "sha256": "e2cad1a5ccf0ee1945bcabb6aeac66d79bf32a4cd35b4a471a63aebc753908e8", "public_score": 0.151, "result": "no visible improvement", "authorized_submissions_used": 1},
+  "conclusion": "The scoped experiment and its single authorized submission were completed, but the explicit >0.151 target was not achieved. No further authorized formal submission remains in this goal."
+}

@@ -1,0 +1,14 @@
+{
+  "run_name": "current135_dualseed_hybrid_transformer20",
+  "weights": {
+    "current135": 0.8,
+    "hybrid_transformer_dualseed": 0.2
+  },
+  "local_delta": {
+    "50_59": 0.00078,
+    "60_70": 0.001822
+  },
+  "submission_status": "submitted",
+  "kaggle_submission_ref": 56202964,
+  "public_score": 0.137
+}

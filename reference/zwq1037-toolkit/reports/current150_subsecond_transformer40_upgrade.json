@@ -1,0 +1,43 @@
+{
+  "run_name": "current150_subsecond_transformer40_upgrade",
+  "base_public_lb": 0.15,
+  "event_weight_inside_transformer_slot": 0.4,
+  "transformer_slot_weight": 0.16,
+  "effective_event_weight_in_full_blend": 0.064,
+  "validation_evidence": {
+    "selection_62_65": {
+      "baseline": 0.15295368502612433,
+      "candidate": 0.15951053413703045,
+      "delta": 0.006556849110906121
+    },
+    "forward_67_70": {
+      "baseline": 0.15669768336614856,
+      "candidate": 0.1604367259673674,
+      "delta": 0.0037390426012188505
+    },
+    "all_62_70_without_66": {
+      "baseline": 0.1553845145441109,
+      "candidate": 0.16002010093757568,
+      "delta": 0.004635586393464786
+    }
+  },
+  "paths": {
+    "base": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_full_replace_corr095_current138k32_equal38_common.csv",
+    "old_transformer": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_transformer_fulltrain\\factorized_transformer\\factorized_transformer379_full_e4.csv",
+    "event_model": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_subsecond_event_transformer379_full_e3.csv"
+  },
+  "test_diagnostics": {
+    "old_vs_hybrid_correlation": 0.9884921235355966,
+    "candidate_vs_base_correlation": 0.9996710195404422,
+    "rows": 647896,
+    "finite": true,
+    "mean": -0.014190371172413693,
+    "std": 0.943515115032768
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_subsecond_transformer40_upgrade.csv",
+  "submission_status": "submitted_complete",
+  "kaggle_submission_ref": 56296497,
+  "public_score": 0.15,
+  "public_delta_vs_base": 0.0,
+  "conclusion": "No public leaderboard improvement; reject as route to >0.151."
+}

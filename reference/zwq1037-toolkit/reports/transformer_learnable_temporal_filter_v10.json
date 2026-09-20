@@ -1,0 +1,15 @@
+{
+  "experiment": "multistream_factorized_transformer_learnable_depthwise_conv_dev",
+  "validation": "train0-59_purge60-61_valid62-70_excluding66",
+  "baseline_cosine": 0.15538451490216448,
+  "candidate_cosine": 0.15499761662313524,
+  "delta": -0.0003868982790292408,
+  "best_epoch": 4,
+  "visible_gpu_count": 2,
+  "gpu_names": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "decision": "reject_no_public_submission",
+  "output_dir": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_transformer_learnable_conv_v10\\factorized_transformer"
+}

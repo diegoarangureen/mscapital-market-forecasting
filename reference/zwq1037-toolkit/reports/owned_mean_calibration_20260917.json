@@ -1,0 +1,74 @@
+{
+  "experiment": "OWNED-MEAN-CALIBRATION",
+  "model": "Ridge alpha100 fixed from previous incumbent",
+  "fit_months": "0-59",
+  "purge_months": "60-61",
+  "validation_months": "65-70 ex66",
+  "public_weight": 0,
+  "scores": {
+    "selection_65_67": {
+      "raw": 0.17240382511579494,
+      "centered": 0.17087698445304608,
+      "mean_corrected": 0.17122861036847262,
+      "correction_delta": -0.001175214747322323
+    },
+    "forward_68_70": {
+      "raw": 0.16135414882850618,
+      "centered": 0.15801924346701074,
+      "mean_corrected": 0.1606275211675602,
+      "correction_delta": -0.0007266276609459721
+    },
+    "all": {
+      "raw": 0.16538312107405545,
+      "centered": 0.16271154444419256,
+      "mean_corrected": 0.16449178675056664,
+      "correction_delta": -0.0008913343234888127
+    },
+    "month_65": {
+      "raw": 0.16029472691640242,
+      "centered": 0.16004497099808085,
+      "mean_corrected": 0.16028822157278697,
+      "correction_delta": -6.5053436154594024e-06
+    },
+    "month_67": {
+      "raw": 0.17856989763099354,
+      "centered": 0.17641403406461145,
+      "mean_corrected": 0.17681991991779356,
+      "correction_delta": -0.001749977713199985
+    },
+    "month_68": {
+      "raw": 0.1740798854115432,
+      "centered": 0.17144752242298722,
+      "mean_corrected": 0.17248623748650904,
+      "correction_delta": -0.001593647925034164
+    },
+    "month_69": {
+      "raw": 0.16072252335508122,
+      "centered": 0.15831417612219092,
+      "mean_corrected": 0.16399933527289878,
+      "correction_delta": 0.0032768119178175625
+    },
+    "month_70": {
+      "raw": 0.1446236748129136,
+      "centered": 0.1392308622939012,
+      "mean_corrected": 0.14039185632985726,
+      "correction_delta": -0.004231818483056343
+    }
+  },
+  "forecast_mean": {
+    "65": -7.822285710960101e-05,
+    "67": 2.85879194784893e-05,
+    "68": 8.684480242340439e-05,
+    "69": -0.0002122677088924276,
+    "70": 2.2023839524272043e-05
+  },
+  "actual_mean_diagnostic": {
+    "65": -2.1751502572442405e-05,
+    "67": 0.00013454527652356774,
+    "68": 0.00012189453263999894,
+    "69": -0.00023300133761949837,
+    "70": 0.00035345603828318417
+  },
+  "passed": false,
+  "limitation": "Existing late-window diagnostic only; no new early confirmation or public submission."
+}

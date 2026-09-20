@@ -1,0 +1,35 @@
+{
+  "run_name": "current151_multiwindow50_subsecond40_remaininghalf",
+  "base_public_lb": 0.151,
+  "base_submission_ref": 56275973,
+  "base_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_structure_transformer50.csv",
+  "operation": {
+    "transformer_slot_weight": 0.18,
+    "already_multiwindow_fraction": 0.5,
+    "replaced_remaining_old_fraction": 0.5,
+    "replacement_weight_in_full_blend": 0.09,
+    "hybrid_internal_event_weight": 0.4,
+    "effective_event_weight_in_full_blend": 0.036
+  },
+  "validation_evidence": {
+    "selection_62_65_delta": 0.0065568491,
+    "forward_67_70_delta": 0.0037390426,
+    "all_62_70_without_66_delta": 0.0046355864
+  },
+  "paths": {
+    "base": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_structure_transformer50.csv",
+    "old_transformer": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379.csv",
+    "event_model": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_subsecond_event_transformer379_full_e3.csv"
+  },
+  "test_diagnostics": {
+    "old_vs_hybrid_correlation": 0.9884921238475043,
+    "candidate_vs_base_correlation": 0.9998949933714376,
+    "delta_std": 0.0136534957337568,
+    "rows": 647896,
+    "finite": true,
+    "mean": -0.014190371172413693,
+    "std": 0.9388256272111922
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_multiwindow50_subsecond40_remaininghalf.csv",
+  "submission_status": "prepared_not_submitted"
+}

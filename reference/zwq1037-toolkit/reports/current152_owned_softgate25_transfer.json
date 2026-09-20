@@ -1,0 +1,17 @@
+{
+  "status": "prepared_not_submitted",
+  "output_path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_owned_softgate25_transfer.csv",
+  "public_weights": {
+    "gpu": 0.21089337941060124,
+    "tpu": 0.05653359919865861,
+    "yangq": 0.20374199347340546
+  },
+  "owned_total_weight": 0.5288310279173348,
+  "method": "rv60 soft interpolation of nonnegative state weights with 75% fixed + 25% learned shrinkage",
+  "validation": "Owned single-checkpoint proxy: forward delta +0.0012673932, 3/4 months improve.",
+  "transfer_limitation": "Current full-test owned block uses temporal TabM/GRU and end57 RealMLP; validation fitting uses aligned 0-59 models. This CSV transfers the recipe and has no verified whole-blend LB improvement.",
+  "missing_rv_filled": 4994,
+  "rows": 647896,
+  "correlation_with_incumbent": 0.9996960159818429,
+  "group_common_preserved": true
+}

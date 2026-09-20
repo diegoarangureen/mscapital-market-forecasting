@@ -1,0 +1,35 @@
+{
+  "goal": "highest-efficiency score improvement with up to two Kaggle submissions",
+  "previous_best_public_lb": 0.149,
+  "new_best_public_lb": 0.15,
+  "absolute_displayed_gain": 0.001,
+  "kaggle_submission_count": 2,
+  "submissions": [
+    {
+      "ref": 56244977,
+      "file": "factorized_half_replace_new_realmlp_equal38_common.csv",
+      "public_score": 0.15,
+      "role": "probe half replacement"
+    },
+    {
+      "ref": 56250034,
+      "file": "factorized_full_replace_corr095_realmlp_equal38_common.csv",
+      "public_score": 0.15,
+      "role": "final full replacement"
+    }
+  ],
+  "local_experiments": {
+    "realmlp_corr090": 0.153483006,
+    "realmlp_corr095": 0.153969963,
+    "factorized_transformer_layers2": 0.155384515,
+    "factorized_transformer_layers3": 0.152235181,
+    "xgboost_relative319_xs40_order20": 0.141020675,
+    "strong_local_trio": 0.164908908
+  },
+  "conclusions": [
+    "Replacing part or all of the old Transformer and using the stronger in-house RealMLP raised displayed public LB from 0.149 to 0.150.",
+    "Deep3 Transformer underperformed the two-layer baseline and was rejected.",
+    "The 379-feature XGBoost improved the tree standalone score substantially but received zero optimal weight in the locally verifiable strong trio.",
+    "The two submitted replacement ratios tied at leaderboard precision; retain both artifacts and prefer the full-replacement file as the final evidence-backed candidate."
+  ]
+}

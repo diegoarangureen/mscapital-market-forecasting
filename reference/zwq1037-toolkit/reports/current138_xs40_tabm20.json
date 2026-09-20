@@ -1,0 +1,27 @@
+{
+  "run_name": "current138_xs40_tabm20",
+  "source_weights": {
+    "current138": 0.8,
+    "xs40_tabm": 0.2
+  },
+  "local_scores": {
+    "50_59": 0.156898,
+    "62_70_no66": 0.157651
+  },
+  "local_deltas_vs_current138": {
+    "50_59": 0.000576,
+    "62_70_no66": 0.0012
+  },
+  "rows": 647896,
+  "prediction_mean": 2.42686980398496E-05,
+  "prediction_std": 0.0012358230042641728,
+  "prediction_min": -0.03288146768803873,
+  "prediction_max": 0.043035088966152754,
+  "submission_status": "submitted",
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_xs40_tabm20.csv",
+  "kaggle_submission": {
+    "reference": 56219270,
+    "public_score": 0.138,
+    "outcome": "tied_existing_best"
+  }
+}

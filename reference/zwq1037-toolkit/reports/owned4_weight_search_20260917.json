@@ -1,0 +1,400 @@
+{
+  "status": "complete",
+  "models": [
+    "tabm",
+    "gru",
+    "realmlp",
+    "transformer"
+  ],
+  "public_weight": 0,
+  "tree_weight": 0,
+  "rows": 87583,
+  "grid_count": 176851,
+  "selection_months": [
+    65,
+    67
+  ],
+  "forward_months": [
+    68,
+    69,
+    70
+  ],
+  "normalization": "Frozen prior temporal validation RMS and per-fold GRU mean/std, identical to scored pure-owned0.147 CSV",
+  "recipes": {
+    "prior_scored_0147": {
+      "weights": {
+        "tabm": 0.33,
+        "gru": 0.2,
+        "realmlp": 0.28,
+        "transformer": 0.19
+      },
+      "scores": {
+        "selection65_67": 0.1724038251157959,
+        "forward68_70": 0.16135414882851007,
+        "all65_70": 0.16538312107405714,
+        "month65": 0.1602947269164028,
+        "month67": 0.1785698976309926,
+        "month68": 0.17407988541154293,
+        "month69": 0.1607225233550815,
+        "month70": 0.14462367481291366
+      }
+    },
+    "equal": {
+      "weights": {
+        "tabm": 0.25,
+        "gru": 0.25,
+        "realmlp": 0.25,
+        "transformer": 0.25
+      },
+      "scores": {
+        "selection65_67": 0.17226544343177144,
+        "forward68_70": 0.16205768846520946,
+        "all65_70": 0.1657833516959677,
+        "month65": 0.16046127926900053,
+        "month67": 0.17830246815334744,
+        "month68": 0.17567330396290126,
+        "month69": 0.16144414408439534,
+        "month70": 0.14415023843023517
+      }
+    },
+    "grid_selection_best": {
+      "weights": {
+        "tabm": 0.61,
+        "gru": 0.21,
+        "realmlp": 0.0,
+        "transformer": 0.18
+      },
+      "scores": {
+        "selection65_67": 0.1740231348144151,
+        "forward68_70": 0.16000479056396127,
+        "all65_70": 0.16510234060364992,
+        "month65": 0.15924520823165286,
+        "month67": 0.1814890598949584,
+        "month68": 0.17156215614454975,
+        "month69": 0.1624267344558006,
+        "month70": 0.14117107235126433
+      }
+    },
+    "continuous_selection_best": {
+      "weights": {
+        "tabm": 0.6137062285405798,
+        "gru": 0.2052020693446516,
+        "realmlp": 0.0,
+        "transformer": 0.1810917021147687
+      },
+      "scores": {
+        "selection65_67": 0.17402353307151858,
+        "forward68_70": 0.15995278672192076,
+        "all65_70": 0.16506891577825472,
+        "month65": 0.15924469192140753,
+        "month67": 0.18148858783347777,
+        "month68": 0.17148502545418415,
+        "month69": 0.1624259963201596,
+        "month70": 0.14109398641065682
+      }
+    },
+    "exploratory_all_local_optimum": {
+      "weights": {
+        "tabm": 0.31819564837516784,
+        "gru": 0.35934736588631944,
+        "realmlp": 0.13030480191317811,
+        "transformer": 0.19215218382533478
+      },
+      "scores": {
+        "selection65_67": 0.17278226210255368,
+        "forward68_70": 0.16222142586721378,
+        "all65_70": 0.16607648930518112,
+        "month65": 0.1597032476012804,
+        "month67": 0.17947538958343628,
+        "month68": 0.17553830411210977,
+        "month69": 0.16173240370480893,
+        "month70": 0.14454162356139832
+      }
+    },
+    "ridge0.01": {
+      "weights": {
+        "tabm": 0.5948788786873297,
+        "gru": 0.21428356436377907,
+        "realmlp": 0.0,
+        "transformer": 0.19083755694889118
+      },
+      "scores": {
+        "selection65_67": 0.1740170289652604,
+        "forward68_70": 0.16014652270093954,
+        "all65_70": 0.16519191129208968,
+        "month65": 0.15931956362708727,
+        "month67": 0.1814480019492539,
+        "month68": 0.1718491881600763,
+        "month69": 0.1625493505073119,
+        "month70": 0.1411285574419016
+      }
+    },
+    "ridge0.01_shrink0.25": {
+      "weights": {
+        "tabm": 0.39621971967183245,
+        "gru": 0.20357089109094478,
+        "realmlp": 0.21000000000000002,
+        "transformer": 0.1902093892372228
+      },
+      "scores": {
+        "selection65_67": 0.17300937997096452,
+        "forward68_70": 0.16124443356746584,
+        "all65_70": 0.16553234156954555,
+        "month65": 0.16019204566577624,
+        "month67": 0.17952331718228862,
+        "month68": 0.17371156354874648,
+        "month69": 0.16138827631979843,
+        "month70": 0.14391786473183366
+      }
+    },
+    "ridge0.01_shrink0.5": {
+      "weights": {
+        "tabm": 0.4624394393436648,
+        "gru": 0.20714178218188956,
+        "realmlp": 0.14,
+        "transformer": 0.1904187784744456
+      },
+      "scores": {
+        "selection65_67": 0.17347933624031517,
+        "forward68_70": 0.16100383133406607,
+        "all65_70": 0.16554818349997424,
+        "month65": 0.15999426659917268,
+        "month67": 0.18032025754291064,
+        "month68": 0.1732122408878004,
+        "month69": 0.16191390403570124,
+        "month70": 0.14309800812153517
+      }
+    },
+    "ridge0.01_shrink0.75": {
+      "weights": {
+        "tabm": 0.5286591590154973,
+        "gru": 0.21071267327283433,
+        "realmlp": 0.07,
+        "transformer": 0.1906281677116684
+      },
+      "scores": {
+        "selection65_67": 0.17381461300619638,
+        "forward68_70": 0.16063628212370032,
+        "all65_70": 0.16543347952950588,
+        "month65": 0.15970280763932201,
+        "month67": 0.18096125538533211,
+        "month68": 0.17258893858883514,
+        "month69": 0.16230029127099313,
+        "month70": 0.14216701506701393
+      }
+    },
+    "ridge0.1": {
+      "weights": {
+        "tabm": 0.4267159606011626,
+        "gru": 0.231555572680191,
+        "realmlp": 0.1142642333321533,
+        "transformer": 0.22746423338649294
+      },
+      "scores": {
+        "selection65_67": 0.17348053583949444,
+        "forward68_70": 0.16136751792397946,
+        "all65_70": 0.16578328316744445,
+        "month65": 0.16008357596743925,
+        "month67": 0.18029335204107952,
+        "month68": 0.1740492218002098,
+        "month69": 0.162412838500769,
+        "month70": 0.14265099076471735
+      }
+    },
+    "ridge0.1_shrink0.25": {
+      "weights": {
+        "tabm": 0.35417899015029064,
+        "gru": 0.20788889317004777,
+        "realmlp": 0.23856605833303834,
+        "transformer": 0.19936605834662324
+      },
+      "scores": {
+        "selection65_67": 0.17274921138681965,
+        "forward68_70": 0.16143023468736212,
+        "all65_70": 0.16555725746060504,
+        "month65": 0.16029873851426799,
+        "month67": 0.17908583006027565,
+        "month68": 0.17414704140001036,
+        "month69": 0.1612237893505105,
+        "month70": 0.14419477001616807
+      }
+    },
+    "ridge0.1_shrink0.5": {
+      "weights": {
+        "tabm": 0.3783579803005813,
+        "gru": 0.2157777863400955,
+        "realmlp": 0.19713211666607666,
+        "transformer": 0.20873211669324648
+      },
+      "scores": {
+        "selection65_67": 0.17304382111226707,
+        "forward68_70": 0.16145763528533827,
+        "all65_70": 0.16568188743616313,
+        "month65": 0.16026459122499398,
+        "month67": 0.1795452951463279,
+        "month68": 0.17416398346304807,
+        "month69": 0.16167264558816602,
+        "month70": 0.1437227464637824
+      }
+    },
+    "ridge0.1_shrink0.75": {
+      "weights": {
+        "tabm": 0.402536970450872,
+        "gru": 0.22366667951014324,
+        "realmlp": 0.15569817499911498,
+        "transformer": 0.21809817503986972
+      },
+      "scores": {
+        "selection65_67": 0.17328757717251686,
+        "forward68_70": 0.1614366027920417,
+        "all65_70": 0.1657571420863379,
+        "month65": 0.1601927052305238,
+        "month67": 0.17994788460262856,
+        "month68": 0.17413118002667752,
+        "month69": 0.1620689818068209,
+        "month70": 0.1432079875053481
+      }
+    },
+    "ridge1.0": {
+      "weights": {
+        "tabm": 0.2871391681370548,
+        "gru": 0.24592028522501935,
+        "realmlp": 0.22155982003889493,
+        "transformer": 0.24538072659903087
+      },
+      "scores": {
+        "selection65_67": 0.17257563100040305,
+        "forward68_70": 0.16196649803448276,
+        "all65_70": 0.16583809315494413,
+        "month65": 0.16041989057405873,
+        "month67": 0.1787850303670557,
+        "month68": 0.1753880042175066,
+        "month69": 0.1617026005873099,
+        "month70": 0.14387829032105284
+      }
+    },
+    "ridge1.0_shrink0.25": {
+      "weights": {
+        "tabm": 0.3192847920342637,
+        "gru": 0.21148007130625485,
+        "realmlp": 0.26538995500972373,
+        "transformer": 0.20384518164975773
+      },
+      "scores": {
+        "selection65_67": 0.17248506349939513,
+        "forward68_70": 0.16154394584499682,
+        "all65_70": 0.16553425245678022,
+        "month65": 0.16035641108847,
+        "month67": 0.17866500076460803,
+        "month68": 0.17444690074085614,
+        "month69": 0.16100318053980817,
+        "month70": 0.14446888772127658
+      }
+    },
+    "ridge1.0_shrink0.5": {
+      "weights": {
+        "tabm": 0.3085695840685274,
+        "gru": 0.22296014261250968,
+        "realmlp": 0.2507799100194475,
+        "transformer": 0.21769036329951544
+      },
+      "scores": {
+        "selection65_67": 0.17254084134832579,
+        "forward68_70": 0.16170944322875244,
+        "all65_70": 0.16566059197273747,
+        "month65": 0.16039769879825752,
+        "month67": 0.17873274359191596,
+        "month68": 0.1747876557068436,
+        "month69": 0.16126014380624457,
+        "month70": 0.1442930791089537
+      }
+    },
+    "ridge1.0_shrink0.75": {
+      "weights": {
+        "tabm": 0.29785437610279114,
+        "gru": 0.23444021391876452,
+        "realmlp": 0.2361698650291712,
+        "transformer": 0.23153554494927314
+      },
+      "scores": {
+        "selection65_67": 0.1725710540785337,
+        "forward68_70": 0.16185037265407873,
+        "all65_70": 0.16576193077076085,
+        "month65": 0.16041878635063253,
+        "month67": 0.17877283754657958,
+        "month68": 0.17510154764149533,
+        "month69": 0.16149330825961652,
+        "month70": 0.14409621543715184
+      }
+    }
+  },
+  "selection_winner": "continuous_selection_best",
+  "best_forward_among_predeclared": "equal",
+  "exports": {
+    "selection": {
+      "recipe": "continuous_selection_best",
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\owned4_selection_20260917.csv",
+      "correlation_with_prior": 0.9926204349062759
+    },
+    "forward_diagnostic": {
+      "recipe": "equal",
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\owned4_forward_diagnostic_20260917.csv",
+      "correlation_with_prior": 0.9988233772774527
+    },
+    "all_local_optimum": {
+      "recipe": "exploratory_all_local_optimum",
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\owned4_all_local_optimum_20260917.csv",
+      "correlation_with_prior": 0.9959773829204589
+    },
+    "softgate": {
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\owned4_softgate_20260917.csv",
+      "recipe": "dynamic_softgate"
+    }
+  },
+  "limitation": "All-local optimum is fitted and scored on the same data. Forward-diagnostic selection also examines already inspected months. Neither proves leaderboard optimality. RealMLP and Transformer use development validation counterparts with fulltrain test predictions.",
+  "dynamic_softgate": {
+    "scores": {
+      "selection65_67": 0.17348444920309633,
+      "forward68_70": 0.16147592512224204,
+      "all65_70": 0.16585452009968152,
+      "month65": 0.16074719496482198,
+      "month67": 0.17996129475094277,
+      "month68": 0.17391680873130522,
+      "month69": 0.16169009340680918,
+      "month70": 0.14413362763871762
+    },
+    "anchors": [
+      0.0,
+      0.0009826411842368543,
+      0.0020523546263575554
+    ],
+    "weights_by_state": [
+      [
+        0.2833229066375894,
+        0.22494841607068175,
+        0.2719875288236822,
+        0.2197411484680467
+      ],
+      [
+        0.2705009077402677,
+        0.16548113991789729,
+        0.34045452469064075,
+        0.2235634276511944
+      ],
+      [
+        0.39404822159924013,
+        0.21384320775686622,
+        0.21000000000000002,
+        0.18210857064389366
+      ]
+    ],
+    "shrink_fraction": 0.25
+  },
+  "best_retrospective_method": "exploratory_all_local_optimum",
+  "scored_candidate": {
+    "recipe": "exploratory_all_local_optimum",
+    "public_score": 0.148,
+    "prior_owned_only_public_score": 0.147,
+    "score_source": "user_reported"
+  }
+}

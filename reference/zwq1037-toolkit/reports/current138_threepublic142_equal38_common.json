@@ -1,0 +1,79 @@
+{
+  "run_name": "current138_threepublic142_equal38_common",
+  "sources": {
+    "current138": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current135_hybrid2_conv1_transformer30.csv",
+    "gpu_tabm": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_cos689\\output\\submission.csv",
+    "tpu_tabm": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_tpu_v6\\output\\submission.csv",
+    "yangq_blend": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\yangq_lb142\\output\\submission.csv"
+  },
+  "source_public_scores": {
+    "current138": 0.138,
+    "gpu_tabm": 0.142,
+    "tpu_tabm": 0.142,
+    "yangq_blend": 0.142
+  },
+  "weights_before_common_component": {
+    "current138": 0.35,
+    "gpu_tabm": 0.175,
+    "tpu_tabm": 0.175,
+    "yangq_blend": 0.3
+  },
+  "test_prediction_correlation": [
+    [
+      1.0,
+      0.8467586500240057,
+      0.8495696656084089,
+      0.8607386139198777
+    ],
+    [
+      0.8467586500240057,
+      1.0,
+      0.9858550033541634,
+      0.8414838201843146
+    ],
+    [
+      0.8495696656084089,
+      0.9858550033541635,
+      1.0,
+      0.8460027539663969
+    ],
+    [
+      0.8607386139198778,
+      0.8414838201843144,
+      0.846002753966397,
+      1.0
+    ]
+  ],
+  "known_score_correlation_implied_score_before_common": 0.14821570308830898,
+  "method": "z-score each source, blend 35/17.5/17.5/30, then replace each of 38 equal sequential group means with Ridge(alpha=100) input-only common target component / full target std",
+  "rows": 647896,
+  "group_count": 38,
+  "group_size_min": 17049,
+  "group_size_max": 17050,
+  "candidate_correlations": {
+    "current138": 0.9540690973652661,
+    "gpu_tabm": 0.9448514708622848,
+    "tpu_tabm": 0.9473183447912296,
+    "yangq_blend": 0.9451008944974554
+  },
+  "before_vs_after_common": 0.9999649339947326,
+  "prediction": {
+    "mean": -0.014190371172413695,
+    "std": 0.9486214325705177,
+    "min": -20.390834081190487,
+    "max": 19.560740010143434,
+    "finite": true
+  },
+  "common_normalized_min": -0.032750580193049536,
+  "common_normalized_max": 0.0058963500495105145,
+  "validation_evidence": {
+    "three_oof_source_candidate_55_22.5_22.5_with_common": {
+      "50_59": 0.164436,
+      "62_70_excluding_66": 0.16349
+    },
+    "yangq_blend": "No OOF supplied; full submission is explicitly reported LB0.142. Weight selected using its known LB and test prediction correlation matrix."
+  },
+  "submission_status": "prepared_not_submitted",
+  "output_path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_threepublic142_equal38_common.csv",
+  "no_common_output_path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_threepublic142_equal38_common_no_common.csv"
+}

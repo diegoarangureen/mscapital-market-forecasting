@@ -1,0 +1,144 @@
+{
+  "run_name": "standalone_factorized_transformer379_temporal3fold",
+  "experiment": "multistream_factorized_transformer_temporal3fold",
+  "fold_ends": [
+    52,
+    57,
+    62
+  ],
+  "seeds": [
+    2026
+  ],
+  "model_count": 3,
+  "epochs_per_model": 4,
+  "visible_gpu_count": 2,
+  "gpu_names": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "fold_output_paths": {
+    "52": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379_fold_end52.csv",
+    "57": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379_fold_end57.csv",
+    "62": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379_fold_end62.csv"
+  },
+  "fold_correlations": {
+    "52": {
+      "with_fulltrain_transformer": 0.9438366576886285,
+      "with_temporal_equal3": 0.9856971802986477
+    },
+    "57": {
+      "with_fulltrain_transformer": 0.9409116291855545,
+      "with_temporal_equal3": 0.9863968931713657
+    },
+    "62": {
+      "with_fulltrain_transformer": 0.9476726305494213,
+      "with_temporal_equal3": 0.9856701444805885
+    }
+  },
+  "fold_training_summary": [
+    {
+      "fold_end": 52,
+      "train_rows": 940035,
+      "target_scale": 0.002576712518930435,
+      "prediction_mean": -6.969542300794274E-05,
+      "prediction_std": 0.00034660048549994826,
+      "prediction_file": "factorized_transformer379_fold_end52_e4.csv",
+      "checkpoint_file": "factorized_transformer_fold_end52_e4.pt",
+      "training_log": [
+        {
+          "epoch": 1,
+          "loss": 0.683858999645658,
+          "seconds": 529.1941533088684
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6691368328314071,
+          "seconds": 422.87017822265625
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6602011820979108,
+          "seconds": 423.12820315361023
+        },
+        {
+          "epoch": 4,
+          "loss": 0.6516300970952236,
+          "seconds": 421.42647337913513
+        }
+      ]
+    },
+    {
+      "fold_end": 57,
+      "train_rows": 1028716,
+      "target_scale": 0.0025642029941082,
+      "prediction_mean": -5.9269415942253545E-05,
+      "prediction_std": 0.0003853030502796173,
+      "prediction_file": "factorized_transformer379_fold_end57_e4.csv",
+      "checkpoint_file": "factorized_transformer_fold_end57_e4.pt",
+      "training_log": [
+        {
+          "epoch": 1,
+          "loss": 0.6837130177964494,
+          "seconds": 464.34642004966736
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6696405085225554,
+          "seconds": 459.8276467323303
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6605047980400387,
+          "seconds": 462.53000020980835
+        },
+        {
+          "epoch": 4,
+          "loss": 0.6526548223465222,
+          "seconds": 464.73745799064636
+        }
+      ]
+    },
+    {
+      "fold_end": 62,
+      "train_rows": 1117383,
+      "target_scale": 0.002545761177316308,
+      "prediction_mean": -6.059173756511882E-05,
+      "prediction_std": 0.0003858598356600851,
+      "prediction_file": "factorized_transformer379_fold_end62_e4.csv",
+      "checkpoint_file": "factorized_transformer_fold_end62_e4.pt",
+      "training_log": [
+        {
+          "epoch": 1,
+          "loss": 0.6831674549991553,
+          "seconds": 505.0757384300232
+        },
+        {
+          "epoch": 2,
+          "loss": 0.6690017289791929,
+          "seconds": 504.1382954120636
+        },
+        {
+          "epoch": 3,
+          "loss": 0.6615128811008334,
+          "seconds": 499.92511558532715
+        },
+        {
+          "epoch": 4,
+          "loss": 0.6539243378844641,
+          "seconds": 500.3789396286011
+        }
+      ]
+    }
+  ],
+  "rows": 647896,
+  "finite": true,
+  "prediction_mean": -6.580155479522333E-18,
+  "prediction_std": 0.9859214059907236,
+  "correlation_with_fulltrain_transformer": 0.9576222811154735,
+  "source_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_transformer_temporal3fold_v11\\factorized_transformer\\factorized_transformer379_temporal3fold_e4.csv",
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379_temporal3fold.csv",
+  "submission_policy": "first daily submission for standalone calibration",
+  "submission_status": "submitted_complete",
+  "kaggle_submission_ref": 56268758,
+  "public_lb": 0.145
+}

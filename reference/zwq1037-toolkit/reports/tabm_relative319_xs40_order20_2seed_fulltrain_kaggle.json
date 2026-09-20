@@ -1,0 +1,12 @@
+{
+  "competition": "ms-capital-real-financial-market-forecasting",
+  "submission_reference": 56231144,
+  "file_name": "tabm_relative319_xs40_order20_2seed_fulltrain.csv",
+  "submitted_at_utc": "2026-09-14 12:43:43.963000",
+  "status": "COMPLETE",
+  "public_score": 0.134,
+  "previous_best_public_score": 0.149,
+  "public_score_change": -0.015,
+  "remaining_submissions_after_upload": 1,
+  "description": "TabM Relative319 XS40 order-at-quote20, seeds 42+137 fulltrain; local two-window ensemble delta +0.001115"
+}

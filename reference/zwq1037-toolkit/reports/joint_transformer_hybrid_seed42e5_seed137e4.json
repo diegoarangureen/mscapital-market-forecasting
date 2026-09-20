@@ -1,0 +1,18 @@
+{
+  "run_name": "joint_transformer_hybrid_seed42e5_seed137e4",
+  "sources": [
+    647896,
+    647896
+  ],
+  "weights": {
+    "seed42_epoch5": 0.5,
+    "seed137_epoch4": 0.5
+  },
+  "local_scores": {
+    "50_59": 0.1496838665,
+    "60_70": 0.1731820487
+  },
+  "submission_status": "submitted",
+  "kaggle_submission_ref": 56202943,
+  "public_score": 0.137
+}

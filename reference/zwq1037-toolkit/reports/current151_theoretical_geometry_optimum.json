@@ -1,0 +1,107 @@
+{
+  "run_name": "current151_theoretical_geometry_optimum",
+  "method": "SLSQP continuous nonnegative simplex optimization with 162 starts",
+  "components": [
+    "gpu",
+    "tpu",
+    "yangq",
+    "tabm",
+    "realmlp",
+    "transformer_old",
+    "transformer_multi",
+    "gru",
+    "event"
+  ],
+  "successful_restarts": 162,
+  "distinct_optima": 3,
+  "incumbent_public_lb": 0.151,
+  "incumbent_geometry_estimate": 0.15074965340741284,
+  "best_geometry_estimate": 0.15191453310631614,
+  "estimated_delta": 0.001164879698903304,
+  "best_weights": {
+    "gpu": 0.21089337941060124,
+    "tpu": 0.05653359919865861,
+    "yangq": 0.20374199347340546,
+    "tabm": 1.9202021776085864E-17,
+    "realmlp": 0.1741345995603658,
+    "transformer_old": 0.28506675295288353,
+    "transformer_multi": 0.0,
+    "gru": 0.06962967540408542,
+    "event": 0.0
+  },
+  "best_public_weight": 0.4711689720826653,
+  "best_owned_weight": 0.5288310279173347,
+  "top_distinct_solutions": [
+    {
+      "estimate": 0.15191453310631614,
+      "weights": {
+        "gpu": 0.21089337941060124,
+        "tpu": 0.05653359919865861,
+        "yangq": 0.20374199347340546,
+        "tabm": 1.9202021776085864E-17,
+        "realmlp": 0.1741345995603658,
+        "transformer_old": 0.28506675295288353,
+        "transformer_multi": 0.0,
+        "gru": 0.06962967540408542,
+        "event": 0.0
+      },
+      "iterations": 41
+    },
+    {
+      "estimate": 0.15191453310631262,
+      "weights": {
+        "gpu": 0.21089435272938858,
+        "tpu": 0.05653254000675435,
+        "yangq": 0.20374215634565593,
+        "tabm": 0.0,
+        "realmlp": 0.174134681283546,
+        "transformer_old": 0.28506646929350615,
+        "transformer_multi": 0.0,
+        "gru": 0.06962980034114906,
+        "event": 1.7350764063714963E-18
+      },
+      "iterations": 38
+    },
+    {
+      "estimate": 0.151914533106311,
+      "weights": {
+        "gpu": 0.21089244488167805,
+        "tpu": 0.056534606970673654,
+        "yangq": 0.20374175700439326,
+        "tabm": 1.1897452848255678E-17,
+        "realmlp": 0.17413438908991233,
+        "transformer_old": 0.2850670066887798,
+        "transformer_multi": 0.0,
+        "gru": 0.06962979536456294,
+        "event": 1.8058742435461683E-18
+      },
+      "iterations": 44
+    }
+  ],
+  "diagnostics": {
+    "correlation_with_incumbent": 0.9940025389064786,
+    "rows": 647896,
+    "finite": true,
+    "mean": -0.014190371172413695,
+    "std": 0.9367387567312041
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_theoretical_geometry_optimum.csv",
+  "submission_status": "submitted_complete",
+  "warning": "This is the optimum of a noisy geometry proxy, not a guaranteed leaderboard optimum.",
+  "rounding_robustness_vs_scored_incumbent": {
+    "draws": 20000,
+    "score_noise": "independent uniform +/-0.0005",
+    "mean_delta_vs_scored_0p151_incumbent": 0.0011653845367586677,
+    "p01_delta": 0.0009779373416767948,
+    "p05_delta": 0.001029035705956045,
+    "p50_delta": 0.0011646987015888895,
+    "p95_delta": 0.0013024255671403079,
+    "p99_delta": 0.0013533971727863,
+    "probability_delta_positive": 1.0,
+    "warning": "This covers leaderboard rounding noise, not geometry-model misspecification."
+  },
+  "kaggle_submission_ref": 56297510,
+  "public_score": 0.152,
+  "public_delta_vs_incumbent": 0.001,
+  "conclusion": "Goal achieved: continuous geometry optimization improved public LB from 0.151 to 0.152."
+}

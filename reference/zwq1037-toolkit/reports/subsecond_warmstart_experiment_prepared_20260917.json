@@ -1,0 +1,23 @@
+{
+  "experiment": "sequence020_warmstart",
+  "prepared": true,
+  "started": false,
+  "script": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\scripts\\exp_sequence_020_subsecond_gru_transformer_warmstart.py",
+  "main_change": "reuse trained market/static/fusion/head initialization",
+  "unchanged": [
+    "seed2026",
+    "batch256",
+    "four_epochs",
+    "learning_rate_2e-4",
+    "AdamW_weight_decay_1e-4",
+    "0.35SmoothL1+0.65CenteredCosine",
+    "float32",
+    "train0-59_purge60-61_valid62-70_ex66",
+    "train_fitted_normalization"
+  ],
+  "source_checkpoint_sha256": "85add86334f0912f977a4240a6a0826a50658219a11b0943431f036b68527682",
+  "launch_condition": "cold-initialized four-epoch experiment terminal and below late gain gate",
+  "no_concurrent_local_training": true,
+  "cold_start_precision_note": "Cold run used BF16 for first1500 batches then float32 after driver recovery; warm run uses float32 throughout",
+  "early_validation_requires_teacher_trained_only0_47": true
+}

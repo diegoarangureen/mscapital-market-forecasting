@@ -1,0 +1,31 @@
+{
+  "run_name": "current150_confirmed_tabm_transformer_temporal_upgrades",
+  "base_public_lb": 0.15,
+  "base_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_full_replace_corr095_current138k32_equal38_common.csv",
+  "slot_weights": {
+    "current": 0.15,
+    "transformer": 0.16
+  },
+  "replacements": {
+    "current": {
+      "old": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_refreshed_tabm385_k32.csv",
+      "new": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_refreshed_tabm385_temporal3x3.csv",
+      "old_vs_new_test_correlation": 0.9868633493217576
+    },
+    "transformer": {
+      "old": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379.csv",
+      "new": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379_temporal3fold.csv",
+      "old_vs_new_test_correlation": 0.9576222811154734
+    }
+  },
+  "candidate": {
+    "rows": 647896,
+    "finite": true,
+    "mean": -0.014190371172413695,
+    "std": 0.943751814735061,
+    "correlation_with_current_best": 0.9980652341256127
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_confirmed_tabm_transformer_temporal_upgrades.csv",
+  "submission_status": "prepared_not_submitted",
+  "submission_policy": "fallback for second daily submission if RealMLP is unconvincing"
+}

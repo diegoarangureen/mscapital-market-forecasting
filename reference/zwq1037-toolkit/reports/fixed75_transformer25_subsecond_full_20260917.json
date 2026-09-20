@@ -1,0 +1,28 @@
+{
+  "experiment": "EXP-SEQUENCE-022-SUBSECOND-FULL-E3",
+  "train_rows": 1257637,
+  "epochs": 3,
+  "new_prediction_file": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_subsecond_event_transformer379_full_e3.csv",
+  "blend_prediction_file": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\fixed75_transformer25_subsecond_event_full.csv",
+  "fixed_weights": {
+    "old_transformer": 0.75,
+    "subsecond_event": 0.25
+  },
+  "weight_search": false,
+  "dev_evidence": {
+    "selection_delta": 0.004723717199394628,
+    "forward_delta": 0.003117017650522441,
+    "all_delta": 0.003623365670093026
+  },
+  "normalization": {
+    "old_dev_rms": 0.00033945538892300123,
+    "new_dev_rms": 0.000395204559828322,
+    "final_std": 0.0003718036621479653
+  },
+  "new_mean": -8.53148735971922e-05,
+  "new_std": 0.0003460500880980836,
+  "blend_mean": -3.271058329378408e-05,
+  "blend_std": 0.0003718036621479653,
+  "rows": 647896,
+  "formal_submission": false
+}

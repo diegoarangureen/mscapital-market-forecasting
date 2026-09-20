@@ -1,0 +1,63 @@
+{
+  "run_name": "joint_transformer_conv_hybrid_epoch5_fulltrain",
+  "status": "complete",
+  "submission_status": "prepared_not_uploaded",
+  "model": "standalone Conv Hybrid Joint-Transformer",
+  "loss": "0.35 SmoothL1 + 0.65 centered cosine",
+  "training_months": "0-70",
+  "train_rows": 1257637,
+  "test_rows": 647896,
+  "static_feature_count": 319,
+  "sequence_input_channels": 22,
+  "seed": 42,
+  "epochs": 5,
+  "architecture": {
+    "d_model": 96,
+    "heads": 4,
+    "layers": 2,
+    "feedforward_size": 192,
+    "temporal_convolutions": [
+      5,
+      3
+    ]
+  },
+  "training_logs": [
+    {
+      "epoch": 1,
+      "learning_rate": 0.001,
+      "train_loss": 0.6828032993615205,
+      "elapsed_seconds": 335.45449550000194
+    },
+    {
+      "epoch": 2,
+      "learning_rate": 0.0008681980515339464,
+      "train_loss": 0.67126687873892,
+      "elapsed_seconds": 661.4073183
+    },
+    {
+      "epoch": 3,
+      "learning_rate": 0.00055,
+      "train_loss": 0.6638235239827732,
+      "elapsed_seconds": 980.4421803000005
+    },
+    {
+      "epoch": 4,
+      "learning_rate": 0.00023180194846605365,
+      "train_loss": 0.6558307505301373,
+      "elapsed_seconds": 1296.007922600009
+    },
+    {
+      "epoch": 5,
+      "learning_rate": 0.0001,
+      "train_loss": 0.6497390799425168,
+      "elapsed_seconds": 1615.3063339000073
+    }
+  ],
+  "model_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\models\\joint_transformer_conv_hybrid_epoch5_fulltrain.pt",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\joint_transformer_conv_hybrid_epoch5_fulltrain_test.feather",
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\joint_transformer_conv_hybrid_epoch5_fulltrain.csv",
+  "prediction_mean": -7.865873721709646e-05,
+  "prediction_std": 0.0003595716244131707,
+  "prediction_min": -0.007525595836341381,
+  "prediction_max": 0.01026589423418045
+}

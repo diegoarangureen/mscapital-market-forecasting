@@ -1,0 +1,176 @@
+{
+  "status": "verified_prepared_not_submitted",
+  "full_result": {
+    "experiment": "MARKET-CONDITIONED-EVENT-RESIDUAL-FULL",
+    "status": "complete",
+    "train_months": "all_available_0_70",
+    "train_rows": 1257637,
+    "test_rows": 647896,
+    "epochs": 3,
+    "seed": 2026,
+    "visible_gpu_count": 2,
+    "gpu_names": [
+      "Tesla T4",
+      "Tesla T4"
+    ],
+    "full_base_reproduction_cosine": 0.9999999997805508,
+    "full_base_reproduction_max_abs": 4.087604858942287e-07,
+    "dev_softgate_selection_delta": 0.0012177148245949843,
+    "dev_softgate_forward_delta": 0.0012401519911363623,
+    "dev_forward_months_improved": 4,
+    "prediction_mean": -6.773674249416217e-05,
+    "prediction_std": 0.0003788915928453207,
+    "prediction_min": -0.0060689509846270084,
+    "prediction_max": 0.0060176239348948,
+    "prediction_file": "standalone_market_conditioned_event_residual_full.csv",
+    "checkpoint_file": "market_conditioned_event_residual_full.pt",
+    "training_log": [
+      {
+        "epoch": 1,
+        "loss": 0.6217391455321534,
+        "seconds": 1501.1828422546387
+      },
+      {
+        "epoch": 2,
+        "loss": 0.6214863556688985,
+        "seconds": 1193.4967937469482
+      },
+      {
+        "epoch": 3,
+        "loss": 0.6207608077007707,
+        "seconds": 1190.2206852436066
+      }
+    ],
+    "competition_submission_status": "prepared_not_submitted"
+  },
+  "csv_metrics": {
+    "incumbent": {
+      "rows": 647896,
+      "columns": [
+        "sample_id",
+        "prediction"
+      ],
+      "finite": true,
+      "sample_id_matches_incumbent": true,
+      "sample_id_unique": true,
+      "prediction_mean": -0.014190371172413695,
+      "prediction_std": 0.936582641982672,
+      "correlation_with_incumbent": 0.9999999999999999,
+      "delta_mean": 0.0,
+      "delta_std": 0.0,
+      "delta_max_abs": 0.0
+    },
+    "raw25": {
+      "rows": 647896,
+      "columns": [
+        "sample_id",
+        "prediction"
+      ],
+      "finite": true,
+      "sample_id_matches_incumbent": true,
+      "sample_id_unique": true,
+      "prediction_mean": -0.014190371172413695,
+      "prediction_std": 0.9354471369533339,
+      "correlation_with_incumbent": 0.9998002221018075,
+      "delta_mean": 7.005123854241483e-19,
+      "delta_std": 0.018744322201977838,
+      "delta_max_abs": 0.8430238013967716
+    },
+    "raw50": {
+      "rows": 647896,
+      "columns": [
+        "sample_id",
+        "prediction"
+      ],
+      "finite": true,
+      "sample_id_matches_incumbent": true,
+      "sample_id_unique": true,
+      "prediction_mean": -0.014190371172413695,
+      "prediction_std": 0.9346862286536376,
+      "correlation_with_incumbent": 0.9991993462271269,
+      "delta_mean": 9.164237370959749e-19,
+      "delta_std": 0.037488644403955676,
+      "delta_max_abs": 1.6860476027935432
+    },
+    "event50": {
+      "rows": 647896,
+      "columns": [
+        "sample_id",
+        "prediction"
+      ],
+      "finite": true,
+      "sample_id_matches_incumbent": true,
+      "sample_id_unique": true,
+      "prediction_mean": -0.014190371172413695,
+      "prediction_std": 0.9347859676243252,
+      "correlation_with_incumbent": 0.9991586862344821,
+      "delta_mean": 8.304019128584693e-19,
+      "delta_std": 0.0384236346067776,
+      "delta_max_abs": 1.7035411775014506
+    },
+    "event100": {
+      "rows": 647896,
+      "columns": [
+        "sample_id",
+        "prediction"
+      ],
+      "finite": true,
+      "sample_id_matches_incumbent": true,
+      "sample_id_unique": true,
+      "prediction_mean": -0.014190371172413695,
+      "prediction_std": 0.9345669139576044,
+      "correlation_with_incumbent": 0.9966289013131928,
+      "delta_mean": 6.868037281751434e-19,
+      "delta_std": 0.0768472692135552,
+      "delta_max_abs": 3.4070823550029012
+    },
+    "joint_raw40_event60": {
+      "rows": 647896,
+      "columns": [
+        "sample_id",
+        "prediction"
+      ],
+      "finite": true,
+      "sample_id_matches_incumbent": true,
+      "sample_id_unique": true,
+      "prediction_mean": -0.014190371172413695,
+      "prediction_std": 0.9343561405927165,
+      "correlation_with_incumbent": 0.9968009366229632,
+      "delta_mean": 7.526052829703668e-19,
+      "delta_std": 0.07485966324400707,
+      "delta_max_abs": 3.3930874952365753
+    }
+  },
+  "pairwise_correlations": {
+    "raw50_event100": 0.998890164066637,
+    "raw50_joint": 0.9991197743042893,
+    "event100_joint": 0.9999282717049818
+  },
+  "dev_selected": {
+    "old_weight": -1.1102230246251565e-16,
+    "raw_weight": 0.4,
+    "event_weight": 0.6000000000000001,
+    "selection": 0.1645203746789902,
+    "forward": 0.1673059350411232,
+    "all": 0.16633990899130818,
+    "monthly_forward": {
+      "67": 0.17884649727395593,
+      "68": 0.17723074626200844,
+      "69": 0.16141666819869463,
+      "70": 0.1453665673080598
+    },
+    "selection_delta": 0.0016993833415674675,
+    "forward_delta": 0.0025033078666342468,
+    "all_delta": 0.00221352708125247,
+    "monthly_delta": {
+      "67": 0.002942563398146497,
+      "68": 0.0017991158783136063,
+      "69": 0.0012986747506792684,
+      "70": 0.004424199586648858
+    }
+  },
+  "lomo_frozen_positive_held_out_months": 4,
+  "selected_candidate": "joint_raw40_event60",
+  "selected_file": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_transformer020raw40_event60.csv",
+  "formal_submission": false
+}

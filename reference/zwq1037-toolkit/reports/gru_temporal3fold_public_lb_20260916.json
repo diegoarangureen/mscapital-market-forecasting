@@ -1,0 +1,15 @@
+{
+  "model": "timeaware_three_stream_gru379_temporal3fold",
+  "submission_id": 56281770,
+  "file": "outputs/submissions/standalone_timeaware_three_stream_gru379_temporal3fold.csv",
+  "submission_time_utc": "2026-09-16 15:11:15.527000",
+  "status": "complete",
+  "public_score": 0.144,
+  "old_fulltrain_gru_public_score": 0.140,
+  "standalone_public_improvement": 0.004,
+  "local_reference_cosine": 0.16066187874296348,
+  "incumbent_ensemble_public_score": 0.151,
+  "remaining_submissions_today": 0,
+  "authorization": "User explicitly authorized this standalone submission on 2026-09-16.",
+  "next_action": "Use the measured standalone improvement to inform tomorrow's ensemble experiments; no further submission today."
+}

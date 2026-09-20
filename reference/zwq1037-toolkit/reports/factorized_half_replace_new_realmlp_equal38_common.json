@@ -1,0 +1,99 @@
+{
+  "run_name": "factorized_half_replace_new_realmlp",
+  "weights_before_common_component": {
+    "current138": 0.15,
+    "gpu_tabm142": 0.2,
+    "tpu_tabm142": 0.12,
+    "yangq_blend142": 0.32,
+    "own_realmlp379": 0.05,
+    "old_transformer137": 0.08,
+    "factorized_transformer": 0.08
+  },
+  "sources": {
+    "current138": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_xs40_tabm20.csv",
+    "gpu_tabm142": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_cos689\\output\\submission.csv",
+    "tpu_tabm142": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_tpu_v6\\output\\submission.csv",
+    "yangq_blend142": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\yangq_lb142\\output\\submission.csv",
+    "own_realmlp379": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_rq16_yunsu_e8_fulltrain.csv",
+    "old_transformer137": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\joint_transformer_hybrid_seed42e5_seed137e4.csv",
+    "factorized_transformer": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_transformer_fulltrain\\factorized_transformer\\factorized_transformer379_full_e4.csv"
+  },
+  "test_prediction_correlation": [
+    [
+      1.0,
+      0.8474906734501845,
+      0.8501831143280785,
+      0.8601811824470578,
+      0.9086841395747196,
+      0.9573802074583149,
+      0.8867128129009947
+    ],
+    [
+      0.8474906734501844,
+      1.0,
+      0.9858550033541634,
+      0.8414838201843132,
+      0.8152860587069155,
+      0.8216178733204156,
+      0.8280065346194974
+    ],
+    [
+      0.8501831143280784,
+      0.9858550033541635,
+      1.0,
+      0.8460027539664037,
+      0.8113117415099089,
+      0.8222142123510883,
+      0.8299898821452599
+    ],
+    [
+      0.8601811824470579,
+      0.8414838201843132,
+      0.8460027539664037,
+      1.0,
+      0.8218028109842037,
+      0.8197327740946672,
+      0.8442454954161617
+    ],
+    [
+      0.9086841395747195,
+      0.8152860587069156,
+      0.811311741509909,
+      0.8218028109842038,
+      1.0,
+      0.8841669968900021,
+      0.8524189949868584
+    ],
+    [
+      0.9573802074583148,
+      0.8216178733204157,
+      0.8222142123510883,
+      0.8197327740946672,
+      0.884166996890002,
+      0.9999999999999998,
+      0.8666626708239883
+    ],
+    [
+      0.8867128129009947,
+      0.8280065346194972,
+      0.8299898821452599,
+      0.8442454954161616,
+      0.8524189949868584,
+      0.8666626708239883,
+      0.9999999999999999
+    ]
+  ],
+  "before_vs_after_common": 0.9999645676008042,
+  "prediction": {
+    "mean": -0.014190371172413695,
+    "std": 0.9399822699201685,
+    "min": -18.948690720867162,
+    "max": 17.94128478788462,
+    "finite": true
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_half_replace_new_realmlp_equal38_common.csv",
+  "no_common_output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_half_replace_new_realmlp_no_common.csv",
+  "submission_status": "submitted_complete",
+  "kaggle_submission_ref": 56244977,
+  "public_score": 0.15
+}

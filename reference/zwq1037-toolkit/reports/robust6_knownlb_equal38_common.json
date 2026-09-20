@@ -1,0 +1,118 @@
+{
+  "run_name": "robust6_knownlb_equal38_common",
+  "sources": {
+    "current138": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_xs40_tabm20.csv",
+    "gpu_tabm142": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_cos689\\output\\submission.csv",
+    "tpu_tabm142": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_tpu_v6\\output\\submission.csv",
+    "yangq_blend142": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\yangq_lb142\\output\\submission.csv",
+    "realmlp131": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\yunsu_realmlp\\output\\submission.csv",
+    "transformer137": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\joint_transformer_hybrid_seed42e5_seed137e4.csv"
+  },
+  "source_public_scores": {
+    "current138": 0.138,
+    "gpu_tabm142": 0.142,
+    "tpu_tabm142": 0.142,
+    "yangq_blend142": 0.142,
+    "realmlp131": 0.131,
+    "transformer137": 0.137
+  },
+  "weights_before_common_component": {
+    "current138": 0.15,
+    "gpu_tabm142": 0.2,
+    "tpu_tabm142": 0.12,
+    "yangq_blend142": 0.32,
+    "realmlp131": 0.05,
+    "transformer137": 0.16
+  },
+  "known_score_correlation_implied_score_before_common": 0.1489795969236042,
+  "test_prediction_correlation": [
+    [
+      1.0,
+      0.8474906734501845,
+      0.8501831143280744,
+      0.8601811824470578,
+      0.8733911924992285,
+      0.9573802074583149
+    ],
+    [
+      0.8474906734501844,
+      1.0,
+      0.9858550033541523,
+      0.8414838201843132,
+      0.8094036559580623,
+      0.8216178733204156
+    ],
+    [
+      0.8501831143280744,
+      0.9858550033541524,
+      1.0,
+      0.8460027539663982,
+      0.8075938041303659,
+      0.822214212351083
+    ],
+    [
+      0.8601811824470579,
+      0.8414838201843132,
+      0.8460027539663982,
+      1.0,
+      0.8049994457730996,
+      0.8197327740946672
+    ],
+    [
+      0.8733911924992286,
+      0.8094036559580622,
+      0.8075938041303659,
+      0.8049994457730995,
+      1.0,
+      0.8429326614024879
+    ],
+    [
+      0.9573802074583148,
+      0.8216178733204157,
+      0.8222142123510829,
+      0.8197327740946672,
+      0.842932661402488,
+      0.9999999999999998
+    ]
+  ],
+  "method": "z-score each source, robust six-source blend, then replace each of 38 equal sequential group means with Ridge(alpha=100) input-only common target component / full target std",
+  "evidence": {
+    "forum_production": "Reported 0.147 with external YQ+RM; 0.148 after adding 15% CNN-Transformer.",
+    "our_two_oof_source_validation": "Current + two public TabMs + common improved both preferred windows; independent Transformer has known LB0.137.",
+    "new_public152_xs75_tabm": "Rejected as weak: 0.13353 / 0.13126 on preferred windows.",
+    "multistream_gru": "Rejected as weak: 0.15460 on first window vs current 0.15632."
+  },
+  "rows": 647896,
+  "group_count": 38,
+  "group_size_min": 17049,
+  "group_size_max": 17050,
+  "candidate_correlations": {
+    "current138": 0.950572050394145,
+    "gpu_tabm142": 0.9431268526870116,
+    "tpu_tabm142": 0.9438970378712417,
+    "yangq_blend142": 0.9469823303072005,
+    "realmlp131": 0.8853009732940254,
+    "transformer137": 0.9265607096889021
+  },
+  "before_vs_after_common": 0.9999641713024662,
+  "prediction": {
+    "mean": -0.014190371172413693,
+    "std": 0.9400662465547605,
+    "min": -18.842129017799323,
+    "max": 18.518494280288632,
+    "finite": true
+  },
+  "common_normalized_min": -0.032750580193049536,
+  "common_normalized_max": 0.0058963500495105145,
+  "submission_status": "submitted_complete",
+  "output_path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\robust6_knownlb_equal38_common.csv",
+  "no_common_output_path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\robust6_knownlb_equal38_common_no_common.csv",
+  "kaggle_submission": {
+    "reference": 56223194,
+    "submitted_at": "2026-09-14 06:07:46.163000",
+    "public_score": 0.149,
+    "previous_best": 0.138,
+    "absolute_gain": 0.011,
+    "description": "Robust6: current15 gpuTabM20 tpuTabM12 YQ32 RealMLP5 Transformer16 + 38-month common"
+  }
+}

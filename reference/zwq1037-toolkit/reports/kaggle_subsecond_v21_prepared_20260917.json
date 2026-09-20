@@ -1,0 +1,21 @@
+{
+  "version": 21,
+  "script": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_kernels\\multistream_factorized_transformer_dev\\run_v21_subsecond_events_dev.py",
+  "notebook": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_kernels\\multistream_factorized_transformer_dev\\run_v21_subsecond_events_dev.ipynb",
+  "sha256": "8536bd031c732d9459911b5b6d12a0c2299427a5d6b1391d557829f80e6aba0d",
+  "bytes": 96104,
+  "compiled": true,
+  "dual_gpu_runtime_smoke_required": true,
+  "training_precision": "float32",
+  "train_months": "0-59",
+  "purged_months": [
+    60,
+    61
+  ],
+  "validation_months": "62-70 excluding 66",
+  "events_built_on_kaggle_from_competition_input": true,
+  "local_raw_data_or_weights_uploaded": false,
+  "uploaded": false,
+  "portable_model_cpu_parity": "passed: exact parameters, outputs, gradients; empty market/flow cases included",
+  "upload_deferred_reason": "Local GPU recovered and resumed checkpoint; avoid duplicate late-window training before first score"
+}

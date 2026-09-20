@@ -1,0 +1,13 @@
+{
+  "status": "prepared_not_submitted",
+  "candidate": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\transformer020_raw_full_v26\\transformer_raw_full\\standalone_factorized_transformer379_raw_full_e5.csv",
+  "output": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_transformer020_raw50_transformer_slot50.csv",
+  "replacement_fraction": 0.5,
+  "owned_mass": 0.5288310279173348,
+  "mean_effective_total_weight": 0.12119872742840153,
+  "correlation_with_scored_0p152": 0.9991993462271261,
+  "delta_std": 0.03748864440395567,
+  "rows": 647896,
+  "group_common_preserved": true,
+  "formal_submission": false
+}

@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-15",
+  "competition": "ms-capital-real-financial-market-forecasting",
+  "remaining_submissions_today": 0,
+  "submissions": [
+    {
+      "ref": 56254690,
+      "file": "outputs/submissions/factorized_full_replace_corr095_current138k32_equal38_common.csv",
+      "role": "replace the 15 percent current138 member in the prior LB 0.150 blend",
+      "public_score": 0.150,
+      "comparison": "tied prior best at displayed precision"
+    },
+    {
+      "ref": 56254700,
+      "file": "outputs/submissions/tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain.csv",
+      "role": "TabM385 k32 seed42 standalone",
+      "public_score": 0.134,
+      "local_62_70_no66": 0.16102839913113948,
+      "comparison": "no displayed LB gain over previous TabM submissions"
+    }
+  ],
+  "best_public_score": 0.150,
+  "conclusion": "The current138 replacement is safe at leaderboard precision but did not produce a displayed gain. The stronger local TabM candidate remains LB 0.134 standalone, so future gains should be judged through its effect inside blends rather than its standalone public score."
+}

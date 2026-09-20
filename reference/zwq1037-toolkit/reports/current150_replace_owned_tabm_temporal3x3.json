@@ -1,0 +1,26 @@
+{
+  "run_name": "current150_replace_owned_tabm_temporal3x3",
+  "base": {
+    "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_full_replace_corr095_current138k32_equal38_common.csv",
+    "public_lb": 0.15
+  },
+  "replacement": {
+    "current_slot_weight": 0.15,
+    "old_owned_tabm": "TabM385-k32 fulltrain seed42 inside current member",
+    "old_owned_tabm_public_lb": 0.134,
+    "new_owned_tabm": "TabM385-k32 temporal folds 52/57/62 x seeds 42/137/2026",
+    "new_owned_tabm_public_lb": 0.14,
+    "legacy_core_tabm_vs_new_test_correlation": 0.9384158206065606,
+    "fulltrain_k32_current_vs_temporal_current_correlation": 0.9868633493217576
+  },
+  "candidate": {
+    "rows": 647896,
+    "finite": true,
+    "mean": -0.014190371172413693,
+    "std": 0.9419219564502794,
+    "correlation_with_current_best": 0.9996668590124667
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_replace_owned_tabm_temporal3x3.csv",
+  "submission_status": "prepared_not_submitted",
+  "submission_policy": "reserve as final blend candidate after standalone calibration"
+}

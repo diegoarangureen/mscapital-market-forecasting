@@ -1,0 +1,20 @@
+{
+  "run_name": "current138_refreshed_tabm385_k32",
+  "structure": {
+    "refreshed_current135": 0.8,
+    "outer_tabm385_k32": 0.2,
+    "inner_tabm_replacement_weight": 0.675,
+    "tree": "retain old tree for diversity",
+    "gru": "retain old two-seed joint GRU pending Kaggle v9"
+  },
+  "local_62_70_no66": {
+    "old_current138_recorded": 0.157651,
+    "candidate": 0.1602189723683853,
+    "delta": 0.0025679723683853
+  },
+  "tree_decision": "tree379 improves old current135 alone, but reduces the k32-optimal current138 from 0.16021897 to 0.16019468 at its best tested weight; excluded from this blend",
+  "rows": 647896,
+  "prediction_std": 0.9985760980719339,
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_refreshed_tabm385_k32.csv",
+  "submission_status": "prepared_not_uploaded"
+}

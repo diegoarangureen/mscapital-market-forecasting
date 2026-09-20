@@ -1,0 +1,33 @@
+{
+  "run_name": "tabm_relative319_xs40_order20_2seed_fulltrain",
+  "seeds": [
+    42,
+    137
+  ],
+  "feature_count": 379,
+  "train_months": "0-70",
+  "test_rows": 647896,
+  "validation_2seed": {
+    "train049_valid5059": {
+      "baseline_2seed": 0.1522745614172611,
+      "candidate_2seed": 0.15285043748139068,
+      "delta_2seed": 0.0005758760641295935
+    },
+    "train059_valid6270_ex66": {
+      "baseline_2seed": 0.15848376082129284,
+      "candidate_2seed": 0.16013692050623304,
+      "delta_2seed": 0.001653159684940203
+    },
+    "average_2seed_ensemble_delta": 0.0011145178745348983,
+    "pass_criterion_2seed_ensemble": true,
+    "seed42_average_delta": 0.0007752343309254534,
+    "seed137_average_delta": 0.0015226870902260298,
+    "four_pair_average_delta": 0.0011489607105757416
+  },
+  "test_prediction_correlation": 0.9803875346749504,
+  "prediction_mean": 2.3589494478153645e-05,
+  "prediction_std": 0.00036735402081444654,
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_order20_2seed_fulltrain.csv",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm_relative319_xs40_order20_2seed_fulltrain_test.feather",
+  "submission_status": "prepared_not_uploaded"
+}

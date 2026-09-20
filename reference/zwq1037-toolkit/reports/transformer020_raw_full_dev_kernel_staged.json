@@ -1,0 +1,9 @@
+{
+  "status": "staged_not_uploaded",
+  "kernel": "zwq1037/multistream-factorized-transformer-multiwindow-dev",
+  "expected_version": 25,
+  "notebook": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_kernels\\multistream_factorized_transformer_dev\\run_v25_transformer020_raw_full.ipynb",
+  "code_bytes": 83687,
+  "dual_t4_required": true,
+  "formal_submission": false
+}

@@ -1,0 +1,41 @@
+{
+  "status": "waiting_kaggle_fulltrain",
+  "incumbent_lb": 0.151,
+  "new_submission_limit": 1,
+  "new_submissions_used": 0,
+  "local_rejected": [
+    {
+      "experiment": "REALMLP010 numerical skip",
+      "baseline": 0.15396996342598498,
+      "candidate": 0.1525699765576948,
+      "delta": -0.0013999868682901817,
+      "owned_proxy_replacement_delta": -3.865753255455351E-05
+    },
+    {
+      "experiment": "TABM036 rank16 explicit cross",
+      "baseline": 0.1610283971294998,
+      "candidate": 0.11641845227929201,
+      "delta": -0.04460994485020778
+    }
+  ],
+  "kaggle": {
+    "kernel": "zwq1037/multistream-factorized-transformer-multiwindow-dev",
+    "running_version": 15,
+    "candidate": "10token multiwindow factorized Transformer",
+    "validation": "train0-59 purge60-61 valid62-70 excluding66",
+    "epochs": 3,
+    "gpus": 2,
+    "v13_failure": "first dual-GPU validation CUDA misaligned address",
+    "v14_fix": "disable MHA fastpath, contiguous masks, real-data startup eval",
+    "monitor_agent": "/root/luna_structure_monitor",
+    "validation_result": {
+      "owned_proxy_half_replacement_delta": 0.0006437405555845266,
+      "baseline": 0.15538451466822448,
+      "candidate": 0.1537512657699694,
+      "owned_proxy_full_replacement_delta": -0.001197802917553198,
+      "correlation": 0.9097790809027907
+    }
+  },
+  "next": "Wait V15 COMPLETE or ERROR, download artifacts. Expected factorized_transformer379_multiwindow10_full_e3.csv. Train3 with cosine T_max4. Use build_current151_structure_replacements.py --transformer CSV; select transformer50 only (old9% new9%). Confirm score/result and both GPUs, then at most ONE new formal submission and record actual LB. Single candidate is weaker, half owned proxy passes gate; public block lacks matching validation. No RealMLP or Cross production.",
+  "astra_decision": "No further weak local loss experiments; await V14. Prior TabM cosine/hybrid/recency experiments already covered."
+}

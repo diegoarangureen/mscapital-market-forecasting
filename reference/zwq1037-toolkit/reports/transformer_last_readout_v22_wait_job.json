@@ -1,0 +1,10 @@
+{
+  "wake_thread_id": "01a09468-93b3-7b22-8628-c67d422e42ca",
+  "wake_status_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260917-211833-astra-plan-transformer-v22-e39f2e58\\wake-status.json",
+  "job_id": "20260917-211833-astra-plan-transformer-v22-e39f2e58",
+  "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260917-211833-astra-plan-transformer-v22-e39f2e58",
+  "pid": 24776,
+  "state": "started",
+  "status_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260917-211833-astra-plan-transformer-v22-e39f2e58\\status.json",
+  "log_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260917-211833-astra-plan-transformer-v22-e39f2e58\\output.log"
+}

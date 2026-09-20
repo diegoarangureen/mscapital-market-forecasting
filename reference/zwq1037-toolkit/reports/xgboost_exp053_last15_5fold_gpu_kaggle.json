@@ -1,0 +1,12 @@
+{
+  "competition": "ms-capital-real-financial-market-forecasting",
+  "submission_reference": 56156226,
+  "file_name": "xgboost_exp053_last15_5fold_gpu.csv",
+  "submitted_at_utc": "2026-09-11 01:51:58.940000",
+  "status": "COMPLETE",
+  "public_score": 0.122,
+  "previous_best_public_score": 0.121,
+  "public_score_change": 0.001,
+  "remaining_submissions_after_upload": 3,
+  "description": "EXP053 307 features 5-fold GPU average; no66 0.13532 recent 0.13271"
+}

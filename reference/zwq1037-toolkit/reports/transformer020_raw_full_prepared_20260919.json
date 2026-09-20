@@ -1,0 +1,12 @@
+{
+  "experiment": "factorized_transformer379_raw_full",
+  "script": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_kernels\\multistream_factorized_transformer_fulltrain\\run_v5_transformer_raw_full.py",
+  "notebook": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_kernels\\multistream_factorized_transformer_fulltrain\\run_v5_transformer_raw_full.ipynb",
+  "epochs": 5,
+  "offline_all_ex66": 0.1610469878,
+  "softgate_replacement_fraction": 0.5,
+  "softgate_selection_delta": 0.0010478649,
+  "softgate_forward_delta": 0.0019439085,
+  "softgate_forward_months_improved": 3,
+  "formal_submission": false
+}

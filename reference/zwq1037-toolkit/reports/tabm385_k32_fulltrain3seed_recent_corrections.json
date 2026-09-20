@@ -1,0 +1,62 @@
+{
+  "run_name": "tabm385_k32_fulltrain3seed_recent_corrections",
+  "fulltrain_seeds": [
+    42,
+    137,
+    2026
+  ],
+  "temporal_fold_ends": [
+    52,
+    57,
+    62
+  ],
+  "temporal_seeds": [
+    42,
+    137,
+    2026
+  ],
+  "known_public_lb": {
+    "fulltrain_seed42": 0.134,
+    "temporal3x3": 0.14
+  },
+  "fulltrain_3seed_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm385_k32_fulltrain_3seed.csv",
+  "fulltrain_member_correlations": [
+    [
+      1.0,
+      0.9896009197931435,
+      0.990740650060937
+    ],
+    [
+      0.9896009197931435,
+      1.0,
+      0.9897465161345229
+    ],
+    [
+      0.9907406500609371,
+      0.9897465161345228,
+      1.0
+    ]
+  ],
+  "fulltrain3_vs_temporal3x3_correlation": 0.9780318832331656,
+  "mixtures": {
+    "tabm385_k32_temporal3x3_full3seed_w10": {
+      "temporal_weight": 0.9,
+      "fulltrain_weight": 0.1,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm385_k32_temporal3x3_full3seed_w10.csv",
+      "correlation_with_temporal": 0.9997818454815942
+    },
+    "tabm385_k32_temporal3x3_full3seed_w15": {
+      "temporal_weight": 0.85,
+      "fulltrain_weight": 0.15,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm385_k32_temporal3x3_full3seed_w15.csv",
+      "correlation_with_temporal": 0.9995082717834817
+    },
+    "tabm385_k32_temporal3x3_full3seed_w20": {
+      "temporal_weight": 0.8,
+      "fulltrain_weight": 0.2,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm385_k32_temporal3x3_full3seed_w20.csv",
+      "correlation_with_temporal": 0.999124391290146
+    }
+  },
+  "submission_status": "prepared_not_submitted"
+}

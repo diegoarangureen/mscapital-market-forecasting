@@ -1,0 +1,36 @@
+{
+  "run_name": "current150_subsecond_transformer25_upgrade",
+  "base_public_lb": 0.15,
+  "base_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_full_replace_corr095_current138k32_equal38_common.csv",
+  "replacement": {
+    "slot": "factorized_transformer",
+    "slot_weight": 0.16,
+    "old": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_transformer_fulltrain\\factorized_transformer\\factorized_transformer379_full_e4.csv",
+    "new": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\fixed75_transformer25_subsecond_event_full.csv",
+    "new_internal_weights": {
+      "old_transformer": 0.75,
+      "subsecond_event_model": 0.25
+    },
+    "effective_full_blend_weights": {
+      "old_transformer": 0.12,
+      "subsecond_event_model": 0.04
+    }
+  },
+  "validation_evidence": {
+    "old_transformer_62_70_without_66": 0.1553845147,
+    "new_hybrid_62_70_without_66": 0.1590078803,
+    "selection_62_65_delta": 0.0047237172,
+    "forward_67_70_delta": 0.0031170177,
+    "weight_search": false
+  },
+  "test_diagnostics": {
+    "old_vs_new_transformer_correlation": 0.9958505435939387,
+    "candidate_vs_base_correlation": 0.9998818758841416,
+    "rows": 647896,
+    "finite": true,
+    "mean": -0.014190371172413693,
+    "std": 0.9429777001083658
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_subsecond_transformer25_upgrade.csv",
+  "submission_status": "prepared_not_submitted"
+}

@@ -1,0 +1,9 @@
+{
+  "job_id": "20260918-094527-kaggle-linear-v23-fd9a1840",
+  "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260918-094527-kaggle-linear-v23-fd9a1840",
+  "pid": 22072,
+  "wake_thread_id": "01a09468-93b3-7b22-8628-c67d422e42ca",
+  "kernel": "zwq1037/multistream-factorized-transformer-multiwindow-dev",
+  "version": 23,
+  "continuation_plan": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submission_metadata\\astra_sequential_plan_20260917.json"
+}

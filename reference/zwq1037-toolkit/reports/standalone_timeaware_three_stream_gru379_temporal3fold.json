@@ -1,0 +1,58 @@
+{
+  "run_name": "standalone_timeaware_three_stream_gru379_temporal3fold",
+  "experiment": "multistream_factorized_gru_timeaware_temporal3fold",
+  "fold_ends": [
+    52,
+    57,
+    62
+  ],
+  "seeds": [
+    2026
+  ],
+  "model_count": 3,
+  "epochs_per_model": 4,
+  "visible_gpu_count": 2,
+  "gpu_names": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "strict_validation_window": "months 63-70 excluding 66",
+  "strict_validation_rows": 123067,
+  "strict_validation_per_fold": {
+    "52": 0.15127255177961246,
+    "57": 0.15707154319296338,
+    "62": 0.15180296866792037
+  },
+  "strict_validation_equal3": 0.16066187874296348,
+  "recommended_variant": "equal3",
+  "recommended_validation_cosine": 0.16066187874296348,
+  "recommended_output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379_temporal3fold.csv",
+  "fold_output_paths": {
+    "52": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379_fold_end52.csv",
+    "57": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379_fold_end57.csv",
+    "62": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379_fold_end62.csv"
+  },
+  "fold_correlations": {
+    "52": {
+      "with_fulltrain_gru": 0.9375398330405452,
+      "with_temporal_equal3": 0.9847288278850331
+    },
+    "57": {
+      "with_fulltrain_gru": 0.9472017403024594,
+      "with_temporal_equal3": 0.984124425695616
+    },
+    "62": {
+      "with_fulltrain_gru": 0.9508975572525733,
+      "with_temporal_equal3": 0.9850061065780478
+    }
+  },
+  "rows": 647896,
+  "finite": true,
+  "prediction_mean": 2.868947789071737e-17,
+  "prediction_std": 0.984619786724494,
+  "correlation_with_fulltrain_gru": 0.959977705407524,
+  "source_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_gru_temporal3fold_v12\\factorized_gru_fulltrain\\factorized_gru379_temporal3fold_e4.csv",
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379_temporal3fold.csv",
+  "submission_status": "prepared_not_submitted",
+  "submission_policy": "screen for final blend; no standalone slot reserved"
+}

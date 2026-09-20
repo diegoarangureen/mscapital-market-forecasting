@@ -1,0 +1,25 @@
+{
+  "run_name": "current138_equal37_common_ridge100",
+  "source_submission": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current135_hybrid2_conv1_transformer30.csv",
+  "method": "37 equal sequential groups; replace each prediction group mean with Ridge(alpha=100) input-only common target component / full target std",
+  "rows": 647896,
+  "group_count": 37,
+  "group_size_min": 17510,
+  "group_size_max": 17511,
+  "source_correlation": 0.9999587826613114,
+  "source_std": 0.9848915410463743,
+  "prediction_std": 0.9848973104669885,
+  "prediction_mean": -0.01414707337419045,
+  "common_normalized_min": -0.027514313306304942,
+  "common_normalized_max": 0.002662691475114493,
+  "local_scores": {
+    "first_raw": 0.155996,
+    "first_candidate": 0.158018,
+    "first_delta": 0.002021,
+    "second_raw": 0.157262,
+    "second_candidate": 0.158458,
+    "second_delta": 0.001196
+  },
+  "submission_status": "prepared_not_submitted",
+  "output_path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_equal37_common_ridge100.csv"
+}

@@ -1,0 +1,29 @@
+{
+  "output_name": "tabm001_tree053r_blend75_fulltrain_centered",
+  "source_submission": "tabm001_tree053r_blend75_fulltrain.csv",
+  "source_public_score": 0.131,
+  "transformation": "prediction = raw_prediction - mean(raw_prediction)",
+  "uses_target_labels": false,
+  "test_prediction_mean_removed": -4.11846730454926e-06,
+  "test_rows": 647896,
+  "local_validation": {
+    "raw_overall": 0.1757188087478786,
+    "centered_overall": 0.1759273379280037,
+    "raw_no66": 0.1520035499034044,
+    "centered_no66": 0.1524405856410512,
+    "raw_recent": 0.150606307202205,
+    "centered_recent": 0.1510422457030048,
+    "raw_primary_worst": 0.1255594315280855,
+    "centered_primary_worst": 0.1274231997115976
+  },
+  "prediction_summary": {
+    "mean": -1.5422239405130467e-20,
+    "std": 0.0012074698438406702,
+    "min": -0.04358733740092432,
+    "max": 0.04980743890152663,
+    "l2_norm": 0.9719164718927008
+  },
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm001_tree053r_blend75_fulltrain_centered.csv",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm001_tree053r_blend75_fulltrain_centered_test.feather",
+  "submission_status": "prepared_not_uploaded"
+}

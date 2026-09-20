@@ -1,0 +1,33 @@
+{
+  "script_exists": true,
+  "notebook_exists": true,
+  "main_def_lines": [
+    1069,
+    1566
+  ],
+  "guard_lines": [
+    1900
+  ],
+  "guard_after_final_main": true,
+  "exactly_one_guard": true,
+  "script_markers": {
+    "factorized_transformer379_raw_full_e5.pt": true,
+    "standalone_factorized_transformer379_raw_full_e5.csv": true,
+    "torch.cuda.device_count() != 2": true,
+    "full_base_reproduction_cosine": true,
+    "standalone_market_conditioned_event_residual_full.csv": true,
+    "_cleanup_event_cache": true
+  },
+  "notebook_markers": {
+    "factorized_transformer379_raw_full_e5.pt": true,
+    "standalone_factorized_transformer379_raw_full_e5.csv": true,
+    "torch.cuda.device_count() != 2": true,
+    "full_base_reproduction_cosine": true,
+    "standalone_market_conditioned_event_residual_full.csv": true,
+    "_cleanup_event_cache": true
+  },
+  "metadata_code_file": "run_v27_market_conditioned_event_residual_full.ipynb",
+  "metadata_code_file_ok": true,
+  "metadata_dataset_ok": true,
+  "passed": true
+}

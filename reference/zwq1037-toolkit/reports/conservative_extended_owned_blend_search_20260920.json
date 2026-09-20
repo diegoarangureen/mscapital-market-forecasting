@@ -1,0 +1,80 @@
+{
+  "experiment": "EXP-BLEND-007-CONSERVATIVE-EXTENDED",
+  "selection_rule": "Maximize months62-65 with Transformer additions capped at 25%, outer additions capped at 10%, at least 3/4 nonnegative selection months, and worst selection-month delta >= -0.0005.",
+  "candidate_count": 990,
+  "selection_stable_candidate_count": 159,
+  "baseline_metrics": {
+    "selection": 0.16452037467898958,
+    "forward": 0.16730593504112323,
+    "all": 0.1663399089913068,
+    "monthly_selection": {
+      "62": 0.15882155246425803,
+      "63": 0.14838365927820704,
+      "64": 0.1859852374424996,
+      "65": 0.16350010241441243
+    },
+    "monthly_forward": {
+      "67": 0.17884649727395602,
+      "68": 0.17723074626200852,
+      "69": 0.16141666819869477,
+      "70": 0.14536656730805986
+    }
+  },
+  "selected_weights": {
+    "retained_joint_weight": 0.75,
+    "subsecond_weight": 0.25,
+    "multiwindow_weight": 0.0,
+    "retained_owned_weight": 0.9,
+    "tree_weight": 0.0,
+    "tabm_ema_weight": 0.1
+  },
+  "selected_metrics": {
+    "selection": 0.16544498189343473,
+    "forward": 0.16725059018760535,
+    "all": 0.1666277075211204,
+    "monthly_selection": {
+      "62": 0.15899008499152867,
+      "63": 0.14820527024917515,
+      "64": 0.18845278929369524,
+      "65": 0.16448576107522933
+    },
+    "monthly_forward": {
+      "67": 0.17939903014785988,
+      "68": 0.17535967279398731,
+      "69": 0.16188899637435086,
+      "70": 0.1462519654288553
+    }
+  },
+  "delta_vs_verified_joint": {
+    "selection": 0.00092460721444515,
+    "forward": -5.534485351788021e-05,
+    "all": 0.0002877985298136154,
+    "monthly_selection": {
+      "62": 0.00016853252727064283,
+      "63": -0.00017838902903188902,
+      "64": 0.002467551851195654,
+      "65": 0.0009856586608169016
+    },
+    "monthly_forward": {
+      "67": 0.0005525328739038604,
+      "68": -0.001871073468021206,
+      "69": 0.00047232817565609486,
+      "70": 0.0008853981207954387
+    }
+  },
+  "scales": {
+    "subsecond": 0.000395204559828322,
+    "multiwindow": 0.0003517134527146592,
+    "tree": 0.00034223724628692007,
+    "tabm_ema": 0.000318987218271706
+  },
+  "passed": false,
+  "gate": {
+    "selection_delta_min": 0.0003,
+    "forward_delta_min": 0.0005,
+    "all_delta_min": 0.0005,
+    "forward_months_nonnegative_min": 3,
+    "worst_forward_month_delta_min": -0.002
+  },
+  "formal_submission": false
+}

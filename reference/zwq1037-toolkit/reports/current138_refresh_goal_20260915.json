@@ -1,0 +1,71 @@
+{
+  "objective": "Improve controllable current138 members with stronger TabM, tree and sequence candidates under the unified late validation split.",
+  "validation_protocol": {
+    "train_months": "0-59",
+    "purged_months": "60-61",
+    "validation_months": "62-70",
+    "excluded_validation_months": [66]
+  },
+  "experiments": {
+    "tabm385_k16": {
+      "features": "Relative319 + XS40 + Order20 + MarketTrajectory6",
+      "feature_count": 385,
+      "late_cosine": 0.1604264856339436,
+      "baseline_tabm379_k16": 0.159863439,
+      "delta": 0.0005630466339435931,
+      "decision": "accepted"
+    },
+    "tabm385_k32": {
+      "feature_count": 385,
+      "late_cosine": 0.16102839913113948,
+      "baseline_tabm385_k16": 0.1604264856339436,
+      "delta": 0.0006019134971958785,
+      "decision": "accepted_and_full_trained",
+      "test_prediction": "outputs/predictions/tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain_test.feather",
+      "submission_candidate": "outputs/submissions/tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain.csv"
+    },
+    "xgboost385_market6": {
+      "late_cosine": 0.14053540179908577,
+      "baseline_xgboost379": 0.14102067530316598,
+      "delta": -0.0004852735040802109,
+      "decision": "rejected; retain xgboost379"
+    },
+    "factorized_timeaware_gru": {
+      "architecture": "independent market, transaction and order GRU96 streams with observed flags and log-age channels, plus static379 and four-token fusion",
+      "kaggle_notebook": "zwq1037/multistream-factorized-gru-timeaware-dev",
+      "visible_gpu_count": 2,
+      "gpu_names": ["Tesla T4", "Tesla T4"],
+      "late_cosine": 0.15350975092862484,
+      "continue_threshold": 0.156,
+      "factorized_transformer_reference": 0.155385,
+      "decision": "rejected; no second seed and no full training"
+    }
+  },
+  "current138_refresh": {
+    "late_cosine": 0.1602189723683853,
+    "old_current138_recorded": 0.157651,
+    "delta": 0.002567972368385296,
+    "construction": "replace the inner TabM component with TabM385 k32, preserve the old diversity tree and old two-seed GRU, then add 20 percent outer TabM385 k32",
+    "submission_candidate": "outputs/submissions/current138_refreshed_tabm385_k32.csv",
+    "metadata": "outputs/submission_metadata/current138_refreshed_tabm385_k32.json",
+    "status": "prepared_not_uploaded"
+  },
+  "evidence": [
+    {
+      "source": "Kaggle discussion 733271",
+      "url": "https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting/discussion/733271",
+      "takeaway": "reported GRU and transformer sequence models trail strong blends; reliable late validation and single-model gains matter"
+    },
+    {
+      "source": "GRU-D",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5904216/",
+      "takeaway": "missingness masks and time intervals motivated the observed and age channels"
+    },
+    {
+      "source": "DeepLOB",
+      "url": "https://arxiv.org/abs/1808.03668",
+      "takeaway": "supports temporal neural encoders for order-book data, but local validation remains the selection criterion"
+    }
+  ],
+  "next_action": "Use current138_refreshed_tabm385_k32 as the strongest local candidate; keep the old GRU and tree components until a candidate beats them on the same split."
+}

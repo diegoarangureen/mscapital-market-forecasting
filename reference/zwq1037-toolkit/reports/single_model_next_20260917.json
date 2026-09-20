@@ -1,0 +1,14 @@
+{
+  "local_job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260917-150008-realmlp385-332c48e0",
+  "local_wrapper_pid": 5848,
+  "local_experiment": "EXP-REALMLP-011-OUR385-CORR095",
+  "local_result": "data/interim/tree_experiments/EXP-REALMLP-011-OUR385-CORR095/score_summary.json",
+  "local_monitor": "efficient-long-job-wait",
+  "kaggle_kernel": "zwq1037/multistream-factorized-transformer-multiwindow-dev",
+  "kaggle_version": 21,
+  "kaggle_experiment": "factorized_transformer_late_loss_schedule",
+  "kaggle_upload": "success",
+  "kaggle_monitoring": false,
+  "kaggle_score_file": "factorized_transformer_loss_schedule/score_only.json",
+  "formal_submission": false
+}

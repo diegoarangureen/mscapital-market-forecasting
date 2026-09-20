@@ -1,0 +1,37 @@
+{
+  "run_name": "factorized_full_replace_corr095_current138k32_equal38_common",
+  "base_submission": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_full_replace_corr095_realmlp_equal38_common.csv",
+  "base_kaggle_submission_ref": 56250034,
+  "base_public_score": 0.15,
+  "replacement": {
+    "weight": 0.15,
+    "old_member": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_xs40_tabm20.csv",
+    "new_member": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_refreshed_tabm385_k32.csv",
+    "new_member_local_62_70_no66": 0.1602189723683853,
+    "old_member_local_62_70_no66_recorded": 0.157651
+  },
+  "preserved_components": {
+    "gpu_tabm142": 0.2,
+    "tpu_tabm142": 0.12,
+    "yangq_blend142": 0.32,
+    "own_realmlp379_corr095": 0.05,
+    "factorized_transformer": 0.16,
+    "equal38_common_component": true
+  },
+  "correlation": {
+    "old_vs_new_current138": 0.980440681616504,
+    "base_vs_candidate": 0.9995032692895803
+  },
+  "prediction": {
+    "rows": 647896,
+    "mean": -0.014190371172413695,
+    "std": 0.9413235864414092,
+    "min": -19.190501545585782,
+    "max": 17.559605598985584,
+    "finite": true
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_full_replace_corr095_current138k32_equal38_common.csv",
+  "submission_status": "submitted_complete",
+  "kaggle_submission_ref": 56254690,
+  "public_score": 0.15
+}

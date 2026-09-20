@@ -1,0 +1,56 @@
+{
+  "run_name": "standalone_tabm385_k32_temporal3fold_recent123_ema0999",
+  "source_experiment": "tabm385_k32_temporal5fold_3seed_ema0999",
+  "effective_fold_ends": [
+    52,
+    57,
+    62
+  ],
+  "fold_weights": [
+    1,
+    2,
+    3
+  ],
+  "seeds": [
+    42,
+    137,
+    2026
+  ],
+  "model_count": 9,
+  "ema_decay": 0.999,
+  "inference_weights": "EMA",
+  "baseline": "original temporal3fold x 3seed raw equal",
+  "baseline_scores": {
+    "selection_63_65": 0.16419435682655026,
+    "forward_67_70": 0.16070367218664325,
+    "all_63_70_ex66": 0.16146543536271815
+  },
+  "selected_scores": {
+    "selection_63_65": 0.16456475511090066,
+    "forward_67_70": 0.16112799134590333,
+    "all_63_70_ex66": 0.16183890629005449
+  },
+  "deltas": {
+    "selection_63_65": 0.00037039828435039834,
+    "forward_67_70": 0.0004243191592600837,
+    "all_63_70_ex66": 0.00037347092733633347
+  },
+  "monthly_deltas": {
+    "63": 0.0002551397845122483,
+    "64": 0.0008546629486614332,
+    "65": -0.00011466001516582947,
+    "67": -0.0002266387123570357,
+    "68": 0.00025639781776054527,
+    "69": -0.0010217141930290996,
+    "70": 0.0032877794035194308
+  },
+  "months_improved": 4,
+  "correlation_with_old_public_3x3": 0.999092991058253,
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_tabm385_k32_temporal3fold_recent123_ema0999.csv",
+  "submission_status": "submitted_complete",
+  "note": "The two added early folds 42 and 47 reduced validation performance, so the selected candidate keeps the recent three folds and uses recency weights plus EMA.",
+  "kaggle_submission_ref": 56332889,
+  "kaggle_status": "complete",
+  "public_lb": 0.14,
+  "submitted_at": "2026-09-18 14:48:50.513000"
+}

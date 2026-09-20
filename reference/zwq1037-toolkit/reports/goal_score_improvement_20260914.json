@@ -1,0 +1,21 @@
+{
+  "goal": "highest-efficiency score improvement with one final submission",
+  "previous_best_public_lb": 0.138,
+  "new_best_public_lb": 0.149,
+  "absolute_gain": 0.011,
+  "submission_reference": 56223194,
+  "final_file": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\robust6_knownlb_equal38_common.csv",
+  "final_metadata": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submission_metadata\\robust6_knownlb_equal38_common.json",
+  "kaggle_experiments": {
+    "multistream_gru_first_window": 0.15459914939718855,
+    "public152_xs75_tabm_first_window": 0.13353255274418377,
+    "public152_xs75_tabm_second_window": 0.1312625616547918
+  },
+  "key_findings": [
+    "Official test period is months 71-108, so postprocessing uses 38 equal sequential groups.",
+    "Three public LB0.142 predictions supplied the largest diversity gain.",
+    "Independent Transformer and a small RealMLP component matched the forum's reported high-performing production blend pattern.",
+    "Input-only month common component was positive in both preferred local windows."
+  ],
+  "final_submission_count_in_goal": 1
+}

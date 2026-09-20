@@ -1,0 +1,66 @@
+{
+  "run_name": "owned_only_tabm33_gru20_realmlp28_transformer19",
+  "weights": {
+    "tabm": 0.33,
+    "gru": 0.2,
+    "realmlp": 0.28,
+    "transformer": 0.19
+  },
+  "tree_weight": 0,
+  "public_weight": 0,
+  "sources": {
+    "tabm": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm385_k32_temporal3fold_3seed.csv",
+    "realmlp": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_rq16_corr095_e8_fulltrain.csv",
+    "transformer": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379.csv",
+    "gru": {
+      "52": {
+        "mean": -5.7860452211464074e-05,
+        "std": 0.00043984723501589205,
+        "source": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379_fold_end52.csv"
+      },
+      "57": {
+        "mean": -4.749631938534062e-05,
+        "std": 0.00045425278723517813,
+        "source": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379_fold_end57.csv"
+      },
+      "62": {
+        "mean": -7.553813364773904e-05,
+        "std": 0.0004243866203081449,
+        "source": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379_fold_end62.csv"
+      }
+    }
+  },
+  "normalization": "Frozen validation-selection RMS for model families; GRU per-fold means/stds also frozen from months65/67. No additional common component.",
+  "rms": {
+    "tabm": 0.0004402997077465955,
+    "gru": 0.9825973256178245,
+    "realmlp": 0.01486516882735194,
+    "transformer": 0.00043014174463003817
+  },
+  "weight_selection": "Weights searched on temporal2fold predictions months62-65; checked unchanged on months67-70 and on the latest three-fold version.",
+  "latest_threefold_local_scores": {
+    "selection_65_67": {
+      "candidate": 0.1724038251157952,
+      "prior_owned_ratio": 0.17204091145817355,
+      "delta": 0.00036291365762164407
+    },
+    "forward_68_70": {
+      "candidate": 0.16135414882850607,
+      "prior_owned_ratio": 0.16015779505216785,
+      "delta": 0.001196353776338227
+    },
+    "all_65_70_ex66": {
+      "candidate": 0.16538312107405545,
+      "prior_owned_ratio": 0.16449522684800005,
+      "delta": 0.0008878942260553968
+    }
+  },
+  "early_confirmation": "Skipped by explicit user instruction on 2026-09-17; local early training stopped and no early notebook uploaded.",
+  "validation_deployment_note": "TabM and GRU validation use the saved deployment checkpoints; RealMLP and Transformer use train<=59 development predictions for weight selection and their existing fulltrain test predictions for deployment.",
+  "rows": 647896,
+  "sha256": "b2a7624ed4023b8a9b71c76e8346bce97056a603dd399733415a7494caa6573c",
+  "prediction_mean": 0.013164545219034117,
+  "prediction_std": 0.8016025005122793,
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\owned_only_tabm33_gru20_realmlp28_transformer19.csv",
+  "submission_status": "prepared_not_submitted"
+}

@@ -1,0 +1,39 @@
+{
+  "run_name": "current135_hybrid2_conv1_transformer30",
+  "sources": {
+    "current135": "gru_embedding_seed_ensemble_fulltrain.csv",
+    "hybrid42": "joint_transformer_hybrid_epoch5_fulltrain.csv",
+    "hybrid137": "joint_transformer_hybrid_seed137_epoch4_fulltrain.csv",
+    "conv42": "joint_transformer_conv_hybrid_epoch5_fulltrain.csv"
+  },
+  "weights": {
+    "current135": 0.7,
+    "transformer_total": 0.3,
+    "within_transformer": {
+      "hybrid42": 0.335,
+      "hybrid137": 0.335,
+      "conv42": 0.33
+    }
+  },
+  "local_scores": {
+    "50_59": 0.156322,
+    "60_70": 0.179385
+  },
+  "local_delta_vs_current135": {
+    "50_59": 0.000882,
+    "60_70": 0.002052
+  },
+  "submission_status": "complete",
+  "rows": 647896,
+  "prediction_mean": -1.1844279863140198e-17,
+  "prediction_std": 0.9848915410463743,
+  "prediction_min": -24.87365186439968,
+  "prediction_max": 33.39053133394877,
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current135_hybrid2_conv1_transformer30.csv",
+  "kaggle_submission": {
+    "reference": 56210024,
+    "submitted_at": "2026-09-13 15:26:47.700000",
+    "public_score": 0.138,
+    "description": "70pct current135 + 30pct hybrid2-conv1 Transformer; local two-window positive"
+  }
+}

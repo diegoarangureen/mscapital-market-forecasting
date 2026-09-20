@@ -1,0 +1,48 @@
+{
+  "run_name": "current138_publictabm40_equal38_common",
+  "sources": {
+    "current_public_lb_0.138": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current135_hybrid2_conv1_transformer30.csv",
+    "public_tabm_reported_lb_0.142": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_cos689\\output\\submission.csv"
+  },
+  "weights_before_common_component": {
+    "current138": 0.6,
+    "public_tabm": 0.4
+  },
+  "method": "z-score each source, blend 60/40, then replace each of 38 equal sequential group means with Ridge(alpha=100) input-only common target component / full target std",
+  "rows": 647896,
+  "group_count": 38,
+  "group_size_min": 17049,
+  "group_size_max": 17050,
+  "correlations": {
+    "candidate_vs_current138": 0.9752209342088554,
+    "candidate_vs_public_tabm": 0.9433808244871444,
+    "before_vs_after_common": 0.9999638461057241
+  },
+  "prediction": {
+    "mean": -0.014190371172413695,
+    "std": 0.9625248769242541,
+    "min": -21.54862395096958,
+    "max": 25.2007376699833,
+    "finite": true
+  },
+  "common_normalized_min": -0.032750580193049536,
+  "common_normalized_max": 0.0058963500495105145,
+  "local_validation": {
+    "50_59": {
+      "raw_blend": 0.162658,
+      "with_equal_common": 0.164087,
+      "delta_common": 0.001428
+    },
+    "62_70_excluding_66": {
+      "raw_blend": 0.161874,
+      "with_equal_common": 0.162887,
+      "delta_common": 0.001013
+    },
+    "delta_vs_current138": {
+      "50_59": 0.007765,
+      "62_70_excluding_66": 0.006436
+    }
+  },
+  "submission_status": "prepared_not_submitted",
+  "output_path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_publictabm40_equal38_common.csv"
+}

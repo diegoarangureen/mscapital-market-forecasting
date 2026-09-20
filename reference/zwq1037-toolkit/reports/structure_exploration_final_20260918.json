@@ -1,0 +1,30 @@
+{
+  "status": "complete",
+  "completed_at": "2026-09-18T10:56:35.8470345+08:00",
+  "validation_protocol": "train0-59, purge60-61, valid62-70 excluding66",
+  "candidates": [
+    {
+      "name": "TSMixer",
+      "best_cosine": 0.14874863794501667,
+      "delta_vs_transformer": -0.006635876957147818,
+      "selected_fusion_weight": 0.0,
+      "decision": "rejected"
+    },
+    {
+      "name": "linear_sequence",
+      "best_cosine": 0.11991725551258357,
+      "delta_vs_transformer": -0.03546725938958091,
+      "selected_fusion_weight": 0.0,
+      "decision": "rejected"
+    },
+    {
+      "name": "RealMLP_all379",
+      "best_cosine": 0.152882,
+      "delta_vs_corr095": -0.00108796342598498,
+      "decision": "rejected"
+    }
+  ],
+  "qualifying_candidate": null,
+  "full_training_started": false,
+  "kaggle_submission_performed": false
+}

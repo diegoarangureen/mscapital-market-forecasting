@@ -1,0 +1,352 @@
+{
+  "run_name": "realmlp379_rq16_temporal3fold_e8",
+  "model": "Yunsu RQ RealMLP, 16 members, EMA",
+  "features": "Relative319 + XS40 + Order20",
+  "preprocessing_scope": "shared full labeled data; only training row cutoff varies",
+  "fold_ends": [
+    52,
+    57,
+    62
+  ],
+  "seed": 2026,
+  "epochs_per_model": 8,
+  "kept_features": 301,
+  "selection": {
+    "input_features": 379,
+    "kept_features": 301,
+    "sample_id_dropped": false,
+    "dropped_features": [
+      "transaction_count_mean",
+      "transaction_volume_sum",
+      "transaction_volume_mean",
+      "transaction_avgprice_last_valid",
+      "ask_price_1_mean",
+      "ask_price_1_min",
+      "ask_price_1_max",
+      "ask_price_1_first",
+      "ask_price_1_last",
+      "bid_price_1_mean",
+      "bid_price_1_last",
+      "ask_volume_1_mean",
+      "ask_volume_1_max",
+      "bid_volume_1_mean",
+      "spread_1_mean",
+      "mid_price_1_mean",
+      "last60_row_count",
+      "last60_ask_price_1_mean",
+      "last60_ask_price_1_start",
+      "last60_ask_price_1_end",
+      "last60_bid_price_1_start",
+      "last60_bid_price_1_end",
+      "last60_bid_volume_1_mean",
+      "last60_spread_1_mean",
+      "last60_book_volume_imbalance_1",
+      "ask_price_2_mean",
+      "ask_price_2_max",
+      "ask_price_2_last",
+      "last60_ask_price_2_mean",
+      "last60_ask_price_2_start",
+      "last60_ask_price_2_end",
+      "bid_price_2_mean",
+      "bid_price_2_last",
+      "last60_bid_price_2_mean",
+      "last60_bid_price_2_end",
+      "ask_volume_2_mean",
+      "ask_volume_2_max",
+      "bid_volume_2_mean",
+      "bid_volume_2_max",
+      "spread_2_mean",
+      "last60_spread_2_mean",
+      "book_imbalance_1_mean_robust",
+      "book_imbalance_1_20_mean_robust",
+      "microprice_displacement_last",
+      "microprice_displacement_20_mean",
+      "ofi_1_sum",
+      "ofi_2_sum",
+      "multilevel_ofi_mean",
+      "multilevel_ofi_sum",
+      "multilevel_ofi_60_mean",
+      "log_total_depth_mean",
+      "log_total_depth_60_mean",
+      "trade_volume_imbalance_20",
+      "trade_count_imbalance_60",
+      "new_order_volume_imbalance_10",
+      "net_order_pressure_10",
+      "net_order_pressure_30",
+      "m_mid_mean_15",
+      "m_sp_mean_15",
+      "relative_spread_60_mean",
+      "month_rank__trade_volume_imbalance_20",
+      "month_rank__trade_count_imbalance_60",
+      "month_rank__new_order_volume_imbalance_10",
+      "month_rank__ask_price_1_last",
+      "month_rank__trade_volume_imbalance_60",
+      "month_rank__cancel_order_pressure_10",
+      "month_rank__bid_price_2_last",
+      "month_zscore__last60_ask_price_1_end",
+      "month_zscore__ofi_1_20_mean",
+      "month_zscore__net_order_pressure_30",
+      "month_zscore__ofi_1_last",
+      "month_zscore__ask_price_1_last",
+      "month_zscore__trade_volume_imbalance_60",
+      "month_zscore__net_order_pressure_10",
+      "month_zscore__last_trade_seconds_before_predict",
+      "month_zscore__spread_1_mean",
+      "month_zscore__cancel_order_pressure_10",
+      "month_zscore__last60_bid_price_2_end"
+    ]
+  },
+  "preprocessing": {
+    "categorical_features": 3,
+    "numerical_features": 298,
+    "cat_dims": [
+      10,
+      4,
+      10
+    ]
+  },
+  "folds": [
+    {
+      "fold_end": 52,
+      "train_rows": 940035,
+      "model_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\models\\realmlp379_rq16_temporal3fold_e8\\fold_end52_seed2026.pt",
+      "logs": [
+        {
+          "epoch": 1,
+          "loss": 0.08745515469452551,
+          "train_cosine": 0.02435055318194181,
+          "mse": 0.0026678507323292526,
+          "rq_loss": 0.7503080829235568,
+          "seconds": 123.52296161651611
+        },
+        {
+          "epoch": 2,
+          "loss": 0.08333378151493244,
+          "train_cosine": 0.049053881606307685,
+          "mse": 0.000373131945883483,
+          "rq_loss": 0.7345118711859986,
+          "seconds": 125.16612505912781
+        },
+        {
+          "epoch": 3,
+          "loss": 0.08293489787677896,
+          "train_cosine": 0.06407632034123877,
+          "mse": 0.000310301499662116,
+          "rq_loss": 0.7326535833423935,
+          "seconds": 125.81784319877625
+        },
+        {
+          "epoch": 4,
+          "loss": 0.08261868513850792,
+          "train_cosine": 0.08040604296671833,
+          "mse": 0.00028630191358638,
+          "rq_loss": 0.7313644235445049,
+          "seconds": 125.24641370773315
+        },
+        {
+          "epoch": 5,
+          "loss": 0.07317843056734466,
+          "train_cosine": 0.09939635500426967,
+          "mse": 0.0002746814424860774,
+          "rq_loss": 0.7302335262655595,
+          "seconds": 126.37769794464111
+        },
+        {
+          "epoch": 6,
+          "loss": 0.0546139303682052,
+          "train_cosine": 0.12358562440035589,
+          "mse": 0.0002726035840428563,
+          "rq_loss": 0.7291025159276541,
+          "seconds": 126.0368595123291
+        },
+        {
+          "epoch": 7,
+          "loss": 0.03612560665464648,
+          "train_cosine": 0.14610890951299196,
+          "mse": 0.00027423161811586047,
+          "rq_loss": 0.7282908712684897,
+          "seconds": 126.77092480659485
+        },
+        {
+          "epoch": 8,
+          "loss": 0.017722136414187167,
+          "train_cosine": 0.1649576454752234,
+          "mse": 0.00027047152386149703,
+          "rq_loss": 0.727752310344318,
+          "seconds": 126.65522575378418
+        }
+      ],
+      "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_rq16_temporal3fold_e8_fold_end52.csv",
+      "prediction_mean": 0.00028995566290417507,
+      "prediction_std": 0.013774605257020588
+    },
+    {
+      "fold_end": 57,
+      "train_rows": 1028716,
+      "model_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\models\\realmlp379_rq16_temporal3fold_e8\\fold_end57_seed2026.pt",
+      "logs": [
+        {
+          "epoch": 1,
+          "loss": 0.08724691977241972,
+          "train_cosine": 0.026423862661158794,
+          "mse": 0.0024806077944058147,
+          "rq_loss": 0.7503054933958487,
+          "seconds": 138.3187654018402
+        },
+        {
+          "epoch": 2,
+          "loss": 0.0834050357404797,
+          "train_cosine": 0.04887143290811618,
+          "mse": 0.0003558552755810458,
+          "rq_loss": 0.7353789361147893,
+          "seconds": 138.31972336769104
+        },
+        {
+          "epoch": 3,
+          "loss": 0.08300504054105766,
+          "train_cosine": 0.06520229666892409,
+          "mse": 0.0002978010242419634,
+          "rq_loss": 0.7335926127036314,
+          "seconds": 138.4315242767334
+        },
+        {
+          "epoch": 4,
+          "loss": 0.08270048621127071,
+          "train_cosine": 0.0810924457322642,
+          "mse": 0.0002747589739575821,
+          "rq_loss": 0.7323665039905359,
+          "seconds": 138.2646460533142
+        },
+        {
+          "epoch": 5,
+          "loss": 0.07324515316847635,
+          "train_cosine": 0.10111377076347805,
+          "mse": 0.00026717277204889675,
+          "rq_loss": 0.7312548300703238,
+          "seconds": 138.07622742652893
+        },
+        {
+          "epoch": 6,
+          "loss": 0.05466049750532253,
+          "train_cosine": 0.12433045363757211,
+          "mse": 0.0002655577310575318,
+          "rq_loss": 0.7301480651465362,
+          "seconds": 138.2544720172882
+        },
+        {
+          "epoch": 7,
+          "loss": 0.036147605340430086,
+          "train_cosine": 0.14691790267693042,
+          "mse": 0.00026556021239623935,
+          "rq_loss": 0.7292208697968497,
+          "seconds": 138.52480483055115
+        },
+        {
+          "epoch": 8,
+          "loss": 0.017715277402974808,
+          "train_cosine": 0.1660198630845259,
+          "mse": 0.00026277987098225847,
+          "rq_loss": 0.728689686505763,
+          "seconds": 138.30743646621704
+        }
+      ],
+      "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_rq16_temporal3fold_e8_fold_end57.csv",
+      "prediction_mean": 0.0005624071408454475,
+      "prediction_std": 0.013557424032123873
+    },
+    {
+      "fold_end": 62,
+      "train_rows": 1117383,
+      "model_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\models\\realmlp379_rq16_temporal3fold_e8\\fold_end62_seed2026.pt",
+      "logs": [
+        {
+          "epoch": 1,
+          "loss": 0.08701825674968897,
+          "train_cosine": 0.026140382059450813,
+          "mse": 0.0023204317469566415,
+          "rq_loss": 0.7495922760045816,
+          "seconds": 150.52876162528992
+        },
+        {
+          "epoch": 2,
+          "loss": 0.08339172636179033,
+          "train_cosine": 0.04922948614603499,
+          "mse": 0.00034494139025396405,
+          "rq_loss": 0.7353907850872883,
+          "seconds": 151.04233360290527
+        },
+        {
+          "epoch": 3,
+          "loss": 0.08300163015501333,
+          "train_cosine": 0.06507117761056849,
+          "mse": 0.0002882419812501294,
+          "rq_loss": 0.7336409867970531,
+          "seconds": 151.0133934020996
+        },
+        {
+          "epoch": 4,
+          "loss": 0.08270815874600329,
+          "train_cosine": 0.08063474155744839,
+          "mse": 0.00026666127594482825,
+          "rq_loss": 0.7324784355611462,
+          "seconds": 150.67539024353027
+        },
+        {
+          "epoch": 5,
+          "loss": 0.07323818512747378,
+          "train_cosine": 0.10162202679100879,
+          "mse": 0.00026007258247054437,
+          "rq_loss": 0.7313682733805592,
+          "seconds": 151.41656255722046
+        },
+        {
+          "epoch": 6,
+          "loss": 0.05467039111314634,
+          "train_cosine": 0.12322685940080202,
+          "mse": 0.0002565406332450427,
+          "rq_loss": 0.7302764115737749,
+          "seconds": 150.7234115600586
+        },
+        {
+          "epoch": 7,
+          "loss": 0.03614004917895125,
+          "train_cosine": 0.14728988210456223,
+          "mse": 0.00025906508990426367,
+          "rq_loss": 0.7293951561087731,
+          "seconds": 150.94785284996033
+        },
+        {
+          "epoch": 8,
+          "loss": 0.01771051104085569,
+          "train_cosine": 0.16622300266617865,
+          "mse": 0.0002574886007570232,
+          "rq_loss": 0.7288125293361363,
+          "seconds": 150.50180792808533
+        }
+      ],
+      "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_rq16_temporal3fold_e8_fold_end62.csv",
+      "prediction_mean": 0.0004267728667162829,
+      "prediction_std": 0.013780769714451814
+    }
+  ],
+  "pairwise_prediction_correlation": [
+    [
+      1.0,
+      0.9869177887355176,
+      0.9837474500534718
+    ],
+    [
+      0.9869177887355176,
+      1.0,
+      0.9871961579237103
+    ],
+    [
+      0.9837474500534718,
+      0.9871961579237104,
+      1.0
+    ]
+  ],
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_rq16_temporal3fold_e8.csv",
+  "prediction_std": 0.9953069204703396,
+  "submission_status": "prepared_not_submitted"
+}

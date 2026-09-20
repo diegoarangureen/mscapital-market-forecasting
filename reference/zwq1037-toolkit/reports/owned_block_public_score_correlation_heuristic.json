@@ -1,0 +1,125 @@
+{
+  "method": "heuristic cosine estimate using reported standalone public scores and test-prediction correlation; not a substitute for a submission",
+  "names": [
+    "tabm385_k32",
+    "realmlp_corr095",
+    "factorized_transformer",
+    "timeaware_three_stream_gru"
+  ],
+  "standalone_public_scores": {
+    "tabm385_k32": 0.134,
+    "realmlp_corr095": 0.139,
+    "factorized_transformer": 0.145,
+    "timeaware_three_stream_gru": 0.14
+  },
+  "current_owned_block": {
+    "weights": {
+      "tabm385_k32": 0.35,
+      "realmlp_corr095": 0.15,
+      "factorized_transformer": 0.45,
+      "timeaware_three_stream_gru": 0.05
+    },
+    "estimated_score": 0.14556405185523585
+  },
+  "best_unconstrained": {
+    "weights": {
+      "tabm385_k32": 0.0,
+      "realmlp_corr095": 0.34,
+      "factorized_transformer": 0.52,
+      "timeaware_three_stream_gru": 0.14
+    },
+    "estimated_score": 0.14820392297955143
+  },
+  "top10": [
+    {
+      "estimated_score": 0.14820392297955143,
+      "weights": {
+        "tabm385_k32": 0.0,
+        "realmlp_corr095": 0.34,
+        "factorized_transformer": 0.52,
+        "timeaware_three_stream_gru": 0.14
+      }
+    },
+    {
+      "estimated_score": 0.14820337436732417,
+      "weights": {
+        "tabm385_k32": 0.0,
+        "realmlp_corr095": 0.34,
+        "factorized_transformer": 0.53,
+        "timeaware_three_stream_gru": 0.13
+      }
+    },
+    {
+      "estimated_score": 0.1482021943489647,
+      "weights": {
+        "tabm385_k32": 0.0,
+        "realmlp_corr095": 0.33,
+        "factorized_transformer": 0.53,
+        "timeaware_three_stream_gru": 0.14
+      }
+    },
+    {
+      "estimated_score": 0.148202072416794,
+      "weights": {
+        "tabm385_k32": 0.0,
+        "realmlp_corr095": 0.34,
+        "factorized_transformer": 0.51,
+        "timeaware_three_stream_gru": 0.15
+      }
+    },
+    {
+      "estimated_score": 0.14820137270769654,
+      "weights": {
+        "tabm385_k32": 0.0,
+        "realmlp_corr095": 0.35,
+        "factorized_transformer": 0.52,
+        "timeaware_three_stream_gru": 0.13
+      }
+    },
+    {
+      "estimated_score": 0.14820136786774823,
+      "weights": {
+        "tabm385_k32": 0.0,
+        "realmlp_corr095": 0.33,
+        "factorized_transformer": 0.52,
+        "timeaware_three_stream_gru": 0.15
+      }
+    },
+    {
+      "estimated_score": 0.148200895662005,
+      "weights": {
+        "tabm385_k32": 0.0,
+        "realmlp_corr095": 0.35,
+        "factorized_transformer": 0.51,
+        "timeaware_three_stream_gru": 0.14
+      }
+    },
+    {
+      "estimated_score": 0.14820062519240643,
+      "weights": {
+        "tabm385_k32": 0.0,
+        "realmlp_corr095": 0.33,
+        "factorized_transformer": 0.54,
+        "timeaware_three_stream_gru": 0.13
+      }
+    },
+    {
+      "estimated_score": 0.1482004317133662,
+      "weights": {
+        "tabm385_k32": 0.0,
+        "realmlp_corr095": 0.34,
+        "factorized_transformer": 0.54,
+        "timeaware_three_stream_gru": 0.12
+      }
+    },
+    {
+      "estimated_score": 0.1481994522974796,
+      "weights": {
+        "tabm385_k32": 0.0,
+        "realmlp_corr095": 0.35,
+        "factorized_transformer": 0.53,
+        "timeaware_three_stream_gru": 0.12
+      }
+    }
+  ]
+}

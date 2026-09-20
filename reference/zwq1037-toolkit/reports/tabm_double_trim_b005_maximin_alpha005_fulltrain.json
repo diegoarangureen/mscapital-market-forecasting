@@ -1,0 +1,42 @@
+{
+  "output_name": "tabm_double_trim_b005_maximin_alpha005_fulltrain",
+  "method": "95% trimmed B005 weights + 5% robust-grid weights",
+  "selection_objective": "maximize the minimum primary-month change versus public B001 along the predeclared one-dimensional interpolation",
+  "alpha_robust": 0.05,
+  "weights": {
+    "original": 0.3525,
+    "corrprune": 0.2,
+    "cosine": 0.1525,
+    "xgboost": 0.0975,
+    "lightgbm": 0.0975,
+    "histgb": 0.1
+  },
+  "training_months": "0-70 for every trained source",
+  "aggregation_uses_labels": false,
+  "local_validation": {
+    "overall": 0.175986184250936,
+    "no66": 0.1542642257338685,
+    "recent": 0.1532316614198057,
+    "early": 0.1553624984585575,
+    "primary_std": 0.012948166543013,
+    "primary_worst": 0.1326307911727981,
+    "primary_q25": 0.1477497641435232,
+    "primary_months_improved": 6,
+    "primary_month_min_change": -0.0012478207673215,
+    "primary_lomo_min": 0.0014685166403199,
+    "primary_lomo_mean": 0.0022613282746344,
+    "month65_change": -0.0012478207673215,
+    "month69_change": -0.0012466745189365
+  },
+  "test_rows": 647896,
+  "prediction_summary": {
+    "mean": -6.2529446148639695e-06,
+    "std": 0.001160813165151195,
+    "min": -0.039314682449413905,
+    "max": 0.04376386969481367,
+    "l2_norm": 0.9343751399010226
+  },
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_double_trim_b005_maximin_alpha005_fulltrain.csv",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm_double_trim_b005_maximin_alpha005_fulltrain_test.feather",
+  "submission_status": "prepared_not_uploaded"
+}

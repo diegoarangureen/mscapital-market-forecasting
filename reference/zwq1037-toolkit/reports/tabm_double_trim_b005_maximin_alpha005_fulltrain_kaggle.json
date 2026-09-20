@@ -1,0 +1,12 @@
+{
+  "competition": "ms-capital-real-financial-market-forecasting",
+  "submission_reference": 56175685,
+  "file_name": "tabm_double_trim_b005_maximin_alpha005_fulltrain.csv",
+  "submitted_at_utc": "2026-09-12 01:18:35.753000",
+  "status": "COMPLETE",
+  "public_score": 0.130,
+  "previous_best_public_score": 0.131,
+  "public_score_change": -0.001,
+  "remaining_submissions_after_upload": 4,
+  "description": "Double-trim B005 maximin alpha005; local no66 0.154264 recent 0.153232"
+}

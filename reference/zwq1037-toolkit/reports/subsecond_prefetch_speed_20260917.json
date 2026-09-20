@@ -1,0 +1,18 @@
+{
+  "experiment": "EXP-SEQUENCE-020-SUBSECOND-GRU-TRANSFORMER",
+  "training_precision": "bfloat16",
+  "checkpoint_resumed_batch": 750,
+  "observed_batch": 1000,
+  "old_seconds_per_250_batches": 143.4,
+  "prefetched_seconds_per_250_batches": 74.4,
+  "observed_speedup": 1.9274,
+  "input_equivalence_checked_on_real_samples": 24,
+  "prefetch_workers": 1,
+  "prefetched_batches": 1,
+  "torch_cpu_threads": 2,
+  "main_gpu": "NVIDIA GeForce RTX 3060",
+  "resume_session_id": 2836,
+  "process_id_observed_live": 12948,
+  "score_status": "First epoch still running; no validation score yet",
+  "no_formal_submission": true
+}

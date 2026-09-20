@@ -1,0 +1,57 @@
+{
+  "run_name": "current138_dualpublictabm45_equal38_common",
+  "sources": {
+    "current138": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current135_hybrid2_conv1_transformer30.csv",
+    "gpu_tabm": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_cos689\\output\\submission.csv",
+    "tpu_tabm": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_tpu_v6\\output\\submission.csv"
+  },
+  "source_public_scores": {
+    "current138": 0.138,
+    "gpu_tabm": 0.142,
+    "tpu_tabm": 0.142
+  },
+  "weights_before_common_component": {
+    "current138": 0.55,
+    "gpu_tabm": 0.225,
+    "tpu_tabm": 0.225
+  },
+  "method": "z-score each source, blend 55/22.5/22.5, then replace each of 38 equal sequential group means with Ridge(alpha=100) input-only common target component / full target std",
+  "rows": 647896,
+  "group_count": 38,
+  "group_size_min": 17049,
+  "group_size_max": 17050,
+  "source_prediction_correlations": {
+    "current_gpu": 0.8467586500240057,
+    "current_tpu": 0.8495696656084089,
+    "gpu_tpu": 0.9858550033541634
+  },
+  "candidate_correlations": {
+    "candidate_vs_current138": 0.969507349993677,
+    "candidate_vs_gpu_tabm": 0.9495910731171652,
+    "candidate_vs_tpu_tabm": 0.951200699824896,
+    "before_vs_after_common": 0.9999640203323159
+  },
+  "prediction": {
+    "mean": -0.01419037117241369,
+    "std": 0.9609465514520319,
+    "min": -20.675158504564028,
+    "max": 23.751461422038478,
+    "finite": true
+  },
+  "common_normalized_min": -0.032750580193049536,
+  "common_normalized_max": 0.0058963500495105145,
+  "local_validation": {
+    "50_59": {
+      "score": 0.164436
+    },
+    "62_70_excluding_66": {
+      "score": 0.16349
+    },
+    "delta_vs_current138": {
+      "50_59": 0.00844,
+      "62_70_excluding_66": 0.006228
+    }
+  },
+  "submission_status": "prepared_not_submitted",
+  "output_path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_dualpublictabm45_equal38_common.csv"
+}

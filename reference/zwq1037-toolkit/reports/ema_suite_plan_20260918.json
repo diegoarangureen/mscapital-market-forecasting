@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "status": "running",
+  "objective": "Test EMA parameter averaging on every applicable owned neural single model using paired raw-versus-EMA predictions from the same training trajectory.",
+  "authorization": {
+    "local_training": true,
+    "kaggle_notebook_training": true,
+    "automatic_continuation_after_wake": true,
+    "formal_kaggle_submission": false,
+    "max_cpu_threads": 2,
+    "full_training_and_csv_generation": true
+  },
+  "validation_protocol": "train months 0-59; validate 62-70 with month66 excluded from the main score; inspect 62-65 and 67-70 separately; one seed and one EMA decay only",
+  "common_gate": {
+    "overall_delta_min": 0.0001,
+    "selection_62_65_delta_min": 0.0,
+    "forward_67_70_delta_min": 0.0
+  },
+  "stages": [
+    {
+      "id": "tabm385_k32_ema",
+      "status": "complete_rejected",
+      "decay": 0.999,
+      "script": "scripts/exp_tabm_044_market385_k32_ema.py",
+      "result": "data/interim/tree_experiments/EXP-TABM-044-MARKET385-K32-EMA/score_summary.json",
+      "on_complete": "Verify paired raw/EMA predictions and gate, then continue to timeaware_gru_ema regardless of pass or fail.",
+      "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260918-165557-tabm044-ema-da914c46",
+      "overall_delta": -0.0002562382658590212,
+      "selection_delta": -0.0010712872167894794,
+      "forward_delta": 0.00012059201853839574,
+      "full_csv_status": "complete",
+      "full_script": "scripts/train_full_tabm385_k32_ema.py",
+      "full_job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260918-201906-tabm385-k32-ema-full-781413b1",
+      "full_csv": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_tabm385_k32_ema0999_fulltrain.csv",
+      "full_rows": 647896,
+      "full_prediction_std": 0.0003480244808237778
+    },
+    {
+      "id": "timeaware_gru_ema",
+      "status": "complete_rejected",
+      "decay": 0.999,
+      "baseline": "owned time-aware three-stream GRU",
+      "on_complete": "Verify paired raw/EMA predictions and gate, then continue to factorized_transformer_ema regardless of pass or fail.",
+      "script": "scripts/exp_gru_010_timeaware_ema_dev.py",
+      "result": "data/interim/tree_experiments/EXP-GRU-010-TIMEAWARE-EMA/score_summary.json",
+      "full_csv_status": "remote_status_pending_auth_retry",
+      "recovery_epoch": 5,
+      "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260918-180927-gru010-ema-resume-e6-fix-b93cf719",
+      "resume_fix": "move saved DataLoader generator state to CPU ByteTensor",
+      "raw_best_epoch": 5,
+      "ema_best_epoch": 5,
+      "overall_delta": -0.0011109999068723286,
+      "selection_delta": 0.0015023688981744554,
+      "forward_delta": -0.002601076639957539,
+      "kaggle_kernel": "zwq1037/multistream-gru-transformer-ema-full-train",
+      "kaggle_version": 3,
+      "prior_waiter_failure": "OAuth GenerateAccessToken 429; remote workload not restarted"
+    },
+    {
+      "id": "factorized_transformer_ema",
+      "status": "complete_rejected",
+      "decay": 0.999,
+      "baseline": "owned factorized Transformer",
+      "on_complete": "Verify paired raw/EMA predictions and gate, compare all applicable models, and prepare full-training code only for passing EMA variants.",
+      "full_csv_status": "prepared",
+      "script": "scripts/exp_transformer_020_factorized_ema_dev.py",
+      "result": "data/interim/tree_experiments/EXP-TRANSFORMER-020-FACTORIZED-EMA/score_summary.json",
+      "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260918-183211-transformer020-factorized-ema-23d1e5f6",
+      "raw_best_epoch": 5,
+      "ema_best_epoch": 5,
+      "overall_delta": -0.007202248214140561,
+      "selection_delta": -0.0055133036360764665,
+      "forward_delta": -0.00841119852419664,
+      "full_script": "data/interim/kaggle_kernels/multistream_factorized_transformer_fulltrain/run_v4_transformer_ema_full.py",
+      "full_notebook": "data/interim/kaggle_kernels/multistream_factorized_transformer_fulltrain/run_v4_transformer_ema_full.ipynb"
+    },
+    {
+      "id": "realmlp_ema",
+      "status": "already_present",
+      "decay": 0.998,
+      "note": "The current RealMLP already uses EMA, so no duplicate experiment is needed.",
+      "csv": "outputs/submissions/standalone_realmlp379_corr095.csv"
+    }
+  ],
+  "failure_policy": "Inspect one bounded log tail, repair deterministic runtime errors once without changing the hypothesis, and resume from a compatible checkpoint when possible.",
+  "next_action": "Retry Kaggle OAuth with bounded backoff and inspect the existing GRU EMA kernel without restarting it. If complete, download and validate its CSV, then run the prepared factorized Transformer EMA full-data version on the same T4 x2 notebook. Do not submit.",
+  "formal_submission": false,
+  "deliverables": [
+    "TabM385-k32 EMA standalone CSV",
+    "time-aware GRU EMA standalone CSV",
+    "factorized Transformer EMA standalone CSV",
+    "existing RealMLP EMA standalone CSV"
+  ]
+}

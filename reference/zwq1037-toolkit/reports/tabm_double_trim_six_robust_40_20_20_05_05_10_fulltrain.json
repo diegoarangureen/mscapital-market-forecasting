@@ -1,0 +1,76 @@
+{
+  "output_name": "tabm_double_trim_six_robust_40_20_20_05_05_10_fulltrain",
+  "training_months": "0-70 for every trained source",
+  "aggregation_uses_labels": false,
+  "member_aggregation": {
+    "tabm_original": "trim1",
+    "tabm_corrprune": "mean",
+    "tabm_cosine": "trim1"
+  },
+  "weights": {
+    "original": 0.4,
+    "corrprune": 0.2,
+    "cosine": 0.2,
+    "xgboost": 0.05,
+    "lightgbm": 0.05,
+    "histgb": 0.1
+  },
+  "source_transformations": {
+    "original": "center_then_l2",
+    "corrprune": "l2",
+    "cosine": "l2",
+    "xgboost": "center_then_l2",
+    "lightgbm": "center_then_l2",
+    "histgb": "l2"
+  },
+  "source_statistics": {
+    "original": {
+      "mean_removed": 7.694752849602645e-07,
+      "norm": 0.2598638990061523
+    },
+    "corrprune": {
+      "mean_removed": 0.0,
+      "norm": 0.25710767621632463
+    },
+    "cosine": {
+      "mean_removed": 0.0,
+      "norm": 0.53385417282786
+    },
+    "xgboost": {
+      "mean_removed": -8.155722534290821e-06,
+      "norm": 0.2921949869091727
+    },
+    "lightgbm": {
+      "mean_removed": -8.204875409790711e-06,
+      "norm": 0.2933632730577388
+    },
+    "histgb": {
+      "mean_removed": 0.0,
+      "norm": 0.18483253015432927
+    }
+  },
+  "local_validation": {
+    "overall": 0.1766047462075828,
+    "no66": 0.154553883366854,
+    "recent": 0.1532585865705447,
+    "early": 0.1558164123340289,
+    "primary_std": 0.0131503574719266,
+    "primary_worst": 0.1327314662894048,
+    "primary_q25": 0.147232950191299,
+    "primary_months_improved": 6,
+    "primary_month_min_change": -0.0021254642890579,
+    "primary_lomo_min": 0.0017938328837914,
+    "primary_lomo_mean": 0.0025510597997896
+  },
+  "test_rows": 647896,
+  "prediction_summary": {
+    "mean": -6.822365446066152e-06,
+    "std": 0.0011700643197048654,
+    "min": -0.03998984519033324,
+    "max": 0.04562162992492287,
+    "l2_norm": 0.9418240317533288
+  },
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_double_trim_six_robust_40_20_20_05_05_10_fulltrain.csv",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm_double_trim_six_robust_40_20_20_05_05_10_fulltrain_test.feather",
+  "submission_status": "prepared_not_uploaded"
+}

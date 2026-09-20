@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "result_complete": true,
+  "visible_gpu_count": 2,
+  "csv_rows": 647896,
+  "csv_columns": [
+    "sample_id",
+    "prediction"
+  ],
+  "duplicate_ids": 0,
+  "finite_predictions": true,
+  "checkpoint_required_keys_present": true,
+  "checkpoint_epochs": 5,
+  "artifact_sha256": {
+    "factorized_transformer379_raw_full_e5.pt": "2becc80d8c0d870c9604d464959438b20717ffd6ac5f0f5ca3a8023b237db84e",
+    "standalone_factorized_transformer379_raw_full_e5.csv": "5d8cfab8ca9cb88a6330394f0e82d6534079b50f209341ad380552ae969339a2",
+    "result.json": "7721c4768f866043be92b0d6f7cb0e5be6c7ad6a7033298ec62fb1d14497c23a"
+  },
+  "passed": true
+}

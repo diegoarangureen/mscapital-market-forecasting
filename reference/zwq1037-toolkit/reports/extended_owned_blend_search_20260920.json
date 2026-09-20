@@ -1,0 +1,243 @@
+{
+  "experiment": "EXP-BLEND-006-EXTENDED-OWNED",
+  "status": "complete",
+  "selection_rule": "Optimize only months62-65; months67-70 are a fixed gate.",
+  "models_considered": {
+    "transformer_slot": [
+      "old",
+      "raw",
+      "event",
+      "subsecond",
+      "multiwindow"
+    ],
+    "outer_owned": [
+      "tree",
+      "tabm_ema"
+    ]
+  },
+  "candidate_files_available": true,
+  "slot_grid_size": 10626,
+  "slot_scales": {
+    "old": 0.00033945538892299934,
+    "raw": 0.00032642457832125906,
+    "event": 0.0003515858951250622,
+    "subsecond": 0.000395204559828322,
+    "multiwindow": 0.0003517134527146592
+  },
+  "selected_slot_weights": {
+    "old": 0.0,
+    "raw": 0.15,
+    "event": 0.25,
+    "subsecond": 0.6,
+    "multiwindow": 0.0
+  },
+  "selected_slot_metrics": {
+    "selection": 0.1654601688701384,
+    "forward": 0.16612635796327493,
+    "all": 0.16587163519702286,
+    "monthly_selection": {
+      "62": 0.1581504419506148,
+      "63": 0.14724349116290691,
+      "64": 0.18901688884144546,
+      "65": 0.16576390209836392
+    },
+    "monthly_forward": {
+      "67": 0.17720226618968468,
+      "68": 0.17324102239134986,
+      "69": 0.16222854593577316,
+      "70": 0.14646209194815937
+    }
+  },
+  "selected_slot_delta_vs_verified_joint": {
+    "selection": 0.0009397941911488128,
+    "forward": -0.0011795770778482983,
+    "all": -0.00046827379428393545,
+    "monthly_selection": {
+      "62": -0.0006711105136432138,
+      "63": -0.0011401681153001275,
+      "64": 0.0030316513989458727,
+      "65": 0.0022637996839514896
+    },
+    "monthly_forward": {
+      "67": -0.001644231084271336,
+      "68": -0.003989723870658657,
+      "69": 0.000811877737078387,
+      "70": 0.0010955246400995156
+    }
+  },
+  "top10_slot_by_selection": [
+    {
+      "weights": {
+        "old": 0.0,
+        "raw": 0.15,
+        "event": 0.25,
+        "subsecond": 0.6,
+        "multiwindow": 0.0
+      },
+      "selection": 0.16546016887014003
+    },
+    {
+      "weights": {
+        "old": 0.0,
+        "raw": 0.2,
+        "event": 0.2,
+        "subsecond": 0.6,
+        "multiwindow": 0.0
+      },
+      "selection": 0.1654580143351428
+    },
+    {
+      "weights": {
+        "old": 0.0,
+        "raw": 0.15,
+        "event": 0.2,
+        "subsecond": 0.65,
+        "multiwindow": 0.0
+      },
+      "selection": 0.16545476568216907
+    },
+    {
+      "weights": {
+        "old": 0.0,
+        "raw": 0.2,
+        "event": 0.25,
+        "subsecond": 0.55,
+        "multiwindow": 0.0
+      },
+      "selection": 0.16545395739336843
+    },
+    {
+      "weights": {
+        "old": 0.0,
+        "raw": 0.15,
+        "event": 0.3,
+        "subsecond": 0.55,
+        "multiwindow": 0.0
+      },
+      "selection": 0.16545025822993448
+    },
+    {
+      "weights": {
+        "old": 0.0,
+        "raw": 0.1,
+        "event": 0.25,
+        "subsecond": 0.65,
+        "multiwindow": 0.0
+      },
+      "selection": 0.16544762486010456
+    },
+    {
+      "weights": {
+        "old": 0.0,
+        "raw": 0.1,
+        "event": 0.3,
+        "subsecond": 0.6,
+        "multiwindow": 0.0
+      },
+      "selection": 0.1654471728368808
+    },
+    {
+      "weights": {
+        "old": 0.05,
+        "raw": 0.15,
+        "event": 0.2,
+        "subsecond": 0.6,
+        "multiwindow": 0.0
+      },
+      "selection": 0.1654471208285691
+    },
+    {
+      "weights": {
+        "old": 0.0,
+        "raw": 0.2,
+        "event": 0.15,
+        "subsecond": 0.65,
+        "multiwindow": 0.0
+      },
+      "selection": 0.16544677379942302
+    },
+    {
+      "weights": {
+        "old": 0.05,
+        "raw": 0.15,
+        "event": 0.15,
+        "subsecond": 0.65,
+        "multiwindow": 0.0
+      },
+      "selection": 0.16544254047182538
+    }
+  ],
+  "outer_grid_size": 66,
+  "selected_outer_weights": {
+    "selected_transformer_softgate": 0.75,
+    "tree": 0.0,
+    "tabm_ema": 0.25
+  },
+  "outer_scales": {
+    "tree": 0.00034223724628692007,
+    "tabm_ema": 0.000318987218271706
+  },
+  "verified_joint_metrics": {
+    "selection": 0.16452037467898958,
+    "forward": 0.16730593504112323,
+    "all": 0.1663399089913068,
+    "monthly_selection": {
+      "62": 0.15882155246425803,
+      "63": 0.14838365927820704,
+      "64": 0.1859852374424996,
+      "65": 0.16350010241441243
+    },
+    "monthly_forward": {
+      "67": 0.17884649727395602,
+      "68": 0.17723074626200852,
+      "69": 0.16141666819869477,
+      "70": 0.14536656730805986
+    }
+  },
+  "final_metrics": {
+    "selection": 0.16590838123465684,
+    "forward": 0.1663786568057568,
+    "all": 0.16621774860351404,
+    "monthly_selection": {
+      "62": 0.1586671961024194,
+      "63": 0.14752664763046802,
+      "64": 0.1906489488315717,
+      "65": 0.16481285970400242
+    },
+    "monthly_forward": {
+      "67": 0.17941625221607432,
+      "68": 0.1723017041694245,
+      "69": 0.16156589169402422,
+      "70": 0.1464573438512235
+    }
+  },
+  "final_delta_vs_verified_joint": {
+    "selection": 0.0013880065556672594,
+    "forward": -0.0009272782353664244,
+    "all": -0.0001221603877927524,
+    "monthly_selection": {
+      "62": -0.00015435636183863677,
+      "63": -0.0008570116477390199,
+      "64": 0.004663711389072123,
+      "65": 0.0013127572895899886
+    },
+    "monthly_forward": {
+      "67": 0.0005697549421183057,
+      "68": -0.004929042092584018,
+      "69": 0.000149223495329448,
+      "70": 0.0010907765431636407
+    }
+  },
+  "selection_positive_months": 2,
+  "forward_positive_months": 3,
+  "gate": {
+    "selection_delta_min": 0.0003,
+    "forward_delta_min": 0.0005,
+    "all_delta_min": 0.0005,
+    "forward_months_nonnegative_min": 3,
+    "worst_forward_month_delta_min": -0.002
+  },
+  "passed": false,
+  "formal_submission": false,
+  "limitation": "Public block has no labels offline. Search changes only the owned block and transfers its selected weights to full-test predictions."
+}

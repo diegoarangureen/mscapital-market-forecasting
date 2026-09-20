@@ -1,0 +1,38 @@
+{
+  "transaction": {
+    "sample_rows": 3550,
+    "limit": 128,
+    "unique_count_quantiles": {
+      "0.5": 28.0,
+      "0.9": 91.0,
+      "0.99": 196.0
+    },
+    "truncated_share": 0.042535211267605635,
+    "overall_volume_share_mean": 0.9897881187478158,
+    "active_top10_volume_share_mean": 0.8991708309207765,
+    "active_top10_span_quantiles": {
+      "0.1": 36.175899505615234,
+      "0.5": 56.24300003051758,
+      "0.9": 59.290798568725585
+    },
+    "active_top10_span_share_mean": 0.8988997623657381
+  },
+  "order": {
+    "sample_rows": 3550,
+    "limit": 256,
+    "unique_count_quantiles": {
+      "0.5": 75.0,
+      "0.9": 239.0999999999999,
+      "0.99": 507.50999999999976
+    },
+    "truncated_share": 0.08535211267605634,
+    "overall_volume_share_mean": 0.9764276013967497,
+    "active_top10_volume_share_mean": 0.7693968699609803,
+    "active_top10_span_quantiles": {
+      "0.1": 26.353999137878418,
+      "0.5": 46.82149887084961,
+      "0.9": 59.20599937438965
+    },
+    "active_top10_span_share_mean": 0.7637095168818918
+  }
+}

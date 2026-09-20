@@ -1,0 +1,12 @@
+{
+  "competition": "ms-capital-real-financial-market-forecasting",
+  "submission_reference": 56166573,
+  "file_name": "tabm007_gainprune_fulltrain.csv",
+  "submitted_at_utc": "2026-09-11 13:47:40",
+  "status": "COMPLETE",
+  "public_score": 0.13,
+  "previous_best_public_score": 0.131,
+  "public_score_change": -0.001,
+  "remaining_submissions_after_upload": 1,
+  "description": "TabM with 277 training-gain-pruned features, 15 epochs fulltrain; local no66 0.15026"
+}

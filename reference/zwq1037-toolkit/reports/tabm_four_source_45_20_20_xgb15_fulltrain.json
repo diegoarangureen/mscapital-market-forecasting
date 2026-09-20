@@ -1,0 +1,52 @@
+{
+  "output_name": "tabm_four_source_45_20_20_xgb15_fulltrain",
+  "training_months": "0-70 for every source",
+  "source_prediction_files": {
+    "original_tabm_and_xgboost": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm001_tree053r_blend75_fulltrain_test.feather",
+    "correlation_pruned_tabm": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm006_corrprune_fulltrain_test.feather",
+    "cosine_loss_tabm": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm003_cosine_fulltrain_test.feather"
+  },
+  "weights": {
+    "tabm_original_centered": 0.45,
+    "tabm_corrprune_raw": 0.2,
+    "tabm_cosine_raw": 0.2,
+    "xgboost_centered": 0.15
+  },
+  "transformation": {
+    "tabm_original": "subtract own test mean, then L2 normalize",
+    "xgboost": "subtract own test mean, then L2 normalize",
+    "tabm_corrprune": "L2 normalize without centering",
+    "tabm_cosine": "L2 normalize without centering",
+    "uses_target_labels": false
+  },
+  "source_statistics": {
+    "tabm_original_mean_removed": 1.00408005170708e-06,
+    "tabm_original_centered_norm": 0.2635136133542139,
+    "xgboost_mean_removed": -8.155722534290821e-06,
+    "xgboost_centered_norm": 0.2921949869091727,
+    "tabm_corrprune_norm": 0.25710767621632463,
+    "tabm_cosine_norm": 0.5377441125884537
+  },
+  "local_validation": {
+    "overall": 0.17632150851071915,
+    "no66": 0.1536701487443422,
+    "recent": 0.15197624309299296,
+    "early": 0.15525443086793886,
+    "primary_std": 0.013166731573388891,
+    "primary_worst": 0.13023874602000643,
+    "primary_q25": 0.14708619041297147,
+    "primary_lomo_min": 0.0008602364601183188,
+    "primary_lomo_mean": 0.0011518854640173298
+  },
+  "test_rows": 647896,
+  "prediction_summary": {
+    "mean": -3.4520400131241567e-06,
+    "std": 0.0012116368801904837,
+    "min": -0.04121193390155603,
+    "max": 0.04554296257027178,
+    "l2_norm": 0.975274560486259
+  },
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_four_source_45_20_20_xgb15_fulltrain.csv",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm_four_source_45_20_20_xgb15_fulltrain_test.feather",
+  "submission_status": "prepared_not_uploaded"
+}

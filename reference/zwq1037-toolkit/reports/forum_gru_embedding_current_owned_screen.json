@@ -1,0 +1,96 @@
+{
+  "window": "train0-59 purge60-61 valid62-70 excluding66",
+  "rows": 140806,
+  "limitation": "Owned-model proxy only; production components use temporal/full variants and public 64% block has no matching validation.",
+  "forum_direction": "frozen GRU representation plus tree; already trained previously, no new fit",
+  "candidates": [
+    {
+      "name": "current_owned_proxy",
+      "weights": {
+        "tabm": 0.12,
+        "realmlp": 0.03,
+        "transformer_old": 0.18,
+        "gru": 0.03
+      },
+      "cosine": 0.16427383168298032,
+      "delta_vs_current": 0.0,
+      "monthly_delta_vs_current": {
+        "62": 0.0,
+        "63": 0.0,
+        "64": 0.0,
+        "65": 0.0,
+        "67": 0.0,
+        "68": 0.0,
+        "69": 0.0,
+        "70": 0.0
+      }
+    },
+    {
+      "name": "multiwindow_half",
+      "weights": {
+        "tabm": 0.12,
+        "realmlp": 0.03,
+        "transformer_old": 0.09,
+        "transformer_new": 0.09,
+        "gru": 0.03
+      },
+      "cosine": 0.16471859840631423,
+      "delta_vs_current": 0.0004447667233339059,
+      "monthly_delta_vs_current": {
+        "62": 0.00011758214865006944,
+        "63": -0.002241071978753617,
+        "64": 0.0024691131150457457,
+        "65": 0.0006552568650093349,
+        "67": 0.0007462715052386215,
+        "68": -0.0032955824798366895,
+        "69": 0.0003626320843828079,
+        "70": 0.005815606889200076
+      }
+    },
+    {
+      "name": "embedding45_from_tabm",
+      "weights": {
+        "tabm": 0.075,
+        "realmlp": 0.03,
+        "transformer_old": 0.18,
+        "gru": 0.03,
+        "gru_embedding_tree": 0.045
+      },
+      "cosine": 0.16378285197337214,
+      "delta_vs_current": -0.0004909797096081803,
+      "monthly_delta_vs_current": {
+        "62": -0.00148631821824588,
+        "63": -0.00019704298982392565,
+        "64": -0.004070583767357888,
+        "65": -0.0005693381285470644,
+        "67": -0.0022867955055665135,
+        "68": 0.0019960484382693378,
+        "69": 0.003211011230546068,
+        "70": -0.0024066758232275387
+      }
+    },
+    {
+      "name": "multiwindow_half_embedding45_from_tabm",
+      "weights": {
+        "tabm": 0.075,
+        "realmlp": 0.03,
+        "transformer_old": 0.09,
+        "transformer_new": 0.09,
+        "gru": 0.03,
+        "gru_embedding_tree": 0.045
+      },
+      "cosine": 0.1642128036871589,
+      "delta_vs_current": -6.10279958214166e-05,
+      "monthly_delta_vs_current": {
+        "62": -0.0013200996639707585,
+        "63": -0.002410195300100615,
+        "64": -0.0015192496334623107,
+        "65": 6.582601448659742e-05,
+        "67": -0.0015033862053866198,
+        "68": -0.0012901403222297936,
+        "69": 0.0036182929124893015,
+        "70": 0.00348229416660345
+      }
+    }
+  ]
+}

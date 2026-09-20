@@ -1,0 +1,25 @@
+{
+  "bundle": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_datasets\\strict_transformer_dev_v7",
+  "destination_dataset": "zwq1037/mscapital-strict-transformer-dev-v7",
+  "input_files": {
+    "artifact_manifest.json": 526,
+    "dataset-metadata.json": 176,
+    "strict_dev_v7.pt": 4492183,
+    "strict_dev_v7_static_norm.npz": 3532,
+    "strict_dev_v7_stream_norm.json": 1271
+  },
+  "private_dataset": true,
+  "notebook": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_kernels\\multistream_factorized_transformer_dev\\run_v23_subsecond_warmstart.ipynb",
+  "code_bytes": 98511,
+  "notebook_destination": "zwq1037/multistream-factorized-transformer-multiwindow-dev",
+  "compiled": true,
+  "uploaded_dataset": true,
+  "uploaded_notebook": true,
+  "training_window": "0-59 / purge60-61 / valid62-70 excluding66",
+  "private_weights_previously_generated_on_kaggle": true,
+  "kaggle_version": 20,
+  "observed_status": "RUNNING",
+  "portable_cpu_parameter_output_gradient_parity": "passed",
+  "actual_dual_gpu_training_confirmed": false,
+  "formal_submission": false
+}

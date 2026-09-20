@@ -1,0 +1,44 @@
+{
+  "output_name": "tabm_trim1_four_source_aggressive_45_20_20_xgb15_fulltrain",
+  "training_months": "0-70 for every trained source",
+  "member_aggregation": "sort 16 original TabM member predictions per row, drop one lowest and one highest, average remaining 14",
+  "aggregation_uses_labels": false,
+  "weights": {
+    "tabm_trim1_centered": 0.45,
+    "tabm_corrprune_raw": 0.2,
+    "tabm_cosine_raw": 0.2,
+    "xgboost_centered": 0.15
+  },
+  "source_statistics": {
+    "tabm_trim1_mean_removed": 7.694752849602645e-07,
+    "tabm_trim1_centered_norm": 0.2598638990061523,
+    "xgboost_mean_removed": -8.155722534290821e-06,
+    "xgboost_centered_norm": 0.2921949869091727,
+    "tabm_corrprune_norm": 0.25710767621632463,
+    "tabm_cosine_norm": 0.5377441125884537
+  },
+  "local_validation": {
+    "overall": 0.1764006758554135,
+    "no66": 0.1537860355254584,
+    "recent": 0.1521025699209209,
+    "early": 0.1553126403613088,
+    "primary_std": 0.0131444670922157,
+    "primary_worst": 0.1304072298039872,
+    "primary_q25": 0.1472172948743208,
+    "primary_months_improved": 6,
+    "primary_month_min_change": -0.0001837693370493,
+    "primary_lomo_min": 7.156988647785689e-05,
+    "primary_lomo_mean": 0.0001160284737163
+  },
+  "test_rows": 647896,
+  "prediction_summary": {
+    "mean": -3.4520400131241457e-06,
+    "std": 0.001211709880198576,
+    "min": -0.041369144134915964,
+    "max": 0.0459747781965167,
+    "l2_norm": 0.9753333194049489
+  },
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_trim1_four_source_aggressive_45_20_20_xgb15_fulltrain.csv",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm_trim1_four_source_aggressive_45_20_20_xgb15_fulltrain_test.feather",
+  "submission_status": "prepared_not_uploaded"
+}

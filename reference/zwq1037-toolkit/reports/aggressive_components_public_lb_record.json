@@ -1,0 +1,95 @@
+{
+  "date": "2026-09-16",
+  "competition": "ms-capital-real-financial-market-forecasting",
+  "models": {
+    "tabm385_k32": {
+      "aggressive_blend_weight": 0.126,
+      "local_late_no66_raw_cosine": 0.16102839913113948,
+      "local_late_no66_zunit_cosine": 0.15950144213995035,
+      "standalone_public_submission": true,
+      "standalone_submission_ref": 56254700,
+      "standalone_public_score": 0.134,
+      "blend_exposure": [
+        {
+          "submission_ref": 56254690,
+          "public_score": 0.15,
+          "role": "inside current138-k32"
+        },
+        {
+          "submission_ref": 56265180,
+          "public_score": 0.15,
+          "weight": 0.126
+        }
+      ]
+    },
+    "realmlp_corr095": {
+      "aggressive_blend_weight": 0.054,
+      "local_late_no66_raw_cosine": 0.153969963,
+      "local_late_no66_zunit_cosine": 0.1539258190556984,
+      "standalone_public_submission": true,
+      "standalone_public_score": 0.139,
+      "blend_exposure": [
+        {
+          "submission_ref": 56250034,
+          "public_score": 0.15,
+          "weight": 0.05
+        },
+        {
+          "submission_ref": 56254690,
+          "public_score": 0.15,
+          "weight": 0.05
+        },
+        {
+          "submission_ref": 56265180,
+          "public_score": 0.15,
+          "weight": 0.054
+        }
+      ],
+      "note": "The LB 0.138 RealMLP+TabM submission used an earlier RealMLP recipe and is not a standalone score for corr095.",
+      "standalone_score_source": "user-reported alternate account submission on 2026-09-16"
+    },
+    "factorized_transformer": {
+      "aggressive_blend_weight": 0.162,
+      "local_late_no66_raw_cosine": 0.15538451490216448,
+      "local_late_no66_zunit_cosine": 0.16010388278593132,
+      "standalone_public_submission": true,
+      "standalone_public_score": 0.145,
+      "blend_exposure": [
+        {
+          "submission_ref": 56250034,
+          "public_score": 0.15,
+          "weight": 0.16
+        },
+        {
+          "submission_ref": 56254690,
+          "public_score": 0.15,
+          "weight": 0.16
+        },
+        {
+          "submission_ref": 56265180,
+          "public_score": 0.15,
+          "weight": 0.162
+        }
+      ],
+      "note": "Earlier Joint Transformer submissions scoring 0.130-0.137 are different architectures.",
+      "standalone_score_source": "user-reported alternate account submission on 2026-09-16"
+    },
+    "timeaware_three_stream_gru": {
+      "aggressive_blend_weight": 0.018,
+      "local_late_no66_raw_cosine": 0.15350975092862484,
+      "local_late_no66_zunit_cosine": 0.15295223658557489,
+      "standalone_public_submission": true,
+      "standalone_public_score": 0.14,
+      "blend_exposure": [
+        {
+          "submission_ref": 56265180,
+          "public_score": 0.15,
+          "weight": 0.018
+        }
+      ],
+      "note": "The old GRU ensemble LB 0.135 is a different GRU model and should not be assigned to this model.",
+      "standalone_score_source": "user-reported alternate account submission on 2026-09-16"
+    }
+  },
+  "interpretation": "All four components now have standalone public scores; the three new scores were reported by the user from an alternate account."
+}

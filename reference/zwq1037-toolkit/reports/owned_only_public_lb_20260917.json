@@ -1,0 +1,15 @@
+{
+  "run_name": "owned_only_tabm33_gru20_realmlp28_transformer19",
+  "file": "outputs/submissions/owned_only_tabm33_gru20_realmlp28_transformer19.csv",
+  "public_score": 0.147,
+  "score_source": "User reported on 2026-09-17; submission ID and account not independently verified",
+  "weights": {"tabm": 0.33, "gru": 0.20, "realmlp": 0.28, "transformer": 0.19},
+  "public_weight": 0.0,
+  "tree_weight": 0.0,
+  "incumbent_public_score": 0.151,
+  "delta_vs_incumbent": -0.004,
+  "best_recorded_owned_standalone_public_score": 0.145,
+  "gain_vs_best_recorded_owned_standalone": 0.002,
+  "conclusion": "Owned models are complementary, but this candidate does not replace the incumbent. The public block effect cannot be isolated because weights and normalization also changed.",
+  "formal_submission_by_agent": false
+}

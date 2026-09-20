@@ -1,0 +1,32 @@
+{
+  "output_name": "tabm003_cosine_member_aggregations_fulltrain",
+  "checkpoint": "outputs/models/tabm003_cosine_fulltrain_tabm.pt",
+  "test_rows": 647896,
+  "member_count": 16,
+  "mean_reproduction_max_absolute_error": 1.862645149230957e-09,
+  "aggregation_uses_labels": false,
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm003_cosine_member_aggregations_fulltrain_test.feather",
+  "statistics": {
+    "mean": {
+      "mean": -5.965220225334633e-06,
+      "std": 0.0006680449587292969,
+      "min": -0.018203292042016983,
+      "max": 0.01978256180882454,
+      "l2_norm": 0.5377436280250549
+    },
+    "trim1": {
+      "mean": -6.399740868801018e-06,
+      "std": 0.0006632080185227096,
+      "min": -0.01814662478864193,
+      "max": 0.019829748198390007,
+      "l2_norm": 0.5338537096977234
+    },
+    "trim2": {
+      "mean": -6.711806690873345e-06,
+      "std": 0.0006606578826904297,
+      "min": -0.01812536083161831,
+      "max": 0.019879892468452454,
+      "l2_norm": 0.5318033695220947
+    }
+  }
+}

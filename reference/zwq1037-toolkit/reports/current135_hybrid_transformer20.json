@@ -1,0 +1,18 @@
+{
+  "run_name": "current135_hybrid_transformer20",
+  "sources": {
+    "current_public_0135": "gru_embedding_seed_ensemble_fulltrain.csv",
+    "hybrid_transformer_public_0136": "joint_transformer_hybrid_epoch5_fulltrain.csv"
+  },
+  "weights": {
+    "current": 0.8,
+    "hybrid_transformer": 0.2
+  },
+  "local_delta": {
+    "50_59": 0.000731,
+    "60_70": 0.000938
+  },
+  "submission_status": "submitted_complete",
+  "kaggle_submission_ref": 56202423,
+  "public_score": 0.137
+}

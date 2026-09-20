@@ -1,0 +1,77 @@
+{
+  "status": "prepared_not_submitted",
+  "models": {
+    "tabm385_k32": {
+      "source": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain.csv",
+      "csv": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain.csv",
+      "rows": 647896,
+      "prediction_mean": 3.986729283733196e-05,
+      "prediction_std": 0.0003544600849834077,
+      "prediction_min": -0.0099988874103206,
+      "prediction_max": 0.0132374122221528,
+      "finite": true
+    },
+    "realmlp_corr095": {
+      "source": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_rq16_corr095_e8_fulltrain.csv",
+      "csv": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_realmlp379_corr095.csv",
+      "rows": 647896,
+      "prediction_mean": 0.0006729417704919668,
+      "prediction_std": 0.012885436887911727,
+      "prediction_min": -0.2431494295597076,
+      "prediction_max": 0.3002326488494873,
+      "finite": true
+    },
+    "factorized_transformer": {
+      "source": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_transformer_fulltrain\\factorized_transformer\\factorized_transformer379_full_e4.csv",
+      "csv": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379.csv",
+      "rows": 647896,
+      "prediction_mean": -1.6340858631901388e-05,
+      "prediction_std": 0.00037180394907988996,
+      "prediction_min": -0.0056857998,
+      "prediction_max": 0.005739607,
+      "finite": true
+    },
+    "timeaware_three_stream_gru": {
+      "source": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_gru_timeaware_fulltrain\\factorized_gru_fulltrain\\factorized_gru379_full_e4.csv",
+      "csv": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379.csv",
+      "rows": 647896,
+      "prediction_mean": -3.6895706586029045e-05,
+      "prediction_std": 0.0003707358362945603,
+      "prediction_min": -0.005061374,
+      "prediction_max": 0.0067597977,
+      "finite": true
+    }
+  },
+  "correlation_names": [
+    "tabm385_k32",
+    "realmlp_corr095",
+    "factorized_transformer",
+    "timeaware_three_stream_gru"
+  ],
+  "test_prediction_correlation": [
+    [
+      1.0,
+      0.9131892961218061,
+      0.8872800610052393,
+      0.8703216604218176
+    ],
+    [
+      0.9131892961218061,
+      1.0,
+      0.8513701287193135,
+      0.8412702006630329
+    ],
+    [
+      0.8872800610052393,
+      0.8513701287193135,
+      1.0,
+      0.9248788423953401
+    ],
+    [
+      0.8703216604218176,
+      0.8412702006630329,
+      0.9248788423953402,
+      1.0
+    ]
+  ]
+}

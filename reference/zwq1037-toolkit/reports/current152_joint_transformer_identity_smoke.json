@@ -1,0 +1,15 @@
+{
+  "status": "prepared_not_submitted",
+  "raw_candidate": "outputs\\submissions\\standalone_factorized_transformer379.csv",
+  "event_candidate": "outputs\\submissions\\standalone_factorized_transformer379.csv",
+  "raw_weight": 0.4,
+  "event_weight": 0.6,
+  "output": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_joint_transformer_identity_smoke.csv",
+  "owned_mass": 0.5288310279173348,
+  "mean_effective_transformer_weight": 0.24239745485680306,
+  "correlation_with_scored_0p152": 1.0,
+  "delta_std": 6.946595812290454e-18,
+  "rows": 647896,
+  "group_common_preserved": true,
+  "formal_submission": false
+}

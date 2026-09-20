@@ -1,0 +1,42 @@
+{
+  "tabm_seed42": {
+    "score": 0.16490890814311265,
+    "weights": {
+      "tabm": 0.45,
+      "realmlp": 0.17,
+      "transformer": 0.38
+    },
+    "extra_scans": {
+      "gru_2seed": {
+        "weight": 0.03,
+        "score": 0.16492237586979444,
+        "delta": 1.3467726681787306e-05
+      },
+      "tree319": {
+        "weight": 0.0,
+        "score": 0.1649089081431149,
+        "delta": 2.248201624865942e-15
+      }
+    }
+  },
+  "tabm_2seed_unit_mean": {
+    "score": 0.16465978525253064,
+    "weights": {
+      "tabm": 0.45,
+      "realmlp": 0.18,
+      "transformer": 0.37
+    },
+    "extra_scans": {
+      "gru_2seed": {
+        "weight": 0.03,
+        "score": 0.16467635511034084,
+        "delta": 1.6569857810205812e-05
+      },
+      "tree319": {
+        "weight": 0.0,
+        "score": 0.16465978525252975,
+        "delta": -8.881784197001252e-16
+      }
+    }
+  }
+}

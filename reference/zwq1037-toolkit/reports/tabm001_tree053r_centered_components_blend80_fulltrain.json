@@ -1,0 +1,36 @@
+{
+  "output_name": "tabm001_tree053r_centered_components_blend80_fulltrain",
+  "source_prediction_file": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm001_tree053r_blend75_fulltrain_test.feather",
+  "source_public_score": 0.131,
+  "transformation": "subtract each component's own test mean, L2-normalize each centered component, then blend 80% TabM and 20% XGBoost",
+  "uses_target_labels": false,
+  "weights": {
+    "tabm": 0.8,
+    "xgboost": 0.2
+  },
+  "source_statistics": {
+    "tabm_mean_removed": 1.00408005170708e-06,
+    "tabm_centered_l2_norm": 0.2635136133542139,
+    "xgboost_mean_removed": -8.155722534290821e-06,
+    "xgboost_centered_l2_norm": 0.2921949869091727
+  },
+  "local_validation": {
+    "overall_cosine": 0.1763136538302259,
+    "cosine_62_70_without_66": 0.1525202375698273,
+    "cosine_67_70": 0.1510077185896754,
+    "cosine_60_64": 0.1537675920305451,
+    "primary_monthly_std": 0.0136215677160199,
+    "primary_monthly_worst": 0.1274096504077587,
+    "primary_monthly_q25": 0.146939404746966
+  },
+  "prediction_summary": {
+    "mean": -1.4565448327067662e-20,
+    "std": 0.0012127144582534072,
+    "min": -0.04455153031469799,
+    "max": 0.0515203124071845,
+    "l2_norm": 0.9761379662533813
+  },
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm001_tree053r_centered_components_blend80_fulltrain.csv",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm001_tree053r_centered_components_blend80_fulltrain_test.feather",
+  "submission_status": "prepared_not_uploaded"
+}

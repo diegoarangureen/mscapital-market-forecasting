@@ -1,0 +1,319 @@
+{
+  "experiment": "EXP-BLEND-008-PREVIOUS-SEQUENCE-SLOT-SCREEN",
+  "selection_rule": "For each previous model choose 0..30% replacement in 2.5% steps using months62-65 only; months67-70 only gate.",
+  "baseline": {
+    "selection": 0.16452037467898958,
+    "forward": 0.16730593504112323,
+    "all": 0.1663399089913068,
+    "monthly_selection": {
+      "62": 0.15882155246425803,
+      "63": 0.14838365927820704,
+      "64": 0.1859852374424996,
+      "65": 0.16350010241441243
+    },
+    "monthly_forward": {
+      "67": 0.17884649727395602,
+      "68": 0.17723074626200852,
+      "69": 0.16141666819869477,
+      "70": 0.14536656730805986
+    }
+  },
+  "rows": [
+    {
+      "name": "tsmixer",
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\tree_experiments\\EXP-SEQUENCE-021-TSMIXER-DEV\\train059_valid6270_ex66\\validation_predictions.feather",
+      "column": "prediction",
+      "selection_rms": 0.0003285120937878166,
+      "selected_weight": 0.0,
+      "metrics": {
+        "selection": 0.16452037467898958,
+        "forward": 0.16730593504112323,
+        "all": 0.1663399089913068,
+        "monthly_selection": {
+          "62": 0.15882155246425803,
+          "63": 0.14838365927820704,
+          "64": 0.1859852374424996,
+          "65": 0.16350010241441243
+        },
+        "monthly_forward": {
+          "67": 0.17884649727395602,
+          "68": 0.17723074626200852,
+          "69": 0.16141666819869477,
+          "70": 0.14536656730805986
+        }
+      },
+      "delta_vs_verified_joint": {
+        "selection": 0.0,
+        "forward": 0.0,
+        "all": 0.0,
+        "monthly_selection": {
+          "62": 0.0,
+          "63": 0.0,
+          "64": 0.0,
+          "65": 0.0
+        },
+        "monthly_forward": {
+          "67": 0.0,
+          "68": 0.0,
+          "69": 0.0,
+          "70": 0.0
+        }
+      },
+      "passed": false
+    },
+    {
+      "name": "linear_sequence",
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\linear_sequence_v23\\linear_sequence_control\\validation_predictions.csv",
+      "column": "prediction",
+      "selection_rms": 0.00043888234066922816,
+      "selected_weight": 0.0,
+      "metrics": {
+        "selection": 0.16452037467898958,
+        "forward": 0.16730593504112323,
+        "all": 0.1663399089913068,
+        "monthly_selection": {
+          "62": 0.15882155246425803,
+          "63": 0.14838365927820704,
+          "64": 0.1859852374424996,
+          "65": 0.16350010241441243
+        },
+        "monthly_forward": {
+          "67": 0.17884649727395602,
+          "68": 0.17723074626200852,
+          "69": 0.16141666819869477,
+          "70": 0.14536656730805986
+        }
+      },
+      "delta_vs_verified_joint": {
+        "selection": 0.0,
+        "forward": 0.0,
+        "all": 0.0,
+        "monthly_selection": {
+          "62": 0.0,
+          "63": 0.0,
+          "64": 0.0,
+          "65": 0.0
+        },
+        "monthly_forward": {
+          "67": 0.0,
+          "68": 0.0,
+          "69": 0.0,
+          "70": 0.0
+        }
+      },
+      "passed": false
+    },
+    {
+      "name": "last_readout",
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\transformer_last_readout_v22\\factorized_transformer_last_readout\\validation_predictions.csv",
+      "column": "prediction",
+      "selection_rms": 0.00034878298819107206,
+      "selected_weight": 0.0,
+      "metrics": {
+        "selection": 0.16452037467898958,
+        "forward": 0.16730593504112323,
+        "all": 0.1663399089913068,
+        "monthly_selection": {
+          "62": 0.15882155246425803,
+          "63": 0.14838365927820704,
+          "64": 0.1859852374424996,
+          "65": 0.16350010241441243
+        },
+        "monthly_forward": {
+          "67": 0.17884649727395602,
+          "68": 0.17723074626200852,
+          "69": 0.16141666819869477,
+          "70": 0.14536656730805986
+        }
+      },
+      "delta_vs_verified_joint": {
+        "selection": 0.0,
+        "forward": 0.0,
+        "all": 0.0,
+        "monthly_selection": {
+          "62": 0.0,
+          "63": 0.0,
+          "64": 0.0,
+          "65": 0.0
+        },
+        "monthly_forward": {
+          "67": 0.0,
+          "68": 0.0,
+          "69": 0.0,
+          "70": 0.0
+        }
+      },
+      "passed": false
+    },
+    {
+      "name": "sync_tcn",
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_sync_tcn_v17\\synchronized_recent_tcn\\validation_predictions.csv",
+      "column": "prediction",
+      "selection_rms": 0.000373362767769888,
+      "selected_weight": 0.0,
+      "metrics": {
+        "selection": 0.16452037467898958,
+        "forward": 0.16730593504112323,
+        "all": 0.1663399089913068,
+        "monthly_selection": {
+          "62": 0.15882155246425803,
+          "63": 0.14838365927820704,
+          "64": 0.1859852374424996,
+          "65": 0.16350010241441243
+        },
+        "monthly_forward": {
+          "67": 0.17884649727395602,
+          "68": 0.17723074626200852,
+          "69": 0.16141666819869477,
+          "70": 0.14536656730805986
+        }
+      },
+      "delta_vs_verified_joint": {
+        "selection": 0.0,
+        "forward": 0.0,
+        "all": 0.0,
+        "monthly_selection": {
+          "62": 0.0,
+          "63": 0.0,
+          "64": 0.0,
+          "65": 0.0
+        },
+        "monthly_forward": {
+          "67": 0.0,
+          "68": 0.0,
+          "69": 0.0,
+          "70": 0.0
+        }
+      },
+      "passed": false
+    },
+    {
+      "name": "deep3_transformer",
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_transformer_deep3_dev\\factorized_transformer\\validation_predictions.csv",
+      "column": "prediction",
+      "selection_rms": 0.00037468022572962527,
+      "selected_weight": 0.0,
+      "metrics": {
+        "selection": 0.16452037467898958,
+        "forward": 0.16730593504112323,
+        "all": 0.1663399089913068,
+        "monthly_selection": {
+          "62": 0.15882155246425803,
+          "63": 0.14838365927820704,
+          "64": 0.1859852374424996,
+          "65": 0.16350010241441243
+        },
+        "monthly_forward": {
+          "67": 0.17884649727395602,
+          "68": 0.17723074626200852,
+          "69": 0.16141666819869477,
+          "70": 0.14536656730805986
+        }
+      },
+      "delta_vs_verified_joint": {
+        "selection": 0.0,
+        "forward": 0.0,
+        "all": 0.0,
+        "monthly_selection": {
+          "62": 0.0,
+          "63": 0.0,
+          "64": 0.0,
+          "65": 0.0
+        },
+        "monthly_forward": {
+          "67": 0.0,
+          "68": 0.0,
+          "69": 0.0,
+          "70": 0.0
+        }
+      },
+      "passed": false
+    },
+    {
+      "name": "transformer020_ema",
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\tree_experiments\\EXP-TRANSFORMER-020-FACTORIZED-EMA\\train059_valid6270_ex66\\validation_predictions.feather",
+      "column": "ema",
+      "selection_rms": 0.00035701424318437987,
+      "selected_weight": 0.0,
+      "metrics": {
+        "selection": 0.16452037467898958,
+        "forward": 0.16730593504112323,
+        "all": 0.1663399089913068,
+        "monthly_selection": {
+          "62": 0.15882155246425803,
+          "63": 0.14838365927820704,
+          "64": 0.1859852374424996,
+          "65": 0.16350010241441243
+        },
+        "monthly_forward": {
+          "67": 0.17884649727395602,
+          "68": 0.17723074626200852,
+          "69": 0.16141666819869477,
+          "70": 0.14536656730805986
+        }
+      },
+      "delta_vs_verified_joint": {
+        "selection": 0.0,
+        "forward": 0.0,
+        "all": 0.0,
+        "monthly_selection": {
+          "62": 0.0,
+          "63": 0.0,
+          "64": 0.0,
+          "65": 0.0
+        },
+        "monthly_forward": {
+          "67": 0.0,
+          "68": 0.0,
+          "69": 0.0,
+          "70": 0.0
+        }
+      },
+      "passed": false
+    },
+    {
+      "name": "relative394_xs",
+      "path": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\sequence_experiments\\EXP-TRANSFORMER-018-RELATIVE394-XS-CONFIRM-NO66\\validation_predictions_epoch05.feather",
+      "column": "prediction",
+      "selection_rms": 0.00035872077219292964,
+      "selected_weight": 0.15000000000000002,
+      "metrics": {
+        "selection": 0.16465642161421365,
+        "forward": 0.1668715735682093,
+        "all": 0.16610562507387114,
+        "monthly_selection": {
+          "62": 0.15960716321701218,
+          "63": 0.14798626149588803,
+          "64": 0.18616924664922319,
+          "65": 0.1633689423911105
+        },
+        "monthly_forward": {
+          "67": 0.17804155113147907,
+          "68": 0.1764147865021665,
+          "69": 0.16167043839954273,
+          "70": 0.14512737489233618
+        }
+      },
+      "delta_vs_verified_joint": {
+        "selection": 0.00013604693522406563,
+        "forward": -0.00043436147291392446,
+        "all": -0.00023428391743565702,
+        "monthly_selection": {
+          "62": 0.0007856107527541567,
+          "63": -0.0003973977823190089,
+          "64": 0.00018400920672359544,
+          "65": -0.000131160023301935
+        },
+        "monthly_forward": {
+          "67": -0.0008049461424769477,
+          "68": -0.0008159597598420276,
+          "69": 0.00025377020084796365,
+          "70": -0.0002391924157236769
+        }
+      },
+      "passed": false
+    }
+  ],
+  "passed_models": [],
+  "formal_submission": false
+}

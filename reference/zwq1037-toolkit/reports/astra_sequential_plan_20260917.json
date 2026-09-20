@@ -1,0 +1,182 @@
+{
+  "status": "complete",
+  "authorization": "User approved these sequential experiments and automatic continuation when awakened. Formal competition submission is not authorized.",
+  "steps": [
+    {
+      "id": "owned_shrink_stacking",
+      "status": "complete_not_selected",
+      "script": "scripts/exp_blend_003_shrink_softgate.py",
+      "forward_delta": 0.0010394627951084423
+    },
+    {
+      "id": "transformer_last_readout",
+      "status": "rejected",
+      "kernel": "zwq1037/multistream-factorized-transformer-multiwindow-dev",
+      "actual_version": 22,
+      "code_file": "run_v25_last_readout.ipynb",
+      "score_file": "F:\\娣卞害瀛︿範\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\transformer_last_readout_v22\\factorized_transformer_last_readout\\score_only.json",
+      "best_cosine": 0.1524115764870891,
+      "delta": -0.0029729384150753713,
+      "eligible_for_full_training": false
+    },
+    {
+      "id": "rv60_soft_gate",
+      "status": "complete_csv_prepared",
+      "script": "scripts/exp_blend_003_shrink_softgate.py",
+      "forward_delta": 0.001267393183126353,
+      "csv": "F:\\娣卞害瀛︿範\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_owned_softgate25_transfer.csv"
+    },
+    {
+      "id": "tsmixer_dev",
+      "script": "scripts/exp_sequence_021_tsmixer_dev.py",
+      "score_file": "data/interim/tree_experiments/EXP-SEQUENCE-021-TSMIXER-DEV/score_only.json",
+      "job_record": "outputs/submission_metadata/tsmixer021_wait_job.json",
+      "status": "complete_rejected",
+      "first_failure": "OpenMP duplicate runtime before epoch 1",
+      "repair": "MKL_THREADING_LAYER=SEQUENTIAL",
+      "wait_job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260918-094656-tsmixer021-dev-repair1-c73037f8",
+      "best_epoch": 5,
+      "best_cosine": 0.14874863794501667,
+      "delta_vs_transformer": -0.006635876957147818,
+      "selected_fusion_weight": 0.0
+    },
+    {
+      "id": "linear_sequence_control",
+      "status": "rejected",
+      "actual_version": 23,
+      "best_cosine": 0.11991725551258357,
+      "selected_fusion_weight": 0.0,
+      "score_file": "data/interim/kaggle_results/linear_sequence_v23/linear_sequence_control/score_only.json"
+    },
+    {
+      "id": "realmlp_all379",
+      "status": "complete_rejected",
+      "best_cosine": 0.152882,
+      "delta_vs_corr095": -0.00108796342598498,
+      "score_file": "data/interim/tree_experiments/EXP-REALMLP-008-OUR379-ALL-FEATURES/score_summary.json"
+    }
+  ],
+  "on_wake": "Read this plan and compact job status. For the Kaggle supervisor job, read downloaded score_only.json and validation CSV. Compare raw overall with baseline0.1553845149 and compare 67-70 predictions against v7 baseline. If overall improves >=0.0005 and forward does not worsen, prepare full training in the same notebook; otherwise retain the baseline. Complete any remaining planned stage rather than only reporting completion. Generate candidate CSV for a qualifying owned fusion if matching test files exist, keeping the public block unchanged. Do not submit. Do not sweep ratios or seeds. Repair runtime failure once if necessary.",
+  "max_cpu_threads": 2,
+  "formal_submission": false,
+  "plan_path": "outputs/submission_metadata/astra_sequential_plan_20260917.json",
+  "remote_wait_job_record": "outputs/submission_metadata/transformer_last_readout_v22_wait_job.json",
+  "current_action": "Completed the planned single-model structure experiments. No new candidate passed the predeclared standalone or fusion gates.",
+  "user_reported_softgate_public_score": 0.152,
+  "owned4_search": {
+    "status": "complete",
+    "score_file": "F:\\娣卞害瀛︿範\\projects\\mscapital_market_forecasting\\data\\interim\\tree_experiments\\EXP-BLEND-004-OWNED4-OPTIMUM\\score_only.json",
+    "best_retrospective_method": "exploratory_all_local_optimum",
+    "formal_submission": false,
+    "public_score": 0.148,
+    "best_owned_only_public_score": 0.148
+  },
+  "kaggle_auth": "reauthentication_required_2026-09-18",
+  "schema_version": 2,
+  "updated_at": "2026-09-18T10:56:35.8139358+08:00",
+  "objective": "Improve single models and the owned-model blend efficiently, then prepare reviewable full-test CSV candidates without consuming Kaggle submissions.",
+  "authorization_scope": {
+    "local_dev_training": true,
+    "kaggle_notebook_edit_and_training": true,
+    "automatic_continuation_after_wake": true,
+    "formal_kaggle_submission": false,
+    "max_cpu_threads": 2,
+    "validation_protocol": "train months 0-59; purge 60-61; validate 62-70 excluding66; one dev run only; no seed confirmation"
+  },
+  "current_stage": "complete",
+  "decision_tree": [
+    {
+      "stage": "tsmixer_dev",
+      "status": "complete_rejected",
+      "job_record": "outputs/submission_metadata/tsmixer021_wait_job.json",
+      "result": "data/interim/tree_experiments/EXP-SEQUENCE-021-TSMIXER-DEV/score_only.json",
+      "on_wake": [
+        "Verify terminal state, score file, validation predictions, and checkpoint.",
+        "Compute raw cosine for all months, 62-65, and 67-70.",
+        "Read the predeclared fusion weights 0%,5%,10%,15%; select using 62-65 only and assess 67-70."
+      ],
+      "pass_gate": {
+        "fusion_forward_delta_min": 0.0003,
+        "positive_forward_months_min": 2,
+        "worst_forward_month_delta_min": -0.0005,
+        "standalone_alternative": "delta vs Transformer >=0.0007 and 67-70 does not decline"
+      },
+      "if_pass": "Prepare and upload a full-training TSMixer in the existing Kaggle notebook. Use the selected best epoch, existing caches, dual T4, and the same architecture/loss. Generate standalone and owned-blend CSVs; do not submit.",
+      "if_fail": "Mark TSMixer rejected and start linear_sequence_control.",
+      "best_epoch": 5,
+      "best_cosine": 0.14874863794501667,
+      "standalone_62_65": 0.1516968160867691,
+      "standalone_67_70": 0.14734014868736267,
+      "selected_fusion_weight": 0.0
+    },
+    {
+      "stage": "linear_sequence_control",
+      "status": "rejected",
+      "design": "Low-cost DLinear-style direct readout from fixed market40/transaction20/order20 patch summaries plus a static379 linear branch. No recurrent, attention, convolution, feature aggregation, or new dependency.",
+      "execution": "Run one local dev with the same split and loss. Save aligned validation predictions and checkpoints. Test weights 0%,5%,10%,15% against the frozen four-owned blend.",
+      "pass_gate": {
+        "fusion_forward_delta_min": 0.0003,
+        "positive_forward_months_min": 2,
+        "worst_forward_month_delta_min": -0.0005
+      },
+      "if_pass": "Prepare full training and test CSV locally or on the existing Kaggle notebook, whichever is faster. Do not submit.",
+      "if_fail": "Mark the new-model branch exhausted and start realmlp_all379.",
+      "kaggle_code_file": "run_v26_linear_sequence.ipynb",
+      "best_cosine": 0.11991725551258357,
+      "selected_fusion_weight": 0.0,
+      "score_file": "data/interim/kaggle_results/linear_sequence_v23/linear_sequence_control/score_only.json"
+    },
+    {
+      "stage": "realmlp_all379",
+      "status": "complete_rejected",
+      "design": "Complete the unfinished EXP008: keep all 379 features and preserve RealMLP structure, RQ weight, seed, EMA, epochs, and loss from EXP009.",
+      "execution": "One local dev only; compare directly with EXP009 raw baseline 0.1551788388 and both validation halves.",
+      "pass_gate": {
+        "raw_delta_min": 0.0005,
+        "require_62_65_nonnegative": true,
+        "require_67_70_nonnegative": true
+      },
+      "if_pass": "Train the corresponding full model and generate standalone plus owned-blend CSVs. Do not submit.",
+      "if_fail": "Stop this plan and report that no planned single-model candidate passed.",
+      "best_cosine": 0.152882,
+      "delta_vs_corr095": -0.00108796342598498,
+      "score_file": "data/interim/tree_experiments/EXP-REALMLP-008-OUR379-ALL-FEATURES/score_summary.json"
+    },
+    {
+      "stage": "candidate_handoff",
+      "status": "not_entered_no_qualifying_candidate",
+      "entry_condition": "Any full candidate CSV is generated and verified.",
+      "actions": [
+        "Record model score, fusion score, weights, rows, prediction correlation, and file hash.",
+        "Report the candidate path and evidence to the user.",
+        "Wait for explicit authorization before Kaggle submission."
+      ]
+    }
+  ],
+  "automatic_failure_policy": {
+    "repair_limit_per_stage": 1,
+    "actions": [
+      "Inspect bounded log tail and checkpoint.",
+      "Repair deterministic code/runtime errors without changing the hypothesis.",
+      "Resume from checkpoint when compatible."
+    ],
+    "stop_when": [
+      "The same failure repeats after one repair.",
+      "Required data or credentials remain unavailable.",
+      "A next step would require an unauthorized Kaggle submission."
+    ]
+  },
+  "model_selection_rules": [
+    "Do not tune on 67-70 after selecting on 62-65.",
+    "Do not repeat seeds for confirmation.",
+    "Do not start another broad blend grid.",
+    "A weaker standalone model may pass only through the fixed fusion gate.",
+    "Do not overwrite a running Kaggle notebook version."
+  ],
+  "parallelism": {
+    "local": "tsmixer_dev",
+    "kaggle": "linear_sequence_control",
+    "rule": "Do not overwrite a running remote version; each completion independently verifies its gate. Let the other active job finish."
+  },
+  "next_action": "Report the completed evidence. Do not full-train or submit TSMixer, linear sequence, or RealMLP all379. A new hypothesis requires a new plan."
+}

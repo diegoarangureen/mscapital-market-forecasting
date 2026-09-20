@@ -1,0 +1,15 @@
+{
+  "experiment": "EXP-SEQUENCE-020-SUBSECOND-GRU-TRANSFORMER",
+  "user_instruction": "今天先停了，明天再跑",
+  "training_process_status": "exited",
+  "exit_reason": "OpenMP duplicate runtime initialization during NumPy dot product after Torch initialization",
+  "checkpoint_available": false,
+  "retained_artifacts": ["train_fold_normalization.npz", "train_subsecond_event_cache_v1"],
+  "reproduction": "NumPy dot after Torch CPU matrix multiplication reproduces OMP Error 15",
+  "resume_requirements": [
+    "Replace NumPy BLAS cosine scoring with a verified Torch implementation",
+    "Save a recovery checkpoint before validation and periodically during training",
+    "Wait for the user's next-day resume instruction before launching training"
+  ],
+  "formal_submissions_remaining_today": 0
+}

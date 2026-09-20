@@ -1,0 +1,17 @@
+{
+  "checkpoint": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\factorized_transformer_dev_v7_exact\\best_transformer_cnn.pt",
+  "source_score": 0.15538451490216448,
+  "source_epoch": 4,
+  "source_target_scale": 0.002556657651439309,
+  "copied_tensor_count": 72,
+  "copied_parameter_elements": 495939,
+  "total_parameter_elements": 666629,
+  "source_training_window": "0-59",
+  "allowed_validation_window": "62-70 excluding 66",
+  "early_50_59_validation_allowed": false,
+  "fresh_branches": [
+    "transaction_event_gru",
+    "order_event_gru"
+  ],
+  "experiment_started": false
+}

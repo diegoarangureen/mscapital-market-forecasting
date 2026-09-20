@@ -1,0 +1,118 @@
+{
+  "run_name": "tabm_relative319_xs40_order20_market6_deepwide_seed42_fulltrain",
+  "seed": 42,
+  "epochs": 15,
+  "feature_count": 385,
+  "train_rows": 1257637,
+  "test_rows": 647896,
+  "validation_62_70_no66": 0.15966356445919355,
+  "validation_delta_vs_k32": -0.0013648346719459248,
+  "tabm_k": 32,
+  "n_blocks": 3,
+  "d_block": 512,
+  "dropout": 0.15,
+  "source_notebook": "relative319_xs_tabm_notebook",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm_relative319_xs40_order20_market6_deepwide_seed42_fulltrain_test.feather",
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_order20_market6_deepwide_seed42_fulltrain.csv",
+  "prediction_std": 0.0003493973762642848,
+  "logs": [
+    {
+      "epoch": 1,
+      "learning_rate": 0.002,
+      "train_mse": 0.9830387756965249,
+      "seconds": 39.60513889999993
+    },
+    {
+      "epoch": 2,
+      "learning_rate": 0.001987043238232586,
+      "train_mse": 0.979544519346342,
+      "seconds": 38.19278600000007
+    },
+    {
+      "epoch": 3,
+      "learning_rate": 0.0019485263796156027,
+      "train_mse": 0.9777110209042362,
+      "seconds": 38.327719100000195
+    },
+    {
+      "epoch": 4,
+      "learning_rate": 0.0018855000636461645,
+      "train_mse": 0.9761794308470091,
+      "seconds": 38.41992119999986
+    },
+    {
+      "epoch": 5,
+      "learning_rate": 0.001799683483926574,
+      "train_mse": 0.9749019035104957,
+      "seconds": 38.502095199999985
+    },
+    {
+      "epoch": 6,
+      "learning_rate": 0.0016934174930444542,
+      "train_mse": 0.9734854940507475,
+      "seconds": 38.4985372000001
+    },
+    {
+      "epoch": 7,
+      "learning_rate": 0.0015696007502163055,
+      "train_mse": 0.9718654791647983,
+      "seconds": 38.576900099999875
+    },
+    {
+      "epoch": 8,
+      "learning_rate": 0.0014316106534203211,
+      "train_mse": 0.9703713404490358,
+      "seconds": 38.84199810000018
+    },
+    {
+      "epoch": 9,
+      "learning_rate": 0.0012832112127837594,
+      "train_mse": 0.9681232238317155,
+      "seconds": 38.71459709999999
+    },
+    {
+      "epoch": 10,
+      "learning_rate": 0.0011284503781987159,
+      "train_mse": 0.9664159814482738,
+      "seconds": 38.744462999999996
+    },
+    {
+      "epoch": 11,
+      "learning_rate": 0.0009715496218012844,
+      "train_mse": 0.9649536396511501,
+      "seconds": 38.88956849999977
+    },
+    {
+      "epoch": 12,
+      "learning_rate": 0.0008167887872162409,
+      "train_mse": 0.9625465192510735,
+      "seconds": 38.87147640000012
+    },
+    {
+      "epoch": 13,
+      "learning_rate": 0.0006683893465796793,
+      "train_mse": 0.960339753909689,
+      "seconds": 39.051073200000246
+    },
+    {
+      "epoch": 14,
+      "learning_rate": 0.0005303992497836947,
+      "train_mse": 0.9584075781196667,
+      "seconds": 39.075781800000186
+    },
+    {
+      "epoch": 15,
+      "learning_rate": 0.0004065825069555462,
+      "train_mse": 0.956807214636001,
+      "seconds": 39.042090800000096
+    }
+  ],
+  "submission_status": "submitted_by_user_or_alternate_account",
+  "public_lb": 0.133,
+  "public_lb_source": "user_reported",
+  "public_lb_comparison": {
+    "tabm385_k32": 0.134,
+    "delta": -0.001
+  },
+  "conclusion": "reject deeper/wider TabM; both local validation and public LB declined"
+}

@@ -1,0 +1,14 @@
+{
+  "file": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\robust6_knownlb_equal38_common.csv",
+  "rows": 647896,
+  "columns": [
+    "sample_id",
+    "prediction"
+  ],
+  "sample_id_unique": true,
+  "finite": true,
+  "prediction_mean": -0.014190371172413693,
+  "prediction_std": 0.9400662465547693,
+  "sha256": "3fb36bec4f8e83eacd12118398e6b18600970d50f516dacfd71f0c2158d11d23",
+  "ready": true
+}

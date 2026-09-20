@@ -1,0 +1,145 @@
+{
+  "run_name": "realmlp379_rq16_temporal3fold_e8",
+  "validation_note": "Saved models only; no retraining. Feature selection and preprocessing reproduce the training script's shared-full-labeled-data convention.",
+  "kept_features": 301,
+  "selection": {
+    "input_features": 379,
+    "kept_features": 301,
+    "sample_id_dropped": false,
+    "dropped_features": [
+      "transaction_count_mean",
+      "transaction_volume_sum",
+      "transaction_volume_mean",
+      "transaction_avgprice_last_valid",
+      "ask_price_1_mean",
+      "ask_price_1_min",
+      "ask_price_1_max",
+      "ask_price_1_first",
+      "ask_price_1_last",
+      "bid_price_1_mean",
+      "bid_price_1_last",
+      "ask_volume_1_mean",
+      "ask_volume_1_max",
+      "bid_volume_1_mean",
+      "spread_1_mean",
+      "mid_price_1_mean",
+      "last60_row_count",
+      "last60_ask_price_1_mean",
+      "last60_ask_price_1_start",
+      "last60_ask_price_1_end",
+      "last60_bid_price_1_start",
+      "last60_bid_price_1_end",
+      "last60_bid_volume_1_mean",
+      "last60_spread_1_mean",
+      "last60_book_volume_imbalance_1",
+      "ask_price_2_mean",
+      "ask_price_2_max",
+      "ask_price_2_last",
+      "last60_ask_price_2_mean",
+      "last60_ask_price_2_start",
+      "last60_ask_price_2_end",
+      "bid_price_2_mean",
+      "bid_price_2_last",
+      "last60_bid_price_2_mean",
+      "last60_bid_price_2_end",
+      "ask_volume_2_mean",
+      "ask_volume_2_max",
+      "bid_volume_2_mean",
+      "bid_volume_2_max",
+      "spread_2_mean",
+      "last60_spread_2_mean",
+      "book_imbalance_1_mean_robust",
+      "book_imbalance_1_20_mean_robust",
+      "microprice_displacement_last",
+      "microprice_displacement_20_mean",
+      "ofi_1_sum",
+      "ofi_2_sum",
+      "multilevel_ofi_mean",
+      "multilevel_ofi_sum",
+      "multilevel_ofi_60_mean",
+      "log_total_depth_mean",
+      "log_total_depth_60_mean",
+      "trade_volume_imbalance_20",
+      "trade_count_imbalance_60",
+      "new_order_volume_imbalance_10",
+      "net_order_pressure_10",
+      "net_order_pressure_30",
+      "m_mid_mean_15",
+      "m_sp_mean_15",
+      "relative_spread_60_mean",
+      "month_rank__trade_volume_imbalance_20",
+      "month_rank__trade_count_imbalance_60",
+      "month_rank__new_order_volume_imbalance_10",
+      "month_rank__ask_price_1_last",
+      "month_rank__trade_volume_imbalance_60",
+      "month_rank__cancel_order_pressure_10",
+      "month_rank__bid_price_2_last",
+      "month_zscore__last60_ask_price_1_end",
+      "month_zscore__ofi_1_20_mean",
+      "month_zscore__net_order_pressure_30",
+      "month_zscore__ofi_1_last",
+      "month_zscore__ask_price_1_last",
+      "month_zscore__trade_volume_imbalance_60",
+      "month_zscore__net_order_pressure_10",
+      "month_zscore__last_trade_seconds_before_predict",
+      "month_zscore__spread_1_mean",
+      "month_zscore__cancel_order_pressure_10",
+      "month_zscore__last60_bid_price_2_end"
+    ]
+  },
+  "preprocessing": {
+    "categorical_features": 3,
+    "numerical_features": 298,
+    "cat_dims": [
+      10,
+      4,
+      10
+    ]
+  },
+  "rows": {
+    "broad_62_70_without_66": 140806,
+    "strict_63_70_without_66": 123067
+  },
+  "per_fold": {
+    "52": {
+      "broad_62_70_without_66": 0.15316926114888696,
+      "strict_63_70_without_66": 0.15317538109423745,
+      "prediction_std": 0.015962693495885458
+    },
+    "57": {
+      "broad_62_70_without_66": 0.15559188020185222,
+      "strict_63_70_without_66": 0.155675765302222,
+      "prediction_std": 0.016000770831691068
+    },
+    "62": {
+      "broad_62_70_without_66": 0.1596803147809869,
+      "strict_63_70_without_66": 0.1554989470068281,
+      "prediction_std": 0.016213657452344665
+    }
+  },
+  "ensemble_52_57": {
+    "broad_62_70_without_66": 0.15364588071668556,
+    "strict_63_70_without_66": 0.15399008448342238
+  },
+  "ensemble_all3": {
+    "strict_63_70_without_66": 0.15453813884129683
+  },
+  "pairwise_prediction_correlation": [
+    [
+      1.0,
+      0.9883130375374073,
+      0.9842839506848575
+    ],
+    [
+      0.9883130375374072,
+      1.0,
+      0.9880141421938459
+    ],
+    [
+      0.9842839506848575,
+      0.9880141421938459,
+      1.0
+    ]
+  ],
+  "historical_realmlp_baseline_raw_62_70_without_66": 0.15466833910919217
+}

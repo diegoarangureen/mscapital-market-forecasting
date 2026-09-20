@@ -1,0 +1,43 @@
+{
+  "run_name": "realmlp379_memberwise_cosine_seed42_e3_fulltrain",
+  "model": "4-member numeric Yunsu-style PBLD RealMLP",
+  "features": "Relative319 + XS40 + order20",
+  "feature_count": 379,
+  "loss": "member-wise weighted MSE + 0.01 centered cosine",
+  "seed": 42,
+  "epochs": 3,
+  "train_months": "0-70",
+  "train_rows": 1257637,
+  "test_rows": 647896,
+  "validation": {
+    "train049_valid5059_standalone": 0.13713810258461037,
+    "train059_valid6270_ex66_standalone": 0.1448919632456695
+  },
+  "prediction_mean": 6.007118696614118E-05,
+  "prediction_std": 0.0003167402879864101,
+  "prediction_min": -0.0035101578805614747,
+  "prediction_max": 0.0058468302972099215,
+  "logs": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5261714147105268,
+      "seconds": 27.260211699999672
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.510233222856281,
+      "seconds": 26.86402249999992
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.507674616997178,
+      "seconds": 26.92112189999989
+    }
+  ],
+  "model_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\models\\realmlp379_memberwise_cosine_seed42_e3_fulltrain.pt",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\realmlp379_memberwise_cosine_seed42_e3_fulltrain_test.feather",
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_memberwise_cosine_seed42_e3_fulltrain.csv",
+  "submission_status": "submitted_complete",
+  "kaggle_submission_ref": 56233216,
+  "public_score": 0.121
+}

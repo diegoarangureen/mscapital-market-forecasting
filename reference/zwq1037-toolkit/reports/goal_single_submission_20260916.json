@@ -1,0 +1,50 @@
+{
+  "objective": "Use local structural experiments and one Kaggle submission to improve the 0.150 incumbent.",
+  "submission_budget": 1,
+  "submissions_used": 1,
+  "result": {
+    "file": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t12_r03_x18_g03.csv",
+    "kaggle_submission_ref": 56270670,
+    "status": "complete",
+    "public_score": 0.151,
+    "previous_best_displayed_score": 0.150,
+    "displayed_improvement": 0.001
+  },
+  "final_weights": {
+    "public_gpu_tabm": 0.20,
+    "public_tpu_tabm": 0.12,
+    "public_yangq_blend": 0.32,
+    "temporal_tabm_3fold_3seed": 0.12,
+    "realmlp_fold57": 0.03,
+    "factorized_transformer_fulltrain": 0.18,
+    "temporal_gru_equal3": 0.03
+  },
+  "evidence": {
+    "temporal_gru_strict_63_70_without_66_equal3": 0.16066187874296348,
+    "temporal_gru_fold52": 0.15127255177961246,
+    "temporal_gru_fold57": 0.15707154319296338,
+    "temporal_gru_fold62": 0.15180296866792037,
+    "temporal_gru_vs_old_test_correlation": 0.959977705407524,
+    "geometry_estimate": 0.15092065444840277,
+    "geometry_loocv_mae": 0.0008244080064382986
+  },
+  "local_structure_experiments": {
+    "tabm_ple_late": {
+      "baseline": 0.16102839913113948,
+      "candidate": 0.16118662207745169,
+      "delta": 0.00015822294631220868
+    },
+    "tabm_ple_early": {
+      "baseline": 0.1540448437886568,
+      "candidate": 0.1520822143832391,
+      "delta": -0.001962629405417693,
+      "decision": "reject_fulltrain"
+    },
+    "linear_leaf_tree_in_trio": {
+      "weight_0.05_delta": -0.00009395014206425856,
+      "weight_0.10_delta": -0.00029018614130785214,
+      "decision": "reject_from_final_blend"
+    }
+  },
+  "conclusion": "The low-weight temporal GRU improved diversity, while PLE and linear-leaf tree did not generalize across the required local checks. The selected balanced direct blend established a new displayed public best of 0.151."
+}

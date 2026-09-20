@@ -1,0 +1,37 @@
+{
+  "run_name": "current150_temporal_balanced_tabm_realmlp57_transformer50",
+  "base_public_lb": 0.15,
+  "base_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_full_replace_corr095_current138k32_equal38_common.csv",
+  "slot_weights": {
+    "current": 0.15,
+    "realmlp": 0.05,
+    "transformer": 0.16
+  },
+  "replacement_fractions": {
+    "current": 1.0,
+    "realmlp": 1.0,
+    "transformer": 0.5
+  },
+  "evidence": {
+    "tabm_old_public_lb": 0.134,
+    "tabm_temporal_public_lb": 0.14,
+    "realmlp57_local_delta_62_70_without_66": 0.00092354109266005,
+    "transformer_old_public_lb": 0.145,
+    "transformer_temporal_public_lb": 0.145
+  },
+  "old_vs_new_test_correlation": {
+    "current": 0.9868633493217576,
+    "realmlp": 0.9710023190489608,
+    "transformer": 0.9576222811154734
+  },
+  "candidate": {
+    "rows": 647896,
+    "finite": true,
+    "mean": -0.014190371172413693,
+    "std": 0.942694007734118,
+    "correlation_with_current_best": 0.998872733532749
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_temporal_balanced_tabm_realmlp57_transformer50.csv",
+  "submission_status": "prepared_not_submitted",
+  "submission_policy": "preferred no-GRU final candidate after tied Transformer calibration"
+}

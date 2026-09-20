@@ -1,0 +1,20 @@
+{
+  "experiment": "EXP-SEQUENCE-021-SUBSECOND-EARLY-CANDIDATE",
+  "prepared": true,
+  "started": false,
+  "script": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\scripts\\exp_sequence_021_subsecond_early_candidate.py",
+  "train_months": "0-47",
+  "purged_months": [
+    48,
+    49
+  ],
+  "validation_months": "50-59",
+  "epochs": 4,
+  "seed": 2026,
+  "precision": "float32",
+  "batch_size": 256,
+  "fixed_candidate_weight_after_pair": 0.25,
+  "weight_search": false,
+  "requires_matched_old_transformer": true,
+  "source_sha256": "246edaea9a691b59963023a671404ebb434aac9c8b43f215a8bb1a9f5fb3236e"
+}

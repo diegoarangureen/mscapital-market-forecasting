@@ -1,0 +1,22 @@
+{
+  "valid_months": "50-59",
+  "experiment": "sequence020_early_matched_pair",
+  "dual_gpu_runtime_check_required": true,
+  "models": [
+    "old_factorized_transformer379",
+    "subsecond_event_gru_transformer379"
+  ],
+  "prepared": true,
+  "preprocessing_fit_on_training_only": true,
+  "early_delta_threshold": 0.0003,
+  "train_months": "0-47",
+  "launch_condition": "local late cosine >= 0.1563845145 (+0.001 over baseline)",
+  "epochs_per_model": 4,
+  "uploaded": false,
+  "training_precision": "float32",
+  "seed": 2026,
+  "purged_months": [
+    48,
+    49
+  ]
+}

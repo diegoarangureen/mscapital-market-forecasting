@@ -1,0 +1,13 @@
+{
+  "status": "prepared_not_submitted",
+  "candidate": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\market_conditioned_event_residual_full_v28\\market_conditioned_event_residual_full\\standalone_market_conditioned_event_residual_full.csv",
+  "output": "F:\\\u6df1\u5ea6\u5b66\u4e60\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_event_residual_full100_transformer_slot100.csv",
+  "replacement_fraction": 1.0,
+  "owned_mass": 0.5288310279173348,
+  "mean_effective_total_weight": 0.24239745485680306,
+  "correlation_with_scored_0p152": 0.9966289013131925,
+  "delta_std": 0.0768472692135552,
+  "rows": 647896,
+  "group_common_preserved": true,
+  "formal_submission": false
+}

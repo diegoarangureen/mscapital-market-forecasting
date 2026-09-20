@@ -1,0 +1,110 @@
+{
+  "run_name": "tabm_relative319_xs40_seed42_holdout049",
+  "seed": 42,
+  "epochs": 15,
+  "feature_count": 359,
+  "train_rows": 886571,
+  "train_months": "0-49",
+  "heldout_months": "50-70",
+  "test_rows": 647896,
+  "validation_50_59": 0.15223842838833979,
+  "validation_62_70_no66": 0.1562411575302188,
+  "validation_control_62_70_no66": 0.15375214944787352,
+  "source_notebook": "relative319_xs_tabm_notebook",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm_relative319_xs40_seed42_holdout049_test.feather",
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_seed42_holdout049.csv",
+  "prediction_std": 0.00036213990787817925,
+  "logs": [
+    {
+      "epoch": 1,
+      "learning_rate": 0.002,
+      "train_mse": 0.9835074679495756,
+      "seconds": 7.8488271000005625
+    },
+    {
+      "epoch": 2,
+      "learning_rate": 0.001987043238232586,
+      "train_mse": 0.9798897961517006,
+      "seconds": 6.035739200000535
+    },
+    {
+      "epoch": 3,
+      "learning_rate": 0.0019485263796156027,
+      "train_mse": 0.9779713681559836,
+      "seconds": 6.007689000000028
+    },
+    {
+      "epoch": 4,
+      "learning_rate": 0.0018855000636461645,
+      "train_mse": 0.976748682216207,
+      "seconds": 6.075061600000481
+    },
+    {
+      "epoch": 5,
+      "learning_rate": 0.001799683483926574,
+      "train_mse": 0.9754735095653013,
+      "seconds": 6.0121454000000085
+    },
+    {
+      "epoch": 6,
+      "learning_rate": 0.0016934174930444542,
+      "train_mse": 0.9740709850810682,
+      "seconds": 6.058926700001393
+    },
+    {
+      "epoch": 7,
+      "learning_rate": 0.0015696007502163055,
+      "train_mse": 0.9727861123276839,
+      "seconds": 6.009086000000025
+    },
+    {
+      "epoch": 8,
+      "learning_rate": 0.0014316106534203211,
+      "train_mse": 0.9713086301272551,
+      "seconds": 6.045782800001689
+    },
+    {
+      "epoch": 9,
+      "learning_rate": 0.0012832112127837594,
+      "train_mse": 0.9699473705558906,
+      "seconds": 6.015306999999666
+    },
+    {
+      "epoch": 10,
+      "learning_rate": 0.0011284503781987159,
+      "train_mse": 0.9681469518987221,
+      "seconds": 6.094871800001783
+    },
+    {
+      "epoch": 11,
+      "learning_rate": 0.0009715496218012844,
+      "train_mse": 0.9664138083997291,
+      "seconds": 6.094645600000149
+    },
+    {
+      "epoch": 12,
+      "learning_rate": 0.0008167887872162409,
+      "train_mse": 0.9644224288512211,
+      "seconds": 6.025562000000718
+    },
+    {
+      "epoch": 13,
+      "learning_rate": 0.0006683893465796793,
+      "train_mse": 0.9622241932948212,
+      "seconds": 5.991663599999811
+    },
+    {
+      "epoch": 14,
+      "learning_rate": 0.0005303992497836947,
+      "train_mse": 0.9603944484735292,
+      "seconds": 6.0695661999998265
+    },
+    {
+      "epoch": 15,
+      "learning_rate": 0.0004065825069555462,
+      "train_mse": 0.95844146762676,
+      "seconds": 6.021572099998593
+    }
+  ],
+  "submission_status": "prepared_not_uploaded"
+}

@@ -1,0 +1,1011 @@
+{
+  "method": "minimum-norm hidden-target projection with LOOCV ridge",
+  "warning": "Diagnostic only; public scores are displayed at three decimals and do not identify unseen residual directions.",
+  "scored_vector_count": 43,
+  "accepted": [
+    {
+      "name": "current150_subsecond_transformer40_upgrade.csv",
+      "score": 0.15,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_subsecond_transformer40_upgrade.csv",
+      "source": "account"
+    },
+    {
+      "name": "owned_only_tabm33_gru20_realmlp28_transformer19.csv",
+      "score": 0.147,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\owned_only_tabm33_gru20_realmlp28_transformer19.csv",
+      "source": "account"
+    },
+    {
+      "name": "standalone_timeaware_three_stream_gru379_temporal3fold.csv",
+      "score": 0.144,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379_temporal3fold.csv",
+      "source": "account"
+    },
+    {
+      "name": "current151_structure_transformer50.csv",
+      "score": 0.151,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_structure_transformer50.csv",
+      "source": "account"
+    },
+    {
+      "name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "score": 0.151,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t12_r03_x18_g03.csv",
+      "source": "account"
+    },
+    {
+      "name": "standalone_factorized_transformer379_temporal3fold.csv",
+      "score": 0.145,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379_temporal3fold.csv",
+      "source": "account"
+    },
+    {
+      "name": "aggressive_direct_owned_block_gru_equal38_common.csv",
+      "score": 0.15,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\aggressive_direct_owned_block_gru_equal38_common.csv",
+      "source": "account"
+    },
+    {
+      "name": "tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain.csv",
+      "score": 0.134,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "factorized_full_replace_corr095_current138k32_equal38_common.csv",
+      "score": 0.15,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_full_replace_corr095_current138k32_equal38_common.csv",
+      "source": "account"
+    },
+    {
+      "name": "factorized_full_replace_corr095_realmlp_equal38_common.csv",
+      "score": 0.15,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_full_replace_corr095_realmlp_equal38_common.csv",
+      "source": "account"
+    },
+    {
+      "name": "factorized_half_replace_new_realmlp_equal38_common.csv",
+      "score": 0.15,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_half_replace_new_realmlp_equal38_common.csv",
+      "source": "account"
+    },
+    {
+      "name": "realmlp379_rq16_e8_w32_tabm379_2seed_w68.csv",
+      "score": 0.138,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_rq16_e8_w32_tabm379_2seed_w68.csv",
+      "source": "account"
+    },
+    {
+      "name": "realmlp379_memberwise_cosine_seed42_e3_fulltrain.csv",
+      "score": 0.121,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_memberwise_cosine_seed42_e3_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "tabm_relative319_xs40_order20_2seed_fulltrain.csv",
+      "score": 0.134,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_order20_2seed_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "robust6_knownlb_equal38_common.csv",
+      "score": 0.149,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\robust6_knownlb_equal38_common.csv",
+      "source": "account"
+    },
+    {
+      "name": "tabm_relative319_xs40_seed42_holdout059.csv",
+      "score": 0.136,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_seed42_holdout059.csv",
+      "source": "account"
+    },
+    {
+      "name": "current138_xs40_tabm20.csv",
+      "score": 0.138,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_xs40_tabm20.csv",
+      "source": "account"
+    },
+    {
+      "name": "current135_hybrid2_conv1_transformer30.csv",
+      "score": 0.138,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current135_hybrid2_conv1_transformer30.csv",
+      "source": "account"
+    },
+    {
+      "name": "current135_dualseed_hybrid_transformer20.csv",
+      "score": 0.137,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current135_dualseed_hybrid_transformer20.csv",
+      "source": "account"
+    },
+    {
+      "name": "joint_transformer_hybrid_seed42e5_seed137e4.csv",
+      "score": 0.137,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\joint_transformer_hybrid_seed42e5_seed137e4.csv",
+      "source": "account"
+    },
+    {
+      "name": "current135_hybrid_transformer20.csv",
+      "score": 0.137,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current135_hybrid_transformer20.csv",
+      "source": "account"
+    },
+    {
+      "name": "joint_transformer_hybrid_epoch5_fulltrain.csv",
+      "score": 0.136,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\joint_transformer_hybrid_epoch5_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "joint_transformer_fulltrain.csv",
+      "score": 0.13,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\joint_transformer_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "gru_embedding_seed_ensemble_fulltrain.csv",
+      "score": 0.135,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\gru_embedding_seed_ensemble_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain_trim1.csv",
+      "score": 0.134,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_quantile_rel319_coslr15_tree053r_blend75_fulltrain_trim1.csv",
+      "source": "account"
+    },
+    {
+      "name": "tabm_quantile_coslr15_tree053r_blend75_fulltrain_trim1.csv",
+      "score": 0.134,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_quantile_coslr15_tree053r_blend75_fulltrain_trim1.csv",
+      "source": "account"
+    },
+    {
+      "name": "tabm_double_trim_b005_maximin_alpha005_fulltrain.csv",
+      "score": 0.13,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_double_trim_b005_maximin_alpha005_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "tabm007_gainprune_fulltrain.csv",
+      "score": 0.13,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm007_gainprune_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "tabm001_tree053r_blend75_fulltrain.csv",
+      "score": 0.131,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm001_tree053r_blend75_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "xgboost_exp053_last15_5fold_gpu.csv",
+      "score": 0.122,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\xgboost_exp053_last15_5fold_gpu.csv",
+      "source": "account"
+    },
+    {
+      "name": "xgboost_exp051_rfmf_safe_fulltrain.csv",
+      "score": 0.121,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\xgboost_exp051_rfmf_safe_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "xgboost_exp034_fulltrain.csv",
+      "score": 0.11,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\xgboost_exp034_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "xgboost_order_multiwindow_fulltrain.csv",
+      "score": 0.11,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\xgboost_order_multiwindow_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "xgboost_transaction_flow_depth_cross_fulltrain.csv",
+      "score": 0.102,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\xgboost_transaction_flow_depth_cross_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "xgboost_transaction_and_order_flow_fulltrain.csv",
+      "score": 0.107,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\xgboost_transaction_and_order_flow_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "xgboost_transaction_flow_fulltrain.csv",
+      "score": 0.101,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\xgboost_transaction_flow_fulltrain.csv",
+      "source": "account"
+    },
+    {
+      "name": "tabm385_k32_temporal3fold_3seed.csv",
+      "score": 0.14,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm385_k32_temporal3fold_3seed.csv",
+      "source": "user_reported"
+    },
+    {
+      "name": "standalone_timeaware_three_stream_gru379.csv",
+      "score": 0.14,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_timeaware_three_stream_gru379.csv",
+      "source": "user_reported"
+    },
+    {
+      "name": "standalone_factorized_transformer379.csv",
+      "score": 0.145,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_factorized_transformer379.csv",
+      "source": "user_reported"
+    },
+    {
+      "name": "standalone_realmlp379_corr095.csv",
+      "score": 0.139,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\standalone_realmlp379_corr095.csv",
+      "source": "user_reported"
+    },
+    {
+      "name": "submission.csv@bestwater_cos689",
+      "score": 0.142,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_cos689\\output\\submission.csv",
+      "source": "user_reported"
+    },
+    {
+      "name": "submission.csv@bestwater_tpu_v6",
+      "score": 0.142,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_tpu_v6\\output\\submission.csv",
+      "source": "user_reported"
+    },
+    {
+      "name": "submission.csv@yangq_lb142",
+      "score": 0.142,
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\yangq_lb142\\output\\submission.csv",
+      "source": "user_reported"
+    }
+  ],
+  "missing_files": [],
+  "rejected_files": [],
+  "selected_ridge": 0.005623413251903491,
+  "selected_cv": {
+    "ridge": 0.005623413251903491,
+    "mae": 0.0007256081567471427,
+    "rmse": 0.0010544032992824734,
+    "max_abs": 0.003575945912357298
+  },
+  "cv_grid": [
+    {
+      "ridge": 1e-07,
+      "mae": 0.002820043119029589,
+      "rmse": 0.005007222699450623,
+      "max_abs": 0.026191767064214222
+    },
+    {
+      "ridge": 1.7782794100389227e-07,
+      "mae": 0.0023210347946112653,
+      "rmse": 0.003757464137960631,
+      "max_abs": 0.01692617490526027
+    },
+    {
+      "ridge": 3.162277660168379e-07,
+      "mae": 0.00200720990070139,
+      "rmse": 0.003053374860100684,
+      "max_abs": 0.011040841132038626
+    },
+    {
+      "ridge": 5.62341325190349e-07,
+      "mae": 0.0018028102289788085,
+      "rmse": 0.0026468199847199227,
+      "max_abs": 0.007478747112694695
+    },
+    {
+      "ridge": 1e-06,
+      "mae": 0.0016472373907079204,
+      "rmse": 0.0023693227701838634,
+      "max_abs": 0.006341996106456471
+    },
+    {
+      "ridge": 1.778279410038923e-06,
+      "mae": 0.0015002860157634524,
+      "rmse": 0.0021514977400523224,
+      "max_abs": 0.0051680610679195604
+    },
+    {
+      "ridge": 3.162277660168379e-06,
+      "mae": 0.0014317305320102375,
+      "rmse": 0.0019788807232101763,
+      "max_abs": 0.004808965301052015
+    },
+    {
+      "ridge": 5.623413251903491e-06,
+      "mae": 0.0013544163742631842,
+      "rmse": 0.0018424109108312206,
+      "max_abs": 0.004313063665186578
+    },
+    {
+      "ridge": 1e-05,
+      "mae": 0.001264316159509086,
+      "rmse": 0.001725717956011705,
+      "max_abs": 0.003960029796212655
+    },
+    {
+      "ridge": 1.778279410038923e-05,
+      "mae": 0.0011749066349015902,
+      "rmse": 0.0016210780731930458,
+      "max_abs": 0.0038919556811548295
+    },
+    {
+      "ridge": 3.1622776601683795e-05,
+      "mae": 0.0011009048768482847,
+      "rmse": 0.0015320498229289706,
+      "max_abs": 0.0038109054961208144
+    },
+    {
+      "ridge": 5.623413251903491e-05,
+      "mae": 0.0010318887914933259,
+      "rmse": 0.0014599810142469848,
+      "max_abs": 0.0037566150040934942
+    },
+    {
+      "ridge": 0.0001,
+      "mae": 0.0009850141782966938,
+      "rmse": 0.0013981149736067026,
+      "max_abs": 0.003705635081717923
+    },
+    {
+      "ridge": 0.00017782794100389227,
+      "mae": 0.0009394337739457782,
+      "rmse": 0.0013373134816726051,
+      "max_abs": 0.0036580724422037025
+    },
+    {
+      "ridge": 0.00031622776601683794,
+      "mae": 0.0008896592892113164,
+      "rmse": 0.0012726914077649046,
+      "max_abs": 0.0036126021415062437
+    },
+    {
+      "ridge": 0.0005623413251903491,
+      "mae": 0.0008378860882551166,
+      "rmse": 0.0012058776576672255,
+      "max_abs": 0.0035724520727864195
+    },
+    {
+      "ridge": 0.001,
+      "mae": 0.0007863250862700626,
+      "rmse": 0.0011436505516520393,
+      "max_abs": 0.0035458544360880695
+    },
+    {
+      "ridge": 0.0017782794100389228,
+      "mae": 0.0007588813717201082,
+      "rmse": 0.0010943261163549193,
+      "max_abs": 0.003538932890178398
+    },
+    {
+      "ridge": 0.0031622776601683794,
+      "mae": 0.0007328904332691754,
+      "rmse": 0.0010637321358597626,
+      "max_abs": 0.0035501944117678486
+    },
+    {
+      "ridge": 0.005623413251903491,
+      "mae": 0.0007256081567471427,
+      "rmse": 0.0010544032992824734,
+      "max_abs": 0.003575945912357298
+    },
+    {
+      "ridge": 0.01,
+      "mae": 0.0007331329730090306,
+      "rmse": 0.001068853663188314,
+      "max_abs": 0.003622914225091256
+    },
+    {
+      "ridge": 0.01778279410038923,
+      "mae": 0.0007530413094274719,
+      "rmse": 0.0011138667822810256,
+      "max_abs": 0.003714238146467569
+    },
+    {
+      "ridge": 0.03162277660168379,
+      "mae": 0.0008133575918519515,
+      "rmse": 0.001204711575502457,
+      "max_abs": 0.003884937418951212
+    },
+    {
+      "ridge": 0.05623413251903491,
+      "mae": 0.0009663584822725528,
+      "rmse": 0.0013711763804347844,
+      "max_abs": 0.004179621476470746
+    },
+    {
+      "ridge": 0.1,
+      "mae": 0.0012395396343898488,
+      "rmse": 0.0016643062452455298,
+      "max_abs": 0.00466291220171125
+    },
+    {
+      "ridge": 0.1778279410038923,
+      "mae": 0.0016978228097746834,
+      "rmse": 0.0021585991000531725,
+      "max_abs": 0.0054369385806324055
+    },
+    {
+      "ridge": 0.31622776601683794,
+      "mae": 0.0023717350535183905,
+      "rmse": 0.0029492235598963497,
+      "max_abs": 0.006647996448579302
+    },
+    {
+      "ridge": 0.5623413251903491,
+      "mae": 0.0033261933233537048,
+      "rmse": 0.004152684579741465,
+      "max_abs": 0.008475086015846067
+    },
+    {
+      "ridge": 1.0,
+      "mae": 0.004686445220080943,
+      "rmse": 0.005935558016256904,
+      "max_abs": 0.011129954903973921
+    }
+  ],
+  "candidates": {
+    "factorized_full_replace_corr095_current138k32_equal38_common.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\factorized_full_replace_corr095_current138k32_equal38_common.csv",
+      "estimate": 0.15012417880550502,
+      "nearest_scored_name": "factorized_full_replace_corr095_current138k32_equal38_common.csv",
+      "nearest_scored_correlation": 1.0000000000782152,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0,
+        "p05_delta": 0.0,
+        "p50_delta": 0.0,
+        "p95_delta": 0.0,
+        "probability_delta_positive": 0.0
+      }
+    },
+    "current150_replace_owned_tabm_temporal3x3.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_replace_owned_tabm_temporal3x3.csv",
+      "estimate": 0.15055620936445574,
+      "nearest_scored_name": "factorized_full_replace_corr095_current138k32_equal38_common.csv",
+      "nearest_scored_correlation": 0.9996669347568743,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.00043190472534425286,
+        "p05_delta": 0.0003789632076199187,
+        "p50_delta": 0.0004320526308891487,
+        "p95_delta": 0.00048514900373064355,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current150_tabm_temporal_realmlp57_upgrades.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabm_temporal_realmlp57_upgrades.csv",
+      "estimate": 0.15056414353553452,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.999667164498803,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0004398267115091985,
+        "p05_delta": 0.00037689233048695257,
+        "p50_delta": 0.0004400934638255777,
+        "p95_delta": 0.0005041008205424024,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current150_confirmed_tabm_transformer_temporal_upgrades.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_confirmed_tabm_transformer_temporal_upgrades.csv",
+      "estimate": 0.15038595488729603,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9984618390121136,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.00026239720661387807,
+        "p05_delta": 0.00014834542588780254,
+        "p50_delta": 0.00026325808080433777,
+        "p95_delta": 0.0003768730081744886,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current150_temporal_balanced_tabm_realmlp57_transformer50.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_temporal_balanced_tabm_realmlp57_transformer50.csv",
+      "estimate": 0.1505130253128209,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9993272755626783,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.000389082017401372,
+        "p05_delta": 0.0003050890617031232,
+        "p50_delta": 0.00038965333559475013,
+        "p95_delta": 0.0004724420434426113,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current150_temporal_model_upgrades_realmlp57.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_temporal_model_upgrades_realmlp57.csv",
+      "estimate": 0.15037047157882807,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9983803039665955,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0002469018267129494,
+        "p05_delta": 0.00012555790770631126,
+        "p50_delta": 0.00024850026399374225,
+        "p95_delta": 0.0003692806464629564,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "aggressive_direct_owned_block_gru_equal38_common.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\aggressive_direct_owned_block_gru_equal38_common.csv",
+      "estimate": 0.1504192522795063,
+      "nearest_scored_name": "aggressive_direct_owned_block_gru_equal38_common.csv",
+      "nearest_scored_correlation": 1.0000000001204439,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.00029523323500413816,
+        "p05_delta": 0.0002773230564809409,
+        "p50_delta": 0.0002951366979426773,
+        "p95_delta": 0.0003128572463304682,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current151_lower_public60.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_lower_public60.csv",
+      "estimate": 0.15083884796005814,
+      "nearest_scored_name": "current151_structure_transformer50.csv",
+      "nearest_scored_correlation": 0.9997739207773794,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0007141929505287973,
+        "p05_delta": 0.0006021398828173375,
+        "p50_delta": 0.0007139030447411987,
+        "p95_delta": 0.0008260292780690084,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current151_lower_public56.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_lower_public56.csv",
+      "estimate": 0.15091706413697348,
+      "nearest_scored_name": "current151_structure_transformer50.csv",
+      "nearest_scored_correlation": 0.999317772445514,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0007925357039611301,
+        "p05_delta": 0.0006723316734317447,
+        "p50_delta": 0.0007932566532910662,
+        "p95_delta": 0.0009134277800125726,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current151_lower_public56_tpu4.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_lower_public56_tpu4.csv",
+      "estimate": 0.1508598316051457,
+      "nearest_scored_name": "current151_structure_transformer50.csv",
+      "nearest_scored_correlation": 0.9990952393526287,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0007353632317798649,
+        "p05_delta": 0.0006125027649586473,
+        "p50_delta": 0.000736454698958236,
+        "p95_delta": 0.0008598506726647775,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current151_lower_public52_tpu0.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_lower_public52_tpu0.csv",
+      "estimate": 0.15081254477783723,
+      "nearest_scored_name": "current151_structure_transformer50.csv",
+      "nearest_scored_correlation": 0.9979646708015053,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0006882638149106926,
+        "p05_delta": 0.0005509406866692588,
+        "p50_delta": 0.000687980607630409,
+        "p95_delta": 0.000828761838674455,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current151_lower_public52.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_lower_public52.csv",
+      "estimate": 0.15092414679434235,
+      "nearest_scored_name": "current151_structure_transformer50.csv",
+      "nearest_scored_correlation": 0.9984817492827687,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0007997367796046377,
+        "p05_delta": 0.0006698646038621386,
+        "p50_delta": 0.0008006849919507952,
+        "p95_delta": 0.0009312589488039034,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current151_lower_public48.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_lower_public48.csv",
+      "estimate": 0.15088111005451835,
+      "nearest_scored_name": "current151_structure_transformer50.csv",
+      "nearest_scored_correlation": 0.9973144763864645,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0007568190038930445,
+        "p05_delta": 0.0006153137868880859,
+        "p50_delta": 0.0007571725835847781,
+        "p95_delta": 0.0009015844397539635,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current151_lower_public30.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_lower_public30.csv",
+      "estimate": 0.1502786674693167,
+      "nearest_scored_name": "current151_structure_transformer50.csv",
+      "nearest_scored_correlation": 0.9893705688020963,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.00015414570454106753,
+        "p05_delta": -3.536479631500998e-05,
+        "p50_delta": 0.00015322298197421869,
+        "p95_delta": 0.00034259935790647146,
+        "probability_delta_positive": 0.90775
+      }
+    },
+    "current151_theoretical_geometry_optimum.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_theoretical_geometry_optimum.csv",
+      "estimate": 0.15191453311236874,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9953950153582234,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0017911352087365683,
+        "p05_delta": 0.0016749221139513658,
+        "p50_delta": 0.0017914154498701873,
+        "p95_delta": 0.0019097717103423284,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current150_tabmfrac1p0_realmlpfrac0p5.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p0_realmlpfrac0p5.csv",
+      "estimate": 0.15056325100345352,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9996505851117017,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0004389402373657708,
+        "p05_delta": 0.0003814366441265482,
+        "p50_delta": 0.0004391089986661295,
+        "p95_delta": 0.0004978303814003465,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current150_tabmfrac1p0_realmlpfrac1p0.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p0_realmlpfrac1p0.csv",
+      "estimate": 0.15056414353553452,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.999667164498803,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0004398267115091985,
+        "p05_delta": 0.00037689233048695257,
+        "p50_delta": 0.0004400934638255777,
+        "p95_delta": 0.0005041008205424024,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current150_tabmfrac1p25_realmlpfrac0p5.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p25_realmlpfrac0p5.csv",
+      "estimate": 0.15065292119860144,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9996608961673239,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0005285792075990269,
+        "p05_delta": 0.0004578700560366147,
+        "p50_delta": 0.0005286173571630998,
+        "p95_delta": 0.0006006662099851803,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current150_tabmfrac1p25_realmlpfrac1p0.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p25_realmlpfrac1p0.csv",
+      "estimate": 0.15065122644701545,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9996603381583106,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0005268784309440657,
+        "p05_delta": 0.0004510311768856981,
+        "p50_delta": 0.0005269485712373623,
+        "p95_delta": 0.0006046411992393294,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current150_tabmfrac1p5_realmlpfrac0p5.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p5_realmlpfrac0p5.csv",
+      "estimate": 0.15073628494905777,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9996297119743178,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0006119118227793114,
+        "p05_delta": 0.0005279255730634757,
+        "p50_delta": 0.0006120101069424094,
+        "p95_delta": 0.000697338748908663,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "current150_tabmfrac1p5_realmlpfrac1p0.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current150_tabmfrac1p5_realmlpfrac1p0.csv",
+      "estimate": 0.15073200412427795,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9996120442936158,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0006076250070872002,
+        "p05_delta": 0.0005187324790764572,
+        "p50_delta": 0.0006077800493708985,
+        "p95_delta": 0.0006986291551087403,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t12_r03_x13_g07.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t12_r03_x13_g07.csv",
+      "estimate": 0.15090431071295873,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9998719512279979,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0007804647054144611,
+        "p05_delta": 0.0007085246449912375,
+        "p50_delta": 0.0007799255698860419,
+        "p95_delta": 0.0008539554134636598,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t12_r03_x15_g05.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t12_r03_x15_g05.csv",
+      "estimate": 0.15093803690681468,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9999679787987366,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.000814076368042718,
+        "p05_delta": 0.0007466761156834617,
+        "p50_delta": 0.0008136743004797803,
+        "p95_delta": 0.0008827059951070721,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t12_r03_x18_g03.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t12_r03_x18_g03.csv",
+      "estimate": 0.15096210693459708,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 1.0000000004207772,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0008380319192532037,
+        "p05_delta": 0.000771904509755908,
+        "p50_delta": 0.0008373136791896135,
+        "p95_delta": 0.0009037597675212048,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t12_r05_x12_g07.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t12_r05_x12_g07.csv",
+      "estimate": 0.15088547589907858,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9997208712318989,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0007616149091486444,
+        "p05_delta": 0.0006837505316953221,
+        "p50_delta": 0.0007606364618115286,
+        "p95_delta": 0.000841145143512599,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t12_r05_x14_g05.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t12_r05_x14_g05.csv",
+      "estimate": 0.15092525677598406,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.999856936540976,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.000801281136350012,
+        "p05_delta": 0.0007298006478528337,
+        "p50_delta": 0.000801092948820914,
+        "p95_delta": 0.0008746223889153276,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t12_r05_x16_g03.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t12_r05_x16_g03.csv",
+      "estimate": 0.15095537712159945,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9999289583398068,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0008312868787454634,
+        "p05_delta": 0.0007634358198712985,
+        "p50_delta": 0.0008305187952573762,
+        "p95_delta": 0.0009006515015215849,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t15_r03_x10_g07.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t15_r03_x10_g07.csv",
+      "estimate": 0.15071296663732597,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9996466617380421,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0005890510591097791,
+        "p05_delta": 0.0005055055094144861,
+        "p50_delta": 0.0005885694418782256,
+        "p95_delta": 0.0006740583886006166,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t15_r03_x13_g05.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t15_r03_x13_g05.csv",
+      "estimate": 0.15075459806013722,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9997953303558236,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0006305679036083955,
+        "p05_delta": 0.0005534917750062068,
+        "p50_delta": 0.0006300410347602481,
+        "p95_delta": 0.0007093739803437818,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t15_r03_x15_g03.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t15_r03_x15_g03.csv",
+      "estimate": 0.1507865988880288,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.999880082233294,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0006624542001509694,
+        "p05_delta": 0.0005901760705474074,
+        "p50_delta": 0.0006621900939062647,
+        "p95_delta": 0.0007373912244696731,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t15_r05_x08_g07.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t15_r05_x08_g07.csv",
+      "estimate": 0.15067354584417164,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9993596190977461,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0005496154270987155,
+        "p05_delta": 0.0004593738887847046,
+        "p50_delta": 0.0005489909481709437,
+        "p95_delta": 0.0006425861581074874,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t15_r05_x10_g05.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t15_r05_x10_g05.csv",
+      "estimate": 0.15072121169886213,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9995482491825493,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0005971665971166033,
+        "p05_delta": 0.0005132579785437755,
+        "p50_delta": 0.0005965097096191779,
+        "p95_delta": 0.0006830273741354434,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t15_r05_x12_g03.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t15_r05_x12_g03.csv",
+      "estimate": 0.15075924862024742,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9996729648781143,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.000635088872520581,
+        "p05_delta": 0.0005569084415707609,
+        "p50_delta": 0.000634994797511057,
+        "p95_delta": 0.0007148624766769807,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t18_r03_x07_g07.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t18_r03_x07_g07.csv",
+      "estimate": 0.15048572963940737,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9991823601917316,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.00036174486015531394,
+        "p05_delta": 0.0002645289699085993,
+        "p50_delta": 0.0003601569280245326,
+        "p95_delta": 0.00046129892828579016,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t18_r03_x10_g05.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t18_r03_x10_g05.csv",
+      "estimate": 0.15053520555877412,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9993834069368965,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.00041110617453904294,
+        "p05_delta": 0.0003199306379657249,
+        "p50_delta": 0.00041004920204565365,
+        "p95_delta": 0.00050354698892979,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t18_r03_x12_g03.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t18_r03_x12_g03.csv",
+      "estimate": 0.15057508583307555,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9995206888988759,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0004508718830135323,
+        "p05_delta": 0.0003649148835149732,
+        "p50_delta": 0.0004500016329391926,
+        "p95_delta": 0.0005377282739387006,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t18_r05_x06_g07.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t18_r05_x06_g07.csv",
+      "estimate": 0.1504258051524527,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9987596222974027,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.000301805700218166,
+        "p05_delta": 0.00019522848453551873,
+        "p50_delta": 0.00030114440242740015,
+        "p95_delta": 0.0004097639643098074,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t18_r05_x08_g05.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t18_r05_x08_g05.csv",
+      "estimate": 0.1504812846516433,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9990004837454284,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0003571705002072591,
+        "p05_delta": 0.00025787346817854605,
+        "p50_delta": 0.00035632740360767856,
+        "p95_delta": 0.0004579892068647631,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_direct_t18_r05_x10_g03.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t18_r05_x10_g03.csv",
+      "estimate": 0.15052717593591744,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9991776210197849,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0004029471162061271,
+        "p05_delta": 0.0003081406076487686,
+        "p50_delta": 0.0004025556165787869,
+        "p95_delta": 0.0004976138633172201,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_residual_w018.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_residual_w018.csv",
+      "estimate": 0.15075362210139745,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9996144186756504,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0006292476667210063,
+        "p05_delta": 0.0005432590600641038,
+        "p50_delta": 0.0006297073568368866,
+        "p95_delta": 0.0007157883680949662,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_residual_w03.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_residual_w03.csv",
+      "estimate": 0.1507627427829945,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9995881153728217,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0006383675046759696,
+        "p05_delta": 0.0005501523981288767,
+        "p50_delta": 0.0006381323600379851,
+        "p95_delta": 0.0007276037602151786,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_residual_w05.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_residual_w05.csv",
+      "estimate": 0.15077361889700663,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.999515704858082,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.0006492422634623113,
+        "p05_delta": 0.0005569356687966543,
+        "p50_delta": 0.0006491527941990677,
+        "p95_delta": 0.0007424390345310047,
+        "probability_delta_positive": 1.0
+      }
+    },
+    "final_gru_residual_w07.csv": {
+      "path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_residual_w07.csv",
+      "estimate": 0.15077910084874574,
+      "nearest_scored_name": "final_gru_direct_t12_r03_x18_g03.csv",
+      "nearest_scored_correlation": 0.9994076733120938,
+      "rounding_uncertainty_vs_base": {
+        "mean_delta": 0.000654722923502273,
+        "p05_delta": 0.000558124383381746,
+        "p50_delta": 0.0006550724308446443,
+        "p95_delta": 0.000753342362230959,
+        "probability_delta_positive": 1.0
+      }
+    }
+  }
+}

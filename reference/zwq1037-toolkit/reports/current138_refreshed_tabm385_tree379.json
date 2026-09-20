@@ -1,0 +1,26 @@
+{
+  "run_name": "current138_refreshed_tabm385_tree379",
+  "derivation": "saved current135 plus exact inner component replacement corrections",
+  "replacements": {
+    "inner_tabm_weight": 0.675,
+    "old_tabm": "relative319 quantile TabM",
+    "new_tabm": "TabM385 seed42",
+    "inner_tree_weight": 0.18,
+    "old_tree": "EXP053R tree",
+    "new_tree": "XGBoost379 Order20"
+  },
+  "outer_duplicate_tabm_weight": 0.0,
+  "local_62_70_no66": {
+    "old_current135": 0.15560598263783806,
+    "old_current138_recorded": 0.157651,
+    "tabm_only_refresh": 0.15996036120661758,
+    "tree_only_refresh": 0.15657801676188018,
+    "both_refresh": 0.16000772386442927,
+    "delta_vs_old_current138_recorded": 0.00235672386442927
+  },
+  "rows": 647896,
+  "prediction_mean": -7.282038730671382e-18,
+  "prediction_std": 1.0,
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current138_refreshed_tabm385_tree379.csv",
+  "submission_status": "prepared_not_uploaded"
+}

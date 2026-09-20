@@ -1,0 +1,479 @@
+{
+  "schema_version": 1,
+  "status": "closed_no_verified_improvement_beyond_0.152",
+  "objective": "Improve public LB beyond 0.152 with at most three formal submissions.",
+  "authorization": {
+    "local_training": true,
+    "kaggle_training": true,
+    "automatic_continuation": true,
+    "formal_submission_limit": 3,
+    "formal_submissions_used": 1,
+    "max_cpu_threads": 2
+  },
+  "validation_protocol": "train0-59, purge60-61, validate62-70 excluding66; select on62-65 and require forward67-70 confirmation",
+  "stages": [
+    {
+      "id": "recent_transformer_head_adapt",
+      "status": "rejected",
+      "script": "scripts/exp_transformer_021_recent_head_adapt.py",
+      "gate": "selection delta>=0; forward delta>=0.0005; beats equal-step control by0.0002; >=2/4 forward months improve; worst forward month>=-0.0005",
+      "on_pass": "Prepare full-data recent adapter and test CSV, then compare as a replacement inside incumbent blend before deciding whether to use one submission.",
+      "on_fail": "Reject and continue the market-conditioned event residual branch.",
+      "passed": false,
+      "result_file": "data/interim/tree_experiments/EXP-TRANSFORMER-021-RECENT-HEAD-ADAPT/score_summary.json",
+      "selection_delta": -0.0011142374215838413,
+      "forward_delta": -0.0010262020436677122,
+      "decision": "Do not full-train or submit"
+    },
+    {
+      "id": "market_conditioned_event_residual",
+      "status": "full_complete_verified",
+      "hypothesis": "Attach contemporaneous market-grid context to each subsecond transaction/order event and add a zero-initialized residual prediction branch while preserving the strong Transformer.",
+      "gate": "selection delta>=0; forward fusion delta>=0.0005; gains not dominated by one month",
+      "on_pass": "Full-train on Kaggle T4x2, create CSV, test blend geometry, and spend at most one submission only if it is the strongest candidate.",
+      "kaggle_version": 28,
+      "notebook": "zwq1037/multistream-factorized-transformer-multiwindow-dev",
+      "script": "data/interim/kaggle_kernels/multistream_factorized_transformer_dev/run_v27_market_conditioned_event_residual.ipynb",
+      "monitor_job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260919-092023-kaggle-event-residual-v24-324b91bd",
+      "passed": true,
+      "score_file": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\market_conditioned_event_v24\\market_conditioned_event_residual\\score_only.json",
+      "prediction_file": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\market_conditioned_event_v24\\market_conditioned_event_residual\\validation_predictions.feather",
+      "best_delta": {
+        "all": 0.00185723215908018,
+        "selection": 0.0028937988651246416,
+        "forward": 0.001342093195614097
+      },
+      "notebook_gate_passed": true,
+      "softgate_passed": true,
+      "softgate_result": "outputs/submission_metadata/event_residual_v24_softgate_evaluation.json",
+      "softgate_selection_delta": 0.0012177148245949843,
+      "softgate_forward_delta": 0.0012401519911363623,
+      "softgate_forward_months_improved": 4,
+      "selected_replacement_fraction": 1.0,
+      "decision": "Freeze joint raw40/event60 as current strongest candidate; compare with EXP024 before formal submission",
+      "fulltrain_staging": "published_and_running",
+      "full_notebook": "data/interim/kaggle_kernels/multistream_factorized_transformer_dev/run_v27_market_conditioned_event_residual_full.ipynb",
+      "expected_full_kaggle_version": 28,
+      "checkpoint_dataset": "zwq1037/mscapital-transformer020-raw-full-v26",
+      "dataset_publish_script": "scripts/publish_transformer020_raw_full_v26_dataset.py",
+      "full_wait_script": "scripts/wait_market_conditioned_event_residual_full_v27.py",
+      "full_output_cleanup": "raw event caches removed in finally; compact score, CSV and checkpoint retained",
+      "full_base_reproduction_gate": "cosine>=0.9999999 and max_abs<=2e-5 against v26 standalone CSV",
+      "full_monitor_job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260919-200139-kaggle-event-residual-full-v28-monitor-fix-a04ddd4d",
+      "full_kaggle_version": 28,
+      "v27_failure": "CUDA misaligned address during base Transformer inference under nn.DataParallel",
+      "v28_repair": "Base inference moved to one GPU with MHA fastpath disabled; residual training remains DataParallel on two T4 GPUs",
+      "result_file": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\market_conditioned_event_residual_full_v28\\market_conditioned_event_residual_full\\result.json",
+      "standalone_csv": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\market_conditioned_event_residual_full_v28\\market_conditioned_event_residual_full\\standalone_market_conditioned_event_residual_full.csv",
+      "full_checkpoint": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\market_conditioned_event_residual_full_v28\\market_conditioned_event_residual_full\\market_conditioned_event_residual_full.pt",
+      "blend_candidates": {
+        "0.5": {
+          "status": "prepared_not_submitted",
+          "candidate": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\market_conditioned_event_residual_full_v28\\market_conditioned_event_residual_full\\standalone_market_conditioned_event_residual_full.csv",
+          "output": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_event_residual_full050_transformer_slot50.csv",
+          "replacement_fraction": 0.5,
+          "owned_mass": 0.5288310279173348,
+          "mean_effective_total_weight": 0.12119872742840153,
+          "correlation_with_scored_0p152": 0.999158686234481,
+          "delta_std": 0.0384236346067776,
+          "rows": 647896,
+          "group_common_preserved": true,
+          "formal_submission": false
+        },
+        "1.0": {
+          "status": "prepared_not_submitted",
+          "candidate": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\market_conditioned_event_residual_full_v28\\market_conditioned_event_residual_full\\standalone_market_conditioned_event_residual_full.csv",
+          "output": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_event_residual_full100_transformer_slot100.csv",
+          "replacement_fraction": 1.0,
+          "owned_mass": 0.5288310279173348,
+          "mean_effective_total_weight": 0.24239745485680306,
+          "correlation_with_scored_0p152": 0.9966289013131925,
+          "delta_std": 0.0768472692135552,
+          "rows": 647896,
+          "group_common_preserved": true,
+          "formal_submission": false
+        }
+      },
+      "joint_candidate": {
+        "status": "prepared_not_submitted",
+        "raw_candidate": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\transformer020_raw_full_v26\\transformer_raw_full\\standalone_factorized_transformer379_raw_full_e5.csv",
+        "event_candidate": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\market_conditioned_event_residual_full_v28\\market_conditioned_event_residual_full\\standalone_market_conditioned_event_residual_full.csv",
+        "raw_weight": 0.4,
+        "event_weight": 0.6,
+        "output": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_transformer020raw40_event60.csv",
+        "owned_mass": 0.5288310279173348,
+        "mean_effective_transformer_weight": 0.24239745485680306,
+        "correlation_with_scored_0p152": 0.996800936622963,
+        "delta_std": 0.07485966324400707,
+        "rows": 647896,
+        "group_common_preserved": true,
+        "formal_submission": false
+      },
+      "formal_submission": false,
+      "full_verification": {
+        "visible_gpu_count": 2,
+        "gpu_names": [
+          "Tesla T4",
+          "Tesla T4"
+        ],
+        "base_reproduction_cosine": 0.9999999997805508,
+        "base_reproduction_max_abs": 4.087604858942287e-07,
+        "rows": 647896,
+        "finite": true,
+        "sample_id_verified": true
+      },
+      "full_result_file": "data/interim/kaggle_results/market_conditioned_event_residual_full_v28/market_conditioned_event_residual_full/result.json"
+    },
+    {
+      "id": "fallback_buy_sell_symmetry",
+      "status": "backlog",
+      "condition": "Only if both primary branches fail and semantic feature mapping can be made reliable."
+    },
+    {
+      "id": "transformer_month_macro_cosine",
+      "status": "rejected",
+      "hypothesis": "Equal sample counts but 4.70x monthly target-energy range makes global cosine dominated by high-energy months; average uncentered cosine over two month-pure half-batches.",
+      "script": "scripts/exp_transformer_022_month_macro_cosine.py",
+      "gate": "vs EXP020 raw: selection>=+0.0005; forward>=+0.0005; all>=+0.0007; worst monthly delta>=-0.002; then test fixed owned blend",
+      "on_pass": "Prepare full-data model and candidate CSV; compare against v24 and spend at most one formal submission on the stronger candidate.",
+      "on_fail": "Reject without full training or submission.",
+      "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260919-093725-transformer022-month-macro-982dd888",
+      "passed": false,
+      "result_file": "data/interim/tree_experiments/EXP-TRANSFORMER-022-MONTH-MACRO-COSINE/score_summary.json",
+      "selection_delta": -0.007052961770048244,
+      "forward_delta": -0.015013870290101733,
+      "all_delta": -0.012123547431488496,
+      "decision": "Do not full-train or submit"
+    },
+    {
+      "id": "multiwindow_ema_prescreen",
+      "status": "rejected",
+      "result_file": "outputs/submission_metadata/multiwindow_vs_transformer020_screen_20260919.json",
+      "selection_delta": 0.0008234814137921542,
+      "forward_delta": 0.00024801555645009854,
+      "all_delta": 0.0003745575333708173,
+      "month68_delta": -0.004165353582751996,
+      "decision": "Do not train EMA version."
+    },
+    {
+      "id": "high_vol_transformer_expert_prescreen",
+      "status": "rejected",
+      "result_file": "outputs/submission_metadata/high_vol_transformer_gru_prescreen_20260919.json",
+      "selection_delta": 0.00010547225234858182,
+      "forward_delta": 0.0006189032395553795,
+      "delta_vs_global20_forward": -0.0005782692277908341,
+      "decision": "Conditional gating is weaker than fixed global GRU20; do not train."
+    },
+    {
+      "id": "transformer020_raw_full",
+      "status": "full_csv_complete_dataset_published",
+      "offline_all_ex66": 0.1610469878,
+      "softgate_selection_delta": 0.0010478649,
+      "softgate_forward_delta": 0.0019439085,
+      "forward_months_improved": 3,
+      "worst_forward_month_delta": -0.001422095,
+      "full_notebook": "data/interim/kaggle_kernels/multistream_factorized_transformer_fulltrain/run_v5_transformer_raw_full.ipynb",
+      "formal_submission": false,
+      "on_run_complete": "Download standalone CSV, create fixed 50% Transformer-slot replacement inside current152 recipe, verify file, then compare with v24 and EXP022 before using a formal submission.",
+      "fusion_builder": "scripts/build_current152_transformer_slot_replacement.py",
+      "fusion_builder_identity_test": {
+        "candidate": "outputs/submissions/standalone_factorized_transformer379.csv",
+        "correlation": 1.0,
+        "delta_std": 0.0,
+        "rows": 647896
+      },
+      "selection_rule": "50% Transformer-slot replacement selected on months62-65 only",
+      "practical_gate": {
+        "selection_delta_min": 0.0005,
+        "forward_delta_min": 0.0005,
+        "all_delta_min": 0.0007,
+        "forward_months_improved_min": 3,
+        "worst_forward_month_delta_min": -0.002
+      },
+      "passed_practical_gate": true,
+      "curve_report": "outputs/submission_metadata/transformer020_raw_softgate_evaluation.json",
+      "note": "Earlier generic evaluator passed=false only because it used a stricter -0.0005 worst-month threshold. Goal requirement is selection+forward; the predeclared practical branch gate is -0.002 and is met at 50%.",
+      "kaggle_kernel": "zwq1037/multistream-factorized-transformer-multiwindow-dev",
+      "expected_kaggle_version": 25,
+      "staging": "complete_not_uploaded",
+      "wait_script": "scripts/wait_transformer020_raw_full_v25.py",
+      "reproducibility": {
+        "shuffle_generator": "manual_seed(SEED+17), matching EXP020",
+        "checkpoint_includes_generator_state": true,
+        "raw_weights_used_for_inference": true,
+        "compiled_after_fix": true
+      },
+      "kaggle_version": 26,
+      "monitor_job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260919-141939-kaggle-transformer020-raw-full-v26-e293ab28",
+      "v25_issue": "effective second main lacked DataLoader generator definition and would fail after epoch1 checkpoint save",
+      "v25_monitor_stopped": true,
+      "v26_fix": {
+        "effective_entry_generator": true,
+        "resume_generator_state": true,
+        "downloads_full_checkpoint": true
+      },
+      "full_checkpoint": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\transformer020_raw_full_v26\\transformer_raw_full\\factorized_transformer379_raw_full_e5.pt",
+      "blend_candidates": {
+        "0.25": {
+          "status": "prepared_not_submitted",
+          "candidate": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\transformer020_raw_full_v26\\transformer_raw_full\\standalone_factorized_transformer379_raw_full_e5.csv",
+          "output": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_transformer020_raw25_transformer_slot25.csv",
+          "replacement_fraction": 0.25,
+          "owned_mass": 0.5288310279173348,
+          "mean_effective_total_weight": 0.060599363714200764,
+          "correlation_with_scored_0p152": 0.999800222101807,
+          "delta_std": 0.018744322201977835,
+          "rows": 647896,
+          "group_common_preserved": true,
+          "formal_submission": false
+        },
+        "0.5": {
+          "status": "prepared_not_submitted",
+          "candidate": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_results\\transformer020_raw_full_v26\\transformer_raw_full\\standalone_factorized_transformer379_raw_full_e5.csv",
+          "output": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current152_transformer020_raw50_transformer_slot50.csv",
+          "replacement_fraction": 0.5,
+          "owned_mass": 0.5288310279173348,
+          "mean_effective_total_weight": 0.12119872742840153,
+          "correlation_with_scored_0p152": 0.9991993462271261,
+          "delta_std": 0.03748864440395567,
+          "rows": 647896,
+          "group_common_preserved": true,
+          "formal_submission": false
+        }
+      },
+      "result_file": "data/interim/kaggle_results/transformer020_raw_full_v26/transformer_raw_full/result.json",
+      "standalone_csv": "data/interim/kaggle_results/transformer020_raw_full_v26/transformer_raw_full/standalone_factorized_transformer379_raw_full_e5.csv",
+      "checkpoint": "data/interim/kaggle_results/transformer020_raw_full_v26/transformer_raw_full/factorized_transformer379_raw_full_e5.pt",
+      "local_verification": "outputs/submission_metadata/transformer020_raw_full_v26_local_verification.json",
+      "visible_gpu_count": 2,
+      "upload_review": "explicit_user_authorization_received",
+      "checkpoint_dataset_status": "ready",
+      "checkpoint_dataset_report": "outputs/submission_metadata/transformer020_raw_full_v26_dataset.json"
+    },
+    {
+      "id": "structured_patch_transformer_gru",
+      "status": "rejected",
+      "hypothesis": "Four-step structured patches improve locality while a gated GRU restores explicit temporal recurrence after self-attention.",
+      "script": "scripts/exp_transformer_023_patch_transformer_gru.py",
+      "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260919-141220-transformer023-patch-gru-221e6d83",
+      "baseline": "EXP020 raw",
+      "gate": "selection>=+0.0005; forward>=+0.0005; all>=+0.0007; worst monthly delta>=-0.002",
+      "formal_submission": false,
+      "smoke_test": {
+        "output_shape": [
+          2
+        ],
+        "finite": true,
+        "parameter_count": 1092133,
+        "gradient_finite": true
+      },
+      "latest_epoch": 5,
+      "epoch3_raw_delta_vs_exp020": {
+        "all": 0.00443653307085854,
+        "selection": 0.01095908447495916,
+        "forward": 0.00074581171708427
+      },
+      "original_job_state": "orphaned_after_epoch4_checkpoint",
+      "resume_attempt1_failure": "generator state loaded onto CUDA; set_state requires CPU ByteTensor",
+      "resume_job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260919-200153-transformer023-patch-gru-resume-e4-fix2-7b4c5722",
+      "epoch5_raw_scores": {
+        "all_ex66": 0.14858488105870937,
+        "62_65": 0.15086830555227343,
+        "67_70": 0.14739646434742076
+      },
+      "epoch5_raw_delta_vs_exp020": {
+        "all_ex66": -0.012462106776413101,
+        "62_65": -0.006319374424833102,
+        "67_70": -0.016065333047234592
+      },
+      "epoch5_interim_assessment": "Below EXP020 on all, selection, and forward; keep epoch6 for the predeclared complete run, but do not prepare full train from epoch5.",
+      "passed": false,
+      "result_file": "data/interim/tree_experiments/EXP-TRANSFORMER-023-PATCH-GRU/score_summary.json",
+      "selected_candidate": "raw_epoch5",
+      "final_delta_vs_exp020": {
+        "all_ex66": -0.012462106776413101,
+        "62_65": -0.006319374424833102,
+        "67_70": -0.016065333047234592,
+        "worst_month": -0.025138712059699947
+      },
+      "decision": "Do not full-train or submit"
+    },
+    {
+      "id": "joint_transformer_slot_simplex",
+      "status": "submitted_public_0.152",
+      "result_file": "outputs/submission_metadata/transformer020_event_joint_softgate_search.json",
+      "selection_rule": "0.05 simplex grid selected only on months62-65",
+      "selected_weights": {
+        "old": 0.0,
+        "transformer020_raw": 0.4,
+        "market_conditioned_event": 0.6
+      },
+      "selection_delta": 0.0016993833415674675,
+      "forward_delta": 0.0025033078666342468,
+      "all_delta": 0.00221352708125247,
+      "forward_months_improved": 4,
+      "builder": "scripts/build_current152_joint_transformer_slot.py",
+      "formal_submission": true,
+      "passed": true,
+      "lomo_audit": "outputs/submission_metadata/transformer020_event_joint_lomo_audit.json",
+      "lomo_frozen_positive_months": 4,
+      "lomo_selected_weight_range": [
+        0.2,
+        0.6
+      ],
+      "full_candidate": "outputs/submissions/current152_transformer020raw40_event60.csv",
+      "geometry_report": "outputs/submission_metadata/event_residual_v28_full_candidate_geometry.json",
+      "csv_rows": 647896,
+      "csv_valid": true,
+      "submission_ref": 56361734,
+      "public_score": 0.152,
+      "submitted_at": "2026-09-19 14:21:34.940000",
+      "outcome": "Tied displayed public best; no visible improvement at three decimals"
+    },
+    {
+      "id": "three_stream_axial_lob",
+      "status": "rejected_after_orphaned_epoch3",
+      "condition": "Run only if v28 and EXP023 do not produce a clearly stronger gated candidate, or after the stronger candidate is safely prepared.",
+      "hypothesis": "Per-stream axial attention alternates temporal mixing with feature/channel mixing, capturing LOB cross-level structure that the current time-token Transformer compresses before attention.",
+      "controlled_design": "Reuse EXP020 split, preprocessing, loss, epochs and seed; change only each stream encoder; one-seed dev first.",
+      "gate": "vs EXP020 raw: selection>=+0.0005; forward>=+0.0005; all>=+0.0007; worst monthly delta>=-0.002",
+      "sources": [
+        "https://openreview.net/forum?id=dS6kd5O8uc",
+        "https://arxiv.org/abs/1808.03668",
+        "https://arxiv.org/abs/1810.09965"
+      ],
+      "formal_submission": false,
+      "prepare_script": "scripts/prepare_transformer024_axial_lob.py",
+      "experiment_script": "scripts/exp_transformer_024_axial_lob.py",
+      "smoke_test": {
+        "output_shape": [
+          2
+        ],
+        "output_finite": true,
+        "gradient_finite": true,
+        "parameter_count": 505256
+      },
+      "execution_rule": "Do not start until local EXP023 has completed and its gate has been evaluated.",
+      "launcher": "scripts/launch_transformer024_axial_lob.ps1",
+      "architecture": "four-step local patches -> temporal axial attention -> feature axial attention -> static379 fusion",
+      "axis_dim": 64,
+      "patch_size": 4,
+      "market_token_count": 50,
+      "flow_token_count": 15,
+      "baseline_parameter_count": 1106597,
+      "compute_note": "Patch size 4 reduces temporal attention matrix cost by about 16x relative to unpatched per-feature axial attention.",
+      "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260919-205054-transformer024-axial-lob-dev-fix-613c1783",
+      "launcher_path_repair": "Replaced corrupted non-ASCII absolute script path with workspace-relative path",
+      "failed_start_job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260919-204927-transformer024-axial-lob-dev-86f5a377",
+      "passed": false,
+      "best_available_candidate": "ema_epoch3",
+      "best_available_scores": {
+        "all_ex66": 0.14378993357104378,
+        "62_65": 0.14551790867135952,
+        "67_70": 0.14314638530561433
+      },
+      "delta_vs_exp020": {
+        "all_ex66": -0.01725705426407869,
+        "62_65": -0.01166977130574701,
+        "67_70": -0.02031541208904103
+      },
+      "decision": "Do not resume, full-train, or submit; gap after three epochs is too large for an efficient continuation"
+    },
+    {
+      "id": "tabm_month_rank_shrink",
+      "status": "rejected",
+      "hypothesis": "A 25% within-month rank-normalized target mixed with 75% raw z target may reduce monthly target-scale drift while retaining magnitude information.",
+      "script": "scripts/exp_tabm_045_month_rank_shrink.py",
+      "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260920-093745-tabm045-month-rank-shrink-d6123406",
+      "baseline": "EXP-TABM-044 raw trajectory",
+      "gate": "vs EXP-TABM-044 raw: selection>=0, forward>=+0.0005, all>=+0.0005, at least 3/4 forward months nonnegative, worst forward month>=-0.002",
+      "formal_submission": false,
+      "passed": false,
+      "result_file": "data/interim/tree_experiments/EXP-TABM-045-MONTH-RANK-SHRINK/score_summary.json",
+      "raw_delta_vs_tabm044": {
+        "selection": -0.0018724455822511643,
+        "forward": -0.0007605178017729697,
+        "all": -0.0008121983339781091
+      },
+      "decision": "Do not full-train or submit"
+    }
+  ],
+  "submission_budget": {
+    "limit": 3,
+    "used": 1,
+    "remaining": 2,
+    "rule": "Only submit a candidate that passes offline and forward gates; preserve remaining attempts for distinct hypotheses."
+  },
+  "next_action": "Project closed. Reopen only when a materially new legal feature pipeline, model signal, or reproducible competition method becomes available.",
+  "stop_conditions": [
+    "Public LB exceeds 0.152 with verified submission",
+    "Three authorized submissions are consumed",
+    "All scoped branches fail their stopping gates"
+  ],
+  "budget_reset_wake": {
+    "delay_hours": 5,
+    "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260919-092514-goal-budget-reset-5h-a2818e01",
+    "rule": "On wake, inspect current goal and job artifacts first; never restart a completed or running workload."
+  },
+  "training_evidence": {
+    "month_sample_count_ratio_max_min": 1.0139149202021922,
+    "month_target_energy_ratio_max_min": 4.704337346526597,
+    "implication": "EXP-022 tests equal month contribution to uncentered cosine while preserving original architecture and smooth-L1 term."
+  },
+  "budget_reset_wake_10h": {
+    "delay_hours": 10,
+    "job_path": "C:\\Users\\24395\\AppData\\Local\\CodexLongJobs\\20260919-094843-goal-budget-reset-10h-af2097d5",
+    "rule": "On wake inspect goal, artifacts, and live handles first; never duplicate completed or running workloads."
+  },
+  "research_during_wait": {
+    "checked_at": "2026-09-19",
+    "competition_discussion": "The strongest public advice reinforces purged temporal validation, excluding anomalous month 66, fast controlled iteration, and improving single models before adding more blend complexity.",
+    "ofi_audit": "True level-1 OFI, level-2 OFI, multilevel OFI, depth normalization, short-window means, acceleration, and decay features are already implemented and tested; do not repeat a generic OFI branch.",
+    "ofi_evidence": "EXP-TREE-016 showed that the original 35 microstructure features were valuable, but later isolated OFI/decay/replacement variants did not pass forward/stability gates.",
+    "next_untried_architecture": {
+      "id": "structured_patch_transformer_gru",
+      "status": "backlog_after_current_jobs",
+      "hypothesis": "Create short temporal patches from the market stream, mix price/volume channels inside each patch, apply a small Transformer, then a GRU/LSTM over patch summaries. This adds locality and explicit recurrence absent from the current factorized Transformer.",
+      "sources": [
+        "https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1616485/full",
+        "https://arxiv.org/abs/2405.13575",
+        "https://arxiv.org/abs/2003.00130"
+      ],
+      "execution_rule": "Do not start while EXP022 and Kaggle v24 occupy the two active experiment lanes. If both current branches fail or leave the local GPU free, first run a one-seed controlled dev experiment with the same split and loss as EXP020."
+    },
+    "deprioritized": [
+      "Generic OFI/MLOFI aggregation because it already exists in the feature stack.",
+      "Pure Mamba replacement because available evidence is less mature and implementation risk is higher than a structured-patch hybrid.",
+      "Additional blend-only search because current goal prioritizes single-model signal."
+    ],
+    "next_fallback_after_primary_jobs": {
+      "id": "three_stream_axial_lob",
+      "reason": "Axial attention preserves both temporal and cross-feature/order-book interactions; it is more structurally distinct from current factorized Transformer than adding depth, and reuses existing caches.",
+      "do_not_start_while": "EXP023 occupies local GPU and event-residual v28 occupies remote Kaggle lane."
+    }
+  },
+  "blend_search_20260920": {
+    "status": "complete_no_qualified_candidate",
+    "unconstrained_report": "outputs/submission_metadata/extended_owned_blend_search_20260920.json",
+    "conservative_report": "outputs/submission_metadata/conservative_extended_owned_blend_search_20260920.json",
+    "previous_sequence_screen": "outputs/submission_metadata/previous_sequence_slot_screen_20260920.json",
+    "models_added": [
+      "tree",
+      "tabm_ema",
+      "subsecond",
+      "multiwindow",
+      "tsmixer",
+      "linear_sequence",
+      "last_readout",
+      "sync_tcn",
+      "deep3_transformer",
+      "transformer020_ema",
+      "relative394_xs"
+    ],
+    "conclusion": "No added model passed selection, forward, all, and monthly stability gates versus verified raw40/event60."
+  },
+  "closed_at": "2026-09-20",
+  "final_public_score": 0.152,
+  "final_submission": "outputs/submissions/current152_transformer020raw40_event60.csv",
+  "closeout": "outputs/submission_metadata/PROJECT_CLOSEOUT_20260920.md"
+}

@@ -1,0 +1,161 @@
+{
+  "run_name": "current151_public30_geometry_optimized",
+  "constraint": "gpu + tpu + yangq = 0.30",
+  "grid_candidates": 4275,
+  "incumbent_public_lb": 0.151,
+  "incumbent_geometry_estimate": 0.1507496534074128,
+  "best_geometry_estimate": 0.15069889987496535,
+  "estimated_delta": -5.0753532447461724e-05,
+  "best_weights": {
+    "gpu": 0.12,
+    "tpu": 0.06,
+    "yangq": 0.12,
+    "tabm": 0.16,
+    "realmlp": 0.05,
+    "transformer_old": 0.1919999999999999,
+    "transformer_multi": 0.12799999999999995,
+    "gru": 0.17
+  },
+  "top10": [
+    {
+      "estimate": 0.15069889987496535,
+      "weights": {
+        "gpu": 0.12,
+        "tpu": 0.06,
+        "yangq": 0.12,
+        "tabm": 0.16,
+        "realmlp": 0.05,
+        "transformer_old": 0.1919999999999999,
+        "transformer_multi": 0.12799999999999995,
+        "gru": 0.17
+      }
+    },
+    {
+      "estimate": 0.1506977432493073,
+      "weights": {
+        "gpu": 0.14,
+        "tpu": 0.04,
+        "yangq": 0.11999999999999997,
+        "tabm": 0.16,
+        "realmlp": 0.05,
+        "transformer_old": 0.1919999999999999,
+        "transformer_multi": 0.12799999999999995,
+        "gru": 0.17
+      }
+    },
+    {
+      "estimate": 0.15069083035717798,
+      "weights": {
+        "gpu": 0.12,
+        "tpu": 0.06,
+        "yangq": 0.12,
+        "tabm": 0.16,
+        "realmlp": 0.05,
+        "transformer_old": 0.1739999999999999,
+        "transformer_multi": 0.11599999999999995,
+        "gru": 0.2
+      }
+    },
+    {
+      "estimate": 0.15068961824381508,
+      "weights": {
+        "gpu": 0.14,
+        "tpu": 0.04,
+        "yangq": 0.11999999999999997,
+        "tabm": 0.16,
+        "realmlp": 0.05,
+        "transformer_old": 0.1739999999999999,
+        "transformer_multi": 0.11599999999999995,
+        "gru": 0.2
+      }
+    },
+    {
+      "estimate": 0.1506889771508723,
+      "weights": {
+        "gpu": 0.12,
+        "tpu": 0.04,
+        "yangq": 0.13999999999999999,
+        "tabm": 0.16,
+        "realmlp": 0.05,
+        "transformer_old": 0.1919999999999999,
+        "transformer_multi": 0.12799999999999995,
+        "gru": 0.17
+      }
+    },
+    {
+      "estimate": 0.1506889209286622,
+      "weights": {
+        "gpu": 0.12,
+        "tpu": 0.06,
+        "yangq": 0.12,
+        "tabm": 0.16,
+        "realmlp": 0.05,
+        "transformer_old": 0.2099999999999999,
+        "transformer_multi": 0.13999999999999996,
+        "gru": 0.14
+      }
+    },
+    {
+      "estimate": 0.15068885984630964,
+      "weights": {
+        "gpu": 0.1,
+        "tpu": 0.06,
+        "yangq": 0.13999999999999999,
+        "tabm": 0.16,
+        "realmlp": 0.05,
+        "transformer_old": 0.1919999999999999,
+        "transformer_multi": 0.12799999999999995,
+        "gru": 0.17
+      }
+    },
+    {
+      "estimate": 0.15068782156869778,
+      "weights": {
+        "gpu": 0.14,
+        "tpu": 0.04,
+        "yangq": 0.11999999999999997,
+        "tabm": 0.16,
+        "realmlp": 0.05,
+        "transformer_old": 0.2099999999999999,
+        "transformer_multi": 0.13999999999999996,
+        "gru": 0.14
+      }
+    },
+    {
+      "estimate": 0.15068716431605345,
+      "weights": {
+        "gpu": 0.14,
+        "tpu": 0.02,
+        "yangq": 0.13999999999999999,
+        "tabm": 0.16,
+        "realmlp": 0.05,
+        "transformer_old": 0.1919999999999999,
+        "transformer_multi": 0.12799999999999995,
+        "gru": 0.17
+      }
+    },
+    {
+      "estimate": 0.15068168829109935,
+      "weights": {
+        "gpu": 0.12,
+        "tpu": 0.04,
+        "yangq": 0.13999999999999999,
+        "tabm": 0.16,
+        "realmlp": 0.05,
+        "transformer_old": 0.1739999999999999,
+        "transformer_multi": 0.11599999999999995,
+        "gru": 0.2
+      }
+    }
+  ],
+  "diagnostics": {
+    "correlation_with_incumbent": 0.9890316298216069,
+    "rows": 647896,
+    "finite": true,
+    "mean": -0.014190371172413695,
+    "std": 0.9396731285869626
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_public30_geometry_optimized.csv",
+  "submission_status": "prepared_not_submitted",
+  "warning": "Geometry model is diagnostic; CV error exceeds the estimated deltas."
+}

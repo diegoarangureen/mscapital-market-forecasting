@@ -1,0 +1,111 @@
+{
+  "run_name": "tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain",
+  "seed": 42,
+  "epochs": 15,
+  "feature_count": 385,
+  "train_rows": 1257637,
+  "test_rows": 647896,
+  "validation_50_59": null,
+  "validation_62_70_no66": 0.16102839913113948,
+  "tabm_k": 32,
+  "source_notebook": "relative319_xs_tabm_notebook",
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain_test.feather",
+  "submission_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain.csv",
+  "prediction_std": 0.0003544598114362773,
+  "logs": [
+    {
+      "epoch": 1,
+      "learning_rate": 0.002,
+      "train_mse": 0.9825934690818008,
+      "seconds": 16.91697010000007
+    },
+    {
+      "epoch": 2,
+      "learning_rate": 0.001987043238232586,
+      "train_mse": 0.9790418283649671,
+      "seconds": 15.213943099999597
+    },
+    {
+      "epoch": 3,
+      "learning_rate": 0.0019485263796156027,
+      "train_mse": 0.9772262465536123,
+      "seconds": 15.181236400000671
+    },
+    {
+      "epoch": 4,
+      "learning_rate": 0.0018855000636461645,
+      "train_mse": 0.9758065007896121,
+      "seconds": 15.204404699999941
+    },
+    {
+      "epoch": 5,
+      "learning_rate": 0.001799683483926574,
+      "train_mse": 0.9747413109381711,
+      "seconds": 15.285988700000416
+    },
+    {
+      "epoch": 6,
+      "learning_rate": 0.0016934174930444542,
+      "train_mse": 0.9734861271268184,
+      "seconds": 15.275176199999805
+    },
+    {
+      "epoch": 7,
+      "learning_rate": 0.0015696007502163055,
+      "train_mse": 0.9720699591608191,
+      "seconds": 15.331991600000038
+    },
+    {
+      "epoch": 8,
+      "learning_rate": 0.0014316106534203211,
+      "train_mse": 0.9709213987295721,
+      "seconds": 15.324608799999623
+    },
+    {
+      "epoch": 9,
+      "learning_rate": 0.0012832112127837594,
+      "train_mse": 0.9693008657834066,
+      "seconds": 15.329533499999343
+    },
+    {
+      "epoch": 10,
+      "learning_rate": 0.0011284503781987159,
+      "train_mse": 0.9679146488146477,
+      "seconds": 15.3708871000008
+    },
+    {
+      "epoch": 11,
+      "learning_rate": 0.0009715496218012844,
+      "train_mse": 0.9668480379642607,
+      "seconds": 15.376191299999846
+    },
+    {
+      "epoch": 12,
+      "learning_rate": 0.0008167887872162409,
+      "train_mse": 0.9649485898898922,
+      "seconds": 15.33058660000006
+    },
+    {
+      "epoch": 13,
+      "learning_rate": 0.0006683893465796793,
+      "train_mse": 0.9634453753067199,
+      "seconds": 15.336150899999666
+    },
+    {
+      "epoch": 14,
+      "learning_rate": 0.0005303992497836947,
+      "train_mse": 0.9620160518613362,
+      "seconds": 15.370664000000033
+    },
+    {
+      "epoch": 15,
+      "learning_rate": 0.0004065825069555462,
+      "train_mse": 0.9609821574776947,
+      "seconds": 15.392015600000377
+    }
+  ],
+  "submission_status": "submitted_complete",
+  "validation_50_59_note": "not measured for the k32 candidate; the prior value belonged to k16",
+  "kaggle_submission_ref": 56254700,
+  "public_score": 0.134
+}

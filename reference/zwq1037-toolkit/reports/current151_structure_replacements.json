@@ -1,0 +1,38 @@
+{
+  "base": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\final_gru_direct_t12_r03_x18_g03.csv",
+  "base_submission_ref": 56270670,
+  "base_lb": 0.151,
+  "slot_weights": {
+    "transformer": 0.18,
+    "realmlp": 0.03
+  },
+  "new_inputs": {
+    "transformer": "data\\interim\\kaggle_outputs\\multistream_transformer_multiwindow_v15_full\\factorized_transformer\\factorized_transformer379_multiwindow10_full_e3.csv"
+  },
+  "old_new_correlations": {
+    "transformer": 0.9124799545240384
+  },
+  "outputs": [
+    {
+      "file": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_structure_transformer50.csv",
+      "replacement_fractions": {
+        "transformer": 0.5
+      },
+      "incumbent_correlation": 0.9992019692270335,
+      "delta_std": 0.037653157582079246,
+      "rows": 647896,
+      "finite": true
+    },
+    {
+      "file": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\current151_structure_transformer100.csv",
+      "replacement_fractions": {
+        "transformer": 1.0
+      },
+      "incumbent_correlation": 0.9967926902922624,
+      "delta_std": 0.07530631516415849,
+      "rows": 647896,
+      "finite": true
+    }
+  ],
+  "submission_status": "prepared_not_submitted"
+}

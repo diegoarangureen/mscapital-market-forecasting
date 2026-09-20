@@ -1,0 +1,11 @@
+{
+  "competition": "ms-capital-real-financial-market-forecasting",
+  "submission_ref": 56361734,
+  "file": "outputs/submissions/current152_transformer020raw40_event60.csv",
+  "description": "raw Transformer 40% + market-conditioned event residual 60%; verified dev and forward gains",
+  "status": "complete",
+  "public_score": 0.152,
+  "private_score": null,
+  "submission_number_in_goal": 1,
+  "submission_limit": 3
+}

@@ -1,0 +1,12 @@
+{
+  "competition": "ms-capital-real-financial-market-forecasting",
+  "submission_reference": 56162425,
+  "file_name": "tabm001_tree053r_blend75_fulltrain.csv",
+  "submitted_at_utc": "2026-09-11 09:01:33.487000",
+  "status": "COMPLETE",
+  "public_score": 0.131,
+  "previous_best_public_score": 0.122,
+  "public_score_change": 0.009,
+  "remaining_submissions_after_upload": 2,
+  "description": "75% TabM + 25% EXP053R tree; 307 features; local no66 0.15200"
+}

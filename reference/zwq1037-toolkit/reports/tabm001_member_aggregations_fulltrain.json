@@ -1,0 +1,32 @@
+{
+  "output_name": "tabm001_member_aggregations_fulltrain",
+  "checkpoint": "outputs/models/tabm001_tree053r_blend75_fulltrain_tabm.pt",
+  "test_rows": 647896,
+  "member_count": 16,
+  "mean_reproduction_max_absolute_error": 9.313225746154785e-10,
+  "aggregation_uses_labels": false,
+  "prediction_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\predictions\\tabm001_member_aggregations_fulltrain_test.feather",
+  "statistics": {
+    "mean": {
+      "mean": 1.0040778306574794e-06,
+      "std": 0.00032737868605181575,
+      "min": -0.01275312528014183,
+      "max": 0.015380946919322014,
+      "l2_norm": 0.26351451873779297
+    },
+    "trim1": {
+      "mean": 7.694752639508806e-07,
+      "std": 0.00032284442568197846,
+      "min": -0.01266749668866396,
+      "max": 0.015417060814797878,
+      "l2_norm": 0.25986436009407043
+    },
+    "trim2": {
+      "mean": 6.093183060329466e-07,
+      "std": 0.00032035293406806886,
+      "min": -0.012706144712865353,
+      "max": 0.015516217797994614,
+      "l2_norm": 0.25785863399505615
+    }
+  }
+}

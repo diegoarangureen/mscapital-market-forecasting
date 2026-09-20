@@ -1,0 +1,20 @@
+{
+  "rows": 16,
+  "months": [
+    62,
+    63,
+    64,
+    65,
+    67,
+    68,
+    69,
+    70
+  ],
+  "source_score": 0.15538451490216448,
+  "source_epoch": 4,
+  "relative_prediction_rmse": 2.3391518334367225e-05,
+  "max_abs_difference": 1.3849086819288543e-08,
+  "strict_state_loading": true,
+  "cpu_threads": 1,
+  "passed": true
+}

@@ -1,0 +1,124 @@
+{
+  "run_name": "aggressive_direct_owned_block_gru_equal38_common",
+  "weights_before_common_component": {
+    "gpu_tabm142": 0.2,
+    "tpu_tabm142": 0.12,
+    "yangq_blend142": 0.32,
+    "tabm385_k32": 0.126,
+    "realmlp_corr095": 0.054,
+    "factorized_transformer": 0.162,
+    "timeaware_gru": 0.018
+  },
+  "sources": {
+    "gpu_tabm142": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_cos689\\output\\submission.csv",
+    "tpu_tabm142": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\bestwater_tpu_v6\\output\\submission.csv",
+    "yangq_blend142": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\external\\kaggle_public\\yangq_lb142\\output\\submission.csv",
+    "tabm385_k32": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\tabm_relative319_xs40_order20_market6_k32_seed42_fulltrain.csv",
+    "realmlp_corr095": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\realmlp379_rq16_corr095_e8_fulltrain.csv",
+    "factorized_transformer": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_transformer_fulltrain\\factorized_transformer\\factorized_transformer379_full_e4.csv",
+    "timeaware_gru": "F:\\深度学习\\projects\\mscapital_market_forecasting\\data\\interim\\kaggle_outputs\\multistream_factorized_gru_timeaware_fulltrain\\factorized_gru_fulltrain\\factorized_gru379_full_e4.csv"
+  },
+  "local_owned_block_selection": {
+    "weights": {
+      "tabm385_k32": 0.35,
+      "realmlp_corr095": 0.15,
+      "factorized_transformer": 0.45,
+      "timeaware_gru": 0.05
+    },
+    "late_no66_cosine": 0.16523339881894245,
+    "tree_weight": 0.0
+  },
+  "correlation_matrix_names": [
+    "gpu_tabm142",
+    "tpu_tabm142",
+    "yangq_blend142",
+    "tabm385_k32",
+    "realmlp_corr095",
+    "factorized_transformer",
+    "timeaware_gru"
+  ],
+  "correlation_matrix": [
+    [
+      1.0,
+      0.9858550033541634,
+      0.8414838201843146,
+      0.8369681577581752,
+      0.8148004020276256,
+      0.8280065346194974,
+      0.8345419579638339
+    ],
+    [
+      0.9858550033541635,
+      1.0,
+      0.8460027539663969,
+      0.8407254718485425,
+      0.8103869748935336,
+      0.8299898821452599,
+      0.8299234775220197
+    ],
+    [
+      0.8414838201843144,
+      0.846002753966397,
+      1.0,
+      0.8525533379185041,
+      0.8210053740626693,
+      0.8442454954161636,
+      0.8428326168007366
+    ],
+    [
+      0.8369681577581752,
+      0.8407254718485425,
+      0.852553337918504,
+      1.0,
+      0.9131892961218201,
+      0.8872800610052392,
+      0.870321660421821
+    ],
+    [
+      0.8148004020276255,
+      0.8103869748935336,
+      0.8210053740626692,
+      0.9131892961218201,
+      1.0,
+      0.8513701287192968,
+      0.841270200663033
+    ],
+    [
+      0.8280065346194972,
+      0.8299898821452599,
+      0.8442454954161636,
+      0.887280061005239,
+      0.8513701287192967,
+      0.9999999999999999,
+      0.9248788423953404
+    ],
+    [
+      0.8345419579638339,
+      0.8299234775220198,
+      0.8428326168007366,
+      0.870321660421821,
+      0.8412702006630332,
+      0.9248788423953405,
+      1.0
+    ]
+  ],
+  "comparison": {
+    "correlation_with_current_lb0150": 0.9998381000778735,
+    "delta_std_vs_current_lb0150": 0.01704063193329813,
+    "before_vs_after_common": 0.9999653201594599
+  },
+  "prediction": {
+    "rows": 647896,
+    "mean": -0.014190371172413698,
+    "std": 0.9393028907592472,
+    "min": -18.91477499176313,
+    "max": 17.335637314429025,
+    "finite": true
+  },
+  "output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\aggressive_direct_owned_block_gru_equal38_common.csv",
+  "no_common_output_path": "F:\\深度学习\\projects\\mscapital_market_forecasting\\outputs\\submissions\\aggressive_direct_owned_block_gru_equal38_common_no_common.csv",
+  "submission_status": "submitted_complete",
+  "kaggle_submission_ref": 56265180,
+  "public_score": 0.15,
+  "conclusion": "Tied the current best at displayed precision; retain submission 56254690 as the incumbent because no leaderboard improvement was observed."
+}

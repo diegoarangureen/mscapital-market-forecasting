@@ -1,0 +1,46 @@
+{
+  "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+  "real_batch_size": 256,
+  "results": [
+    {
+      "precision": "float32",
+      "seconds_per_batch": 0.23351390000061656,
+      "losses": [
+        0.7125065326690674,
+        0.6190401911735535,
+        0.5814743041992188,
+        0.4969213604927063,
+        0.49743586778640747
+      ],
+      "finite_gradients": true,
+      "estimated_four_epoch_train_hours": 1.0777777777777777
+    },
+    {
+      "precision": "bfloat16",
+      "seconds_per_batch": 0.1933589000000211,
+      "losses": [
+        0.7321271300315857,
+        0.645678699016571,
+        0.5764166712760925,
+        0.5337777733802795,
+        0.4968518912792206
+      ],
+      "finite_gradients": true,
+      "estimated_four_epoch_train_hours": 0.8922222222222222
+    },
+    {
+      "precision": "float16",
+      "seconds_per_batch": 0.19244769999932032,
+      "losses": [
+        0.7319498658180237,
+        0.6457154750823975,
+        0.5762360095977783,
+        0.5338978171348572,
+        0.4969204068183899
+      ],
+      "finite_gradients": true,
+      "estimated_four_epoch_train_hours": 0.8877777777777778
+    }
+  ],
+  "scope": "Warm repeated real random batch; excludes data loading and validation."
+}
