@@ -302,3 +302,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Greedy forward model selection (select on months 40-64, eval 61-70/66-70): all-25 equal mean is best; selection does not transfer. DEAD.
 - Conclusion: s5 value = variance reduction of the exact v13 recipe (25 vs 15 models). OOF delta +0.0005/+0.0007 - inside noise floor but structurally >= 0 by construction. Submission decision escalated to parent (his pre-set condition "OOF supera a v13" is literally met on both windows; margin is inside noise).
 - Artifacts: oof_models_kfold455s5.npy (25x1.26M), test_models_kfold455s5.npy (25x648k), metrics_kfold455s5.json in /tmp/work; kernel output at diegoaranguren/mscapital-kfold455-5seed-v2-incremental-save.
+
+## 2026-09-20 10:14 - v15 (kfold455s5) LB 0.138: FLAT vs v13 0.139. LB noise resolution confirmed ~0.001
+- v15 submitted (ref 56386336): 25-model simple mean, exact v13 post-processing. Public LB 0.138 vs v13 0.139 - no gain, Kaggle keeps v13 as champion (rank 125/225, 20 entries).
+- OOF said +0.0005; LB said -0.001. Confirms: OOF deltas under ~0.002 do not resolve on LB. Only structural changes move the board.
+- Board movement: 225 teams (was 223). Top1 涵哥 0.176 (was 0.172, +0.004 jump - someone found something real). gate10 0.161 (was 0.160). Diego dropped 118->125 purely from other teams passing 0.139.
+- Calibration lesson (final): with a 25-model OOF tensor in hand, every post-hoc calibration tried (shrinkage, anti-shrinkage, median, trimmed, greedy selection) was neutral-to-harmful. Equal-weight mean of a well-seeded k-fold ensemble is the ceiling for this recipe. Future gains must come from features/architecture, not aggregation.

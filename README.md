@@ -5,7 +5,7 @@ End-to-end research project for the Kaggle competition
 (~650k high-frequency market windows; metric: cosine similarity between the
 predicted and realized return vectors).
 
-**Current standing: public leaderboard 0.139, rank 118/223** (as of Sep 20, 2026).
+**Current standing: public leaderboard 0.139, rank 125/225** (as of Sep 20, 2026).
 Top of board is 0.172; top-10 cut is 0.160. Work is active and updated daily.
 
 ## Results trajectory
@@ -16,6 +16,7 @@ Top of board is 0.172; top-10 cut is 0.160. Work is active and updated daily.
 | Sep 15 | v9 | RealMLP 246f, refit-on-full | 0.124 |
 | Sep 17 | v13 | RealMLP 455f, 5 purged folds x 3 seeds, holdout + early stopping, 15-model average | **0.139** |
 | Sep 18 | v14 | v13 + 75 cross-sectional rank features (XS75) | 0.135 (negative; see below) |
+| Sep 20 | v15 | v13 recipe, 5 folds x 5 seeds (25 models) | 0.138 (flat; OOF +0.0005 did not transfer) |
 
 Since v14, eight controlled validation A/Bs on the champion (order-flow stream
 aggregates, masked microstructure + liquidity-void features, loss reweighting,
@@ -25,7 +26,12 @@ documented with numbers in the log. Seed replication confirmed a +0.002
 "improvement" was pure seed noise, which closed the incremental
 feature-stacking line. Current work: a 25-model k-fold OOF run (5 folds x 5
 seeds) for per-row uncertainty estimation and offline prediction calibration
-(shrinkage), plus structurally different feature families.
+(shrinkage). v15 tested the aggregation ceiling directly: 25 models instead
+of 15 moved OOF +0.0005 and the leaderboard not at all (0.138 vs 0.139) -
+with a 25-model OOF tensor available, every post-hoc calibration tried
+(shrinkage, robust aggregation, model selection) was neutral or harmful.
+The equal-weight k-fold mean is the ceiling for this recipe; further gains
+have to come from new features or architecture.
 
 Every experiment - including the dead ends - is logged with numbers in
 [research/LOG.md](research/LOG.md) and [EXPERIMENTS.md](EXPERIMENTS.md).
