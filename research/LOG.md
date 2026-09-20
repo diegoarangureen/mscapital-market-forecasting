@@ -342,3 +342,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - tpuval455 v1 FAILED at 2617s: XLA "LLVM compilation error: Cannot allocate memory" -> segfault. Cause: per-step LR updates (flat_anneal per step) invalidate the compiled graph every step -> recompilation memory bomb. bestwater's TPU code updates lr per EPOCH (CosineAnnealingLR T_max=EPOCHS). Also its Logs panel showed Accelerator: None - CPU-vs-TPU unconfirmed; HW probes added.
 - Fix: realmlp_tpu.py now per-epoch LR + hardware probes (get_memory_info, xr device count, jax.devices). tpuval455c pushed (title==slug). tpuval455b (old code) still running as CPU/TPU data point.
 - Kaggle web login recovered (Diego updated vault password). Wedged-kernel results read via browser Logs tab.
+
+## 2026-09-20 19:20 - TPU BLOCKED: Kaggle requires Persona identity verification for TPU v5e-8
+- Editor UI accelerator options on Diego's account: None / GPU T4 x2 / TPU v5e-8 (listed). Selecting TPU triggers: "Scarce resources such as TPU v5e-8 require identity verification... verification with a smartphone or webcam on Persona (3rd-party)". Screenshot: /downloads/cloud-browser-20260920-171912.png.
+- Account NOT verified -> no TPU until Diego completes Persona verification (his ID/selfie, ~5 min, only he can do it).
+- This also explains: API machine_shape/enable_tpu/create_kernel_session all silently ignored; all "TPU" sessions ran on CPU (Accelerator: None; jax CpuDevice; HW world 1 1). spike4's xla:0 was XLA:CPU.
+- tpuval455b crashed OOM at ~2617s (per-step lr recompile bomb on CPU XLA). tpuval455c (per-epoch lr) still running on CPU - may complete and validate the port numerics anyway.
+- Compute now: GPU 4.7k s until Sep 26 02:00 CEST reset. TPU 72k s waits on Diego's verification.
