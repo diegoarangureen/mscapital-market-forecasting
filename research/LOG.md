@@ -381,3 +381,10 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Infra: wipe de sandbox ~23:00 + caída del proveedor 00:13-00:18 (admission full) — recuperado todo, sin pérdida (repo en GitHub, creds en prompts).
 - X28b (RQ aux head) queda encolado para post-reset o TPU. TPU: Persona sigue pendiente.
 - Decisión sobre datos locales: /tmp/mscapital (9GB) no se reconstruye de momento — el trabajo actual es kernel-side; arrays pequeños (full_y/full_month) se bajarán del dataset mscapital-matrices cuando hagan falta para paneles.
+
+## Sep 21 01:15 — X28b listo; investigación: la meseta pública es real
+- X28b construido (src/kaggle/realmlp_x28b_rq.py): campeón exacto (lambda_cos=1.0, ruido de label, EMA 0.998) + cabeza auxiliar RQ-KMeans (config real de yunsu: 3 capas × 3 códigos, NO los defaults 4×5; códigos sobre y limpio redondeado a 4 dec, lambda_rq 0.1). Listo para lanzar tras reset GPU o en TPU.
+- Resuelto lo de 450 vs 455: el campeón es 298f advdrop (303-5) + 152 públicas = 450 columnas reales; el tag "455f" es histórico. Header del script ya lo decía. Pendiente corregir README (dice 455).
+- Toolkit ZWQ1037, informe goal_improve_beyond152: su objetivo "superar 0.152 con ≤3 submissions" CERRÓ SIN MEJORA VERIFICADA. Su rama más fuerte (market-conditioned event residual sobre Transformer) dio forward delta +0.0013 — meses de trabajo de modelos de secuencia para +0.001. Conclusión: todos los que minan datos públicos están en meseta 0.15-0.16; el diferenciador de bestwater son sus 462 features privadas. Nuestro techo con material público está cerca; prioridad = robustez del campeón (más seeds/folds vía TPU) + micro-ganancias verificadas (RQ aux) + disciplina de validación.
+- Su protocolo de validación es más estricto que el nuestro: train 0-59, purge 60-61, select en 62-65, confirmación forward 67-70 (excluye 66). Adoptar para cualquier candidato v16: selección y forward-confirm en ventanas disjuntas.
+- TPU probe v3 lanzado 01:13; resultado pendiente.
