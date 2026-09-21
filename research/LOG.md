@@ -461,3 +461,7 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 ## 2026-09-21 20:43 CEST — LB snapshot
 
 235 teams, top1 0.177, gate10 0.162, gate20 0.156. Diego 0.139 rank 127 (steady). TPU replication v1 still QUEUED (~2h) — capacity wait, expected.
+
+## 2026-09-21 21:47 CEST — screen queue ported to TPU (prep)
+
+Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code heads, lambda_rq 0.1) and realmlp_x28c_quantile_tpu.py (TPU replication + X28c delta: 1001-knot empirical-normal-quantile preprocessing, train-fitted only). Both syntax-checked, delta-vs-replication verified line-for-line against the GPU diffs. Ready to launch as TPU screens once replication fidelity confirms (each screen = seed 2026 fold5 vs 0.170090, gate +0.004).
