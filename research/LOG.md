@@ -437,3 +437,9 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - `yunimiaomiaobei/submit-lb142`: submit-only prediction file — DO NOT blend (yangq369 trap rule).
 
 **TPU probe v6**: still QUEUED (~2.5h) — capacity wait; parent informed 13:41; one-shot chain continues.
+
+## 2026-09-21 15:05 CEST — main loop: LB snapshot + README daily refresh
+
+**LB snapshot 15:04**: 232 teams, top1 0.177, gate10 0.162, gate20 0.156. Diego 0.139 rank 127 (board grew 230→232, rank steady).
+**README**: daily refresh — standing line updated to 127/232, top1 0.177, gate10 0.162.
+**Open item parked for v16 feature work**: senanuretin's finding that `price=0` marks an EMPTY book level. Our X21/X22 builders (src/features22.py, src/build_features.py) do not explicitly mask zero prices — any microprice/spread feature inherits sign artifacts on empty levels. Quantify frequency + A/B a masked variant when a feature-family screen opens (needs GPU/TPU budget; not worth the GPU buffer now).
