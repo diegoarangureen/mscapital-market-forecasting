@@ -410,3 +410,13 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - LR schedule (EXP_TABM_012_015): LR fija produce curvas no monótonas y patience=4 corta demasiado pronto; smooth cosine 0.002→0.0001/20ep parado en 15 = su política congelada. Nuestro campeón: flat-then-anneal 10ep patience 3 → X28d = EPOCHS 15 + patience 5 (screen config-only).
 - Cola de pantallas post-reset/TPU (cada una ~1.9k s, seed 2026 fold5 vs 0.17009, gate +0.004): X28b (RQ aux, lista) → X28c (quantile features) → X28d (epochs/patience). Después de cualquier señal: fold4 confirm + panel disjoint (select 62-65, confirm 67-70, ex66).
 - EXP_AUDIT_001 drift: test tiene IQR de trade-count/volume ~1.4× y 5-7pp menos missing que train → período test más activo; diagnóstico del gap OOF→LB, no accionable directamente.
+
+## 2026-09-21 13:05 CEST — toolkit mining + LB snapshot (main loop)
+
+**LB snapshot 13:04**: 231 teams, top1 0.177, gate10 0.162, gate20 0.156. Diego 0.139 rank 127 (unchanged since 05:27).
+
+**TPU probe v6**: still QUEUED (~91 min) — capacity wait, one-shot chain checking every 15 min.
+
+**EXP_TREE_017_019 (ZWQ, XGBoost target/monthly transforms)**: raw target vs centered: centered stays (-0.0013 raw). Same-month percentile-rank features: +0.0048 formal cosine BUT not replicated in inner folds, higher monthly variance, and transductive (needs test-month boundaries; test has no `month`) → not deployable, rejected by ZWQ. Same-month z-score: -0.0134, rejected. ZWQ's own suggested causal fix (fit per-column empirical distribution on TRAIN months only, fixed mapping for future months) is functionally the quantile-transform preprocessing already in our screen queue as **X28c** (their EXP_TABM_011 evidence: +0.001 both windows, worst-month +0.01). No new action — X28c covers the deployable variant of the only positive idea here.
+
+**EXP_EVAL_001 (ZWQ generalization panel)**: 4-window admission protocol: 50-59 / 60-70 ex66 / 62-70 ex66 (same 0-59-trained model, 2-month isolation gap = leak diagnostic) / 67-70. Gates: no window declines, >=1 window gains >=0.001, every LOMO delta >= -0.001, Pareto only within same seed/control/samples. Confirms our v16 protocol (select 62-65, confirm 67-70, ex66, LOMO >= -0.001). Adoptable addition: the 62-70-ex66 isolation-gap window as an extra leak diagnostic when a v16 candidate exists.
