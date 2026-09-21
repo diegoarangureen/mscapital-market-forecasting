@@ -469,3 +469,11 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 ## 2026-09-21 23:45 CEST — LB snapshot (end of day)
 
 236 teams, top1 0.177, gate10 0.162, gate20 0.156. Diego 0.139 rank 127 (steady all day). TPU replication v1 still QUEUED (~5h; probe needed ~7h). Day summary: Persona verification completed by Diego 11:31 → TPU v5e-8 confirmed 18:43 (8 devices) → champion replication launched + X28b/X28c TPU screen variants built and committed. Public-source mining: ZWQ factorized transformer (LB 0.145, reference-only), senanuretin MIT methodology (validation-period difficulty, empty book levels, order encoding), ZWQ closeout (0.152 final blend decomposition + validation protocol we adopted).
+
+## 2026-09-22 01:45 CEST — TPU replication fidelity CONFIRMED + kfold launched
+
+**Replication result (tpu455repl)**: seed 2026 fold 5 val_cos = **0.168204** on TPU v5e-8 (train 1069s, total session elapsed 1727s incl. compile). Target GPU champion fold5 = 0.170090. Delta = -0.001886 — inside the pre-registered 0.002 tolerance and inside the ±0.002 seed-noise band; the port has intentional per-epoch anneal differences + XLA numerics. FIDELITY CONFIRMED. Speed: ~29 min wall for one fold incl. compile (GPU ~30 min) — per-model TPU advantage will show in the 25-model kfold (no recompile between folds).
+**TPU baseline note**: for screens run ON TPU, the same-device baseline is 0.168204, not the GPU 0.170090 — screen gate = +0.004 over the TPU replication baseline.
+**Full kfold launched**: mscapital-kfold455-tpu v1 (5 seeds x 5 folds, timeout 36000s) — QUEUED.
+**TPU constraint discovered**: max 1 concurrent batch TPU session per account ("Maximum batch TPU session count of 1 reached"). X28b/X28c TPU screens (scripts committed) will run SEQUENTIALLY after the kfold completes: chain = kfold → x28b → x28c.
+**TPU quota budget**: 72k s. Estimated spend: kfold ~27-30k s + screens ~1.2k s each. Comfortable.
