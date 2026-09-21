@@ -457,3 +457,7 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 
 **TPU CONFIRMED**: probe v6 (tpu-probe-persona, pushed 11:32, queued ~7h for capacity) COMPLETE — probe_result.txt shows 8 TpuDevices (v5e-8, 2x4 coords). Persona verification works. ACCELERATOR/TPU_NAME env empty but jax.devices() authoritative.
 **Replication launched**: mscapital-tpu455-replication v1 (kernelId 135268314) via push_tpu — SEEDS=2026 FOLD_IDX=4, target ~= 0.170090 (fidelity check of the torch_xla port vs GPU champion), timeout 7200s. If fidelity holds: full kfold450s5v2 TPU (5 seeds x 5 folds) per parent instruction 11:32.
+
+## 2026-09-21 20:43 CEST — LB snapshot
+
+235 teams, top1 0.177, gate10 0.162, gate20 0.156. Diego 0.139 rank 127 (steady). TPU replication v1 still QUEUED (~2h) — capacity wait, expected.
