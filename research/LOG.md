@@ -420,3 +420,20 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 **EXP_TREE_017_019 (ZWQ, XGBoost target/monthly transforms)**: raw target vs centered: centered stays (-0.0013 raw). Same-month percentile-rank features: +0.0048 formal cosine BUT not replicated in inner folds, higher monthly variance, and transductive (needs test-month boundaries; test has no `month`) → not deployable, rejected by ZWQ. Same-month z-score: -0.0134, rejected. ZWQ's own suggested causal fix (fit per-column empirical distribution on TRAIN months only, fixed mapping for future months) is functionally the quantile-transform preprocessing already in our screen queue as **X28c** (their EXP_TABM_011 evidence: +0.001 both windows, worst-month +0.01). No new action — X28c covers the deployable variant of the only positive idea here.
 
 **EXP_EVAL_001 (ZWQ generalization panel)**: 4-window admission protocol: 50-59 / 60-70 ex66 / 62-70 ex66 (same 0-59-trained model, 2-month isolation gap = leak diagnostic) / 67-70. Gates: no window declines, >=1 window gains >=0.001, every LOMO delta >= -0.001, Pareto only within same seed/control/samples. Confirms our v16 protocol (select 62-65, confirm 67-70, ex66, LOMO >= -0.001). Adoptable addition: the 62-70-ex66 isolation-gap window as an extra leak diagnostic when a v16 candidate exists.
+
+## 2026-09-21 14:10 CEST — public-kernel scan + open-source mining (main loop)
+
+**Newest public kernels for the comp (Kaggle API, dateCreated):**
+- `zwq1037/factorized-transformer-temporal3fold-lb0145` (Sep 18, 0 votes): full sequence-model pipeline — per-sample time grids from market/transaction/order streams + 379 static features, factorized stream-encoder transformer, cosine loss, 3 temporal cutoffs (train months <=52/57/62), unit-norm fold average. Published LB 0.145. Source fetched to /tmp (kernel license not stated in metadata — analysis only, NOT imported into repo). His own toolkit already concluded sequence models add only ~+0.001 as blend members and his closeout closed "improve beyond 0.152" with no verified path. Reference value only; not our current line.
+- `senanuretin/why-my-hold-out-and-the-leaderboard-disagreed` (+ GitHub senanurcetin/ms-capital-market-forecasting, MIT license). Methodology gold despite her 0.128-0.129 LB:
+  1. `price=0` in order book = EMPTY LEVEL, not a price; mid/spread features inherit sign errors if treated as price.
+  2. market table spans ~600s; order/transaction span 60s.
+  3. `order_action`: 0=NEW, 1=CANCEL, confirmed by book balance (new ≈ cancels + trades); `side` recoverable from price vs mid. Key encoding facts for any future order-flow feature family (X26 line successor).
+  4. Monthly target vol swings 2.69x; frozen-model block-difficulty spread 0.117-0.148 → her last-6-month hold-out sat at 83rd pctile "easy" and flattered by +0.011. De-bias method: scale by typical-block/your-block. Directly supports our noise-floor + forward-confirm protocol.
+  5. Adversarial validation calibration: AUC 0.791 vs pooled train is meaningless; block-to-block test-vs-last-train 0.749 ≈ months10-19-vs-0-9 0.754 → test period is NOT more drifted than ordinary train-block distance by this measure (mild counter-evidence to pure-drift explanations of the local/LB gap; EXP_AUDIT_001's feature-level drift findings still stand).
+  6. Cosine: scale-invariant but NOT shift-invariant (constant predictions score -0.007..+0.022 across folds); rows weighted by norm, not count. Her fold-std 0.0041 matches our ~0.004 noise floor.
+  7. Her subs: single LGB 0.128, 3-model blend +4 months data 0.129 (+0.001 = "what a gain below the noise floor looks like").
+- `bestwater/ktpu-tabm-cos-v6-3seed` (2 votes): his TPU TabM — private-462-feature line, off-limits data, TPU code possibly useful as reference later.
+- `yunimiaomiaobei/submit-lb142`: submit-only prediction file — DO NOT blend (yangq369 trap rule).
+
+**TPU probe v6**: still QUEUED (~2.5h) — capacity wait; parent informed 13:41; one-shot chain continues.
