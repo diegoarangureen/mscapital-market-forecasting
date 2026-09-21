@@ -400,3 +400,5 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - Parches: (1) ruido de label también per-EPOCH (≤10 variantes de grafo por forma); (2) permutación de batch en CPU con índice transferido como tensor (los índices son DATOS del grafo, no constantes — antes perm se sliceaba en device horneando offsets); (3) BS default de vuelta a 256 (fidelidad al campeón: la primera corrida TPU debe ser replicación; throughput se tunea después); (4) guard de submission.csv (ya no peta si no hay competition adjunta).
 - Riesgo residual: eval slices Xva_t[i:i+2048] hornean ~60 offsets pero se repiten cada epoch → cacheados desde epoch 1, aceptable. steps_per_epoch/total_steps quedan sin uso (inofensivos).
 - El script TPU queda listo para lanzar en cuanto Persona desbloquee: primera corrida = replicación del campeón (SEEDS 2026, FOLD_IDX 4) para validar fidelidad vs 0.17009, luego el kfold455 5-seed completo.
+
+## Sep 21 05:27 — LB snapshot: 230 teams (+5), top1 0.177, gate10 0.162, gate20 0.156; nosotros rank 127 (0.139, -2 por deriva). Sin movimiento propio desde Sep 20 08:12.
