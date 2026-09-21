@@ -402,3 +402,11 @@ All local state lost again; zero work lost (Kaggle dataset + GitHub). Kernels un
 - El script TPU queda listo para lanzar en cuanto Persona desbloquee: primera corrida = replicación del campeón (SEEDS 2026, FOLD_IDX 4) para validar fidelidad vs 0.17009, luego el kfold455 5-seed completo.
 
 ## Sep 21 05:27 — LB snapshot: 230 teams (+5), top1 0.177, gate10 0.162, gate20 0.156; nosotros rank 127 (0.139, -2 por deriva). Sin movimiento propio desde Sep 20 08:12.
+
+## Sep 21 09:05 — Minería mañana: cola de pantallas X28 definida (3 levers con evidencia)
+- double_trim (ZWQ1037 submission 56175685): local no66 0.1543 → LB 0.130 (-0.001). Target-trimming CERRADO por su evidencia.
+- Multi-seed/member tricks (EXP_TABM_008_010): seed 137 más débil, blend de seeds no pasa gates, shrinkage por desacuerdo de miembros rechazado (correlación 0.70 desacuerdo~|señal|). Consistente con nuestro techo de agregación.
+- Quantile preprocessing de FEATURES (EXP_TABM_011): CDF empírica → score normal por feature, fit por fold solo en train (1001 knots, ≤200k filas). +0.001 en ambas ventanas forward y mejora worst-month 0.1256→0.1355 y Q25. Su lever de preprocesado más robusto. Nuestro campeón usa scaler propio (mediana/IQR + soft-clip) → X28c = swap a quantile-normal. Implementación barata (searchsorted por feature).
+- LR schedule (EXP_TABM_012_015): LR fija produce curvas no monótonas y patience=4 corta demasiado pronto; smooth cosine 0.002→0.0001/20ep parado en 15 = su política congelada. Nuestro campeón: flat-then-anneal 10ep patience 3 → X28d = EPOCHS 15 + patience 5 (screen config-only).
+- Cola de pantallas post-reset/TPU (cada una ~1.9k s, seed 2026 fold5 vs 0.17009, gate +0.004): X28b (RQ aux, lista) → X28c (quantile features) → X28d (epochs/patience). Después de cualquier señal: fold4 confirm + panel disjoint (select 62-65, confirm 67-70, ex66).
+- EXP_AUDIT_001 drift: test tiene IQR de trade-count/volume ~1.4× y 5-7pp menos missing que train → período test más activo; diagnóstico del gap OOF→LB, no accionable directamente.
