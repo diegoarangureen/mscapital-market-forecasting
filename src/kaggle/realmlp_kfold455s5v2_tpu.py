@@ -1,4 +1,9 @@
-# RealMLP champion recipe on 455f (298f advdrop + 152 public 0726) - SUBMISSION kernel.
+# RealMLP champion recipe on 450f (298f advdrop + 152 public 0726) - TPU (torch_xla) port.
+# XLA-compile-safety review (Sep 21): lazy XLA bakes python scalars/slice offsets as graph
+# constants -> per-step variants = thousands of graphs = LLVM compile OOM (root cause of
+# tpuval455b/c deaths). Fixes: LR AND label-noise anneal per-EPOCH (<=10 graph variants),
+# batch permutation stays on CPU (index tensor is graph DATA, not constants), BS default
+# back to champion 256 for recipe fidelity (first TPU run must be a replication).
 # bestwater-style inference: 5 purged folds x N seeds, holdout+ES per fold, test pred = mean of fold-seed models.
 # Folds: val 40-44/50-54/55-59/60-64/65-70, train <=37/47/52/57/62. Scaler fit per fold on its train.
 import os, math, json, time, glob
@@ -18,7 +23,7 @@ N_ENS = int(os.environ.get('N_ENS', '16'))
 EPOCHS = int(os.environ.get('EPOCHS', '10'))
 PATIENCE = int(os.environ.get('PATIENCE', '3'))
 LR = float(os.environ.get('LR', '1e-3'))
-BS = int(os.environ.get('BS', '1024'))
+BS = int(os.environ.get('BS', '256'))  # 256 = champion recipe; 1024+ only for later throughput experiments
 TAG = os.environ.get('TAG', 'kfold455s5')
 DATA = os.environ.get('DATA', '/kaggle/input/datasets/diegoaranguren/mscapital-matrices')
 XTRA = os.environ.get('XTRA', '/kaggle/input/datasets/diegoaranguren/mscapital-x21')
@@ -238,12 +243,11 @@ for seed in SEEDS:
             ep_progress = ep / max(EPOCHS - 1, 1)
             for g, bl in zip(opt.param_groups, base_lrs):
                 g['lr'] = flat_anneal(bl, ep_progress)
-            perm = torch.randperm(len(ytr_t), device=Xtr_t.device)
+            noise_std = 0.005 * (1 - ep_progress)  # per-EPOCH scalar: per-step constants = XLA recompile bomb
+            perm_np = np.random.permutation(len(ytr_t))  # CPU: device-tensor slicing bakes offsets as graph constants
             for i in range(0, len(ytr_t), BS):
-                idx = perm[i:i+BS]
-                step = ep * steps_per_epoch + i // BS
-                progress = min(step / total_steps, 1.0)
-                by = ytr_t[idx] + torch.randn_like(ytr_t[idx]) * (0.005 * (1 - progress))
+                idx = torch.from_numpy(perm_np[i:i+BS]).to(Xtr_t.device)
+                by = ytr_t[idx] + torch.randn_like(ytr_t[idx]) * noise_std
                 opt.zero_grad()
                 loss = loss_fn(model(Xtr_t[idx]), by)
                 loss.backward()
@@ -317,10 +321,13 @@ pte = test_preds.astype(np.float32).copy()
 pte[nodata] = 0.0
 pte = np.clip(pte, lo, hi)
 cand = sorted(glob.glob('/kaggle/input/competitions/*/submission.csv'))
-sub = pd.read_csv(cand[0])
-tcol = [c for c in sub.columns if c != 'sample_id'][0]
-sub[tcol] = pte
-sub.to_csv('/kaggle/working/submission.csv', index=False)
+if cand:
+    sub = pd.read_csv(cand[0])
+    tcol = [c for c in sub.columns if c != 'sample_id'][0]
+    sub[tcol] = pte
+    sub.to_csv('/kaggle/working/submission.csv', index=False)
+else:
+    print('no competition submission.csv attached; skipping (validation run)', flush=True)
 
 # metrics: OOF cos on months 61-70 (comparable to our champion val protocol)
 m6170 = (month >= 61) & (month <= 70) & seen
