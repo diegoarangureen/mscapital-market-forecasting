@@ -91,3 +91,19 @@ def gpu_quota():
     r = requests.post('https://www.kaggle.com/api/v1/kernels.KernelsApiService/GetAcceleratorQuotaStatistics',
                       headers={'Authorization': f'Bearer {tok}', 'Content-Type':'application/json'}, json={}, timeout=60)
     return r.json()
+
+def push_tpu(c, owner, slug, script_path, datasets=(), kernels=(), comps=(), timeout_s=36000):
+    """Push a kernel pinned to TPU v5e-8 via the byod tpuvm docker image (requires verified account)."""
+    from kagglesdk.kernels.types.kernels_api_service import ApiSaveKernelRequest
+    r = ApiSaveKernelRequest()
+    r.slug = f'{owner}/{slug}'; r.new_title = slug   # LESSON: title must equal slug or kernel wedges
+    r.text = open(script_path).read()
+    r.language = 'python'; r.kernel_type = 'script'
+    r.is_private = True; r.enable_internet = False
+    r.session_timeout_seconds = timeout_s
+    r.machine_shape = 'TpuV5E8'
+    r.docker_image = 'gcr.io/kaggle-private-byod/python-tpuvm@sha256:a2111cb9be558ea4bc187754bb95d7b65e90d8259434f1eb0e0ab1193ff498c0'
+    if datasets: r.dataset_data_sources = list(datasets)
+    if kernels: r.kernel_data_sources = list(kernels)
+    if comps: r.competition_data_sources = list(comps)
+    return c.kernels.kernels_api_client.save_kernel(r)
