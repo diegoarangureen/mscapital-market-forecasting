@@ -489,3 +489,11 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 ## 2026-09-22 10:58 CEST — LB snapshot
 
 237 teams, top1 0.177, gate10 0.163, gate20 0.157. Diego 0.139 rank 129 (drift, no new subs by us). kfold455-tpu RUNNING (~4.7h in).
+
+## 2026-09-22 11:41 CEST — kfold455 TPU COMPLETE (25 models) + X28b screen launched
+
+**kfold455s5 TPU**: 25 models in 20033s (~800s/model, no recompile between folds — TPU pays off at scale). OOF: 61-70 = **0.167381** (GPU ref 0.16827, delta -0.0009), 66-70 = **0.173384** (GPU ref 0.17522, delta -0.0018), 40-64 = 0.149086. Both within ~0.002 of GPU references → port validated at full scale.
+**XLA run-to-run variance observed**: same model (seed 2026 fold 5) scored 0.170090 (GPU), 0.168204 (TPU replication session), 0.171549 (TPU kfold session). Spread 0.0033 across identical configs → single-fold TPU screens carry up to ~0.003 session noise; the +0.004 gate stays mandatory, and fold4 confirm + panel are required before believing any screen pass.
+**Per-fold pattern stable across devices**: fold1 ~0.142-0.144, fold5 ~0.170-0.175 (month difficulty dominates, matches senanuretin's validation-period-difficulty finding).
+**X28b TPU screen launched** (mscapital-x28b-tpu v1, RQ-KMeans aux 3x3, lambda 0.1, seed 2026 fold5, timeout 7200s) — QUEUED. Baseline 0.168204, gate +0.004. X28c next when it completes.
+**Artifacts**: kfold TPU outputs (oof/test tensors, metrics) persist on the kernel (diegoaranguren/mscapital-kfold455-tpu); not re-archived as dataset (retrievable anytime via API). No competition attached to kfold TPU run → no submission file produced (by design).
