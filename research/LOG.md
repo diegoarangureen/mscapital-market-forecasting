@@ -512,3 +512,4 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - **Push mishap caught**: v2 was pushed with push_kernel (no TPU pinning) which reset the kernel to CPU docker — caught via metadata check, re-pushed with push_tpu as v3 (enableTpu=true, TpuV5E8). Lesson: ALWAYS push TPU kernels with push_tpu, and verify enableTpu after every push.
 - **X28b v3 QUEUED** (seed 2026 fold5, RQ-KMeans aux 3x3, lambda 0.1, baseline 0.168204, gate +0.004). Expected queue 4.5-7h → completion ~00:00-02:00 CEST. X28c follows after (1-session limit).
 - LB 18:41: 240 teams, top1 0.177, gate10 0.164, gate20 0.157, Diego 130 @ 0.139. Submissions today: 0/5.
+- LB 21:10: unchanged (240 teams, top1 0.177, gate10 0.164, gate20 0.157, Diego 130 @ 0.139). X28b v3 still QUEUED.
