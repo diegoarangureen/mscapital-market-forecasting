@@ -505,3 +505,10 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 ## 2026-09-22 16:21 CEST — LB snapshot
 
 240 teams, top1 0.177, gate10 0.164 (rising), gate20 0.157. Diego 0.139 rank 130. X28b-tpu still QUEUED (~4h).
+
+## Sep 22 18:40 — X28b TPU v1 ERROR diagnosed + fixed + relaunched as v3
+- **Error cause**: FileNotFoundError on `/kaggle/input/datasets/diegoaranguren/mscapital-matrices/full_train.npy` at 36s into the run. Kernel metadata identical to the successful replication kernel (same datasets, same docker image, same machine shape) — cause is TPU VM mounting /kaggle/input asynchronously; the replication/kfold runs got lucky with mount timing, X28b v1 did not.
+- **Fix**: `data_file()` helper in realmlp_x28b_rq_tpu.py and realmlp_x28c_quantile_tpu.py — polls for each input file up to 900s, with a `find /kaggle/input -name` fallback path relocation. Committed c77e98d.
+- **Push mishap caught**: v2 was pushed with push_kernel (no TPU pinning) which reset the kernel to CPU docker — caught via metadata check, re-pushed with push_tpu as v3 (enableTpu=true, TpuV5E8). Lesson: ALWAYS push TPU kernels with push_tpu, and verify enableTpu after every push.
+- **X28b v3 QUEUED** (seed 2026 fold5, RQ-KMeans aux 3x3, lambda 0.1, baseline 0.168204, gate +0.004). Expected queue 4.5-7h → completion ~00:00-02:00 CEST. X28c follows after (1-session limit).
+- LB 18:41: 240 teams, top1 0.177, gate10 0.164, gate20 0.157, Diego 130 @ 0.139. Submissions today: 0/5.
