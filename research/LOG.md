@@ -477,3 +477,7 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 **Full kfold launched**: mscapital-kfold455-tpu v1 (5 seeds x 5 folds, timeout 36000s) — QUEUED.
 **TPU constraint discovered**: max 1 concurrent batch TPU session per account ("Maximum batch TPU session count of 1 reached"). X28b/X28c TPU screens (scripts committed) will run SEQUENTIALLY after the kfold completes: chain = kfold → x28b → x28c.
 **TPU quota budget**: 72k s. Estimated spend: kfold ~27-30k s + screens ~1.2k s each. Comfortable.
+
+## 2026-09-22 02:58 CEST — LB snapshot
+
+236 teams, top1 0.177, gate10 0.162, gate20 0.157. Diego 0.139 rank 127. kfold455-tpu still QUEUED (~1.2h). Sep 21 submissions: 0/5 used.
