@@ -501,3 +501,7 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 ## 2026-09-22 13:59 CEST — LB snapshot
 
 238 teams, top1 0.177, gate10 0.163, gate20 0.157. Diego 0.139 rank 129. X28b-tpu still QUEUED (~2.3h). Sandbox wiped ~13:14, recovered.
+
+## 2026-09-22 16:21 CEST — LB snapshot
+
+240 teams, top1 0.177, gate10 0.164 (rising), gate20 0.157. Diego 0.139 rank 130. X28b-tpu still QUEUED (~4h).
