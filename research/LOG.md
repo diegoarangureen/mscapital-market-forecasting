@@ -497,3 +497,7 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 **Per-fold pattern stable across devices**: fold1 ~0.142-0.144, fold5 ~0.170-0.175 (month difficulty dominates, matches senanuretin's validation-period-difficulty finding).
 **X28b TPU screen launched** (mscapital-x28b-tpu v1, RQ-KMeans aux 3x3, lambda 0.1, seed 2026 fold5, timeout 7200s) — QUEUED. Baseline 0.168204, gate +0.004. X28c next when it completes.
 **Artifacts**: kfold TPU outputs (oof/test tensors, metrics) persist on the kernel (diegoaranguren/mscapital-kfold455-tpu); not re-archived as dataset (retrievable anytime via API). No competition attached to kfold TPU run → no submission file produced (by design).
+
+## 2026-09-22 13:59 CEST — LB snapshot
+
+238 teams, top1 0.177, gate10 0.163, gate20 0.157. Diego 0.139 rank 129. X28b-tpu still QUEUED (~2.3h). Sandbox wiped ~13:14, recovered.
