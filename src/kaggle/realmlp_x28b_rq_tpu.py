@@ -38,16 +38,41 @@ def set_seed(s):
 device = xm.xla_device() if XLA else torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('device:', device, 'seeds', SEEDS, 'XLA:', XLA, 'BS:', BS, flush=True)
 
+
+# ---------- wait for dataset mounts (TPU VM mounts /kaggle/input async; X28b v1 crashed at 36s on missing full_train.npy) ----------
+def wait_for(path, timeout=900):
+    t0 = time.time()
+    while not os.path.exists(path):
+        if time.time() - t0 > timeout:
+            # fallback: locate the file anywhere under /kaggle/input
+            import subprocess
+            r = subprocess.run(['find', '/kaggle/input', '-name', os.path.basename(path)], capture_output=True, text=True, timeout=120)
+            hits = [h for h in r.stdout.strip().split('\n') if h]
+            if hits:
+                print('mount fallback:', hits[0], flush=True)
+                return hits[0]
+            raise FileNotFoundError(path)
+        if (time.time() - t0) % 60 < 15:
+            print('waiting for mount:', path, f'{time.time()-t0:.0f}s', flush=True)
+        time.sleep(15)
+    return path
+
+def data_file(base, name):
+    p = f'{base}/{name}'
+    if os.path.exists(p):
+        return p
+    return wait_for(p)
+
 # ---------- train features ----------
-X_all = np.load(f'{DATA}/full_train.npy')
-X1 = np.load(f'{XTRA}/X21_train.npy').astype(np.float32)
-X2 = np.load(f'{XTRA2}/X22_train.npy').astype(np.float32)
+X_all = np.load(data_file(DATA, 'full_train.npy'))
+X1 = np.load(data_file(XTRA, 'X21_train.npy')).astype(np.float32)
+X2 = np.load(data_file(XTRA2, 'X22_train.npy')).astype(np.float32)
 X_all = np.concatenate([X_all, np.nan_to_num(X1), np.nan_to_num(X2)], axis=1)
 DROP = [301, 267, 268, 299, 257]
 X_all = np.delete(X_all, DROP, axis=1)
 del X1, X2
-y_all = np.load(f'{DATA}/full_y.npy').astype(np.float32)
-month = np.load(f'{DATA}/full_month.npy')
+y_all = np.load(data_file(DATA, 'full_y.npy')).astype(np.float32)
+month = np.load(data_file(DATA, 'full_month.npy'))
 
 import pandas as pd
 from pathlib import Path
@@ -70,12 +95,12 @@ X_all = np.concatenate([X_all, X726], axis=1); del X726, t726
 print('train 455f ->', X_all.shape, flush=True)
 
 # ---------- test features ----------
-Xte = np.load(f'{DATA}/full_test.npy')
-names = np.load(f'{DATA}/full_names.npy', allow_pickle=True).tolist()
+Xte = np.load(data_file(DATA, 'full_test.npy'))
+names = np.load(data_file(DATA, 'full_names.npy'), allow_pickle=True).tolist()
 kin = {k: i for i, k in enumerate(names)}
 nodata = (Xte[:, kin['X2:tx_n']] == 0) & (Xte[:, kin['X2:mk_nbars']] == 0)
-X1e = np.load(f'{XTRA}/X21_test.npy').astype(np.float32)
-X2e = np.load(f'{XTRA2}/X22_test.npy').astype(np.float32)
+X1e = np.load(data_file(XTRA, 'X21_test.npy')).astype(np.float32)
+X2e = np.load(data_file(XTRA2, 'X22_test.npy')).astype(np.float32)
 Xte = np.concatenate([Xte, np.nan_to_num(X1e), np.nan_to_num(X2e)], axis=1)
 Xte = np.delete(Xte, DROP, axis=1)
 del X1e, X2e
