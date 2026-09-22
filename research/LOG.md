@@ -481,3 +481,7 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 ## 2026-09-22 02:58 CEST — LB snapshot
 
 236 teams, top1 0.177, gate10 0.162, gate20 0.157. Diego 0.139 rank 127. kfold455-tpu still QUEUED (~1.2h). Sep 21 submissions: 0/5 used.
+
+## 2026-09-22 07:01 CEST — LB snapshot + README daily refresh
+
+236 teams, top1 0.177, gate10 0.163 (was 0.162 — new top-10 entrant), gate20 0.157. Diego 0.139 rank 128 (was 127). kfold455-tpu RUNNING since ~06:11. README refreshed (128/236, gate10 0.163).
