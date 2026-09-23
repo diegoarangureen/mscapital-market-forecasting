@@ -530,3 +530,8 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - Infra lessons banked across v1-v5: async mounts, slug-layout flip, OpenBLAS thread caps. The TPU screen pipeline is now clean end-to-end: 157s data load, 2055s total run.
 - X28c (empirical-normal-quantile preprocessing, train-fitted) launched as mscapital-x28c-tpu v1 TPU-pinned at 12:11, QUEUED.
 - LB Sep 23 13:45: 244 teams (+1), top1 0.180, gate10 0.164, gate20 0.157, Diego 131 @ 0.139. X28c QUEUED (1.5h).
+
+## Sep 23 16:55 — X28c fold5 screen: +0.0024 sub-gate, 5-fold panel launched
+- X28c v1 COMPLETE (1780s): seed 2026 fold5 val_cos = **0.170621** vs replication-session baseline 0.168204 (+0.0024) but vs kfold-session seed2026 fold5 0.171549 it is **-0.0009**. The two same-device baselines disagree by 0.0033 (= the XLA session noise), so the single-fold screen is unresolvable either way. Below the +0.004 gate — NO submission — but positive enough against one baseline to warrant the panel step.
+- Decision: run X28c as a 5-fold single-seed panel in ONE session (FOLD_IDX=0,1,2,3,4, TAG x28cqntpu_panel, timeout 10800s) and compare per-fold vs kfold seed2026 values (f1 0.143251, f2 0.149152, f3 0.148980, f4 0.155356, f5 0.171549). A consistent multi-fold shift = real signal; mixed/flat = close the X28 line.
+- X28c v2 (panel) pushed TPU-pinned ~16:55, QUEUED.

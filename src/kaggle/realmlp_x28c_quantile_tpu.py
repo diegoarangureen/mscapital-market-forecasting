@@ -30,7 +30,7 @@ EPOCHS = int(os.environ.get('EPOCHS', '10'))
 PATIENCE = int(os.environ.get('PATIENCE', '3'))
 LR = float(os.environ.get('LR', '1e-3'))
 BS = int(os.environ.get('BS', '256'))  # 256 = champion recipe; 1024+ only for later throughput experiments
-TAG = os.environ.get('TAG', 'x28cqntpu')
+TAG = os.environ.get('TAG', 'x28cqntpu_panel')
 DATA = os.environ.get('DATA', '/kaggle/input/mscapital-matrices')
 XTRA = os.environ.get('XTRA', '/kaggle/input/mscapital-x21')
 XTRA2 = os.environ.get('XTRA2', '/kaggle/input/mscapital-x22')
@@ -250,7 +250,7 @@ fold_report = []
 n_models = 0
 t_all = time.time()
 
-FOLD_IDX = set(int(x) for x in os.environ.get('FOLD_IDX', '4').split(','))
+FOLD_IDX = set(int(x) for x in os.environ.get('FOLD_IDX', '0,1,2,3,4').split(','))
 for seed in SEEDS:
     for fi, (va_mask, tr_mask) in enumerate(FOLDS):
         if fi not in FOLD_IDX: continue
