@@ -5,7 +5,7 @@ End-to-end research project for the Kaggle competition
 (~650k high-frequency market windows; metric: cosine similarity between the
 predicted and realized return vectors).
 
-**Current standing: public leaderboard 0.139, rank 130/240** (as of Sep 22, 2026).
+**Current standing: public leaderboard 0.139, rank 131/243** (as of Sep 23, 2026).
 Top of board is 0.177; top-10 cut is 0.164. Work is active and updated daily.
 
 ## Results trajectory
