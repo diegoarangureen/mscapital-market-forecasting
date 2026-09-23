@@ -529,3 +529,4 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - X28b v5 COMPLETE (2055s): seed 2026 fold5 val_cos = **0.167923** vs same-device baseline 0.168204 -> delta **-0.0003** (within XLA session noise ~0.003, nowhere near gate +0.004). OOF 66-70 = 0.169617 (baseline fold5 66-70 n/a; not comparable). The RQ-KMeans auxiliary code head (3x3, lambda 0.1, yunsu config) adds NOTHING on our 450f matrix at single-fold resolution. Screen closed, no fold4 confirm warranted (delta is negative, not marginal-positive). No submission.
 - Infra lessons banked across v1-v5: async mounts, slug-layout flip, OpenBLAS thread caps. The TPU screen pipeline is now clean end-to-end: 157s data load, 2055s total run.
 - X28c (empirical-normal-quantile preprocessing, train-fitted) launched as mscapital-x28c-tpu v1 TPU-pinned at 12:11, QUEUED.
+- LB Sep 23 13:45: 244 teams (+1), top1 0.180, gate10 0.164, gate20 0.157, Diego 131 @ 0.139. X28c QUEUED (1.5h).
