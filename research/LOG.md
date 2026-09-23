@@ -542,3 +542,9 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - V16_PLAN candidate paths #1 (TPU replication/kfold — done, port validated) and #2 (X28b — flat) are now both closed. Remaining: #3 proprietary order-flow features v2 (conditions met: 1-2 stalled, TPU unlocked) whose concrete first action is the price=0 empty-book masking A/B — but that needs masked X21/X22 rebuilds from raw streams, kernel-side only (local 9GB data rebuild stays deferred). Direction decision belongs to main/Diego.
 - 22:47 X29 launched: mscapital-x29-masked-build v1 (CPU, competition attached, timeout 9h) — quantifies price==0 across market/order/transaction streams, then builds masked X21m/X22m train features (L1 price terms masked on a1/b1==0, slope terms on a2/b2==0). Parent approved direction (a) at 22:46. Next when done: upload as datasets, TPU 5-fold panel screen vs kfold seed2026 baselines.
 - Token hygiene: Kaggle/GitHub tokens REMOVED from all wake prompts per parent instruction 22:46. Wipe recovery is now vault-based browser regeneration (sign in via vault login, Create New Token / fresh fine-grained PAT, revoke old PAT, tokens never persisted in prompts/messages).
+
+## Sep 23 23:03 — Credential rotation complete (security hygiene)
+- Rotated both automation credentials after they appeared in scheduled-task prompts (treated as exposed).
+- Kaggle API token: new token generated and installed; old token expired via account settings and verified dead (401).
+- GitHub: migrated from a classic PAT to a fine-grained PAT scoped to this repo only (Contents read/write, Metadata read-only, 30-day expiry Oct 23). Read + push verified working. Old classic PAT revoked in account settings right after.
+- Wipe recovery stays vault-based (browser sign-in -> generate fresh credential); no secret is persisted in prompts, messages, or tracked files.
