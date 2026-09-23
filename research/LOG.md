@@ -521,3 +521,4 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - Fix v2: defaults switched to /kaggle/input/<slug>/; wait_for is now find-FIRST (relocate immediately, prints 'mount relocate:') then poll. Both X28b and X28c scripts.
 - Note: GPU kernels have always used the slug layout; the legacy datasets/ path was a TPU-VM-ism of the earlier sessions.
 - X28b v4 pushed (TPU-pinned, verified). Expected: immediate data loads, ~30-40 min train, total <1h once dequeued. Queue ~6h lately.
+- LB Sep 23 04:02: 241 teams (+1), top1 0.180, gate10 0.164, gate20 0.157, Diego 130 @ 0.139. X28b v4 QUEUED (2.5h).
