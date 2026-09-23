@@ -548,3 +548,9 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - Kaggle API token: new token generated and installed; old token expired via account settings and verified dead (401).
 - GitHub: migrated from a classic PAT to a fine-grained PAT scoped to this repo only (Contents read/write, Metadata read-only, 30-day expiry Oct 23). Read + push verified working. Old classic PAT revoked in account settings right after.
 - Wipe recovery stays vault-based (browser sign-in -> generate fresh credential); no secret is persisted in prompts, messages, or tracked files.
+
+## Sep 23 23:48 — X29 build COMPLETE early; masked datasets created; TPU screen launched
+- mscapital-x29-masked-build v1 COMPLETE (~55 min). Outputs validated locally: X21m (1,257,637x30 float32) and X22m (1,257,637x27 float32), zero NaNs, zero-fractions consistent with masking. QUANT stdout lines (price==0 prevalence per stream) are NOT retrievable via kagglesdk (logs stream needs kernel_session_id, which metadata does not expose); readable from the kernel web UI if wanted later.
+- Datasets created (private): https://www.kaggle.com/datasets/diegoaranguren/mscapital-x21m and https://www.kaggle.com/datasets/diegoaranguren/mscapital-x22m
+- Screen pushed: mscapital-x29-mask-tpu v1 (TPU v5e-8, enableTpu verified, datasets matrices+x21m+x22m + 0726 kernel source, timeout 9h). Script src/kaggle/realmlp_x29_mask_tpu.py = X28c panel minus quantile preprocessing minus all test/submission parts (pure OOF screen). 5 folds, seed 2026, vs kfold seed2026 per-fold baselines f1 0.143251 / f2 0.149152 / f3 0.148980 / f4 0.155356 / f5 0.171549. Verdict rule: consistent shift > 0.002 = signal, else FLAT. X28c panel took 5702s -> results expected ~01:30.
+- LB snapshot 23:45: unchanged (244 teams, top1 0.180, gate10 0.164, Diego 131 @ 0.139).
