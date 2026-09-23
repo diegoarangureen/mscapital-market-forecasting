@@ -8,6 +8,10 @@
 # back to champion 256 for recipe fidelity (first TPU run must be a replication).
 # bestwater-style inference: 5 purged folds x N seeds, holdout+ES per fold, test pred = mean of fold-seed models.
 # Folds: val 40-44/50-54/55-59/60-64/65-70, train <=37/47/52/57/62. Scaler fit per fold on its train.
+import os
+os.environ.setdefault('OPENBLAS_NUM_THREADS', '32')
+os.environ.setdefault('OMP_NUM_THREADS', '32')
+os.environ.setdefault('MKL_NUM_THREADS', '32')
 import os, math, json, time, glob
 import numpy as np
 import torch
