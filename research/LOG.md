@@ -514,3 +514,10 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - LB 18:41: 240 teams, top1 0.177, gate10 0.164, gate20 0.157, Diego 130 @ 0.139. Submissions today: 0/5.
 - LB 21:10: unchanged (240 teams, top1 0.177, gate10 0.164, gate20 0.157, Diego 130 @ 0.139). X28b v3 still QUEUED.
 - LB Sep 23 00:57: 240 teams, top1 0.180 (+0.003 — someone at the top moved), gate10 0.164, gate20 0.157, Diego 130 @ 0.139. X28b v3 now RUNNING after ~6h queue.
+
+## Sep 23 02:35 — X28b v3 CANCELED at 7220s (session timeout), root cause found + fixed, v4 pushed
+- v3 never trained: TPU VM session layout flipped to /kaggle/input/<slug>/ (legacy /kaggle/input/datasets/<owner>/<slug>/ no longer exists in new sessions). Every data_file() call burned the full 900s poll on the dead legacy path, then the find fallback relocated it (7 relocations logged: full_train, X21_train, X22_train, full_y, full_month, full_test, full_names). Killed while waiting on X21_test at 7202s. 11 files x 900s > 7200s timeout.
+- The replication/kfold runs (Sep 21-22) ran on sessions with the legacy layout — layout varies by session generation.
+- Fix v2: defaults switched to /kaggle/input/<slug>/; wait_for is now find-FIRST (relocate immediately, prints 'mount relocate:') then poll. Both X28b and X28c scripts.
+- Note: GPU kernels have always used the slug layout; the legacy datasets/ path was a TPU-VM-ism of the earlier sessions.
+- X28b v4 pushed (TPU-pinned, verified). Expected: immediate data loads, ~30-40 min train, total <1h once dequeued. Queue ~6h lately.

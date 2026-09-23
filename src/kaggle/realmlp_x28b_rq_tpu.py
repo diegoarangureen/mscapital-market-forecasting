@@ -27,9 +27,9 @@ PATIENCE = int(os.environ.get('PATIENCE', '3'))
 LR = float(os.environ.get('LR', '1e-3'))
 BS = int(os.environ.get('BS', '256'))  # 256 = champion recipe; 1024+ only for later throughput experiments
 TAG = os.environ.get('TAG', 'x28brqtpu')
-DATA = os.environ.get('DATA', '/kaggle/input/datasets/diegoaranguren/mscapital-matrices')
-XTRA = os.environ.get('XTRA', '/kaggle/input/datasets/diegoaranguren/mscapital-x21')
-XTRA2 = os.environ.get('XTRA2', '/kaggle/input/datasets/diegoaranguren/mscapital-x22')
+DATA = os.environ.get('DATA', '/kaggle/input/mscapital-matrices')
+XTRA = os.environ.get('XTRA', '/kaggle/input/mscapital-x21')
+XTRA2 = os.environ.get('XTRA2', '/kaggle/input/mscapital-x22')
 
 def set_seed(s):
     import random
@@ -41,19 +41,21 @@ print('device:', device, 'seeds', SEEDS, 'XLA:', XLA, 'BS:', BS, flush=True)
 
 # ---------- wait for dataset mounts (TPU VM mounts /kaggle/input async; X28b v1 crashed at 36s on missing full_train.npy) ----------
 def wait_for(path, timeout=900):
+    # TPU VM mounts are async AND the layout varies by session generation:
+    # legacy /kaggle/input/datasets/<owner>/<slug>/ vs current /kaggle/input/<slug>/.
+    # find-first (cheap), then poll.
+    import subprocess
     t0 = time.time()
     while not os.path.exists(path):
+        r = subprocess.run(['find', '/kaggle/input', '-name', os.path.basename(path)], capture_output=True, text=True, timeout=120)
+        hits = [h for h in r.stdout.strip().split(chr(10)) if h]
+        if hits:
+            if hits[0] != path:
+                print('mount relocate:', path, '->', hits[0], flush=True)
+            return hits[0]
         if time.time() - t0 > timeout:
-            # fallback: locate the file anywhere under /kaggle/input
-            import subprocess
-            r = subprocess.run(['find', '/kaggle/input', '-name', os.path.basename(path)], capture_output=True, text=True, timeout=120)
-            hits = [h for h in r.stdout.strip().split('\n') if h]
-            if hits:
-                print('mount fallback:', hits[0], flush=True)
-                return hits[0]
             raise FileNotFoundError(path)
-        if (time.time() - t0) % 60 < 15:
-            print('waiting for mount:', path, f'{time.time()-t0:.0f}s', flush=True)
+        print('waiting for mount:', path, f'{time.time()-t0:.0f}s', flush=True)
         time.sleep(15)
     return path
 
