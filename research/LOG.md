@@ -524,3 +524,8 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - LB Sep 23 04:02: 241 teams (+1), top1 0.180, gate10 0.164, gate20 0.157, Diego 130 @ 0.139. X28b v4 QUEUED (2.5h).
 - X28b v4 ERROR (07:40): mount fix WORKED (data loaded in 157s, no waits) but sklearn KMeans (RQ codebook fit) crashed OpenBLAS on the 100+core TPU VM: "precompiled NUM_THREADS exceeded" -> SIGSEGV in sgemm_incopy_HASWELL at 189s. Fix: OPENBLAS/OMP/MKL_NUM_THREADS=32 env caps before numpy import, both X28b and X28c scripts. Queue this time was only ~1.75h.
 - LB Sep 23 10:41: 243 teams (+2), top1 0.180, gate10 0.164, gate20 0.157, Diego 131 @ 0.139 (slipped 1). X28b v5 QUEUED (3h). Sandbox wiped ~10:40, env recovered.
+
+## Sep 23 12:11 — X28b (RQ-KMeans aux) FLAT, screen closed; X28c launched
+- X28b v5 COMPLETE (2055s): seed 2026 fold5 val_cos = **0.167923** vs same-device baseline 0.168204 -> delta **-0.0003** (within XLA session noise ~0.003, nowhere near gate +0.004). OOF 66-70 = 0.169617 (baseline fold5 66-70 n/a; not comparable). The RQ-KMeans auxiliary code head (3x3, lambda 0.1, yunsu config) adds NOTHING on our 450f matrix at single-fold resolution. Screen closed, no fold4 confirm warranted (delta is negative, not marginal-positive). No submission.
+- Infra lessons banked across v1-v5: async mounts, slug-layout flip, OpenBLAS thread caps. The TPU screen pipeline is now clean end-to-end: 157s data load, 2055s total run.
+- X28c (empirical-normal-quantile preprocessing, train-fitted) launched as mscapital-x28c-tpu v1 TPU-pinned at 12:11, QUEUED.
