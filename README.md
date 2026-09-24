@@ -5,8 +5,8 @@ End-to-end research project for the Kaggle competition
 (~650k high-frequency market windows; metric: cosine similarity between the
 predicted and realized return vectors).
 
-**Current standing: public leaderboard 0.139, rank 131/243** (as of Sep 23, 2026).
-Top of board is 0.177; top-10 cut is 0.164. Work is active and updated daily.
+**Current standing: public leaderboard 0.139, rank 131/244** (as of Sep 24, 2026).
+Top of board is 0.180; top-10 cut is 0.164. Work is active and updated daily.
 
 ## Results trajectory
 
@@ -33,18 +33,20 @@ with a 25-model OOF tensor available, every post-hoc calibration tried
 The equal-weight k-fold mean is the ceiling for this recipe; further gains
 have to come from new features or architecture.
 
-Latest research (Sep 20-21): a faithful reimplementation of the strongest
-public architecture (bestwater's TabM, Apache 2.0) trained on our 450f
-matrix landed at OOF 0.152 vs the champion's 0.168 - confirming the public
-architecture's edge comes from its author's 462 private features, not the
-network. A loss-balance sweep on the champion (cosine weight 1.0 vs 0.1)
-came back negative, confirming the champion training recipe as a local
-optimum. Cross-reading a second independent public research program (a
-130-experiment released toolkit, CC BY 4.0, mirrored in `reference/`) shows
-the same wall: months of sequence-model work there produced +0.001 forward
-deltas and closed with "no verified improvement beyond 0.152". The public
-plateau is real; the current line is auxiliary-target training (RQ-KMeans
-target-code head) and TPU-scale seed/fold replication for robustness.
+Latest research (Sep 24): the controlled screen line closed three
+independent feature/preprocess hypotheses - RQ-KMeans auxiliary targets
+(-0.0003), empirical-quantile feature scaling (mixed, within noise), and
+price=0 empty-book masking (4 of 5 folds within +-0.0002 of baseline) - all
+on a 5-fold single-session TPU panel validated against per-fold baselines
+(the panel reproduces reference folds to +-0.0002). A full scan of the
+public discussion landscape (research/R1_METHODS_LANDSCAPE.md) re-framed
+the problem: the board leader states he uses competition data only, so the
+~0.16 "public plateau" is a method ceiling, not a data ceiling. Cross-sectional
+feature traps were independently confirmed a third time (CV 0.151 -> LB 0.136).
+Current line: X30, an Optiver-canon proprietary order-flow feature pack
+(multi-level order-flow imbalance, trade-sign autocorrelation, realized-vol
+estimators, order arrival/cancel intensity, queue-imbalance dynamics), built
+from the raw streams and screened with the same forward protocol.
 Historical note: the "455f" tag was an early miscount; the build is 450
 columns (298 proprietary + 152 public).
 

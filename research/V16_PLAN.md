@@ -15,19 +15,23 @@ OOF reference (kfold450 5-seed v2): 61-70 = 0.16827, 66-70 = 0.17522. Fold5 seed
 - Gate: +0.004 vs champion same-window OOF (val noise floor), plus panel:
   all primary deltas >= 0, LOMO min >= -0.001 (src/kaggle/panel.py).
 
-## Candidate paths, ranked
-1. **TPU replication + seed extension** (blocked: Persona verification).
-   First run: replication SEEDS=2026 FOLD_IDX=4, target ~= 0.17009 fold5 (recipe
-   fidelity check of the torch_xla port; per-epoch LR/noise anneal is the only
-   intentional difference). Then full 5-fold x 5-seed on TPU (72k s budget,
-   ~zero marginal cost vs GPU). v16 candidate = 10-seed mean (50 models):
-   expected gain small but robustness-verifiable via OOF tensor.
-2. **X28b (RQ-KMeans aux head)** — script ready (src/kaggle/realmlp_x28b_rq.py).
-   Screen: seed 2026 fold5, needs ~1.9k s GPU (post-reset Sep 26) or TPU.
-   Gate: +0.004 over 0.17009. If signal: fold4 confirm + full panel before any
-   submission talk. Nobody public has tested this lever.
-3. **Proprietary order-flow features v2** — only if 1-2 stall AND compute unlocks.
-   Strict forward-sim gating; the EXP026 lesson (+0.0011 local, -0.015 LB).
+## Candidate paths, ranked (re-ranked Sep 24 after X28/X29 closures)
+1. **X30: Optiver-style proprietary feature pack v2** (ACTIVE, parent green light Sep 24 06:51).
+   Multi-level OFI (Cont-Kukanov-Stoikov), trade-sign autocorrelation, realized-vol
+   estimators, order arrival/cancel intensity, queue-imbalance dynamics, microprice
+   drift. Kernel-side build from raw streams (X29 pattern), screen on champion RealMLP
+   5-fold panel. Evidence: R1_METHODS_LANDSCAPE.md - Maaax (1st, 0.180) uses competition
+   data only, so headroom exists; host-pointed canon is Optiver; bestwater's private
+   462 features are his edge. Encoding facts: order_action 0=NEW 1=CANCEL; side from
+   price vs mid; market spans ~600s, order/transaction 60s.
+2. **TabM port** (bestwater's best public single 0.142 vs our 0.139): architecture
+   screen vs champion panel. Moderate TPU build.
+3. **GRU two-stage** (Youler 0.143 single / 0.147 blend): sequence repr + tree.
+   Bigger build; only if 1-2 stall.
+4. **Aux-task probe of the 90-120s label-horizon hypothesis** (Xu Dian, unvalidated):
+   cheap, informs feature-horizon design for #1.
+CLOSED this cycle: TPU replication (done, port validated), X28a/b/c (all flat),
+X29 price=0 masking (flat, 4/5 folds within +-0.0002 of baseline).
 
 ## Non-candidates (closed, evidence in LOG/EXPERIMENTS)
 - More equal-weight aggregation (v15 ceiling), loss balance (X28a), TabM arch,
