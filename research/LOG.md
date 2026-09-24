@@ -604,3 +604,15 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - Dataset content verified locally by direct download: (1257637, 36) float32, 0 NaN, 0 inf, 36 names intact.
 - Fix: find now suffix-matches ('*'+basename); wait_for timeout 900s -> 300s (fail fast).
 - Push plumbing: kaggle CLI can't use KGAT tokens; kagglesdk KernelsApiClient + KAGGLE_API_TOKEN env works (/tmp/kpush.py pattern). v2 pushed clean (all 4 datasets + yunsuxiaozi/rfmf-0726data valid).
+
+## 2026-09-24 20:35 — X30 SCREEN VERDICT: borderline positive (4/5 folds, mean +0.0018)
+Panel 5-fold seed2026 TPU (v2, runtime 82 min): X30 450f+36f vs kfold baselines:
+- f1: 0.146652 vs 0.143251 (+0.0034)
+- f2: 0.151148 vs 0.149152 (+0.0020)
+- f3: 0.150808 vs 0.148980 (+0.0018)
+- f4: 0.154793 vs 0.155356 (-0.0006)
+- f5: 0.173999 vs 0.171549 (+0.0024)
+- OOF cos 61-70: 0.169139; 66-70: 0.176065; 40-64: 0.148370
+Reading: does NOT clear the pre-registered bar (consistent >0.002): f2/f3 marginal, f4 negative. But 4/5 positive with the two extreme folds (early f1, late f5) showing the largest gains. Weak-positive, could be noise.
+Integration sanity: coherent (5 models, OOF written, shapes asserted in-kernel).
+NEXT GATE: paired replication panel — baseline-450f and X30 arms in the SAME session per fold (within-session paired noise ~0.0002 per X29 v2) to decide if the +0.0018 is real before any ablation spend. ~2.5h TPU; quota ~4.7h left.
