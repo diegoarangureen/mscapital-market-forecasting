@@ -565,3 +565,11 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - Wipe ~05:45 took /tmp/repo, the Kaggle token, and kagglesdk. Recovery per protocol: config-c profile still held both sign-ins - Kaggle needed no login (Settings > API Tokens > Generate New Token -> instinct-cli-3, installed+verified 200; unrecoverable instinct-cli-2 expired+401-verified). GitHub sign-in persisted too, but creating a new fine-grained PAT hit sudo-mode Confirm access (mobile/email code); Diego asleep, so that half is deferred to ~08:15 (one-shot scheduled): fresh PAT -> swap remote -> revoke old. Meanwhile the repo is cloned at 8dbc53a and working with the still-valid old PAT (created Sep 23 23:02, never in prompts).
 - X29 v2 screen survived server-side: RUNNING (got TPU between 04:47 and 05:49; ~80 min runtime -> results ~06:30).
 - Kaggle quotas seen in Settings: TPU 13:26/20h used (6:34 left), GPU 29:31/30h used - GPU nearly exhausted, TPU is the workhorse.
+
+## Sep 24 06:47 — X29 verdict: FLAT. Masking line closed. Next: methods research
+- mscapital-x29-mask-tpu v2 COMPLETE (5010s). Per-fold masked vs kfold seed2026 baselines: f1 0.143266 vs 0.143251 (+0.00002), f2 0.149044 vs 0.149152 (-0.00011), f3 0.149038 vs 0.148980 (+0.00006), f4 0.156992 vs 0.155356 (+0.00164), f5 0.171455 vs 0.171549 (-0.00009). Only fold4 moved (+0.0016, below the 0.002 gate, inside XLA session noise ~0.003); the rest are dead even.
+- OOF 61-70 0.167650 (champion GPU 0.16827, TPU kfold455 0.167381), OOF 66-70 0.173320 (GPU 0.17522, TPU kfold455 0.173384). All within noise.
+- VERDICT: price==0 empty-book masking is FLAT - the stale/zero-quote artifact hypothesis did not hold. X29 line CLOSED, no submission (none warranted; v13 stays champion on LB).
+- Protocol note: the v2 screen is also a clean same-session replication of the kfold seed2026 baselines (4 of 5 folds within +-0.0002), which further validates the 5-fold panel as the screen instrument.
+- Direction per Diego (Sep 23 22:51, conditional now true): methods research phase - what could break the ~0.15-0.16 public-data plateau toward the 0.164 top-10 cut.
+- LB snapshot 06:47: unchanged (244 teams, top1 0.180, gate10 0.164, Diego 131 @ 0.139).
