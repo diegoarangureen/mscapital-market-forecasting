@@ -591,3 +591,9 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - v5: EPS guard; edge-case synthetic test (fully-invalid sample -> neutral values). FULL VALIDATION PASS: 1,257,637 x 36, NaN 0, inf 0, no tail explosions, no degenerate cols.
 - Dataset mscapital-x30 created (private, validated arrays). TPU screen realmlp_x30_tpu.py (450f baseline + X30 36f, seed2026 5-fold panel) staged.
 - Operational hiccup: fresh dataset invalid at first attach -> v1 kernel saved with x30 source dropped; it occupies the 1-slot batch TPU limit and will crash on missing mount; v2 re-push queued behind it.
+
+## 2026-09-24 12:48 — Wipe recovery #2 (vault-based) + PAT rotation
+- Sandbox wiped ~10:30 (second wipe today). Kaggle re-authed via vault-only flow: new API token instinct-cli-4 (browser-regenerated from signed-in profile), instinct-cli-3 expired via UI. kaggle CLI 1.7.4.5 doesn't read access_token; direct HTTPS API with Bearer token works (200) — helper /tmp/kapi.py.
+- GitHub PAT rotated (second time today): instinct-repo-push-3 created (30d, repo mscapital-market-forecasting only, Contents RW). Sudo email-code flow; keystroke-mode input required (bulk fill silently fails on GitHub's sudo form — two codes burned before diagnosis).
+- instinct-repo-push-2 revoked via UI after clone verified (expires Oct 23, no longer used anywhere).
+- X30 screen kernel mscapital-x30-tpu still queued at time of writing.
