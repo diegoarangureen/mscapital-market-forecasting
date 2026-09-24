@@ -5,7 +5,10 @@
 # when a1/b1==0, slope terms when a2/b2==0). Screen: 5-fold single-session panel on seed 2026
 # vs kfold seed2026 per-fold baselines f1 0.143251 / f2 0.149152 / f3 0.148980 / f4 0.155356 /
 # f5 0.171549. Verdict rule (X-series): consistent shift > 0.002 = signal, else FLAT.
-# NO test predictions, NO submission output - pure OOF screen. XLA-safe pattern verbatim from
+# v1 ERROR post-mortem: quantile block stripped but champion robust scaler (median/IQR soft-clamp)
+# wrongly removed too -> raw features -> val cos halved (~0.08); plus NameError on `seen` after fold 5.
+# v2 restores the exact baseline scaler. NO test predictions, NO submission output - pure OOF screen.
+# XLA-safe pattern verbatim from
 # the X28c port (per-epoch anneal, CPU permutation, BS 256, no recompile between folds).
 # bestwater-style inference: 5 purged folds x N seeds, holdout+ES per fold, test pred = mean of fold-seed models.
 # Folds: val 40-44/50-54/55-59/60-64/65-70, train <=37/47/52/57/62. Scaler fit per fold on its train.
@@ -198,6 +201,18 @@ def loss_fn(y_pred, y_true, lambda_cos=1.0):
     cos = (pc * tc).sum() / (pc.norm() + 1e-8) / (tc.norm() + 1e-8)
     return mse + lambda_cos * (1 - cos)
 
+def fit_scale(X):
+    med = np.median(X, axis=0)
+    qd = np.quantile(X, 0.75, axis=0) - np.quantile(X, 0.25, axis=0)
+    z = qd == 0.0
+    qd = qd.copy(); qd[z] = 0.5 * (X.max(axis=0)[z] - X.min(axis=0)[z])
+    fac = 1.0 / (qd + 1e-30); fac[qd == 0.0] = 0.0
+    return med, fac
+
+def apply_scale(X, med, fac):
+    s = fac[None, :] * (X - med[None, :])
+    return (s / np.sqrt(1 + (s / 3) ** 2)).astype(np.float32)
+
 FOLDS = [((month >= 40) & (month <= 44), month <= 37),
          ((month >= 50) & (month <= 54), month <= 47),
          ((month >= 55) & (month <= 59), month <= 52),
@@ -215,8 +230,9 @@ for seed in SEEDS:
     for fi, (va_mask, tr_mask) in enumerate(FOLDS):
         if fi not in FOLD_IDX: continue
         set_seed(seed * 100 + fi)
-        Xtr = X_all[tr_mask]
-        Xva = X_all[va_mask]
+        med, fac = fit_scale(X_all[tr_mask])
+        Xtr = apply_scale(X_all[tr_mask], med, fac)
+        Xva = apply_scale(X_all[va_mask], med, fac)
         ytr = y_all[tr_mask]; yva = y_all[va_mask]
         Xtr_t = torch.tensor(Xtr); ytr_t = torch.tensor(ytr)
         Xva_t = torch.tensor(Xva)
@@ -286,6 +302,7 @@ for seed in SEEDS:
             oof[va_mask] = _vp
             _om = np.full(len(X_all), np.nan, dtype=np.float32); _om[va_mask] = _vp
             oof_models.append(_om)
+            n_models += 1
 
         # incremental save: partial results survive a session timeout/cancel
         np.save(f'/kaggle/working/oof_models_{TAG}_partial.npy', np.stack(oof_models))
@@ -303,6 +320,7 @@ print('models trained:', n_models, 'total time', round(time.time()-t_all), 's', 
 np.save(f'/kaggle/working/oof_{TAG}.npy', oof)
 np.save(f'/kaggle/working/oof_models_{TAG}.npy', np.stack(oof_models))
 
+seen = ~np.isnan(oof)
 # metrics: OOF cos on months 61-70 (comparable to our champion val protocol)
 m6170 = (month >= 61) & (month <= 70) & seen
 late66 = (month >= 66) & (month <= 70) & seen

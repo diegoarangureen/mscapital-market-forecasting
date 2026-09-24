@@ -554,3 +554,9 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - Datasets created (private): https://www.kaggle.com/datasets/diegoaranguren/mscapital-x21m and https://www.kaggle.com/datasets/diegoaranguren/mscapital-x22m
 - Screen pushed: mscapital-x29-mask-tpu v1 (TPU v5e-8, enableTpu verified, datasets matrices+x21m+x22m + 0726 kernel source, timeout 9h). Script src/kaggle/realmlp_x29_mask_tpu.py = X28c panel minus quantile preprocessing minus all test/submission parts (pure OOF screen). 5 folds, seed 2026, vs kfold seed2026 per-fold baselines f1 0.143251 / f2 0.149152 / f3 0.148980 / f4 0.155356 / f5 0.171549. Verdict rule: consistent shift > 0.002 = signal, else FLAT. X28c panel took 5702s -> results expected ~01:30.
 - LB snapshot 23:45: unchanged (244 teams, top1 0.180, gate10 0.164, Diego 131 @ 0.139).
+
+## Sep 24 03:23 — X29 screen v1 ERROR (my bug), v2 re-pushed
+- v1 ran all 5 folds but val cos came out ~0.075-0.097 (half the baselines) then ERRORED at the final metrics block. Post-mortem: when stripping the X28c quantile preprocessing I wrongly removed ALL scaling - the champion baseline (realmlp_kfold455s5v2_tpu) standardizes with a robust median/IQR soft-clamp scaler, so v1 trained on raw features. The crash was a separate NameError: the final metrics block uses `seen`, defined in the section I deleted; `n_models += 1` was also cut with the test-pred block. Lesson: when deriving a screen from an experiment script, diff against the BASELINE script, not only against the experiment.
+- v2 pushed (mscapital-x29-mask-tpu v2, enableTpu verified, QUEUED 03:23): restores the exact baseline scaler + `seen` + n_models increment. v1 fold times 700-1076s -> ~80 min runtime once it gets TPU; results expected ~05:00-05:30.
+- v1's invalid scores are NOT evidence about masking (wrong protocol) - discarded.
+- LB snapshot 02:46: unchanged (244 teams, top1 0.180, gate10 0.164, Diego 131 @ 0.139).
