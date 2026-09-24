@@ -168,17 +168,19 @@ names = []; cols = []
 def add(name, x):
     names.append(name); cols.append(x.astype(np.float32))
 
-# OFI sums per bucket + total
+# OFI sums per bucket + total, normalized by per-sample mean L1 depth (dimensionless), clipped
+mean_depth = (bv1_s + av1_s) / np.maximum(n_all, 1.0) + 1.0
 for i in range(3):
-    add(f'x30_ofi1_b{i}', ofi1.reshape(NS, NB)[:, i])
-    add(f'x30_ofi2_b{i}', ofi2.reshape(NS, NB)[:, i])
-add('x30_ofi1_all', ofi1.reshape(NS, NB).sum(1))
-add('x30_ofi2_all', ofi2.reshape(NS, NB).sum(1))
+    add(f'x30_ofi1_b{i}', np.clip(ofi1.reshape(NS, NB)[:, i]/mean_depth, -1e4, 1e4))
+    add(f'x30_ofi2_b{i}', np.clip(ofi2.reshape(NS, NB)[:, i]/mean_depth, -1e4, 1e4))
+add('x30_ofi1_all', np.clip(ofi1.reshape(NS, NB).sum(1)/mean_depth, -1e4, 1e4))
+add('x30_ofi2_all', np.clip(ofi2.reshape(NS, NB).sum(1)/mean_depth, -1e4, 1e4))
 # RV
 rv_b = rv.reshape(NS, NB); rvdn_b = rv_dn.reshape(NS, NB); rvup_b = rv_up.reshape(NS, NB)
 add('x30_rv_60', np.sqrt(rv_b.sum(1)))
 add('x30_rv_600', np.sqrt(rv600))
-add('x30_semi_ratio', (rvdn_b.sum(1)+EPS) / (rvup_b.sum(1)+EPS))
+_rvtot = rv_b.sum(1)
+add('x30_semi_ratio', np.clip((rvdn_b.sum(1) + 0.01*_rvtot) / (rvup_b.sum(1) + 0.01*_rvtot), 0, 100))
 pk = (np.log(np.maximum(mid_hi, EPS)/np.maximum(mid_lo, EPS))**2) / (4*np.log(2))
 pk = np.where(np.isfinite(pk) & (mid_hi > mid_lo), pk, 0.0).reshape(NS, NSB)
 add('x30_parkinson', np.sqrt(pk[:, :6].sum(1)))          # last 60s
@@ -204,16 +206,19 @@ add('x30_qi1_tw', qi1_tw_s.reshape(NS, NB).sum(1)/np.maximum(tw_w.reshape(NS, NB
 # microprice dynamics
 mic_b = mic_s.reshape(NS, NB)/n_b.reshape(NS, NB)
 mid_b = mid_s.reshape(NS, NB)/n_b.reshape(NS, NB)
-midbar = np.maximum(mid_b.mean(1), EPS)
-add('x30_micro_slope', (mic_b[:, 0] - mic_b[:, 2])/midbar)
-add('x30_mid_slope', (mid_b[:, 0] - mid_b[:, 2])/midbar)
+midbar_raw = mid_b.mean(1)
+_pos = midbar_raw[midbar_raw > EPS]
+mid_floor = np.percentile(_pos, 1) if len(_pos) else 1.0
+midbar = np.maximum(midbar_raw, mid_floor)
+add('x30_micro_slope', np.clip((mic_b[:, 0] - mic_b[:, 2])/midbar, -10, 10))
+add('x30_mid_slope', np.clip((mid_b[:, 0] - mid_b[:, 2])/midbar, -10, 10))
 add('x30_micro_mid_dev', (micmid_s.reshape(NS, NB)/n_b.reshape(NS, NB)).mean(1))
 add('x30_spread_rms', np.sqrt(np.maximum((spr_s2.reshape(NS, NB)/n_b.reshape(NS, NB)).mean(1), 0.0))/midbar)
 spr_b = spr_s.reshape(NS, NB)/n_b.reshape(NS, NB)
 add('x30_spread_drift', (spr_b[:, 0] - spr_b[:, 2])/midbar)
 # book shape
 n_all[n_all == 0] = 1.0
-add('x30_vwap_dev_600', (tvwap_s/np.maximum(tvol_s, EPS) - vwap_mid_s/np.maximum(tvol_s, EPS))/midbar)
+add('x30_vwap_dev_600', np.clip((tvwap_s/np.maximum(tvol_s, EPS) - vwap_mid_s/np.maximum(tvol_s, EPS))/midbar, -10, 10))
 add('x30_tvol_600_log', np.log1p(tvol_s))
 add('x30_tcount_600_log', np.log1p(tcount_s))
 add('x30_depth_ratio_bid', (bv2_s/n_all)/np.maximum(bv1_s/n_all, EPS))
