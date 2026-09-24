@@ -573,3 +573,9 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - Protocol note: the v2 screen is also a clean same-session replication of the kfold seed2026 baselines (4 of 5 folds within +-0.0002), which further validates the 5-fold panel as the screen instrument.
 - Direction per Diego (Sep 23 22:51, conditional now true): methods research phase - what could break the ~0.15-0.16 public-data plateau toward the 0.164 top-10 cut.
 - LB snapshot 06:47: unchanged (244 teams, top1 0.180, gate10 0.164, Diego 131 @ 0.139).
+
+## Sep 24 08:26 CEST - X30 schema resolved, build launched
+- Probe saga: v1 (full num_rows scans) cancelled mid-run ~60min in (cause unknown); v2 (bounded batches) superseded by v3 before finishing; v3 METADATA-ONLY completed in ~2 min. LESSON: every competition feather is ONE single record batch - get_batch(0) materializes the whole file. Metadata reads (open_file + schema) are free; data reads cost a full-file pass.
+- Schema: market.feather 14 cols (NO level 3 - L1/L2 only), PLUS embedded per-snapshot trade ticker: transaction_avgprice/volume/count over the full ~600s window (transaction.feather only spans ~60s). order/transaction side int8, order_action int8. Encodings confirmed from build_x2122_masked convention: side==0 -> buy/bid(+1), action 0=NEW 1=CANCEL.
+- CAUGHT BUG in build_x30 draft: np.sign(side) is wrong for 0/1 encoding (everything becomes +1). Fixed to the established convention.
+- build_x30.py finalized: 36 features (OFI L1/L2 CKS buckets, trade-sign autocorr lag1-3, RV/Parkinson/semivol/vol-of-vol, order arrival/cancel, QI dynamics, microprice/mid slopes, spread, book shape, + 3 full-window trade-ticker features: vwap_dev_600, tvol_600_log, tcount_600_log). Memory-safe ziter (per-slice conversion).
