@@ -13,7 +13,7 @@ import numpy as np
 BASE = os.environ.get('BASE', '/kaggle/input/competitions/ms-capital-real-financial-market-forecasting')
 NS = int(os.environ.get('NS', '1257637'))
 SPLIT = os.environ.get('SPLIT', 'train')
-OUT = '/kaggle/working'
+OUT = os.environ.get('OUT', '/kaggle/working')
 
 import pyarrow as pa
 def ziter(path, cols, elems=1<<19):
@@ -195,7 +195,7 @@ qi1_var = qi1_s2.reshape(NS, NB)/n_b.reshape(NS, NB) - qi1_b**2
 add('x30_qi1_drift', qi1_b[:, 0] - qi1_b[:, 2])
 add('x30_qi1_vol', np.sqrt(np.maximum(qi1_var.mean(1), 0.0)))
 add('x30_qi2_drift', qi2_b[:, 0] - qi2_b[:, 2])
-add('x30_qi1_tw', qi1_tw_s.sum(1)/np.maximum(tw_w.sum(1), EPS))
+add('x30_qi1_tw', qi1_tw_s.reshape(NS, NB).sum(1)/np.maximum(tw_w.reshape(NS, NB).sum(1), EPS))
 # microprice dynamics
 mic_b = mic_s.reshape(NS, NB)/n_b.reshape(NS, NB)
 mid_b = mid_s.reshape(NS, NB)/n_b.reshape(NS, NB)
