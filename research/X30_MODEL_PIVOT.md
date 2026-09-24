@@ -15,3 +15,10 @@ The public best-single GRU 0.143 (discussion/733271). Our dead GRUs were RAW-STR
 
 ## If pairrep says X30 SIGNAL
 Ablate X30 by family (per X30_CONTINGENCY.md), extend the carrying family, then forward-sim gate before any submission ask.
+
+## UPDATE 21:52 — 733271 re-read: the "public GRU 0.143" does not exist
+Re-read discussion/733271 (bestwater's own experiment summary). His actual numbers:
+GRU 0.1179 CV / 0.103 LB. Transformer baseline 0.1401/0.129, batch-opt 0.1474/0.128, TPU 0.1537/0.124, depth-opt 0.1549/0.120. GBDTs 0.117-0.121 LB. Blends 0.131-0.137 LB. Post-processing CV gains do not transfer to LB (mirrors our XS trap).
+R1's "best public singles TabM 0.142 / GRU 0.143" is NOT supported by this thread — treat as misattributed until another source shows up.
+CONSEQUENCE: every model class bestwater documents scores BELOW our champion (0.139 LB). Model class is publicly exhausted; the re-read closes the last open model lever without spending compute. Signal/features remain the only lever (top-1 0.180 = private features per his own kernel docstrings, 462f @689f pool 0.1638).
+If pairrep is FLAT: pivot fully to signal research (X31 candidates: 600s market-ticker aggregates, cross-sample structure without XS normalization, order-flow tabular extensions building on seq3's finding that order-flow nearly doubled sequence signal).
