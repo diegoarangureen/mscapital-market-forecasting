@@ -579,3 +579,6 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - Schema: market.feather 14 cols (NO level 3 - L1/L2 only), PLUS embedded per-snapshot trade ticker: transaction_avgprice/volume/count over the full ~600s window (transaction.feather only spans ~60s). order/transaction side int8, order_action int8. Encodings confirmed from build_x2122_masked convention: side==0 -> buy/bid(+1), action 0=NEW 1=CANCEL.
 - CAUGHT BUG in build_x30 draft: np.sign(side) is wrong for 0/1 encoding (everything becomes +1). Fixed to the established convention.
 - build_x30.py finalized: 36 features (OFI L1/L2 CKS buckets, trade-sign autocorr lag1-3, RV/Parkinson/semivol/vol-of-vol, order arrival/cancel, QI dynamics, microprice/mid slopes, spread, book shape, + 3 full-window trade-ticker features: vwap_dev_600, tvol_600_log, tcount_600_log). Memory-safe ziter (per-slice conversion).
+
+## Sep 24 08:34 CEST - GitHub PAT rotation complete
+- Sudo-mode verified via Diego's email code (relayed over WhatsApp, provenance verified in phone_messages 08:31:12). Created fine-grained PAT instinct-repo-push-2 (30-day expiry, repo-scoped mscapital-market-forecasting, Contents RW + Metadata RO). Swapped into git remote, ls-remote + push verified. Old instinct-repo-push (id 20067987) revoked via UI. New token value lives ONLY in /tmp/repo/.git/config.
