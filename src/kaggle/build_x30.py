@@ -82,30 +82,35 @@ for sid, sbp, a1, b1, av1, bv1, a2, b2, av2, bv2, txp, txv, txc in ziter(f'{BASE
         return e
     e1 = ofi_level(b1o, bv1o, a1o, av1o, same)
     e2 = ofi_level(b2o, bv2o, a2o, av2o, same)
-    lin_d = s64o[1:] * NB + bk(to[1:])
-    np.add.at(ofi1, lin_d, e1); np.add.at(ofi2, lin_d, e2)
+    dmask = to[1:] < 60.0
+    lin_d = s64o[1:][dmask] * NB + bk(to[1:][dmask])
+    np.add.at(ofi1, lin_d, e1[dmask]); np.add.at(ofi2, lin_d, e2[dmask])
     # RV from mid log returns
     mido = mid[order]
     r = np.diff(np.log(np.where(mido > 0, mido, np.nan)))
     r = np.where(same & np.isfinite(r), r, 0.0)
-    np.add.at(rv, lin_d, r*r)
-    np.add.at(rv_dn, lin_d, np.where(r < 0, r*r, 0.0)); np.add.at(rv_up, lin_d, np.where(r > 0, r*r, 0.0))
+    np.add.at(rv, lin_d, (r*r)[dmask])
+    np.add.at(rv_dn, lin_d, np.where(r < 0, r*r, 0.0)[dmask]); np.add.at(rv_up, lin_d, np.where(r > 0, r*r, 0.0)[dmask])
     np.add.at(rv600, s64o[1:], r*r)
     sub = s64o[1:] * NSB + np.minimum((to[1:] // 10).astype(np.int64), NSB-1)
     np.add.at(sub_rv, sub, r*r)
-    # per-bucket means
-    lin = s64 * NB + bk(t)
+    # per-bucket means - buckets are [0,10) [10,30) [30,60); market rows >=60s are EXCLUDED
+    # from bucketed stats (bk() folds >=60 into b2 for the 60s-spanning order/tx streams only).
+    bm = t < 60.0
+    lin = s64[bm] * NB + bk(t[bm])
     w = np.isfinite(mid)
-    np.add.at(n_b, lin, w)
-    np.add.at(qi1_s, lin, np.where(w, qi1, 0.0)); np.add.at(qi1_s2, lin, np.where(w, qi1*qi1, 0.0))
-    np.add.at(qi2_s, lin, np.where(w, qi2, 0.0))
-    np.add.at(mic_s, lin, np.where(w, np.nan_to_num(micro), 0.0))
-    np.add.at(mid_s, lin, np.where(w, np.nan_to_num(mid), 0.0))
-    np.add.at(micmid_s, lin, np.where(w, np.nan_to_num((micro-mid)/np.maximum(mid, EPS)), 0.0))
-    np.add.at(spr_s2, lin, np.where(w, np.nan_to_num(spr*spr), 0.0))
-    np.add.at(spr_s, lin, np.where(w, np.nan_to_num(spr), 0.0))
-    wt = 1.0/(t+1.0)
-    np.add.at(qi1_tw_s, lin, qi1*wt); np.add.at(tw_w, lin, wt)
+    wb = w[bm]
+    qi1b = qi1[bm]; qi2b = qi2[bm]; microb = micro[bm]; midb = mid[bm]; sprb = spr[bm]; tb = t[bm]
+    np.add.at(n_b, lin, wb)
+    np.add.at(qi1_s, lin, np.where(wb, qi1b, 0.0)); np.add.at(qi1_s2, lin, np.where(wb, qi1b*qi1b, 0.0))
+    np.add.at(qi2_s, lin, np.where(wb, qi2b, 0.0))
+    np.add.at(mic_s, lin, np.where(wb, np.nan_to_num(microb), 0.0))
+    np.add.at(mid_s, lin, np.where(wb, np.nan_to_num(midb), 0.0))
+    np.add.at(micmid_s, lin, np.where(wb, np.nan_to_num((microb-midb)/np.maximum(midb, EPS)), 0.0))
+    np.add.at(spr_s2, lin, np.where(wb, np.nan_to_num(sprb*sprb), 0.0))
+    np.add.at(spr_s, lin, np.where(wb, np.nan_to_num(sprb), 0.0))
+    wt = 1.0/(tb+1.0)
+    np.add.at(qi1_tw_s, lin, qi1b*wt); np.add.at(tw_w, lin, wt)
     # sub-bucket mid hi/lo (valid rows only)
     wr = w & (mid > 0)
     sub_all = s64 * NSB + np.minimum((t // 10).astype(np.int64), NSB-1)
@@ -115,7 +120,7 @@ for sid, sbp, a1, b1, av1, bv1, a2, b2, av2, bv2, txp, txv, txc in ziter(f'{BASE
     np.add.at(av1_s, s64, av1f); np.add.at(av2_s, s64, av2f); np.add.at(n_all, s64, 1.0)
     txvf = txv.astype(f64)
     np.add.at(tvol_s, s64, txvf); np.add.at(tcount_s, s64, txc.astype(f64))
-    np.add.at(tvwap_s, s64, txp.astype(f64)*txvf)
+    np.add.at(tvwap_s, s64, np.nan_to_num(txp.astype(f64))*txvf)
     np.add.at(vwap_mid_s, s64, np.where(w, txvf*np.nan_to_num(mid), 0.0))
 
 n_b[n_b == 0] = 1.0
