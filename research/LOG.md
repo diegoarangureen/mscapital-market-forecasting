@@ -597,3 +597,10 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - GitHub PAT rotated (second time today): instinct-repo-push-3 created (30d, repo mscapital-market-forecasting only, Contents RW). Sudo email-code flow; keystroke-mode input required (bulk fill silently fails on GitHub's sudo form — two codes burned before diagnosis).
 - instinct-repo-push-2 revoked via UI after clone verified (expires Oct 23, no longer used anywhere).
 - X30 screen kernel mscapital-x30-tpu still queued at time of writing.
+
+## 2026-09-24 15:14 — X30 screen v1 ERROR: dataset filename prefix; v2 pushed
+- v1 burned 16 min TPU session waiting for /kaggle/input/mscapital-x30/X30_train.npy -> FileNotFoundError after 955s.
+- Root cause: datasets created from KERNEL OUTPUT carry the producing kernel's slug as filename prefix (mscapital-x30-build_X30_train.npy). File-uploaded datasets (matrices/x21/x22) mount unprefixed. Script's find-relocate used exact basename -> missed.
+- Dataset content verified locally by direct download: (1257637, 36) float32, 0 NaN, 0 inf, 36 names intact.
+- Fix: find now suffix-matches ('*'+basename); wait_for timeout 900s -> 300s (fail fast).
+- Push plumbing: kaggle CLI can't use KGAT tokens; kagglesdk KernelsApiClient + KAGGLE_API_TOKEN env works (/tmp/kpush.py pattern). v2 pushed clean (all 4 datasets + yunsuxiaozi/rfmf-0726data valid).

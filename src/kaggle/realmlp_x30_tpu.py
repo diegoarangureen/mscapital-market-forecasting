@@ -49,14 +49,14 @@ print('device:', device, 'seeds', SEEDS, 'XLA:', XLA, 'BS:', BS, flush=True)
 
 
 # ---------- wait for dataset mounts (TPU VM mounts /kaggle/input async; X28b v1 crashed at 36s on missing full_train.npy) ----------
-def wait_for(path, timeout=900):
+def wait_for(path, timeout=300):
     # TPU VM mounts are async AND the layout varies by session generation:
     # legacy /kaggle/input/datasets/<owner>/<slug>/ vs current /kaggle/input/<slug>/.
     # find-first (cheap), then poll.
     import subprocess
     t0 = time.time()
     while not os.path.exists(path):
-        r = subprocess.run(['find', '/kaggle/input', '-name', os.path.basename(path)], capture_output=True, text=True, timeout=120)
+        r = subprocess.run(['find', '/kaggle/input', '-name', '*' + os.path.basename(path)], capture_output=True, text=True, timeout=120)
         hits = [h for h in r.stdout.strip().split(chr(10)) if h]
         if hits:
             if hits[0] != path:
