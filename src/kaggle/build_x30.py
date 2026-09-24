@@ -180,7 +180,7 @@ rv_b = rv.reshape(NS, NB); rvdn_b = rv_dn.reshape(NS, NB); rvup_b = rv_up.reshap
 add('x30_rv_60', np.sqrt(rv_b.sum(1)))
 add('x30_rv_600', np.sqrt(rv600))
 _rvtot = rv_b.sum(1)
-add('x30_semi_ratio', np.clip((rvdn_b.sum(1) + 0.01*_rvtot) / (rvup_b.sum(1) + 0.01*_rvtot), 0, 100))
+add('x30_semi_ratio', np.clip((rvdn_b.sum(1) + 0.01*_rvtot + EPS) / (rvup_b.sum(1) + 0.01*_rvtot + EPS), 0, 100))
 pk = (np.log(np.maximum(mid_hi, EPS)/np.maximum(mid_lo, EPS))**2) / (4*np.log(2))
 pk = np.where(np.isfinite(pk) & (mid_hi > mid_lo), pk, 0.0).reshape(NS, NSB)
 add('x30_parkinson', np.sqrt(pk[:, :6].sum(1)))          # last 60s
