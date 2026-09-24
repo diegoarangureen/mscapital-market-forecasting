@@ -582,3 +582,12 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 
 ## Sep 24 08:34 CEST - GitHub PAT rotation complete
 - Sudo-mode verified via Diego's email code (relayed over WhatsApp, provenance verified in phone_messages 08:31:12). Created fine-grained PAT instinct-repo-push-2 (30-day expiry, repo-scoped mscapital-market-forecasting, Contents RW + Metadata RO). Swapped into git remote, ls-remote + push verified. Old instinct-repo-push (id 20067987) revoked via UI. New token value lives ONLY in /tmp/repo/.git/config.
+
+## Sep 24 09:05-10:16 CEST - X30 build iteration saga (5 versions) + dataset + screen staged
+- v1 CRASH: AxisError (qi1_tw/tw_w missing reshape). Lesson now enforced: EVERY new builder gets a local synthetic-feather smoke test before kernel push (/tmp/x30test generator).
+- v2 output validation caught: (a) bk() bucket-fold bug - market rows >=60s folded into b2, making rv_60 an exact duplicate of rv_600 and diluting all b2 bucket features; (b) vwap_dev NaN - transaction_avgprice NaN x volume propagated.
+- v3 structurally correct but tail-explosion scan caught: raw OFI scale-dependent (max 1e8), semivariance ratio div-by-tiny (max 2e8), vwap_dev 1/EPS on empty-book samples.
+- v4: OFI normalized by per-sample mean L1 depth, midbar floored at p1 scale, clips; one remaining NaN col (semi_ratio 0/0 on zero-return samples).
+- v5: EPS guard; edge-case synthetic test (fully-invalid sample -> neutral values). FULL VALIDATION PASS: 1,257,637 x 36, NaN 0, inf 0, no tail explosions, no degenerate cols.
+- Dataset mscapital-x30 created (private, validated arrays). TPU screen realmlp_x30_tpu.py (450f baseline + X30 36f, seed2026 5-fold panel) staged.
+- Operational hiccup: fresh dataset invalid at first attach -> v1 kernel saved with x30 source dropped; it occupies the 1-slot batch TPU limit and will crash on missing mount; v2 re-push queued behind it.
