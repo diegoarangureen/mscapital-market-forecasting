@@ -560,3 +560,8 @@ Built realmlp_x28b_rq_tpu.py (TPU replication + X28b delta: 3x3 RQ-KMeans code h
 - v2 pushed (mscapital-x29-mask-tpu v2, enableTpu verified, QUEUED 03:23): restores the exact baseline scaler + `seen` + n_models increment. v1 fold times 700-1076s -> ~80 min runtime once it gets TPU; results expected ~05:00-05:30.
 - v1's invalid scores are NOT evidence about masking (wrong protocol) - discarded.
 - LB snapshot 02:46: unchanged (244 teams, top1 0.180, gate10 0.164, Diego 131 @ 0.139).
+
+## Sep 24 05:49 — Sandbox wipe recovered (vault-based protocol, second run)
+- Wipe ~05:45 took /tmp/repo, the Kaggle token, and kagglesdk. Recovery per protocol: config-c profile still held both sign-ins - Kaggle needed no login (Settings > API Tokens > Generate New Token -> instinct-cli-3, installed+verified 200; unrecoverable instinct-cli-2 expired+401-verified). GitHub sign-in persisted too, but creating a new fine-grained PAT hit sudo-mode Confirm access (mobile/email code); Diego asleep, so that half is deferred to ~08:15 (one-shot scheduled): fresh PAT -> swap remote -> revoke old. Meanwhile the repo is cloned at 8dbc53a and working with the still-valid old PAT (created Sep 23 23:02, never in prompts).
+- X29 v2 screen survived server-side: RUNNING (got TPU between 04:47 and 05:49; ~80 min runtime -> results ~06:30).
+- Kaggle quotas seen in Settings: TPU 13:26/20h used (6:34 left), GPU 29:31/30h used - GPU nearly exhausted, TPU is the workhorse.
