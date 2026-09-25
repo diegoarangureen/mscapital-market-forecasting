@@ -1,0 +1,12 @@
+{
+  "mode": "screen",
+  "arms": ["flow", "price", "flow_price", "x30"],
+  "seeds": [2026],
+  "folds": [0, 2, 4],
+  "metric": "cosine",
+  "metric_verified": false,
+  "metric_source": "",
+  "weight_target": "noisy",
+  "angular_loss": "pearson",
+  "schedule": "epoch"
+}

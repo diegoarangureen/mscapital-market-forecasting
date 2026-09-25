@@ -1,0 +1,12 @@
+{
+  "mode": "screen",
+  "arms": ["base"],
+  "seeds": [2026],
+  "folds": [4],
+  "metric": "cosine",
+  "metric_verified": false,
+  "metric_source": "",
+  "weight_target": "noisy",
+  "angular_loss": "pearson",
+  "schedule": "epoch"
+}

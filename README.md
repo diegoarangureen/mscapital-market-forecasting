@@ -1,5 +1,12 @@
 # MSCapital: Real Financial Market Forecasting
 
+**Audited training pipeline (Sep 25):** follow [TRAINING_AGENT.md](TRAINING_AGENT.md)
+for the corrected builders, shared CPU/CUDA/TPU runner, temporal confirmation,
+checkpoint resume, tests and training budget. Historical scores below were
+produced by the earlier pipeline; they are not rescored audit results. In
+particular, the old RealMLP `cos_np` was Pearson and aggregated OOF retained the
+last seed. Active X30/X31 builders now emit **X30v2/X31v2**; rebuild both splits.
+
 End-to-end research project for the Kaggle competition
 [MS Capital: Real Financial Market Forecasting](https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting)
 (~650k high-frequency market windows; metric: cosine similarity between the
@@ -134,6 +141,9 @@ engineering is where the gains live.
 - `EXPERIMENTS.md` - the 30+ experiment ledger with numbers
 
 ## Reproduce
+
+The commands below reproduce the historical baseline. For current training,
+use the explicit configurations and commands in **TRAINING_AGENT.md**.
 
 ```bash
 bash src/download_data.sh          # needs a Kaggle Bearer token in ~/.kaggle/access_token

@@ -1,0 +1,13 @@
+{
+  "mode": "screen",
+  "arms": ["base", "x30", "flow", "flow31"],
+  "seeds": [2026],
+  "folds": [0, 2, 4],
+  "metric": "cosine",
+  "metric_verified": false,
+  "metric_source": "",
+  "weight_target": "noisy",
+  "angular_loss": "pearson",
+  "noise_std": 0.005,
+  "schedule": "epoch"
+}

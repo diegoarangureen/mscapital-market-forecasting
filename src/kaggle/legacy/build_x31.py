@@ -1,4 +1,4 @@
-# X31v2: audited FLOW extension. Rebuild BOTH train and test; see legacy/build_x31.py.
+# X31: FLOW-family extension pack (train only; paired 3-arm screen decides).
 # Motivation: X30 FLOW ablation carried ~60% of the pack signal (f1 +0.0040, f5 +0.0029);
 # VOL flat. X31 adds NONLINEAR / distributional FLOW variants a RealMLP cannot synthesize
 # from the existing linear per-bucket sums: sub-bucket burstiness, time-weighted OFI,
@@ -15,9 +15,15 @@ NS = int(os.environ.get('NS', '1257637'))
 SPLIT = os.environ.get('SPLIT', 'train')
 OUT = os.environ.get('OUT', '/kaggle/working')
 
-from audit.flows import ziter, chronological_order, ofi_level, kyle_terms, new_order_gaps
-from audit.io import save_feature_pack
-os.makedirs(OUT, exist_ok=True)
+import pyarrow as pa
+def ziter(path, cols, elems=1<<19):
+    reader = pa.ipc.open_file(path)
+    for i in range(reader.num_record_batches):
+        b = reader.get_batch(i)
+        n = b.num_rows
+        colrefs = [b.column(c) for c in cols]
+        for s in range(0, n, elems):
+            yield tuple(c[s:s+elems].to_numpy(zero_copy_only=False) for c in colrefs)
 
 f64 = np.float64
 edges = np.array([10.0, 30.0])
@@ -26,7 +32,7 @@ NSB6 = 6   # 6 x 10s sub-buckets over the 60s flow window
 EPS = 1e-12
 
 def bk(sbp):
-    b = np.searchsorted(edges, sbp.astype(f64), side='right')
+    b = np.searchsorted(edges, sbp.astype(f64))
     return np.minimum(b, NB - 1)
 
 t0 = time.time()
@@ -46,11 +52,17 @@ for sid, sbp, a1, b1, av1, bv1, a2, b2, av2, bv2 in ziter(f'{BASE}/{SPLIT}/marke
     a2f=a2.astype(f64); b2f=b2.astype(f64); av2f=av2.astype(f64); bv2f=bv2.astype(f64)
     valid = (a1f > 0) & (b1f > 0)
     qi2 = (bv2f-av2f)/np.maximum(bv2f+av2f, EPS)
-    order = chronological_order(s64, t)
+    order = np.lexsort((t, s64))
     s64o=s64[order]; to=t[order]
     same = s64o[1:] == s64o[:-1]
     b1o=b1f[order]; bv1o=bv1f[order]; a1o=a1f[order]; av1o=av1f[order]
     b2o=b2f[order]; bv2o=bv2f[order]; a2o=a2f[order]; av2o=av2f[order]
+    def ofi_level(pb, pv, pa, pav, same):
+        db = pb[1:] - pb[:-1]; dvb = pv[1:] - pv[:-1]
+        da = pa[1:] - pa[:-1]; dva = pav[1:] - pav[:-1]
+        bid_c = np.where(db > 0, pv[1:], np.where(db < 0, -pv[:-1], dvb))
+        ask_c = np.where(da < 0, pav[1:], np.where(da > 0, -pav[:-1], dva))
+        return (bid_c - ask_c) * same
     e1 = ofi_level(b1o, bv1o, a1o, av1o, same)
     e2 = ofi_level(b2o, bv2o, a2o, av2o, same)
     dmask = to[1:] < 60.0
@@ -82,12 +94,14 @@ for sid, sbp, pr, v, side in ziter(f'{BASE}/{SPLIT}/transaction.feather',
         ['sample_id','seconds_before_predict','price','volume','side']):
     s64 = sid.astype(np.int64); t = sbp.astype(f64); vf = v.astype(f64)
     sgn = np.where(side == 0, 1.0, -1.0)
-    order = chronological_order(s64, t)
+    order = np.lexsort((t, s64))
     so=s64[order]; go=sgn[order]; vo=vf[order]; to=t[order]; po=pr[order].astype(f64)
     same = so[1:] == so[:-1]
     # Kyle lambda from tx price log-returns vs signed volume
-    kn, kd = kyle_terms(so, po, go*vo)
-    np.add.at(kyle_num, so[1:], kn); np.add.at(kyle_den, so[1:], kd)
+    r = np.diff(np.log(np.where(po > 0, po, np.nan)))
+    r = np.where(same & np.isfinite(r), r, 0.0)
+    sv = go[1:]*vo[1:]
+    np.add.at(kyle_num, so[1:], r*sv); np.add.at(kyle_den, so[1:], sv*sv)
     # inter-arrival gaps
     gap = np.where(same, np.abs(to[1:]-to[:-1]), 0.0)
     np.add.at(tg_sum, so[1:], gap); np.add.at(tg_sum2, so[1:], gap*gap); np.add.at(tg_cnt, so[1:], same)
@@ -109,11 +123,12 @@ for sid, sbp, v, side, act in ziter(f'{BASE}/{SPLIT}/order.feather',
     np.add.at(ov_new_a, s64, np.where(is_new & ~is_bid, vf, 0.0))
     np.add.at(ov_can_b, s64, np.where(is_can & is_bid, vf, 0.0))
     np.add.at(ov_can_a, s64, np.where(is_can & ~is_bid, vf, 0.0))
-    order = chronological_order(s64, t)
+    order = np.lexsort((t, s64))
     so=s64[order]; to=t[order]; no=(is_new[order])
-    gap_sid, gap = new_order_gaps(so, to, no)
-    np.add.at(og_sum, gap_sid, gap); np.add.at(og_sum2, gap_sid, gap*gap)
-    np.add.at(og_cnt, gap_sid, 1)
+    same = so[1:] == so[:-1]
+    both_new = same & no[1:] & no[:-1]
+    gap = np.where(both_new, np.abs(to[1:]-to[:-1]), 0.0)
+    np.add.at(og_sum, so[1:], gap); np.add.at(og_sum2, so[1:], gap*gap); np.add.at(og_cnt, so[1:], both_new)
 print('order stream done', round(time.time()-t0), 's', flush=True)
 
 # ============ assemble ============
@@ -154,6 +169,7 @@ add('x31_vpin_mean', vpin_b.mean(1))
 add('x31_vpin_max', vpin_b.max(1))
 
 X = np.column_stack(cols)
-save_feature_pack(OUT, 'X31v2', SPLIT, X, names)
+np.save(f'{OUT}/X31_{SPLIT}.npy', X)
+np.save(f'{OUT}/X31_{SPLIT}_names.npy', np.array(names))
 print('X31 saved', X.shape, 'features', len(names), round(time.time()-t0), 's', flush=True)
 print('DONE', flush=True)

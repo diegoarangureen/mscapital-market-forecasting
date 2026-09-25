@@ -1,5 +1,4 @@
-# X30v2: audited chronological, sample-complete, split-independent features.
-# Historical implementation: legacy/build_x30.py. Rebuild BOTH train and test.
+# X30: Optiver-canon proprietary order-flow feature pack (train only; screen decides).
 # Absolute per-sample features only (XS trap confirmed 3x). Built kernel-side from raw
 # competition feather streams (pyarrow ziter + bincount accumulators; X29 IO pattern).
 # Families: multi-level OFI (Cont-Kukanov-Stoikov), trade-sign autocorr, realized-vol
@@ -16,9 +15,16 @@ NS = int(os.environ.get('NS', '1257637'))
 SPLIT = os.environ.get('SPLIT', 'train')
 OUT = os.environ.get('OUT', '/kaggle/working')
 
-from audit.flows import ziter, chronological_order, ofi_level, local_mid_reference
-from audit.io import save_feature_pack
-os.makedirs(OUT, exist_ok=True)
+import pyarrow as pa
+def ziter(path, cols, elems=1<<19):
+    # files are a SINGLE giant record batch (probe v3): convert per-slice to cap peak RAM
+    reader = pa.ipc.open_file(path)
+    for i in range(reader.num_record_batches):
+        b = reader.get_batch(i)
+        n = b.num_rows
+        colrefs = [b.column(c) for c in cols]
+        for s in range(0, n, elems):
+            yield tuple(c[s:s+elems].to_numpy(zero_copy_only=False) for c in colrefs)
 
 f64 = np.float64
 edges = np.array([10.0, 30.0])   # bucket id via searchsorted: 0,1,2 (+3 for >=60 when present)
@@ -26,7 +32,7 @@ NB = 3
 EPS = 1e-12
 
 def bk(sbp):
-    b = np.searchsorted(edges, sbp.astype(f64), side='right')
+    b = np.searchsorted(edges, sbp.astype(f64))
     return np.minimum(b, NB - 1)   # >=60 folds into b2 (order/tx only span 60s anyway)
 
 t0 = time.time()
@@ -61,12 +67,19 @@ for sid, sbp, a1, b1, av1, bv1, a2, b2, av2, bv2, txp, txv, txc in ziter(f'{BASE
     qi2 = (bv2f-av2f)/np.maximum(bv2f+av2f, EPS)
     spr = np.where(valid, a1f-b1f, np.nan)
     # sort chunk by (sample, time) for diff-based features
-    order = chronological_order(s64, t)
+    order = np.lexsort((t, s64))
     s64o=s64[order]; to=t[order]
     same = s64o[1:] == s64o[:-1]
     # OFI L1/L2 (Cont-Kukanov-Stoikov event rule)
     b1o=b1f[order]; bv1o=bv1f[order]; a1o=a1f[order]; av1o=av1f[order]
     b2o=b2f[order]; bv2o=bv2f[order]; a2o=a2f[order]; av2o=av2f[order]
+    def ofi_level(pb, pv, pa, pav, same):
+        db = pb[1:] - pb[:-1]; dvb = pv[1:] - pv[:-1]
+        da = pa[1:] - pa[:-1]; dva = pav[1:] - pav[:-1]
+        bid_c = np.where(db > 0, pv[1:], np.where(db < 0, -pv[:-1], dvb))
+        ask_c = np.where(da < 0, pav[1:], np.where(da > 0, -pav[:-1], dva))
+        e = (bid_c - ask_c) * same
+        return e
     e1 = ofi_level(b1o, bv1o, a1o, av1o, same)
     e2 = ofi_level(b2o, bv2o, a2o, av2o, same)
     dmask = to[1:] < 60.0
@@ -110,7 +123,6 @@ for sid, sbp, a1, b1, av1, bv1, a2, b2, av2, bv2, txp, txv, txc in ziter(f'{BASE
     np.add.at(tvwap_s, s64, np.nan_to_num(txp.astype(f64))*txvf)
     np.add.at(vwap_mid_s, s64, np.where(w, txvf*np.nan_to_num(mid), 0.0))
 
-valid_bucket = n_b.reshape(NS, NB) > 0
 n_b[n_b == 0] = 1.0
 print('market stream done', round(time.time()-t0), 's', flush=True)
 
@@ -118,19 +130,16 @@ print('market stream done', round(time.time()-t0), 's', flush=True)
 ts_cnt = np.zeros(NS, f64); ts_ac1 = np.zeros(NS, f64); ts_ac2 = np.zeros(NS, f64); ts_ac3 = np.zeros(NS, f64)
 ts_signvol = np.zeros(NS, f64); ts_vol = np.zeros(NS, f64)
 ts_sv10 = np.zeros(NS, f64); ts_v10 = np.zeros(NS, f64)
-ts_pairs = [np.zeros(NS, f64) for _ in range(3)]
 for sid, sbp, pr, v, side in ziter(f'{BASE}/{SPLIT}/transaction.feather',
         ['sample_id','seconds_before_predict','price','volume','side']):
     s64 = sid.astype(np.int64); t = sbp.astype(f64); vf = v.astype(f64)
     sgn = np.where(side == 0, 1.0, -1.0)
-    order = chronological_order(s64, t)
+    order = np.lexsort((t, s64))
     so=s64[order]; go=sgn[order]; to=t[order]
     same = so[1:] == so[:-1]
     np.add.at(ts_ac1, so[1:], go[1:]*go[:-1]*same)
     same2 = so[2:] == so[:-2]; np.add.at(ts_ac2, so[2:], go[2:]*go[:-2]*same2)
     same3 = so[3:] == so[:-3]; np.add.at(ts_ac3, so[3:], go[3:]*go[:-3]*same3)
-    for lag, mask in ((1, same), (2, same2), (3, same3)):
-        np.add.at(ts_pairs[lag-1], so[lag:], mask)
     np.add.at(ts_cnt, s64, 1.0)
     np.add.at(ts_signvol, s64, sgn*vf); np.add.at(ts_vol, s64, vf)
     m10 = t < 10.0
@@ -178,9 +187,7 @@ add('x30_parkinson', np.sqrt(pk[:, :6].sum(1)))          # last 60s
 sub_rv2 = np.sqrt(np.maximum(sub_rv, 0.0)).reshape(NS, NSB)
 add('x30_vol_of_vol', sub_rv2[:, :6].std(1))
 # trade sign
-add('x30_tsign_ac1', ts_ac1/np.maximum(ts_pairs[0], 1))
-add('x30_tsign_ac2', ts_ac2/np.maximum(ts_pairs[1], 1))
-add('x30_tsign_ac3', ts_ac3/np.maximum(ts_pairs[2], 1))
+add('x30_tsign_ac1', ts_ac1/ts_cnt); add('x30_tsign_ac2', ts_ac2/ts_cnt); add('x30_tsign_ac3', ts_ac3/ts_cnt)
 add('x30_signvol_60', ts_signvol/np.maximum(ts_vol, EPS))
 add('x30_flow_shift', ts_sv10/np.maximum(ts_v10, EPS) - ts_signvol/np.maximum(ts_vol, EPS))
 # order intensity
@@ -199,7 +206,10 @@ add('x30_qi1_tw', qi1_tw_s.reshape(NS, NB).sum(1)/np.maximum(tw_w.reshape(NS, NB
 # microprice dynamics
 mic_b = mic_s.reshape(NS, NB)/n_b.reshape(NS, NB)
 mid_b = mid_s.reshape(NS, NB)/n_b.reshape(NS, NB)
-midbar = local_mid_reference(mid_b, valid_bucket)
+midbar_raw = mid_b.mean(1)
+_pos = midbar_raw[midbar_raw > EPS]
+mid_floor = np.percentile(_pos, 1) if len(_pos) else 1.0
+midbar = np.maximum(midbar_raw, mid_floor)
 add('x30_micro_slope', np.clip((mic_b[:, 0] - mic_b[:, 2])/midbar, -10, 10))
 add('x30_mid_slope', np.clip((mid_b[:, 0] - mid_b[:, 2])/midbar, -10, 10))
 add('x30_micro_mid_dev', (micmid_s.reshape(NS, NB)/n_b.reshape(NS, NB)).mean(1))
@@ -215,6 +225,7 @@ add('x30_depth_ratio_bid', (bv2_s/n_all)/np.maximum(bv1_s/n_all, EPS))
 add('x30_depth_ratio_ask', (av2_s/n_all)/np.maximum(av1_s/n_all, EPS))
 
 X = np.column_stack(cols)
-save_feature_pack(OUT, 'X30v2', SPLIT, X, names)
+np.save(f'{OUT}/X30_{SPLIT}.npy', X)
+np.save(f'{OUT}/X30_{SPLIT}_names.npy', np.array(names))
 print('X30 saved', X.shape, 'features', len(names), round(time.time()-t0), 's', flush=True)
 print('DONE', flush=True)

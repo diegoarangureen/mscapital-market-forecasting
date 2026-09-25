@@ -1,0 +1,6 @@
+# Install the matching CUDA/CPU torch build or use Kaggle's existing torch/torch_xla.
+# Do not replace torch/torch_xla inside a working Kaggle TPU image.
+numpy>=1.26
+pandas>=2.2
+pyarrow>=16
+pytest>=8

@@ -1,0 +1,16 @@
+{
+  "mode": "confirm",
+  "arms": ["base", "x30"],
+  "seeds": [2026, 42],
+  "folds": [0, 1, 2, 3, 4],
+  "origins": [
+    {"origin": 59, "score_start": 62, "score_end": 66},
+    {"origin": 64, "score_start": 67, "score_end": 70}
+  ],
+  "metric": "cosine",
+  "metric_verified": false,
+  "metric_source": "",
+  "weight_target": "noisy",
+  "angular_loss": "pearson",
+  "schedule": "epoch"
+}
