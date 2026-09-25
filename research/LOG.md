@@ -665,3 +665,7 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - X30v2 v1 ERROR: ziter auditado aborta con cualquier nonfinite. Probe (mscapital-nonfinite-probe): SOLO transaction_avgprice de market.feather tiene NaN — 68,629,744/221,756,611 filas (31%) = intervalos sin trades, marcador nodata legítimo. Todo lo demás finito.
 - Fix (commit b999aa9): ziter allow_nonfinite con política documentada por columna (ceroa + cuenta en log; cualquier otro nonfinite sigue abortando); build_x30 declara transaction_avgprice. Smoke local con 30% NaN OK. X30v2 v2 relanzado 14:57.
 - NOTA para agentes locales de Diego: mismo fix necesario en local — ya está en main.
+
+## 2026-09-25 16:00 — v2 packs verificados; prepared lanzado
+- X30v2 train/test (1257637,36)/(647896,36) + X31v2 train/test (1257637,18)/(647896,18): shapes OK, 0 nonfinite, ids+manifests. ziter nodata contó 2 veces (train+test) el transaction_avgprice zeroed, como esperado.
+- mscapital-prepared-v2-build v1 lanzado (CPU; monta ambos builds vía kernel_sources + matrices/x21/x22 + 0726 + label.feather). Siguiente: publicar dataset mscapital-prepared-v2 al completar → pilotos.
