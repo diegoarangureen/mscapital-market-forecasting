@@ -645,3 +645,8 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - Build CPU kernel mscapital-x31-build v1 lanzado 11:00 (CPU no gasta cuota TPU). Monitor 30 min (schedule propio) → dataset diegoaranguren/mscapital-x31 al completar.
 - Screen script realmlp_x31_pairrep_tpu.py: panel 3 brazos base/FLOW/FLOW+X31, 15 modelos ~4.2h TPU, staged en /tmp/kpush_x31s para post-reset. Commit 6f042c9. Pregunta incremental = flow31 − flow; brazo FLOW-only ancla comparación cross-session con la ablación FLOW.
 - Pendiente post-reset TPU (orden): 1) ablación PRICE (/tmp/kpush_ablp, ~85 min), 2) screen X31 (~4.2h), 3) forward-sim gating → submission solo con autorización parent (gate val ≥0.130).
+
+## 2026-09-25 12:45 — X31 dataset LIVE + handoff local para Diego
+- mscapital-x31-build COMPLETE (~100 min CPU). X31_train.npy (1257637,18) f32, 0 NaN/inf. Dataset: https://www.kaggle.com/datasets/diegoaranguren/mscapital-x31
+- Diego entrena en local este finde con sus agentes (TPU agotado): escrito LOCAL_TRAINING.md (estado champion 486f, fuentes exactas, pipeline, costes locales honestos, cola priorizada). Commit 2e86bd2.
+- Monitor X31-BUILD borrado. Probe 6h sigue para PRICE→screen X31 en Kaggle tras reset; X31 screen también corre local si los agentes de Diego lo priorizan (cuidado: no duplicar PRICE salvo finde largo).
