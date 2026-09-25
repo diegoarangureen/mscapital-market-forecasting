@@ -624,3 +624,10 @@ Paired same-session panel (10 models, 167 min TPU). Base arm reproduced kfold ba
 - OOF 61-70: base 0.167176 -> x30 0.169151 (+0.00198); 66-70: +0.00198.
 X30 Optiver-style pack carries REAL, small, consistent signal. First proprietary-feature family to survive paired gating.
 NEXT: keep-one-family ablation (flow 18f: OFI+ord rates+QI+depth / vol 8f / price 10f). FLOW first (order-flow prior: seq3 2x, X23 +0.0018). TPU quota ~2.7h -> one panel (~82 min) before weekly reset. Kernel mscapital-x30-abl-flow-tpu v1 pushed 02:30.
+
+## 2026-09-25 06:01 — ABLATION FLOW: main carrier on extreme folds (~60% of signal)
+FLOW-only (18f: OFI+ord rates+QI+depth): deltas +0.00397/+0.00015/+0.00018/-0.00000/+0.00287 (mean +0.00144 vs full-pack +0.00239).
+- Dominates f1 (+0.0040 of +0.0054) and f5 (+0.0029 of +0.0016, EXCEEDS full pack).
+- Flat mid-folds (f2-f4) - the full pack's mid-fold gains come from VOL/PRICE. Pack is ADDITIVE, not redundant.
+- OOF 61-70: 0.169565 (flow-only, >= full-pack 0.169151 within noise); 66-70: 0.176640.
+Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekly - panels may error on quota; relaunch post-reset).
