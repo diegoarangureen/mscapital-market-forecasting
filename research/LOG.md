@@ -616,3 +616,11 @@ Panel 5-fold seed2026 TPU (v2, runtime 82 min): X30 450f+36f vs kfold baselines:
 Reading: does NOT clear the pre-registered bar (consistent >0.002): f2/f3 marginal, f4 negative. But 4/5 positive with the two extreme folds (early f1, late f5) showing the largest gains. Weak-positive, could be noise.
 Integration sanity: coherent (5 models, OOF written, shapes asserted in-kernel).
 NEXT GATE: paired replication panel — baseline-450f and X30 arms in the SAME session per fold (within-session paired noise ~0.0002 per X29 v2) to decide if the +0.0018 is real before any ablation spend. ~2.5h TPU; quota ~4.7h left.
+
+## 2026-09-25 02:30 — X30 PAIRREP VERDICT: SIGNAL CONFIRMED (5/5 folds, mean +0.0024)
+Paired same-session panel (10 models, 167 min TPU). Base arm reproduced kfold baselines to 6 decimals (deterministic given seed) - session noise hits only the x30 arm, paired design cancels it.
+- f1: +0.005372 | f2: +0.001311 | f3: +0.001462 | f4: +0.002180 | f5: +0.001610
+- 5/5 positive. v2's f4 (-0.0006) confirmed as session noise (paired: +0.0022).
+- OOF 61-70: base 0.167176 -> x30 0.169151 (+0.00198); 66-70: +0.00198.
+X30 Optiver-style pack carries REAL, small, consistent signal. First proprietary-feature family to survive paired gating.
+NEXT: keep-one-family ablation (flow 18f: OFI+ord rates+QI+depth / vol 8f / price 10f). FLOW first (order-flow prior: seq3 2x, X23 +0.0018). TPU quota ~2.7h -> one panel (~82 min) before weekly reset. Kernel mscapital-x30-abl-flow-tpu v1 pushed 02:30.
