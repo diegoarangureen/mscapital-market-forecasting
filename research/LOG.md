@@ -669,3 +669,9 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 ## 2026-09-25 16:00 — v2 packs verificados; prepared lanzado
 - X30v2 train/test (1257637,36)/(647896,36) + X31v2 train/test (1257637,18)/(647896,18): shapes OK, 0 nonfinite, ids+manifests. ziter nodata contó 2 veces (train+test) el transaction_avgprice zeroed, como esperado.
 - mscapital-prepared-v2-build v1 lanzado (CPU; monta ambos builds vía kernel_sources + matrices/x21/x22 + 0726 + label.feather). Siguiente: publicar dataset mscapital-prepared-v2 al completar → pilotos.
+
+## 2026-09-25 16:40 — PREPARED V2 PUBLICADO + piloto GPU lanzado
+- mscapital-prepared-v2-build COMPLETE (29 min CPU). 16 archivos: base_train/test (450f), X30v2 (36f), X31v2 (18f) train+test, y/month/ids/nodata, manifest con sha256 por archivo.
+- Dataset: https://www.kaggle.com/datasets/diegoaranguren/mscapital-prepared-v2 (privado). Fingerprint d75b4a02c2255723362e48f884d43271ce99eb6f57570fb89a9c06b48ff7b313 (audit_version 2026-09-25.1).
+- Piloto GPU (replication.json: arm base, seed 2026, fold 4, 1 modelo, cosine verificado) lanzado como mscapital-pilot-gpu v1. GPU Kaggle disponible sin esperar reset TPU.
+- Infra fix: kout.py ahora hace makedirs para subdirs + descargas grandes en streaming (OOM con 2.3GB en memoria).
