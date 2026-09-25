@@ -675,3 +675,12 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - Dataset: https://www.kaggle.com/datasets/diegoaranguren/mscapital-prepared-v2 (privado). Fingerprint d75b4a02c2255723362e48f884d43271ce99eb6f57570fb89a9c06b48ff7b313 (audit_version 2026-09-25.1).
 - Piloto GPU (replication.json: arm base, seed 2026, fold 4, 1 modelo, cosine verificado) lanzado como mscapital-pilot-gpu v1. GPU Kaggle disponible sin esperar reset TPU.
 - Infra fix: kout.py ahora hace makedirs para subdirs + descargas grandes en streaming (OOM con 2.3GB en memoria).
+
+## 2026-09-25 18:05 — PILOTO GPU COMPLETO; cuota GPU semanal AGOTADA
+- mscapital-pilot-gpu v1 COMPLETE: arm base, seed 2026, fold 4 (origin 70, train_end 62, es 65-70). best_epoch 6, **es_score (coseno sin centrar) = 0.17128**. n_train 1,117,383 / n_es 104,770. elapsed 2170s = **36.2 min/modelo GPU** (torch 2.10.0+cu128, 2 dispositivos CUDA visibles, entrenó en 1).
+- Reproducibilidad: run_signature 8eebb8d6…, code_hashes de los 11 módulos auditados, dataset_fingerprint d75b4a02…, checksums sha256 de artifacts (predictions/best/history) en done.json. cos≈pearson por época (p.ej. 0.16568 vs 0.16578) — confirma lectura de la métrica oficial.
+- Este 0.1713 es la REFERENCIA del control nuevo (los números pre-auditoría son inválidos). Falta repl_b (2ª réplica GPU, guía §3) para cuantificar varianza run-to-run: bundle listo en /tmp/kpush_repl_b.
+- **CUOTA GPU 30h/sem AGOTADA** (push rechazado 18:01: "Maximum weekly GPU quota of 30.00 hours reached"). TPU también agotada desde 10:52. La semana venía casi gastada de los entrenos pre-auditoría; el piloto la terminó. Nada corre hasta el reset semanal.
+- Bundles preparados y verificados (configs embebidas OK): /tmp/kpush_repl_b (replication, 1h), /tmp/kpush_loss_noisy (6 modelos, 4h), /tmp/kpush_loss_clean (6 modelos, 4h) — A/B clean/noisy es GPU por guía e independiente del screen. Screen.json queda para TPU post-reset (4h, guía §4).
+- Presupuesto GPU proyectado tras reset: repl_b 0.7h + loss A/B ~7.2h + confirm 8h + final 10h ≈ 26h < techo 30h. Screen por TPU (4h) + confirm TPU 12h ≈ 16h < techo 20h.
+- Probe de cuota 6h actualizado: prueba GPU (repl_b) y TPU (pilot_tpu) y encadena la cola cuando haya reset.
