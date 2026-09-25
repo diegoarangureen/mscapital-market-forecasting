@@ -1,11 +1,20 @@
 {
   "mode": "screen",
-  "arms": ["base"],
-  "seeds": [2026, 42],
-  "folds": [0, 2, 4],
+  "arms": [
+    "base"
+  ],
+  "seeds": [
+    2026,
+    42
+  ],
+  "folds": [
+    0,
+    2,
+    4
+  ],
   "metric": "cosine",
-  "metric_verified": false,
-  "metric_source": "",
+  "metric_verified": true,
+  "metric_source": "Official evaluation tab, https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting/overview/evaluation, fetched 2026-09-25 14:20 CEST: stated formula `cos(prediction, target)` = uncentered cosine similarity over the full prediction vector. API tag confirms 'custom metric defined under the Evaluation tab'. Executable scorer not published by host.",
   "weight_target": "noisy",
   "angular_loss": "pearson",
   "noise_std": 0.005,

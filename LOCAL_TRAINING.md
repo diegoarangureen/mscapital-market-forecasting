@@ -1,3 +1,19 @@
+# LOCAL TRAINING HANDOFF — SUPERSEDED, READ TRAINING_AGENT.md FIRST
+
+**Sep 25 14:25: Diego's audit (commit e0ce641) replaced this pipeline.**
+The canonical guide is now [TRAINING_AGENT.md](TRAINING_AGENT.md): new
+entrypoint (`src/kaggle/train_audited.py --config ...`), corrected feature
+builders (X30v2/X31v2 — the old X30/X31 packs had an inverted-chronology bug
+and must not be used for training), fixed OOF/metric handling, and a new
+promotion gate (paired +0.002 vs control on the same metric/protocol — the
+old absolute `val >= 0.130` gate is retired). Official metric verified
+2026-09-25: uncentered `cos(prediction, target)` per the competition's
+Evaluation tab. Sections below are kept ONLY for the data-download commands
+and the historical model description; every training instruction in them is
+stale. Budget: 30h GPU + 20h TPU (Kaggle), ceilings not targets.
+
+---
+
 # Entrenamiento local: pipeline auditado
 
 La gu?a vigente es [TRAINING_AGENT.md](TRAINING_AGENT.md). Sustituye el handoff

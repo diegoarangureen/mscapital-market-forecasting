@@ -650,3 +650,12 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - mscapital-x31-build COMPLETE (~100 min CPU). X31_train.npy (1257637,18) f32, 0 NaN/inf. Dataset: https://www.kaggle.com/datasets/diegoaranguren/mscapital-x31
 - Diego entrena en local este finde con sus agentes (TPU agotado): escrito LOCAL_TRAINING.md (estado champion 486f, fuentes exactas, pipeline, costes locales honestos, cola priorizada). Commit 2e86bd2.
 - Monitor X31-BUILD borrado. Probe 6h sigue para PRICE→screen X31 en Kaggle tras reset; X31 screen también corre local si los agentes de Diego lo priorizan (cuidado: no duplicar PRICE salvo finde largo).
+
+## 2026-09-25 14:25 — AUDITORÍA DE DIEGO (e0ce641): reset del protocolo
+- Diego encargó auditoría externa (WhatsApp 14:19, commits hasta 38ebbcb). Guía canónica: TRAINING_AGENT.md. Implementaciones mías movidas a src/kaggle/legacy/.
+- Hallazgos clave: (1) dos "cosenos" distintos (Pearson centrado en trainers vs coseno puro en panel.py); (2) OOF agregado sobrescribía seeds; (3) OOF ≠ ensemble de inferencia; (4) CRONOLOGÍA INVERTIDA en X30/X31 (sort ascendente de seconds_before_predict = tiempo hacia atrás: signos OFI, pairing Kyle, buckets/weights afectados); (5) pérdida de transiciones entre chunks; (6) mid reference con percentil global; (7) RNG acoplado.
+- CONSECUENCIA: la "señal confirmada" de X30 (+0.0024) queda NO CONFIRMADA — features con bug y métrica mezclada. Hay que re-establecerla con X30v2/X31v2 y el protocolo auditado. v13 LB 0.139 = referencia histórica.
+- Scorer oficial VERIFICADO: pestaña Evaluation de la competición dice literalmente `cos(prediction, target)` = coseno SIN centrar (fetched 14:20 CEST; tag API "custom metric defined under the Evaluation tab"). Configs actualizados: metric=cosine, metric_verified=true, metric_source con URL+fecha.
+- Gate viejo val>=0.130 RETIRADO por la guía. Gate nuevo: +0.002 estable vs control, misma métrica/protocolo, ambos bloques temporales, varias seeds.
+- Presupuesto nuevo: 30h GPU + 20h TPU (techos). Plan: builds v2 CPU (train+test) → prepare_audited → pilotos GPU/TPU (2h c/u) → screen 12 modelos TPU 4h → clean/noisy GPU 6h → confirmación 40 modelos (TPU 12h+GPU 8h) → final 15 modelos GPU 10h. Sin submissions sin OK parent (la guía: informar a Diego antes de publicar).
+- FORWARD_SIM.md y X32_CANDIDATES.md míos quedan SUPERSEDED por el protocolo de confirmación de la guía (lo conservan en main, pero no regir).
