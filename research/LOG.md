@@ -659,3 +659,9 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - Gate viejo val>=0.130 RETIRADO por la guía. Gate nuevo: +0.002 estable vs control, misma métrica/protocolo, ambos bloques temporales, varias seeds.
 - Presupuesto nuevo: 30h GPU + 20h TPU (techos). Plan: builds v2 CPU (train+test) → prepare_audited → pilotos GPU/TPU (2h c/u) → screen 12 modelos TPU 4h → clean/noisy GPU 6h → confirmación 40 modelos (TPU 12h+GPU 8h) → final 15 modelos GPU 10h. Sin submissions sin OK parent (la guía: informar a Diego antes de publicar).
 - FORWARD_SIM.md y X32_CANDIDATES.md míos quedan SUPERSEDED por el protocolo de confirmación de la guía (lo conservan en main, pero no regir).
+
+## 2026-09-25 15:00 — v2 builds: X31v2 COMPLETO, X30v2 fix nodata y relanzado
+- X31v2 build COMPLETE: train (1257637,18) + test (647896,18), 0 nonfinite, ids+manifests. Streams transaction/order 100% finitos.
+- X30v2 v1 ERROR: ziter auditado aborta con cualquier nonfinite. Probe (mscapital-nonfinite-probe): SOLO transaction_avgprice de market.feather tiene NaN — 68,629,744/221,756,611 filas (31%) = intervalos sin trades, marcador nodata legítimo. Todo lo demás finito.
+- Fix (commit b999aa9): ziter allow_nonfinite con política documentada por columna (ceroa + cuenta en log; cualquier otro nonfinite sigue abortando); build_x30 declara transaction_avgprice. Smoke local con 30% NaN OK. X30v2 v2 relanzado 14:57.
+- NOTA para agentes locales de Diego: mismo fix necesario en local — ya está en main.
