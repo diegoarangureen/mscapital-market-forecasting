@@ -631,3 +631,10 @@ FLOW-only (18f: OFI+ord rates+QI+depth): deltas +0.00397/+0.00015/+0.00018/-0.00
 - Flat mid-folds (f2-f4) - the full pack's mid-fold gains come from VOL/PRICE. Pack is ADDITIVE, not redundant.
 - OOF 61-70: 0.169565 (flow-only, >= full-pack 0.169151 within noise); 66-70: 0.176640.
 Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekly - panels may error on quota; relaunch post-reset).
+
+## 2026-09-25 10:55 — Ablación X30 VOL: PLANA (~0%)
+- Kernel mscapital-x30-abl-vol-tpu COMPLETE (83 min TPU). Brazo = base + VOL 8f (rv/semi/parkinson/volofvol, signvol, spread).
+- Per-fold vs baseline kfold seed2026: f1 +0.002869, f2 +0.000105, f3 −0.000166, f4 −0.001781, f5 −0.000166. Media +0.000172.
+- OOF 61-70: 0.166789 (baseline 0.167176 → −0.00039); OOF 66-70 0.173295.
+- Veredicto: VOL no tiene señal standalone; todo dentro de la banda de ruido de sesión XLA (~0.003). El pack completo (+0.0024) se reparte ~60% FLOW + resto presumiblemente PRICE (10f).
+- Estado ablación: FLOW ✓ (portadora), VOL ✓ (plana), PRICE BLOQUEADA — cuota semanal TPU 20h agotada (error "Maximum weekly TPU quota of 20.00 hours reached" al push v1 10:52). Relanzar /tmp/kpush_ablp post-reset.
