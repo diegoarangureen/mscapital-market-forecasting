@@ -43,10 +43,24 @@ public discussion landscape (research/R1_METHODS_LANDSCAPE.md) re-framed
 the problem: the board leader states he uses competition data only, so the
 ~0.16 "public plateau" is a method ceiling, not a data ceiling. Cross-sectional
 feature traps were independently confirmed a third time (CV 0.151 -> LB 0.136).
-Current line: X30, an Optiver-canon proprietary order-flow feature pack
+X30, an Optiver-canon proprietary order-flow feature pack
 (multi-level order-flow imbalance, trade-sign autocorrelation, realized-vol
-estimators, order arrival/cancel intensity, queue-imbalance dynamics), built
-from the raw streams and screened with the same forward protocol.
+estimators, order arrival/cancel intensity, queue-imbalance dynamics), was
+built from the raw streams and screened with the same forward protocol.
+
+Latest (Sep 25): X30 is the first proprietary feature family to clear the
+paired-panel gate - all 5 folds positive, mean +0.0024 cosine over the
+450-feature champion baseline, with per-fold baselines reproducing to six
+decimals in-session. A family ablation then attributed the gain: the
+order-flow group (OFI, order intensity, queue imbalance, depth ratios)
+carries about 60% of it and dominates the extreme folds, the volatility
+group is flat (mean +0.0002, inside session noise), and the price-
+microstructure group is queued. Current line: X31, an 18-feature extension
+of the order-flow family (sub-bucket flow burstiness and acceleration,
+time-weighted OFI, volume-weighted order flow, inter-arrival gap
+statistics, Kyle lambda, VPIN-lite), screened as a 3-arm paired panel
+(base / flow / flow+extension) so the incremental question is measured
+free of session noise.
 Historical note: the "455f" tag was an early miscount; the build is 450
 columns (298 proprietary + 152 public).
 
