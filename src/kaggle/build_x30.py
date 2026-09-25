@@ -50,7 +50,7 @@ tvwap_s = np.zeros(NS, f64); tvol_s = np.zeros(NS, f64); tcount_s = np.zeros(NS,
 for sid, sbp, a1, b1, av1, bv1, a2, b2, av2, bv2, txp, txv, txc in ziter(f'{BASE}/{SPLIT}/market.feather',
         ['sample_id','seconds_before_predict','ask_price_1','bid_price_1','ask_volume_1','bid_volume_1',
          'ask_price_2','bid_price_2','ask_volume_2','bid_volume_2',
-         'transaction_avgprice','transaction_volume','transaction_count']):
+         'transaction_avgprice','transaction_volume','transaction_count'], allow_nonfinite=('transaction_avgprice',)):
     s64 = sid.astype(np.int64); t = sbp.astype(f64)
     a1f=a1.astype(f64); b1f=b1.astype(f64); av1f=av1.astype(f64); bv1f=bv1.astype(f64)
     a2f=a2.astype(f64); b2f=b2.astype(f64); av2f=av2.astype(f64); bv2f=bv2.astype(f64)

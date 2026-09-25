@@ -32,13 +32,19 @@ def complete_samples(chunks):
         yield carry
 
 
-def ziter(path, cols, elems=None):
+def ziter(path, cols, elems=None, allow_nonfinite=()):
     import pyarrow as pa
     elems = int(elems or os.environ.get("CHUNK_ROWS", 1 << 19))
     if elems < 1 or cols[0] != "sample_id":
         raise ValueError("Positive chunk size and sample_id as first column required")
     # Arrow still decompresses the giant record batch; this is NOT constant-memory IO.
     # Complete-sample reblocking fixes event continuity independently of IPC batch size.
+    # allow_nonfinite: columns whose NaN is a DOCUMENTED nodata marker (probe 2026-09-25:
+    # train/market.feather transaction_avgprice has 68,629,744 NaN = intervals with no
+    # trades; every other column/stream is fully finite). They are zeroed and counted
+    # loudly; nonfinite anywhere else still raises.
+    allow = set(allow_nonfinite)
+    nodata_counts = {}
     with pa.memory_map(str(path), "r") as source:
         reader = pa.ipc.open_file(source)
         def raw():
@@ -48,8 +54,17 @@ def ziter(path, cols, elems=None):
                 for start in range(0, batch.num_rows, elems):
                     yield tuple(c.slice(start, elems).to_numpy(zero_copy_only=False) for c in refs)
         for chunk in complete_samples(raw()):
-            if not all(np.isfinite(c).all() for c in chunk):
-                raise ValueError(f"Nonfinite raw data: {path}")
+            fixed = []
+            for name, c in zip(cols, chunk):
+                if np.issubdtype(c.dtype, np.floating):
+                    bad = ~np.isfinite(c)
+                    if bad.any():
+                        if name not in allow:
+                            raise ValueError(f"Nonfinite raw data: {path} column {name}")
+                        nodata_counts[name] = nodata_counts.get(name, 0) + int(bad.sum())
+                        c = np.where(bad, 0.0, c)
+                fixed.append(c)
+            chunk = tuple(fixed)
             if "seconds_before_predict" in cols:
                 times = chunk[cols.index("seconds_before_predict")]
                 limit = 600 if str(path).endswith('market.feather') else 60
@@ -59,6 +74,8 @@ def ziter(path, cols, elems=None):
                 if key in cols and not np.isin(chunk[cols.index(key)],[0,1]).all():
                     raise ValueError(f'Unexpected encoding: {key}')
             yield chunk
+        for name, n in nodata_counts.items():
+            print(f'ziter nodata: {n} nonfinite zeroed in {name} ({path})', flush=True)
 
 
 def chronological_order(sid, seconds):
