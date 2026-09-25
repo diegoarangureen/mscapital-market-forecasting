@@ -638,3 +638,10 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - OOF 61-70: 0.166789 (baseline 0.167176 → −0.00039); OOF 66-70 0.173295.
 - Veredicto: VOL no tiene señal standalone; todo dentro de la banda de ruido de sesión XLA (~0.003). El pack completo (+0.0024) se reparte ~60% FLOW + resto presumiblemente PRICE (10f).
 - Estado ablación: FLOW ✓ (portadora), VOL ✓ (plana), PRICE BLOQUEADA — cuota semanal TPU 20h agotada (error "Maximum weekly TPU quota of 20.00 hours reached" al push v1 10:52). Relanzar /tmp/kpush_ablp post-reset.
+
+## 2026-09-25 11:05 — X31 diseñado y build lanzado (CPU, sin cuota TPU)
+- X31 = extensión de la familia FLOW (confirmada portadora ~60% del pack X30). 18f nuevas, todas variantes NO lineales/distribucionales que RealMLP no puede sintetizar de los sums por bucket existentes: OFI burstiness (std sub-buckets 10s) L1/L2, OFI accel (reciente-vs-antiguo), OFI time-weighted L1/L2, qi2_tw, book_imb12 (L1+L2), depth-ratio drift bid/ask, order volume nets NEW/CANCEL (ponderados por volumen, no counts), order/tx gap stats (mean/CV de inter-arribos), Kyle lambda (impacto precio~flujo firmado), VPIN-lite (mean/max por sub-bucket).
+- Builder src/kaggle/build_x31.py: smoke test sintético OK (18f, todo finito, muestras degeneradas → neutro cero). Commit 55156bd.
+- Build CPU kernel mscapital-x31-build v1 lanzado 11:00 (CPU no gasta cuota TPU). Monitor 30 min (schedule propio) → dataset diegoaranguren/mscapital-x31 al completar.
+- Screen script realmlp_x31_pairrep_tpu.py: panel 3 brazos base/FLOW/FLOW+X31, 15 modelos ~4.2h TPU, staged en /tmp/kpush_x31s para post-reset. Commit 6f042c9. Pregunta incremental = flow31 − flow; brazo FLOW-only ancla comparación cross-session con la ablación FLOW.
+- Pendiente post-reset TPU (orden): 1) ablación PRICE (/tmp/kpush_ablp, ~85 min), 2) screen X31 (~4.2h), 3) forward-sim gating → submission solo con autorización parent (gate val ≥0.130).
