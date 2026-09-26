@@ -695,3 +695,8 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - mscapital-repl-gpu-b COMPLETE (32.2 min): es_score = 0.17127733368223874 — IDÉNTICO al piloto A a precisión completa. predictions.npz corr=1.0, mae=0.0; checksums sha256 de predictions/best/history idénticos; mismo run_signature y best_epoch 6. Control auditado = 0.17128 con varianza CERO entre sesiones GPU (guía §3 satisfecha en CUDA; pendiente XLA).
 - mscapital-loss-noisy v1 lanzado (noisy_weights_control.json: 6 modelos = base × seeds {2026,42} × folds {0,2,4}, ~3.6h est.). Después: loss_clean y compare_audited (guía §4).
 - mscapital-pilot-tpu sigue QUEUED (cola TPU de Kaggle).
+
+## 2026-09-26 11:30 — A/B loss: mitad noisy COMPLETA; clean lanzado
+- mscapital-loss-noisy COMPLETE (6/6 modelos, ~35 min/modelo media): es por fold (media 2 seeds): fold0 0.1431, fold2 0.1490, fold4 0.1707. Varianza entre seeds pequeña (Δ ≤ 0.0011). fold4/seed2026 = 0.171277 = control, como debía.
+- mscapital-loss-clean v1 lanzado (mismas 6 llaves, weight_target clean). Al completar: compare_audited noisy-vs-clean, veredicto guía §4 (¿clean ≥ noisy estable?).
+- mscapital-pilot-tpu sigue QUEUED (4h12m; colas TPU de Kaggle son lentas tras el reset semanal).
