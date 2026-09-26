@@ -721,3 +721,8 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - GANADOR: flow31 (FLOW 468f + X31v2 18f = 486f). Pasa el umbral de cribado (+0.002, todos los folds positivos). CAVEAT guía §4: el screen usa las mismas ventanas para época y score → SOLO cribado; la confirmación externa decide.
 - confirm_flow31.json congelado (copia de confirm.json, arms [base, flow31], weight_target noisy tras el A/B negativo): 40 modelos = 2 variantes × 2 seeds × 5 cortes × 2 orígenes (59→score 62-66, 64→score 67-70).
 - Bundle /tmp/kpush_confirm_tpu listo (mscapital-confirm-tpu, xla, max-hours 10; est. ~10h TPU, quedan ~16h de 20h). PENDIENTE luz verde del parent para lanzar.
+
+## 2026-09-26 23:13 — CONFIRMACIÓN LANZADA (luz verde de Diego)
+- Autorización: WhatsApp propio de Diego 23:12 "Luz verde 🔥" (wamid ...RDJBQwA=) respondiendo a la pregunta exacta de las 22:50 ("confirmación de 40 modelos base vs FLOW+X31v2, ~10h TPU. ¿Luz verde?"). Verificada en phone_messages; relay del parent 23:12.
+- mscapital-confirm-tpu v1 lanzado (confirm_flow31.json: arms [base, flow31] × seeds {2026,42} × folds {0..4} × orígenes {59: score 62-66, 64: score 67-70} = 40 modelos, max-hours 10). Est. ~10h de cómputo TPU + cola.
+- Gate de promoción (guía §5): +0.002 estable vs control en AMBOS bloques externos (62-66 y 67-70), varias seeds, misma métrica/protocolo. summary.json dará deltas pareadas por origen/seed/mes, LOMO y bootstrap orientativo.
