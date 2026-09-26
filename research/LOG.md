@@ -690,3 +690,8 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - mscapital-repl-gpu-b v1 lanzado (réplica B del control, ~40 min esperados) — cuantifica varianza run-to-run vs piloto A (es 0.17128).
 - mscapital-pilot-tpu v1 lanzado (replication.json en XLA, primera validación TPU real; timing/modelo TPU decide el screen 4h TPU de la guía).
 - Monitor 30 min armado (wakeschedule-01M3E2C9DD2024S4E1PN79DM0G): al completar, compara métricas+predicciones, encadena loss_noisy (GPU) y screen_tpu (/tmp/kpush_screen_tpu ya staged, 12 modelos).
+
+## 2026-09-26 07:56 — REPRODUCIBILIDAD BIT-EXACTA confirmada; A/B loss lanzado
+- mscapital-repl-gpu-b COMPLETE (32.2 min): es_score = 0.17127733368223874 — IDÉNTICO al piloto A a precisión completa. predictions.npz corr=1.0, mae=0.0; checksums sha256 de predictions/best/history idénticos; mismo run_signature y best_epoch 6. Control auditado = 0.17128 con varianza CERO entre sesiones GPU (guía §3 satisfecha en CUDA; pendiente XLA).
+- mscapital-loss-noisy v1 lanzado (noisy_weights_control.json: 6 modelos = base × seeds {2026,42} × folds {0,2,4}, ~3.6h est.). Después: loss_clean y compare_audited (guía §4).
+- mscapital-pilot-tpu sigue QUEUED (cola TPU de Kaggle).
