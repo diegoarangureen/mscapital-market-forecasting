@@ -705,3 +705,8 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - mscapital-pilot-tpu COMPLETE (18.5 min tras 4h42m de cola): backend xla, 8 devices addressable (usó 1, world_size 1), torch-xla 2.8.0. es = 0.17160 vs control GPU 0.17128 (Δ +0.00032, mismo ballpark; RNG XLA distinto por diseño guía §3). best_epoch 6 igual. Predicciones corr 0.9945 vs GPU, std idéntica (6.1e-2).
 - TIMING CLAVE: 18.5 min/modelo TPU vs 36-38 GPU → TPU ~2× más rápido por modelo. Screen de 12 modelos secuencial ≈ 3.7h — ENTRA en el presupuesto de la guía (4h TPU) sin necesidad del multiproceso launch_xla_audited (optimización opcional que la guía dice abandonar si complica).
 - mscapital-screen-tpu v1 lanzado (screen.json: 4 brazos base/x30/flow/flow31 × folds {0,2,4} × seed 2026 = 12 modelos, max-hours 4). Primera medida auditada del aporte de X30v2/FLOW/X31v2 (flow31−flow = incremento X31).
+
+## 2026-09-26 14:40 — A/B clean/noisy CERRADO: veredicto NEGATIVO, se queda noisy
+- loss-clean COMPLETE (6/6, ~25 min/modelo). compare_audited (282,179 predicciones ES agregadas por modelo, métrica coseno oficial): noisy overall 0.155713 vs clean 0.155577 → **Δ = -0.000137 (clean NO mejora)**. Deltas mensuales mixtos (±0.0006), worst_month también peor con clean (0.12694 vs 0.12707).
+- Decisión guía §4: weight_target = noisy se mantiene en todos los configs (es lo que ya fijan). El MSE pesado por target ruidoso no es una palanca; no abrir grid de lambdas (la guía lo condiciona a esta medición). Archivo: research/loss_comparison_2026-09-26.json.
+- GPU libre (~13h consumidas de 30h esta semana: pilotos A/B + loss A/B). screen-tpu sigue en cola TPU (2h08m).
