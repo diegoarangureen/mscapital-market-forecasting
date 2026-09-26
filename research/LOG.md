@@ -700,3 +700,8 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - mscapital-loss-noisy COMPLETE (6/6 modelos, ~35 min/modelo media): es por fold (media 2 seeds): fold0 0.1431, fold2 0.1490, fold4 0.1707. Varianza entre seeds pequeña (Δ ≤ 0.0011). fold4/seed2026 = 0.171277 = control, como debía.
 - mscapital-loss-clean v1 lanzado (mismas 6 llaves, weight_target clean). Al completar: compare_audited noisy-vs-clean, veredicto guía §4 (¿clean ≥ noisy estable?).
 - mscapital-pilot-tpu sigue QUEUED (4h12m; colas TPU de Kaggle son lentas tras el reset semanal).
+
+## 2026-09-26 12:30 — Piloto TPU COMPLETO: XLA validado, screen TPU lanzado
+- mscapital-pilot-tpu COMPLETE (18.5 min tras 4h42m de cola): backend xla, 8 devices addressable (usó 1, world_size 1), torch-xla 2.8.0. es = 0.17160 vs control GPU 0.17128 (Δ +0.00032, mismo ballpark; RNG XLA distinto por diseño guía §3). best_epoch 6 igual. Predicciones corr 0.9945 vs GPU, std idéntica (6.1e-2).
+- TIMING CLAVE: 18.5 min/modelo TPU vs 36-38 GPU → TPU ~2× más rápido por modelo. Screen de 12 modelos secuencial ≈ 3.7h — ENTRA en el presupuesto de la guía (4h TPU) sin necesidad del multiproceso launch_xla_audited (optimización opcional que la guía dice abandonar si complica).
+- mscapital-screen-tpu v1 lanzado (screen.json: 4 brazos base/x30/flow/flow31 × folds {0,2,4} × seed 2026 = 12 modelos, max-hours 4). Primera medida auditada del aporte de X30v2/FLOW/X31v2 (flow31−flow = incremento X31).
