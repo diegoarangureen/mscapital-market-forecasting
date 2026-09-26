@@ -1,0 +1,37 @@
+{
+  "mode": "confirm",
+  "arms": [
+    "base",
+    "flow31"
+  ],
+  "seeds": [
+    2026,
+    42
+  ],
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "origins": [
+    {
+      "origin": 59,
+      "score_start": 62,
+      "score_end": 66
+    },
+    {
+      "origin": 64,
+      "score_start": 67,
+      "score_end": 70
+    }
+  ],
+  "metric": "cosine",
+  "metric_verified": true,
+  "metric_source": "Official evaluation tab, https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting/overview/evaluation, fetched 2026-09-25 14:20 CEST: stated formula `cos(prediction, target)` = uncentered cosine similarity over the full prediction vector. API tag confirms 'custom metric defined under the Evaluation tab'. Executable scorer not published by host.",
+  "weight_target": "noisy",
+  "angular_loss": "pearson",
+  "schedule": "epoch",
+  "frozen_from": "screen mscapital-screen-tpu 2026-09-26: flow31 winner (mean +0.00294 vs base, positive all 3 folds; X31 increment +0.0011); loss A/B: noisy kept (delta -0.000137)"
+}

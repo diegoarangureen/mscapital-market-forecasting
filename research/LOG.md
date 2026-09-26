@@ -710,3 +710,14 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - loss-clean COMPLETE (6/6, ~25 min/modelo). compare_audited (282,179 predicciones ES agregadas por modelo, métrica coseno oficial): noisy overall 0.155713 vs clean 0.155577 → **Δ = -0.000137 (clean NO mejora)**. Deltas mensuales mixtos (±0.0006), worst_month también peor con clean (0.12694 vs 0.12707).
 - Decisión guía §4: weight_target = noisy se mantiene en todos los configs (es lo que ya fijan). El MSE pesado por target ruidoso no es una palanca; no abrir grid de lambdas (la guía lo condiciona a esta medición). Archivo: research/loss_comparison_2026-09-26.json.
 - GPU libre (~13h consumidas de 30h esta semana: pilotos A/B + loss A/B). screen-tpu sigue en cola TPU (2h08m).
+
+## 2026-09-26 22:50 — SCREEN 12 MODELOS COMPLETO: flow31 GANA el cribado
+- mscapital-screen-tpu COMPLETE (12/12 en ~3.6h tras 7.2h de cola). es por brazo y fold (seed 2026):
+  - base:   0.142410 / 0.149656 / 0.171602 (media 0.154556)
+  - x30:    0.146878 / 0.151565 / 0.173259 (media 0.157234, Δ +0.00268, +/+/+)
+  - flow:   0.145973 / 0.149496 / 0.173769 (media 0.156413, Δ +0.00186, +/-/+)
+  - flow31: 0.146932 / 0.150820 / 0.174744 (media 0.157499, Δ +0.00294, +/+/+)
+- Incremento X31 (flow31−flow): +0.00096/+0.00132/+0.00098 — positivo y consistente en los 3 folds (~+0.0011).
+- GANADOR: flow31 (FLOW 468f + X31v2 18f = 486f). Pasa el umbral de cribado (+0.002, todos los folds positivos). CAVEAT guía §4: el screen usa las mismas ventanas para época y score → SOLO cribado; la confirmación externa decide.
+- confirm_flow31.json congelado (copia de confirm.json, arms [base, flow31], weight_target noisy tras el A/B negativo): 40 modelos = 2 variantes × 2 seeds × 5 cortes × 2 orígenes (59→score 62-66, 64→score 67-70).
+- Bundle /tmp/kpush_confirm_tpu listo (mscapital-confirm-tpu, xla, max-hours 10; est. ~10h TPU, quedan ~16h de 20h). PENDIENTE luz verde del parent para lanzar.
