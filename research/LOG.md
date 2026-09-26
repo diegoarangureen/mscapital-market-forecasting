@@ -684,3 +684,9 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - Bundles preparados y verificados (configs embebidas OK): /tmp/kpush_repl_b (replication, 1h), /tmp/kpush_loss_noisy (6 modelos, 4h), /tmp/kpush_loss_clean (6 modelos, 4h) — A/B clean/noisy es GPU por guía e independiente del screen. Screen.json queda para TPU post-reset (4h, guía §4).
 - Presupuesto GPU proyectado tras reset: repl_b 0.7h + loss A/B ~7.2h + confirm 8h + final 10h ≈ 26h < techo 30h. Screen por TPU (4h) + confirm TPU 12h ≈ 16h < techo 20h.
 - Probe de cuota 6h actualizado: prueba GPU (repl_b) y TPU (pilot_tpu) y encadena la cola cuando haya reset.
+
+## 2026-09-26 07:18 — RESET de cuotas semanales: pilotos relanzados en ambos backends
+- Probe 6h detectó el reset: GPU y TPU vuelven a aceptar pushes (último rechazo 01:17, primer OK 07:17).
+- mscapital-repl-gpu-b v1 lanzado (réplica B del control, ~40 min esperados) — cuantifica varianza run-to-run vs piloto A (es 0.17128).
+- mscapital-pilot-tpu v1 lanzado (replication.json en XLA, primera validación TPU real; timing/modelo TPU decide el screen 4h TPU de la guía).
+- Monitor 30 min armado (wakeschedule-01M3E2C9DD2024S4E1PN79DM0G): al completar, compara métricas+predicciones, encadena loss_noisy (GPU) y screen_tpu (/tmp/kpush_screen_tpu ya staged, 12 modelos).
