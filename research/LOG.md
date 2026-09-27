@@ -726,3 +726,14 @@ Next: VOL + PRICE keep-one panels pushed (quota estimate ~1.1h left of 20h weekl
 - Autorización: WhatsApp propio de Diego 23:12 "Luz verde 🔥" (wamid ...RDJBQwA=) respondiendo a la pregunta exacta de las 22:50 ("confirmación de 40 modelos base vs FLOW+X31v2, ~10h TPU. ¿Luz verde?"). Verificada en phone_messages; relay del parent 23:12.
 - mscapital-confirm-tpu v1 lanzado (confirm_flow31.json: arms [base, flow31] × seeds {2026,42} × folds {0..4} × orígenes {59: score 62-66, 64: score 67-70} = 40 modelos, max-hours 10). Est. ~10h de cómputo TPU + cola.
 - Gate de promoción (guía §5): +0.002 estable vs control en AMBOS bloques externos (62-66 y 67-70), varias seeds, misma métrica/protocolo. summary.json dará deltas pareadas por origen/seed/mes, LOMO y bootstrap orientativo.
+
+## 27-sep 19:25 — CONFIRM COMPLETO: flow31 PASA el gate §5
+40/40 modelos (base vs flow31, seeds {2026,42} × folds {0..4} × orígenes {59:62-66, 64:67-70}), ~8h TPU sin cortes.
+Delta flow31-base (cosine, processed, 158k preds): **+0.002814** (base 0.157228 → flow31 0.160042).
+- Origen 59 (bloque 62-66): +0.002342 ✓ | Origen 64 (bloque 67-70): +0.003567 ✓
+- Seed 2026: +0.002295 ✓ | Seed 42: +0.003224 ✓
+- LOMO delta: POSITIVO en los 9 meses (+0.0023 a +0.0032). Bootstrap 95% por meses: [+0.00104, +0.00388].
+- Mensual crudo: 7/9 meses positivos (63 -0.0007, 65 -0.0019).
+GATE §5 (+0.002 estable en ambos bloques y ambas seeds): **PASA**. Order-flow con cronología corregida aporta de forma estable en datos externos no usados en el screen.
+Nota: sandbox reconstruido ~12:18 (wipe /tmp); credenciales regeneradas (Kaggle instinct-cli-5, GitHub PAT instinct-repo-push-4, sudo via código email reenviado por Diego); prepared-v2 redescargado; summary archivado en research/confirm_flow31_2026-09-27.json.
+Siguiente: propuesta final.json (15 modelos GPU) pendiente de OK de Diego.
