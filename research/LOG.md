@@ -737,3 +737,8 @@ Delta flow31-base (cosine, processed, 158k preds): **+0.002814** (base 0.157228 
 GATE §5 (+0.002 estable en ambos bloques y ambas seeds): **PASA**. Order-flow con cronología corregida aporta de forma estable en datos externos no usados en el screen.
 Nota: sandbox reconstruido ~12:18 (wipe /tmp); credenciales regeneradas (Kaggle instinct-cli-5, GitHub PAT instinct-repo-push-4, sudo via código email reenviado por Diego); prepared-v2 redescargado; summary archivado en research/confirm_flow31_2026-09-27.json.
 Siguiente: propuesta final.json (15 modelos GPU) pendiente de OK de Diego.
+
+## 27-sep 19:35 — FINAL LANZADO (GPU)
+Diego dio luz verde al final de 15 modelos (WhatsApp 19:34 "Luz verde", respondiendo a la propuesta 19:26 de Main: 15 modelos flow31, 3 seeds × 5 folds, GPU ~10h). Config final.json corregida: arm flow31 (estaba x30, stale del pre-confirm), commit 9595d2c.
+Kernel mscapital-final-gpu v1: mode final (origen 70, genera predicciones de test), 15 modelos = 3 seeds {2026,42,123} × 5 folds, ~9-10h GPU (cuota GPU 23.6h libres de 30h; TPU 8.6h libres). Bundle = estructura del confirm con config final + device cuda.
+Tras completar: summarize mode final → submission candidates → NADA de submissions sin OK explícito de Diego.
