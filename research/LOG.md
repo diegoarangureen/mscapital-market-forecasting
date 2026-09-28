@@ -771,3 +771,7 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 - mscapital-screen-x32-tpu v1 lanzado: screen_x32.json = arms {flow31 (control fresco), flow31ctx, flow31per} × folds {0,2,4} × seed 2026 = 9 modelos, xla, max-hours 4. Est. ~2.8h + cola TPU.
 - Control fresco obligatorio: dataset.py extendido (arms pack) → código distinto → la regla de Diego (reuso solo con datos/receta/código/backend idénticos) prohíbe reusar el control de mscapital-screen-tpu.
 - Ajuste de dispositivo (permitido por Diego "con tiempos medidos", reportado al parent): cribado todo en TPU (~2.8h ≤ 4h fase piloto+cribado), GPU intacta.
+
+## 28-sep 22:44 — Screen X32: ERROR de plataforma tras ~11h en cola → relanzado v2
+- mscapital-screen-x32-tpu v1 pasó ~11h QUEUED y terminó en ERROR con failureMessage null y CERO archivos de salida: nunca arrancó; fallo de plataforma (cola/capacidad TPU), no del código. Sin consumo de cuota.
+- Relanzado como v2 (mismo bundle, mismo slug), QUEUED de nuevo. Diego decidió esperar la cola TPU (WhatsApp 20:43 "Esperamos").
