@@ -49,3 +49,23 @@ def test_full_build_chunk_invariance_and_empty_samples(tmp_path,number,count):
             assert x[0,names.index('x31_ord_gap_mean')]==60
     for x in results[1:]:
         np.testing.assert_array_equal(x,results[0])
+
+
+@pytest.mark.parametrize('tag,count', [('32ctx',12),('32per',10)])
+def test_x32_build_chunk_invariance_and_empty_samples(tmp_path,tag,count):
+    raw=tmp_path/'raw'; raw_fixture(raw)
+    results=[]
+    for chunk in [1,4,100]:
+        out=tmp_path/f'out{tag}{chunk}'; out.mkdir()
+        env={**os.environ,'BASE':str(raw),'OUT':str(out),'NS':'4','SPLIT':'train','CHUNK_ROWS':str(chunk)}
+        p=subprocess.run([sys.executable,str(ROOT/f'src/kaggle/build_x{tag}.py')],env=env,capture_output=True,text=True)
+        assert p.returncode==0,p.stdout+p.stderr
+        pack='X32CTX' if tag=='32ctx' else 'X32PER'
+        x=np.load(out/f'{pack}_train.npy')
+        assert x.shape==(4,count) and np.isfinite(x).all(),(tag,x)
+        assert (out/f'{pack}_train_manifest.json').exists()
+        # degenerate sample 3 (no rows) must be all zeros
+        np.testing.assert_array_equal(x[3],np.zeros(count,dtype=x.dtype))
+        results.append(x)
+    for x in results[1:]:
+        np.testing.assert_allclose(x,results[0],rtol=1e-6,atol=1e-7)
