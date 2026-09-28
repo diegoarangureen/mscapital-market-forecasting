@@ -757,3 +757,11 @@ SIGUIENTE: estrategia de submissions con Diego — NADA se sube sin su OK explí
 - Rank equipo: ~125 (de 253). Top1 0.183, gate-10 0.167, top-20 0.158.
 - Calibración CV→LB: confirm §5 predijo +0.0028 (global, fit-window no independiente); LB real +0.002. Dirección correcta, magnitud algo menor.
 - Gap al gate-10: +0.026; al top-20: +0.017. Deadline 9 oct 16:00 UTC.
+
+## 28-sep 11:20 — DECISIÓN DE DIEGO: búsqueda acotada de señal (opción 2)
+Autorización: WhatsApp propio de Diego 11:17 (wamid ...U1NTM3AA==), verbatim íntegro recibido vía parent. Puntos:
+- Dos paquetes contra la receta exacta del 0.141: (1) contexto 600s [60,600) — OFI normalizado, persistencia del desequilibrio, profundidad, cambio hacia los últimos 60s — PRIMERO; (2) persistencia/respuesta al flujo — rachas de trades por signo/volumen, oleadas de cancelaciones, reposición de profundidad, respuesta del precio tras episodios de flujo.
+- Presupuesto (límites): piloto+cribado GPU 3h + TPU 1h; confirmación del único finalista GPU 8h + TPU 4h; final+ensemble GPU 4h + TPU 2.6h; reserva 1h/1h. Features en CPU. Reparto entre dispositivos ajustable con tiempos medidos.
+- Procedimiento 6 pasos: 1 congelar campeón → 2 cribar {campeón, +contexto, +persistencia} emparejado, máx 1 finalista → 3 confirmar con los 2 orígenes del protocolo (reusar controles solo si coinciden datos/receta/código/backend) → 4 exigir mejora incremental consistente (bloques, seeds, no un solo mes) → 5 ensemble con el campeón por predicciones externas alineadas, pocos pesos prefijados, la mezcla debe mejorar el score → 6 si ambos fallan, cerrar búsqueda.
+- Matices: sin factor de descuento CV→LB; ganancia de seeds debe medirse, no asumirse; no repetir features de X31; criterios de X32_CANDIDATES subordinados al protocolo auditado; 0.141 queda como resultado conservado.
+Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predicciones, submission).
