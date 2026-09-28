@@ -255,7 +255,7 @@ def run(args):
               'estimate_hours_at_17min_per_model':round(len(selected)*17/60,2)},indent=2))
         return
     start = time.monotonic()
-    data = Dataset(args.data)
+    data = Dataset(args.data, packs_root=args.packs)
     for arm in config['arms']:
         data.names(arm)
         data.features(arm,'train',np.array([0]))
@@ -300,6 +300,7 @@ def parser():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--config',required=True)
     p.add_argument('--data',default='prepared')
+    p.add_argument('--packs',default=None,help='Directory with audited X32 feature packs (flow31ctx/flow31per arms)')
     p.add_argument('--out',default='runs/audited')
     p.add_argument('--device',choices=['auto','cpu','cuda','xla'],default='auto')
     p.add_argument('--plan',action='store_true')

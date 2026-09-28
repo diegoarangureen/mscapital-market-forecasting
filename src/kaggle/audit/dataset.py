@@ -18,9 +18,14 @@ def family_indices(names):
     return {'flow':flow, 'vol':vol, 'price':price, 'flow_price':sorted(flow+price)}
 
 
+PACK_ARMS = {'flow31ctx': 'X32CTX', 'flow31per': 'X32PER'}
+
+
 class Dataset:
-    def __init__(self, root):
+    def __init__(self, root, packs_root=None):
         self.root = Path(root)
+        self.packs_root = Path(packs_root) if packs_root else None
+        self._packs_verified = set()
         self.manifest = json.loads((self.root/'manifest.json').read_text(encoding='utf-8'))
         m = dict(self.manifest)
         fingerprint = m.pop('fingerprint')
@@ -43,6 +48,33 @@ class Dataset:
             raise ValueError(f'Missing prepared artifact: {name}')
         return np.load(self.root/name, mmap_mode='r', allow_pickle=False)
 
+    def pack_matrix(self, pack, split, rows):
+        if self.packs_root is None:
+            raise ValueError(f'Arm requires feature pack {pack}; pass --packs')
+        folder = self.packs_root
+        if (pack, split) not in self._packs_verified:
+            meta = json.loads((folder/f'{pack}_{split}_manifest.json').read_text(encoding='utf-8'))
+            if meta['pack'] != pack or meta['split'] != split or meta['audit_version'] != VERSION:
+                raise ValueError('Pack version mismatch')
+            for filename, digest in meta['files'].items():
+                if Path(filename).name != filename or sha256(folder/filename) != digest:
+                    raise ValueError('Pack checksum mismatch')
+            xid = np.load(folder/f'{pack}_{split}_ids.npy')
+            n = self.load(f'base_{split}.npy').shape[0]
+            if not np.array_equal(xid, np.arange(n)) or np.load(folder/f'{pack}_{split}.npy', mmap_mode='r').shape[0] != n:
+                raise ValueError('Pack row alignment failure')
+            self._packs_verified.add((pack, split))
+        x = np.asarray(np.load(folder/f'{pack}_{split}.npy', mmap_mode='r')[rows], dtype=np.float32)
+        if not np.isfinite(x).all():
+            raise ValueError('Nonfinite pack features')
+        return x
+
+    def pack_names(self, pack, split='train'):
+        if self.packs_root is None:
+            raise ValueError(f'Arm requires feature pack {pack}; pass --packs')
+        self.pack_matrix(pack, split, np.array([0]))
+        return np.load(self.packs_root/f'{pack}_{split}_names.npy').tolist()
+
     def features(self, arm, split, rows):
         base = np.asarray(self.load(f'base_{split}.npy')[rows], dtype=np.float32)
         if arm == 'base':
@@ -52,17 +84,20 @@ class Dataset:
         x30 = self.load(f'X30v2_{split}.npy')
         names = self.load('X30v2_names.npy')
         groups = family_indices(names)
+        flow31_like = arm == 'flow31' or arm in PACK_ARMS
         if arm == 'x30':
             indices = list(range(36))
-        elif arm == 'flow31':
+        elif flow31_like:
             indices = groups['flow']
         elif arm in groups:
             indices = groups[arm]
         else:
             raise ValueError(f'Unknown arm: {arm}')
         blocks = [base, np.asarray(x30[rows])[:, indices]]
-        if arm == 'flow31':
+        if flow31_like:
             blocks.append(np.asarray(self.load(f'X31v2_{split}.npy')[rows]))
+        if arm in PACK_ARMS:
+            blocks.append(self.pack_matrix(PACK_ARMS[arm], split, rows))
         result = np.concatenate(blocks, axis=1)
         if not np.isfinite(result).all():
             raise ValueError('Nonfinite assembled features')
@@ -74,5 +109,9 @@ class Dataset:
             return base
         names = self.load('X30v2_names.npy').tolist()
         groups = family_indices(names)
-        indices = range(36) if arm == 'x30' else groups['flow' if arm == 'flow31' else arm]
-        return base + [names[i] for i in indices] + (self.load('X31v2_names.npy').tolist() if arm == 'flow31' else [])
+        flow31_like = arm == 'flow31' or arm in PACK_ARMS
+        indices = range(36) if arm == 'x30' else groups['flow' if flow31_like else arm]
+        out = base + [names[i] for i in indices] + (self.load('X31v2_names.npy').tolist() if flow31_like else [])
+        if arm in PACK_ARMS:
+            out += self.pack_names(PACK_ARMS[arm])
+        return out

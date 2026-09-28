@@ -9,7 +9,8 @@ import zipfile
 def bundle(entry, output, config=None):
     root = Path(__file__).parent
     allowed = {'train_audited.py','prepare_audited.py','summarize_audited.py',
-               'build_x30.py','build_x31.py','launch_xla_audited.py',
+               'build_x30.py','build_x31.py','build_x32ctx.py','build_x32per.py',
+               'launch_xla_audited.py',
                'compare_audited.py','rescore_legacy_oof.py'}
     if entry not in allowed:
         raise ValueError('Unsupported entrypoint')

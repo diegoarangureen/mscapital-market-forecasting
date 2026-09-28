@@ -46,3 +46,49 @@ def test_historical_tensor_recovery_averages_and_separates_arms():
     result,pred,count=recover(models,y,m,reports,'base')
     np.testing.assert_equal(pred,[2.,3.,np.nan]); np.testing.assert_equal(count,[2,2,0])
     assert result['models']==2 and not result['independent_outer_score']
+
+
+def test_pack_arms_extend_flow31_with_verified_packs(tmp_path):
+    import json
+    from audit.io import sha256, signature, write_json, save_feature_pack
+    from audit import VERSION
+    n, nt = 8, 5
+    root = tmp_path/'prepared'; root.mkdir()
+    rng = np.random.default_rng(0)
+    base_tr = rng.normal(size=(n, 450)).astype(np.float32)
+    base_te = rng.normal(size=(nt, 450)).astype(np.float32)
+    x30 = rng.normal(size=(n, 36)).astype(np.float32)
+    x31 = rng.normal(size=(n, 18)).astype(np.float32)
+    files = {}
+    def save(name, arr):
+        np.save(root/name, arr); files[name] = {'sha256': sha256(root/name), 'shape': list(arr.shape)}
+    save('y.npy', np.zeros(n, np.float32)); save('month.npy', np.arange(n))
+    save('train_ids.npy', np.arange(n, dtype=np.int64))
+    save('base_train.npy', base_tr); save('base_test.npy', base_te)
+    save('base_names.npy', np.array([f'b{i}' for i in range(450)]))
+    x30names = (['ofi_a']*6 + [f'x30_ord_b{i}' for i in range(6)] + [f'x30_qi_c{i}' for i in range(6)]
+                + ['x30_rv_60','x30_rv_600','x30_semi_ratio','x30_parkinson','x30_vol_of_vol',
+                   'x30_signvol_60','x30_spread_rms','x30_spread_drift'] + [f'x30_p{i}' for i in range(10)])
+    save('X30v2_train.npy', x30); save('X30v2_names.npy', np.array(x30names))
+    save('X31v2_train.npy', x31); save('X31v2_names.npy', np.array([f'x31_{i}' for i in range(18)]))
+    m = {'audit_version': VERSION, 'files': files, 'sources': {}, 'row_contract': 't', 'public_columns': [], 'drop_indices': []}
+    m['fingerprint'] = signature(m)
+    write_json(root/'manifest.json', m)
+    packs = tmp_path/'packs'; packs.mkdir()
+    ctx = rng.normal(size=(n, 12)).astype(np.float32)
+    save_feature_pack(packs, 'X32CTX', 'train', ctx, [f'x32c_{i}' for i in range(12)])
+    d = Dataset(root, packs_root=packs)
+    rows = np.arange(n)
+    flow31 = d.features('flow31', 'train', rows)
+    ctx_out = d.features('flow31ctx', 'train', rows)
+    assert ctx_out.shape == (n, 486+12)
+    np.testing.assert_array_equal(ctx_out[:, :486], flow31)
+    np.testing.assert_array_equal(ctx_out[:, 486:], ctx)
+    assert d.names('flow31ctx')[-12:] == [f'x32c_{i}' for i in range(12)]
+    with pytest.raises(ValueError):
+        Dataset(root).features('flow31ctx', 'train', rows)
+    # tampered pack must fail verification
+    arr = np.load(packs/'X32CTX_train.npy'); arr[0, 0] += 1
+    np.save(packs/'X32CTX_train.npy', arr)
+    with pytest.raises(ValueError, match='checksum'):
+        Dataset(root, packs_root=packs).features('flow31ctx', 'train', rows)
