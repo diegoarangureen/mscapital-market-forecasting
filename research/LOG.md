@@ -765,3 +765,9 @@ Autorización: WhatsApp propio de Diego 11:17 (wamid ...U1NTM3AA==), verbatim í
 - Procedimiento 6 pasos: 1 congelar campeón → 2 cribar {campeón, +contexto, +persistencia} emparejado, máx 1 finalista → 3 confirmar con los 2 orígenes del protocolo (reusar controles solo si coinciden datos/receta/código/backend) → 4 exigir mejora incremental consistente (bloques, seeds, no un solo mes) → 5 ensemble con el campeón por predicciones externas alineadas, pocos pesos prefijados, la mezcla debe mejorar el score → 6 si ambos fallan, cerrar búsqueda.
 - Matices: sin factor de descuento CV→LB; ganancia de seeds debe medirse, no asumirse; no repetir features de X31; criterios de X32_CANDIDATES subordinados al protocolo auditado; 0.141 queda como resultado conservado.
 Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predicciones, submission).
+
+## 28-sep 11:42 — X32 packs construidos + SCREEN LANZADO (TPU)
+- mscapital-build-x32 v1 (CPU, ~15 min): packs X32CTX (12f) y X32PER (10f) construidos train+test, manifests verificados (checksums, shapes 1257637/647896, ids densos, finito). Dataset privado: https://www.kaggle.com/datasets/diegoaranguren/mscapital-x32-packs
+- mscapital-screen-x32-tpu v1 lanzado: screen_x32.json = arms {flow31 (control fresco), flow31ctx, flow31per} × folds {0,2,4} × seed 2026 = 9 modelos, xla, max-hours 4. Est. ~2.8h + cola TPU.
+- Control fresco obligatorio: dataset.py extendido (arms pack) → código distinto → la regla de Diego (reuso solo con datos/receta/código/backend idénticos) prohíbe reusar el control de mscapital-screen-tpu.
+- Ajuste de dispositivo (permitido por Diego "con tiempos medidos", reportado al parent): cribado todo en TPU (~2.8h ≤ 4h fase piloto+cribado), GPU intacta.
