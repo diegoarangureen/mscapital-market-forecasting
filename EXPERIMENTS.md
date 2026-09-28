@@ -1,3 +1,5 @@
+> **Note (Sep 25 audit):** numbers in this ledger predate the audit (commits 38ebbcb/e0ce641). The old `cos_np` was Pearson, not the official uncentered cosine, and X30/X31 order-flow features had inverted chronology - treat pre-audit validation values as historical, not comparable to post-audit results in research/LOG.md (Sep 25 onward).
+
 # Experiment ledger
 
 Validation = cosine on months 61-70, models trained on months 0-60.

@@ -1,3 +1,5 @@
+> **STALE (pre-audit snapshot, Sep 12-13).** Historical provenance only. Current state: README.md + research/LOG.md. Pre-audit validation numbers for X30/X31 order-flow families are invalid (inverted chronology); see TRAINING_AGENT.md.
+
 # MSCapital state (rebuilt 2026-09-12 ~16:30 CEST after sandbox wipe)
 
 ## Champion (unchanged)

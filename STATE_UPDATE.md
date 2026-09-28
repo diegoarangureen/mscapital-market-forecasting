@@ -1,3 +1,5 @@
+> **STALE (pre-audit snapshot, Sep 12-13).** Historical provenance only. Current state: README.md + research/LOG.md. Pre-audit validation numbers for X30/X31 order-flow families are invalid (inverted chronology); see TRAINING_AGENT.md.
+
 # 2026-09-12 18:30 CEST - wipe #3 recovery (new agent)
 - Sandbox wiped again at ~18:25; /tmp lost incl. running robustness check (eval_shift GBM part).
 - Recovered ALL scripts from transcripts (this dir), repo recloned, data re-downloading.
