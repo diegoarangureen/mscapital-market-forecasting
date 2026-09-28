@@ -748,3 +748,12 @@ Tras completar: summarize mode final → submission candidates → NADA de submi
 Aggregado de test: 15/15 modelos completos (aggregate_flow31.npz: test_raw/test_processed, 647,896 filas). submission.csv generado por la vía auditada (summarize --submission-template, template oficial submission.csv de la competición): media -0.00070, std 0.0442, rango post-clamp [-0.276, +0.292], todo finito, sha256 c2e5e71c03bcc75c. Archivado research/submission_flow31_v1.csv.
 Expectativa independiente: la del confirm (bloques externos 62-66/67-70): base 0.1572 → flow31 0.1600 (+0.0028).
 SIGUIENTE: estrategia de submissions con Diego — NADA se sube sin su OK explícito.
+
+## 2026-09-28 - SUBMISSION #1 (flow31 final v1) → LB 0.141
+
+- Submitted submission_flow31_v1.csv (647,896 rows, sha256 c2e5e71c03bcc75c) via API, ref 56634145, status COMPLETE.
+- Descripción: 'flow31 final v1: 15 models (3 seeds x 5 folds, origin 70), mean post-clamp, audited pipeline (confirm +0.0028 both external blocks)'.
+- Resultado LB: 0.141 (público). Anterior mejor LB: 0.139 → delta +0.002.
+- Rank equipo: ~125 (de 253). Top1 0.183, gate-10 0.167, top-20 0.158.
+- Calibración CV→LB: confirm §5 predijo +0.0028 (global, fit-window no independiente); LB real +0.002. Dirección correcta, magnitud algo menor.
+- Gap al gate-10: +0.026; al top-20: +0.017. Deadline 9 oct 16:00 UTC.
