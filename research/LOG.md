@@ -742,3 +742,9 @@ Siguiente: propuesta final.json (15 modelos GPU) pendiente de OK de Diego.
 Diego dio luz verde al final de 15 modelos (WhatsApp 19:34 "Luz verde", respondiendo a la propuesta 19:26 de Main: 15 modelos flow31, 3 seeds × 5 folds, GPU ~10h). Config final.json corregida: arm flow31 (estaba x30, stale del pre-confirm), commit 9595d2c.
 Kernel mscapital-final-gpu v1: mode final (origen 70, genera predicciones de test), 15 modelos = 3 seeds {2026,42,123} × 5 folds, ~9-10h GPU (cuota GPU 23.6h libres de 30h; TPU 8.6h libres). Bundle = estructura del confirm con config final + device cuda.
 Tras completar: summarize mode final → submission candidates → NADA de submissions sin OK explícito de Diego.
+
+## 28-sep 03:18 — FINAL COMPLETO (15/15, GPU ~7.5h)
+15 modelos flow31 (seeds {2026,42,123} × folds {0..4}, origen 70). OOF ventana de ajuste (no independiente, selección de checkpoint sobre estas etiquetas): processed 0.15670 (raw 0.15977, 460k filas). Por seed 2026: 0.15391.
+Aggregado de test: 15/15 modelos completos (aggregate_flow31.npz: test_raw/test_processed, 647,896 filas). submission.csv generado por la vía auditada (summarize --submission-template, template oficial submission.csv de la competición): media -0.00070, std 0.0442, rango post-clamp [-0.276, +0.292], todo finito, sha256 c2e5e71c03bcc75c. Archivado research/submission_flow31_v1.csv.
+Expectativa independiente: la del confirm (bloques externos 62-66/67-70): base 0.1572 → flow31 0.1600 (+0.0028).
+SIGUIENTE: estrategia de submissions con Diego — NADA se sube sin su OK explícito.
