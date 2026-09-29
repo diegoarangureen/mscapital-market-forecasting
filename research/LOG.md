@@ -782,3 +782,9 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 - Dos muertes idénticas consecutivas apuntan a fallo transitorio de plataforma/cola TPU, no del bundle (mismo path push_tpu que funcionó esta semana).
 - v3 relanzado 07:41 como backup de coste cero (en cola no consume; si arranca, es el gasto de screen ya ajustado ~2.8h TPU).
 - Escalado al parent: opción GPU (6 modelos, folds {0,4}, ~3.6h GPU) supera la línea de 3h GPU de la fase — requiere OK explícito de Diego. Si Diego aprueba GPU y v3 sigue en cola, se cancela v3; si v3 ya corre, se deja terminar y no se lanza GPU.
+
+## 29-sep 21:28 — Screen v3: tercer ERROR de plataforma; v4 relanzado
+
+- v3 (07:41) murió en cola ~13.75h: ERROR, failureMessage vacío, cero salidas = nunca arrancó. Misma firma que v1 (~11h) y v2 (~9h). Sin consumo de cuota.
+- Diego decidió seguir TPU (WhatsApp 09:57 "Intentamos tpu"). Regla acordada vía parent: relanzar e informar; con DOS muertes más seguidas (v3 = 1ª de la cuenta) se vuelve a Diego con opción GPU.
+- v4 relanzado 21:28 como backup de coste cero.
