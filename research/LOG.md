@@ -775,3 +775,10 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 ## 28-sep 22:44 — Screen X32: ERROR de plataforma tras ~11h en cola → relanzado v2
 - mscapital-screen-x32-tpu v1 pasó ~11h QUEUED y terminó en ERROR con failureMessage null y CERO archivos de salida: nunca arrancó; fallo de plataforma (cola/capacidad TPU), no del código. Sin consumo de cuota.
 - Relanzado como v2 (mismo bundle, mismo slug), QUEUED de nuevo. Diego decidió esperar la cola TPU (WhatsApp 20:43 "Esperamos").
+
+## 29-sep 07:41 — Screen v2: segundo ERROR de plataforma; v3 relanzado como backup
+
+- v2 (relanzado 28-sep 22:44) murió en cola ~9h: status ERROR, failureMessage vacío, cero archivos de salida = nunca arrancó, misma firma que v1 (~11h). Sin consumo de cuota (kernels en cola no consumen).
+- Dos muertes idénticas consecutivas apuntan a fallo transitorio de plataforma/cola TPU, no del bundle (mismo path push_tpu que funcionó esta semana).
+- v3 relanzado 07:41 como backup de coste cero (en cola no consume; si arranca, es el gasto de screen ya ajustado ~2.8h TPU).
+- Escalado al parent: opción GPU (6 modelos, folds {0,4}, ~3.6h GPU) supera la línea de 3h GPU de la fase — requiere OK explícito de Diego. Si Diego aprueba GPU y v3 sigue en cola, se cancela v3; si v3 ya corre, se deja terminar y no se lanza GPU.
