@@ -788,3 +788,11 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 - v3 (07:41) murió en cola ~13.75h: ERROR, failureMessage vacío, cero salidas = nunca arrancó. Misma firma que v1 (~11h) y v2 (~9h). Sin consumo de cuota.
 - Diego decidió seguir TPU (WhatsApp 09:57 "Intentamos tpu"). Regla acordada vía parent: relanzar e informar; con DOS muertes más seguidas (v3 = 1ª de la cuenta) se vuelve a Diego con opción GPU.
 - v4 relanzado 21:28 como backup de coste cero.
+
+## 2026-09-30 07:20 CEST — Screen X32: v4 cuarta muerte de plataforma; GPU reducido LANZADO (corriendo)
+- v4 TPU: ERROR tras ~9h51m en cola (queued 29-Sep 21:28). Mensaje de fallo vacío, cero archivos de salida (404 en todas las descargas), nunca arrancó. Firma idéntica a v1/v2/v3.
+- Condición de Diego cumplida y verificada en su canal: WhatsApp 29-Sep 21:30:37 "Ok si está última vez no entra mete en GPU" (wamid ...D5NQA=, respuesta a la actualización v4) + 21:30:45 "Automáticamente" (wamid ...RkI2RQA=). Sin mensajes posteriores que revoquen o restrinjan.
+- Acción: cribado GPU reducido lanzado automáticamente como `mscapital-screen-x32-gpu` v1 — 3 arms (flow31 control fresco, flow31ctx, flow31per) × folds 0,4 × seed 2026 = 6 modelos, device cuda, --max-hours 4, session timeout 14400s. Bundle byte-idéntico a src/kaggle (verificado). Estado 25s tras push: RUNNING (cola GPU instantánea).
+- Cuota GPU previa: 50.275s usados de 108.000s (~16h libres; refresh 3-Oct). TPU: 41.451s usados de 72.000s.
+- Sin TPU requeue. Sin confirmación/final/submission bajo esta aprobación.
+- Próximo: monitor 45 min del kernel GPU; al COMPLETE descargar salidas, deltas pareados por fold vs control flow31, reportar antes de cualquier fase de confirmación.
