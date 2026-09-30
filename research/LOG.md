@@ -814,3 +814,9 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
   - flow31per: +0.001318 (f0), −0.000098 (f4) → signo mixto, ruido.
 - Veredicto según puerta de promoción (audit era): ningún arm merece fase de confirmación tal cual. Decisión de Diego: ¿confirmación de ctx igualmente, o pivotar?
 - Tabla completa: research/SCREEN_X32_RESULTS.md. Cuota GPU: ~12.8h libres.
+
+## 2026-09-30 16:53 CEST — Decisión Diego: extensión ctx seed 42 (4 modelos), LANZADA como GPU v3
+- Diego (WhatsApp 16:52:21, verbatim verificado en canal): "Amplía únicamente ctx con una segunda seed prefijada, folds 0 y 4, frente a flow31: cuatro modelos, presupuesto aproximado de 2,2 h GPU. No ejecutes per ni confirmación completa. Mantén la receta y la puerta de promoción. Entrega deltas individuales y del ensemble de dos seeds, incluyendo score agregado y desglose mensual. Si no supera la puerta con consistencia, cierra X32 y conserva el campeón 0.141."
+- Segunda seed prefijada = 42 (misma pareja 2026/42 de la confirmación auditada flow31).
+- Lanzado mscapital-screen-x32-gpu v3: arms [flow31, flow31ctx] × folds [0,4] × seed 42 = 4 modelos, receta idéntica, run_main v2 (rutas robustas), componentes byte-idénticos al repo. Coste estimado ~2.1h (real seed 2026: 7,590s). RUNNING a los 20s.
+- Entregables al completar: deltas individuales seed 42, ensemble 2 seeds (2026+42) con score agregado y desglose mensual por ventana ES (f0: m40-44, f4: m65-70). Predicciones seed 2026 ya descargadas en /tmp/screen_v2/.
