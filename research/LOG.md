@@ -807,3 +807,10 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 - Luz verde de Main 08:07 (misma fase y presupuesto aprobado por Diego; v1 costó 41s). Main informa a Diego del tropiezo y relanzamiento.
 - Push v2: mscapital-screen-x32-gpu versión 2 con resolución robusta de rutas de datos/packs. Estado a los 30s: RUNNING; a los ~3 min: RUNNING sin error (v1 crasheó a los 34s de sesión).
 - ETA resultados ~11:45-12:15 CEST si corre limpio (6 modelos, tope 4h). Monitor 45 min activo.
+
+## 2026-09-30 11:47 CEST — Screen X32 COMPLETO: ctx señal débil consistente, per ruido; ningún arm cruza la puerta
+- GPU v2 terminó 11:46 (3.25h, 6/6 jobs, seed 2026). Deltas pareados vs control flow31 (mismo fold/seed/receta):
+  - flow31ctx: +0.000776 (f0), +0.000654 (f4) → media +0.000715, 2/2 positivo. Consistente pero ~1/3 de la puerta +0.002.
+  - flow31per: +0.001318 (f0), −0.000098 (f4) → signo mixto, ruido.
+- Veredicto según puerta de promoción (audit era): ningún arm merece fase de confirmación tal cual. Decisión de Diego: ¿confirmación de ctx igualmente, o pivotar?
+- Tabla completa: research/SCREEN_X32_RESULTS.md. Cuota GPU: ~12.8h libres.
