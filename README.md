@@ -13,6 +13,10 @@ End-to-end research project for the Kaggle competition
 between the predicted and realized return vectors, per the competition's own
 evaluation tab).
 
+![MSCapital audited training pipeline](docs/pipeline.svg)
+
+*Audited pipeline, as implemented in [TRAINING_AGENT.md](TRAINING_AGENT.md). Reusable exports: [`docs/pipeline.svg`](docs/pipeline.svg), [`docs/pipeline.png`](docs/pipeline.png).*
+
 **Current standing: public leaderboard 0.141, rank ~125/253** (as of Sep 28, 2026).
 Top of board is 0.183; top-10 cut is 0.167; top-20 is 0.158. Work is active
 and updated daily. Competition deadline: Oct 9, 2026 16:00 UTC.

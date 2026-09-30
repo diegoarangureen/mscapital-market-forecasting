@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" font-family="'Noto Serif','DejaVu Serif',Georgia,serif">
+<rect width="1600" height="900" fill="#F6F0E2"/>
+<text x="80" y="95" font-size="44" font-weight="bold" fill="#1F3D2B">MSCapital: audited training pipeline</text>
+<text x="80" y="135" font-size="20" fill="#5B6B5F" font-style="italic">From raw market windows to a 15-model submission (TRAINING_AGENT.md)</text>
+<line x1="80" y1="158" x2="1520" y2="158" stroke="#B5472F" stroke-width="3"/>
+<g stroke="#1F3D2B" stroke-width="2.5">
+<rect x="80" y="210" width="300" height="190" rx="14" fill="#FFFBF0"/>
+<rect x="450" y="210" width="300" height="190" rx="14" fill="#1F3D2B"/>
+<rect x="820" y="210" width="300" height="190" rx="14" fill="#FFFBF0"/>
+<rect x="1190" y="210" width="330" height="190" rx="14" fill="#FFFBF0"/>
+<rect x="80" y="520" width="300" height="190" rx="14" fill="#1F3D2B"/>
+<rect x="450" y="520" width="300" height="190" rx="14" fill="#FFFBF0"/>
+<rect x="820" y="520" width="300" height="190" rx="14" fill="#FFFBF0"/>
+<rect x="1190" y="520" width="330" height="190" rx="14" fill="#B5472F" stroke="#B5472F"/>
+</g>
+<g fill="#B5472F" font-size="16" font-weight="bold" letter-spacing="2">
+<text x="105" y="245">01 · DATA</text><text x="475" y="245" fill="#E9B8A8">02 · FEATURES</text><text x="845" y="245">03 · PREPROCESS</text><text x="1215" y="245">04 · FOLDS</text>
+<text x="105" y="555" fill="#E9B8A8">05 · MODEL</text><text x="475" y="555">06 · FINAL MODE</text><text x="845" y="555">07 · ENSEMBLE</text><text x="1215" y="555" fill="#F6F0E2">08 · POST-PROCESS</text>
+</g>
+<g font-size="22" fill="#1F3D2B">
+<text x="105" y="285" font-weight="bold" font-size="26">Market windows</text>
+<text x="105" y="320">~650k 10-minute windows</text><text x="105" y="350">trades, L1/L2 book</text><text x="105" y="380">events, market bars</text>
+<text x="845" y="285" font-weight="bold" font-size="26">Robust scaling</text>
+<text x="845" y="320">median / IQR</text><text x="845" y="350">soft-clamp, fitted</text><text x="845" y="380">per fold</text>
+<text x="1215" y="285" font-weight="bold" font-size="26">Purged time folds</text>
+<text x="1215" y="320">5 purged time-series</text><text x="1215" y="350">folds x 3 seeds</text><text x="1215" y="380">(no look-ahead)</text>
+<text x="475" y="555" opacity="0"> </text>
+<text x="475" y="595" font-weight="bold" font-size="26">Train to origin 70</text>
+<text x="475" y="630">mode "final",</text><text x="475" y="660">checkpoint resume,</text><text x="475" y="690">CPU / CUDA / TPU runner</text>
+<text x="845" y="595" font-weight="bold" font-size="26">Equal-weight mean</text>
+<text x="845" y="630">5 folds x 3 seeds</text><text x="845" y="660">= 15 models,</text><text x="845" y="690">averaged post-clamp</text>
+</g>
+<g font-size="22" fill="#F6F0E2">
+<text x="475" y="285" font-weight="bold" font-size="26">486 features</text>
+<text x="475" y="320">450 audited base</text><text x="475" y="350">+ FLOW order-flow pack</text><text x="475" y="380">+ X31v2 (18)</text>
+<text x="105" y="595" font-weight="bold" font-size="26">RealMLP</text>
+<text x="105" y="630">PBLD embeddings,</text><text x="105" y="660">NTP-linear, EMA 0.998</text><text x="105" y="690">weighted MSE, label noise</text>
+<text x="1215" y="595" font-weight="bold" font-size="26">Clean-up</text>
+<text x="1215" y="630">zero the 17 no-data rows</text><text x="1215" y="660">clip to 0.1 / 99.9</text><text x="1215" y="690">percentile of train preds</text>
+</g>
+<g stroke="#B5472F" stroke-width="3.5" fill="none">
+<path d="M382,305 H440"/><path d="M752,305 H810"/><path d="M1122,305 H1180"/>
+<path d="M1355,402 V450 H230 V510"/>
+<path d="M382,615 H440"/><path d="M752,615 H810"/><path d="M1122,615 H1180"/>
+</g>
+<polygon points="440,305 426,296 426,314" fill="#B5472F"/><polygon points="810,305 796,296 796,314" fill="#B5472F"/><polygon points="1180,305 1166,296 1166,314" fill="#B5472F"/><polygon points="440,615 426,606 426,624" fill="#B5472F"/><polygon points="810,615 796,606 796,624" fill="#B5472F"/><polygon points="1180,615 1166,606 1166,624" fill="#B5472F"/><polygon points="230,512 221,498 239,498" fill="#B5472F"/>
+<rect x="80" y="775" width="1440" height="80" rx="14" fill="none" stroke="#1F3D2B" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="105" y="808" font-size="18" font-weight="bold" fill="#B5472F" letter-spacing="2">GOVERNANCE</text>
+<text x="105" y="838" font-size="21" fill="#1F3D2B">Screen, then temporal confirmation, then promotion gate (at least +0.002 stable vs control, same metric and protocol). Metric: uncentered cosine.</text>
+</svg>
