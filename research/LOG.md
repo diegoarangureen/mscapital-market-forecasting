@@ -796,3 +796,9 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 - Cuota GPU previa: 50.275s usados de 108.000s (~16h libres; refresh 3-Oct). TPU: 41.451s usados de 72.000s.
 - Sin TPU requeue. Sin confirmación/final/submission bajo esta aprobación.
 - Próximo: monitor 45 min del kernel GPU; al COMPLETE descargar salidas, deltas pareados por fold vs control flow31, reportar antes de cualquier fase de confirmación.
+
+## 2026-09-30 08:06 CEST — Screen GPU v1: fallo de staging a los 41s (ruta de packs), fix v2 preparado
+- mscapital-screen-x32-gpu v1: ERROR ~08:05 tras ~45 min de ciclo (cola+arranque), solo 41s de cuota GPU consumida. El entrenamiento nunca empezó.
+- Log de sesión: FileNotFoundError /kaggle/input/mscapital-x32-packs/X32CTX_train_manifest.json. El entorno GPU monta datasets en /kaggle/input/datasets/<owner>/<slug>/; run_main tenía PACKS_DIR fijo sin fallback (PREPARED_DIR sí tenía y resolvió a /kaggle/input/datasets/diegoaranguren/mscapital-prepared-v2).
+- Bug de staging del bundle, no de plataforma ni del código auditado.
+- Fix: /tmp/x32screen_gpu_kernel_v2.py con resolución robusta de ambas rutas (find del manifest bajo /kaggle/input, maxdepth 6); resto de componentes byte-idénticos a src/kaggle. Pendiente luz verde de Main para relanzar (compromiso declarado: no relanzar GPU en solo).
