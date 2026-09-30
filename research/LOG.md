@@ -820,3 +820,9 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 - Segunda seed prefijada = 42 (misma pareja 2026/42 de la confirmación auditada flow31).
 - Lanzado mscapital-screen-x32-gpu v3: arms [flow31, flow31ctx] × folds [0,4] × seed 42 = 4 modelos, receta idéntica, run_main v2 (rutas robustas), componentes byte-idénticos al repo. Coste estimado ~2.1h (real seed 2026: 7,590s). RUNNING a los 20s.
 - Entregables al completar: deltas individuales seed 42, ensemble 2 seeds (2026+42) con score agregado y desglose mensual por ventana ES (f0: m40-44, f4: m65-70). Predicciones seed 2026 ya descargadas en /tmp/screen_v2/.
+
+## 2026-09-30 19:20 CEST — Extensión ctx seed 42 COMPLETA: puerta no superada, X32 CERRADO, campeón 0.141 conservado
+- v3 (4 modelos, 1.98h GPU, dentro del presupuesto 2.2h). Deltas individuales ctx−flow31: seed 42 = −0.002200 (f0) / +0.000955 (f4) — signo mixto vs seed 2026 (+/+).
+- Ensemble 2 seeds: −0.000705 (f0) / +0.000861 (f4). Desglose mensual mixto (4/5 neg en f0, 3/6 pos en f4).
+- Puerta +0.002 estable NO superada con consistencia → decisión pre-establecida de Diego (16:52): cerrar X32, conservar campeón 0.141. Documento: research/SCREEN_X32_S42.md.
+- Scores single-seed verificados recomputando desde predictions.npz (coinciden con done.json). Alineación de es_rows entre seeds verificada.
