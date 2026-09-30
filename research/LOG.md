@@ -802,3 +802,8 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 - Log de sesión: FileNotFoundError /kaggle/input/mscapital-x32-packs/X32CTX_train_manifest.json. El entorno GPU monta datasets en /kaggle/input/datasets/<owner>/<slug>/; run_main tenía PACKS_DIR fijo sin fallback (PREPARED_DIR sí tenía y resolvió a /kaggle/input/datasets/diegoaranguren/mscapital-prepared-v2).
 - Bug de staging del bundle, no de plataforma ni del código auditado.
 - Fix: /tmp/x32screen_gpu_kernel_v2.py con resolución robusta de ambas rutas (find del manifest bajo /kaggle/input, maxdepth 6); resto de componentes byte-idénticos a src/kaggle. Pendiente luz verde de Main para relanzar (compromiso declarado: no relanzar GPU en solo).
+
+## 2026-09-30 08:07 CEST — Screen GPU v2 relanzado (fix rutas), RUNNING
+- Luz verde de Main 08:07 (misma fase y presupuesto aprobado por Diego; v1 costó 41s). Main informa a Diego del tropiezo y relanzamiento.
+- Push v2: mscapital-screen-x32-gpu versión 2 con resolución robusta de rutas de datos/packs. Estado a los 30s: RUNNING; a los ~3 min: RUNNING sin error (v1 crasheó a los 34s de sesión).
+- ETA resultados ~11:45-12:15 CEST si corre limpio (6 modelos, tope 4h). Monitor 45 min activo.
