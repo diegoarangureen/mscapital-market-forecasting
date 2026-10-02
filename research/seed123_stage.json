@@ -1,0 +1,77 @@
+{
+  "kernel": "diegoaranguren/mscapital-confirm-seed123",
+  "seed": 123,
+  "models": 10,
+  "max_hours_soft": 2.75,
+  "max_hours_platform": 3,
+  "reference_signature": "bf1bdcc8c840b4585653c1b3068d80face04569f3fdd6d7ddd12d342a8749771",
+  "reference_code_hashes": {
+    "train_audited.py": "ef7875b78c6b960ebe5b15fa54225a4ae2a099154ddc4a1e9613bf54a45d116c",
+    "summarize_audited.py": "7cbd8ac37c1cec0ded64558d77eea628211d29ff32f2954fa35baa626e44708e",
+    "__init__.py": "409a156df2a1cdc50723bc65978f61c04d2153f2d255570832c8475bff31f78b",
+    "dataset.py": "2516cb8f203e64c878eaa74751e5ad5d6aa2af0bd72bad2f9f591f67506ddf65",
+    "flows.py": "03cb1cc953a5d1a7e0e5a03e2cc108d6beea20aec39b703a3009fccf61d26e3b",
+    "io.py": "36a1f0b22fbd206959a9037a1627ceb0da5cd37e65d636e86560203ebdca34f8",
+    "launcher.py": "bce7d9dc97501d773a515088ef4f0438414c74adcec11ac2e347163ce8b8b321",
+    "metrics.py": "c0209ee7b69d13ce9d552882e21bf51b9bb2dc78fe461d727fac1aac819c101a",
+    "model.py": "4a317d5fe55a24bf7d8632778ea5d7edc250bd0a29a9d08cef75a1ec365bebb4",
+    "protocol.py": "f46225f31d43a824c95d0cc53804da3729ef014bcd5237de2a68ccc4c3323e60",
+    "training.py": "3fa143083ee7181ca9746fa72acab0b36829a85716c1d6cb696c3a6aa1156333"
+  },
+  "config": {
+    "metric": "cosine",
+    "metric_verified": true,
+    "metric_source": "Official evaluation tab, https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting/overview/evaluation, fetched 2026-09-25 14:20 CEST: stated formula `cos(prediction, target)` = uncentered cosine similarity over the full prediction vector. API tag confirms 'custom metric defined under the Evaluation tab'. Executable scorer not published by host.",
+    "epochs": 10,
+    "patience": 3,
+    "lr": 0.001,
+    "batch_size": 256,
+    "n_ens": 16,
+    "noise_std": 0.005,
+    "weight_target": "noisy",
+    "angular_loss": "pearson",
+    "lambda_cos": 1.0,
+    "schedule": "epoch",
+    "clip_quantiles": [
+      0.001,
+      0.999
+    ],
+    "gradient_diagnostics": true,
+    "keep_completed_last": false,
+    "mode": "confirm",
+    "arms": [
+      "flow31"
+    ],
+    "seeds": [
+      123
+    ],
+    "folds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "origins": [
+      {
+        "origin": 59,
+        "score_start": 62,
+        "score_end": 66
+      },
+      {
+        "origin": 64,
+        "score_start": 67,
+        "score_end": 70
+      }
+    ],
+    "frozen_from": "screen mscapital-screen-tpu 2026-09-26: flow31 winner (mean +0.00294 vs base, positive all 3 folds; X31 increment +0.0011); loss A/B: noisy kept (delta -0.000137)"
+  },
+  "runtime": {
+    "dataset_fingerprint": "d75b4a02c2255723362e48f884d43271ce99eb6f57570fb89a9c06b48ff7b313",
+    "torch_version": "2.8.0+cpu",
+    "torch_xla_version": "2.8.0"
+  },
+  "bundle_sha256": "e839a6beece37b0efb856737f1fe51a1bc0495af895ab74fc0b7423613de8e86",
+  "source_sha256": "a6463bd1420691831d2327098248a843382b6964941f4afec9eabd36df67f7c5",
+  "purpose": "Complete third-seed confirmation of existing champion; no new holdout and no automatic submission."
+}
