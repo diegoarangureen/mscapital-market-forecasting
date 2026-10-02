@@ -826,3 +826,8 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 - Ensemble 2 seeds: −0.000705 (f0) / +0.000861 (f4). Desglose mensual mixto (4/5 neg en f0, 3/6 pos en f4).
 - Puerta +0.002 estable NO superada con consistencia → decisión pre-establecida de Diego (16:52): cerrar X32, conservar campeón 0.141. Documento: research/SCREEN_X32_S42.md.
 - Scores single-seed verificados recomputando desde predictions.npz (coinciden con done.json). Alineación de es_rows entre seeds verificada.
+
+## 2026-10-02 - X33 CERRADO (decisión de Diego 20:26/20:30: "para todo", "dejalo aqui")
+- Paso 1/3 (auditoría CPU post-procesado, cola) y paso 2 (X32 media directa): research/x33/POSTPROC_AUDIT.md.
+- Screen GPU: control reproduce X32 bit a bit; A1 (winsorize target) no pasa la puerta; A2 (cosine) incompleto (2/4 modelos, cancelado por Diego). Detalle en research/x33/SCREEN_RESULTS.md.
+- GPU ~5.7h. Ningún submission. Campeón 0.141 intacto. Sin nuevas ejecuciones hasta decisión de Diego.

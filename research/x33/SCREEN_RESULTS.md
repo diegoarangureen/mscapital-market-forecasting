@@ -19,4 +19,4 @@ Solo 2 de 4 modelos: f0 s2026 0.145320 (delta +0.000165), f4 s2026 0.174083 (del
 Screen consumió ~20.5k s (~5.7h) de cuota GPU (69169 -> 89712 s), por debajo del tope de 6.0h. Pérdida: control y A1 pararon al tope de 2.0h con el 4º modelo en epoch 8/10 (rescatado con resume, ~0.6h cada uno); A2 se canceló a mitad de su 3er modelo.
 
 ## Estado
-X33 detenido por Diego antes de completar A2. Ningún submission. Campeón 0.141 intacto.
+X33 CERRADO por Diego (20:26 "para todo", 20:30 "dejalo aqui"). A2 sin completar por su decisión. Ningún submission. Campeón 0.141 intacto.
