@@ -11,8 +11,8 @@ prediction checksums, job manifests, temporal masks and ensemble coverage.
 | Previously consulted confirmation data | Champion clipping | No clipping + no-data zeros | Delta |
 |---|---:|---:|---:|
 | All months 62–70 | 0.160042 | 0.165621 | +0.005579 |
-| Origin 59, months 62–66 | 0.173954 | 0.179762 | +0.005808 |
-| Origin 64, months 67–70 | 0.143994 | 0.149111 | +0.005117 |
+| Origin 59, months 62–66 | 0.173953 | 0.179760 | +0.005808 |
+| Origin 64, months 67–70 | 0.143988 | 0.149105 | +0.005117 |
 
 Exact machine-readable results: `champion_no_clip_review.json`.
 Paired month-bootstrap 95% interval for the overall delta:
