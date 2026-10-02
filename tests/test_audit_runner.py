@@ -139,3 +139,32 @@ def test_standalone_bundle_plan(tmp_path):
     p=subprocess.run([sys.executable,str(output),'--plan'],capture_output=True,text=True)
     assert p.returncode==0,p.stdout+p.stderr
     assert json.loads(p.stdout)['models']==2
+
+
+def test_x33_a1_winsor_bounds_train_only_and_saved(dataset,tmp_path):
+    cfg=config_file(tmp_path,seeds=[7],target_winsor=[.005,.995])
+    out=tmp_path/'out'
+    runner.run(runner.parser().parse_args(['--config',str(cfg),'--data',str(dataset),'--out',str(out),'--device','cpu']))
+    y=np.load(dataset/'y.npy'); month=np.load(dataset/'month.npy')
+    from audit.protocol import jobs
+    job=jobs(json.loads(cfg.read_text()))[0]
+    tr,_,_=job.masks(month)
+    saved=json.loads((out/'jobs'/job.key/'target_winsor.json').read_text())
+    lo,hi=np.quantile(y[tr].astype(np.float64),[.005,.995])
+    assert saved['lo']==pytest.approx(lo) and saved['hi']==pytest.approx(hi)
+    done=json.loads((out/'jobs'/job.key/'done.json').read_text())
+    assert done['target_winsor']['lo']==saved['lo']
+
+
+def test_x33_control_has_no_winsor_and_bad_quantiles_rejected(dataset,tmp_path):
+    cfg=config_file(tmp_path,seeds=[7])
+    assert runner.read_config(cfg)['target_winsor'] is None
+    with pytest.raises(ValueError):
+        runner.read_config(config_file(tmp_path,target_winsor=[.99,.01]))
+
+
+def test_x33_winsor_clip_before_noise_and_weights_unchanged():
+    from audit.training import loss_parts
+    y=np.array([0.,.0005,-.2,.3,.01],dtype=np.float64)
+    b=runner.winsorize_bounds(y,[.2,.8]); c=np.clip(y,b['lo'],b['hi'])
+    assert ((y==0)==(c==0)).all()

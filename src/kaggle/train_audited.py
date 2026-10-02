@@ -21,7 +21,8 @@ DEFAULTS = {'metric':'cosine', 'metric_verified':False, 'metric_source':'',
             'epochs':10, 'patience':3, 'lr':.001, 'batch_size':256, 'n_ens':16,
             'noise_std':.005, 'weight_target':'clean', 'angular_loss':'pearson',
             'lambda_cos':1., 'schedule':'epoch', 'clip_quantiles':[.001,.999],
-            'gradient_diagnostics':True, 'keep_completed_last':False}
+            'gradient_diagnostics':True, 'keep_completed_last':False,
+            'target_winsor':None}  # X33 A1: [lo,hi] quantiles of the TRAIN target per fold (train rows only)
 
 
 def read_config(path):
@@ -43,6 +44,9 @@ def read_config(path):
     q = config['clip_quantiles']
     if q is not None and (len(q) != 2 or not 0 <= q[0] < q[1] <= 1):
         raise ValueError('Invalid clipping quantiles')
+    w = config['target_winsor']
+    if w is not None and (len(w) != 2 or not 0 < w[0] < w[1] < 1):
+        raise ValueError('Invalid target_winsor quantiles')
     jobs(config)  # Validate protocol before any accelerator work.
     return config
 
@@ -56,6 +60,12 @@ def get_device(name):
     if name == 'cuda' and not torch.cuda.is_available():
         raise RuntimeError('CUDA explicitly requested but unavailable')
     return torch.device(name)
+
+
+def winsorize_bounds(y, q):
+    lo, hi = np.quantile(np.asarray(y,dtype=np.float64), q)
+    return {'q':list(q),'lo':float(lo),'hi':float(hi),'n':int(len(y)),
+            'frac_clipped_low':float((y<lo).mean()),'frac_clipped_high':float((y>hi).mean())}
 
 
 def barrier(device):
@@ -127,6 +137,14 @@ def run_job(job, config, data, out, device, run_sig, deadline):
     xtr = apply_scale(xtr,med,fac)
     xes = apply_scale(data.features(job.arm,'train',es_rows),med,fac)
     ytr = np.asarray(data.y[tr_rows]).copy()
+    winsor = None
+    if config['target_winsor'] is not None:
+        # A1: bounds from this fold's train target only, saved; clip happens here, BEFORE noise is added in the loop.
+        # ES/score use data.y (original target); MSE weights are computed from the (clipped) train target exactly as in control
+        # (clipping never changes zero/non-zero status, so weights are identical).
+        winsor = winsorize_bounds(ytr,config['target_winsor'])
+        write_json(jobdir/'target_winsor.json',winsor)
+        ytr = np.clip(ytr,winsor['lo'],winsor['hi'])
     xtr_t = torch.from_numpy(xtr).to(device)
     xes_t = torch.from_numpy(xes).to(device)
     ytr_t = torch.from_numpy(ytr).to(device)
@@ -223,7 +241,7 @@ def run_job(job, config, data, out, device, run_sig, deadline):
                       'dataset_fingerprint':data.manifest['fingerprint']},device)
     meta = {**status,'run_signature':run_sig,'best_epoch':best_epoch,
             'elapsed_s':spent+time.monotonic()-t0,'target_train_std':float(ytr.std()),
-            'es_selected_score':best,'n_train':len(tr_rows),'n_es':len(es_rows),
+            'target_winsor':winsor,'es_selected_score':best,'n_train':len(tr_rows),'n_es':len(es_rows),
             'artifacts':{name:sha256(jobdir/name) for name in ('predictions.npz','best.pt','history.json')}}
     write_json(done,meta)  # Commit marker last: incomplete jobs can always resume safely.
     if not config['keep_completed_last']:
