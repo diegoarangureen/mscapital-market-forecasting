@@ -60,3 +60,15 @@ as an unconditional four-way sweep.
 - No submission in this stage. Champion and its CSV remain preserved.
 
 Launch status is recorded separately in `x34_h1_status.json` after acceptance.
+
+## Launch accepted
+
+Kaggle accepted version 1 of `mscapital-x34-h1-tpu` with the 12,600-second
+platform timeout. Initial API status: QUEUED. Source and stage provenance were
+pushed before launch (commit `b936a6c`).
+
+`watch_angular_screen.py --push --notify` can recover results and publish status
+transitions. Desktop notification requires an awake, connected local computer;
+it is not a guaranteed future chat message. Kaggle-side comparison still runs
+without the watcher. Terminal failures or incomplete panels require inspection;
+the watcher does not spend additional quota or submit predictions.

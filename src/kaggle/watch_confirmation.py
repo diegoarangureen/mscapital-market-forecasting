@@ -34,11 +34,12 @@ def publish(repo, paths, message):
     subprocess.run([*git, 'push', 'origin', 'main'], check=True, capture_output=True, timeout=90)
 
 
-def desktop_notice(success):
+def desktop_notice(success, message=None):
     if os.name != 'nt':
         return
-    message = ('Confirmacion completa. Revisa el informe en GitHub. No se ha enviado ninguna submission.'
-               if success else 'La confirmacion requiere revision. Consulta seed123_status.json en GitHub.')
+    message = message or ('Confirmacion completa. Revisa el informe en GitHub. No se ha enviado ninguna submission.'
+                         if success else 'La confirmacion requiere revision. Consulta seed123_status.json en GitHub.')
+    message = message.replace("'", "''")
     command = ("Add-Type -AssemblyName System.Windows.Forms; "
                "$msNotice = New-Object System.Windows.Forms.NotifyIcon; "
                "$msNotice.Icon = [System.Drawing.SystemIcons]::Information; "
