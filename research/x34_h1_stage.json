@@ -1,0 +1,86 @@
+{
+  "kernel": "diegoaranguren/mscapital-x34-h1-tpu",
+  "models": 8,
+  "soft_hours": 3.2,
+  "platform_timeout_seconds": 12600,
+  "configs": {
+    "control": {
+      "mode": "screen",
+      "arms": [
+        "flow31"
+      ],
+      "seeds": [
+        2026,
+        42
+      ],
+      "folds": [
+        0,
+        4
+      ],
+      "metric": "cosine",
+      "metric_verified": true,
+      "metric_source": "Official evaluation tab: uncentered cos(prediction, target). Verified 2026-09-25; source https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting/overview/evaluation",
+      "weight_target": "noisy",
+      "angular_loss": "pearson",
+      "angular_target": "noisy",
+      "angular_aggregation": "members",
+      "noise_std": 0.005,
+      "schedule": "epoch",
+      "clip_quantiles": null,
+      "target_winsor": null,
+      "frozen_from": "X34: submitted no-clip champion LB 0.142; one angular-loss change per candidate, 2026-10-03."
+    },
+    "h1": {
+      "mode": "screen",
+      "arms": [
+        "flow31"
+      ],
+      "seeds": [
+        2026,
+        42
+      ],
+      "folds": [
+        0,
+        4
+      ],
+      "metric": "cosine",
+      "metric_verified": true,
+      "metric_source": "Official evaluation tab: uncentered cos(prediction, target). Verified 2026-09-25; source https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting/overview/evaluation",
+      "weight_target": "noisy",
+      "angular_loss": "pearson",
+      "angular_target": "clean",
+      "angular_aggregation": "members",
+      "noise_std": 0.005,
+      "schedule": "epoch",
+      "clip_quantiles": null,
+      "target_winsor": null,
+      "frozen_from": "X34: submitted no-clip champion LB 0.142; one angular-loss change per candidate, 2026-10-03."
+    }
+  },
+  "runtime": {
+    "torch_version": "2.8.0+cpu",
+    "torch_xla_version": "2.8.0",
+    "dataset_fingerprint": "d75b4a02c2255723362e48f884d43271ce99eb6f57570fb89a9c06b48ff7b313"
+  },
+  "bundle_sha256": "972dafb9e7241b1adda750b99e3c2eedce2583df7839ac9606b294303da46cf6",
+  "source_hashes": {
+    "audit/dataset.py": "18c5175a07aef4de58f0f43cc210b9f494f806282b4e21bbc3275de47db56421",
+    "audit/flows.py": "ff4cb4392b0e59ce126323fc957b4247b3db68a5e032abf033d3101e11832928",
+    "audit/io.py": "36a1f0b22fbd206959a9037a1627ceb0da5cd37e65d636e86560203ebdca34f8",
+    "audit/launcher.py": "bce7d9dc97501d773a515088ef4f0438414c74adcec11ac2e347163ce8b8b321",
+    "audit/metrics.py": "c0209ee7b69d13ce9d552882e21bf51b9bb2dc78fe461d727fac1aac819c101a",
+    "audit/model.py": "7db60334f96f1055787e19d6b8083f9aba6d16a551d4fa4cb8f286bb6c3c37f5",
+    "audit/protocol.py": "f46225f31d43a824c95d0cc53804da3729ef014bcd5237de2a68ccc4c3323e60",
+    "audit/training.py": "2d1497d104176d5ee06e8c8304c802d10424ce97ab24cc00909f1f5c2efa830f",
+    "audit/__init__.py": "409a156df2a1cdc50723bc65978f61c04d2153f2d255570832c8475bff31f78b",
+    "train_audited.py": "d9ae627ab8f61b828180270a9b922259418a374a01d52155a573783c26101b12",
+    "summarize_audited.py": "7cbd8ac37c1cec0ded64558d77eea628211d29ff32f2954fa35baa626e44708e",
+    "review_champion.py": "8d40d032ea0b1f59bc5a74ef9f07f6210046d667ee513e8e0bf88fc2c03f9d4f",
+    "review_angular_screen.py": "0e4f96aeb727ff21352d4dcdaa1fb451773ce447514f5af84d073a8d444aa4d9",
+    "control.json": "ae7ceebe10700a6073116891b81449650b41cff27fed331061cfc92dbcb972f6",
+    "h1.json": "c200cd4958fdc5c785bfec7dd7cc4299e9a10853380b642d89d66ab8b59272cf",
+    "runtime.json": "dd6f559028eba95d569dfb37df31fdcb82ef29eac306fdfe33126b1c95d6f78d",
+    "run_main.py": "d2d89e612365aab9ccbdf62ee26355c8ad5ed8eac9e8503218fb61ecd7395918"
+  },
+  "execution": "Interleaved fold/seed matched control and H1; no relaunch, H2 or submission."
+}

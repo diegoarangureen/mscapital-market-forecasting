@@ -22,7 +22,8 @@ DEFAULTS = {'metric':'cosine', 'metric_verified':False, 'metric_source':'',
             'noise_std':.005, 'weight_target':'clean', 'angular_loss':'pearson',
             'lambda_cos':1., 'schedule':'epoch', 'clip_quantiles':[.001,.999],
             'gradient_diagnostics':True, 'keep_completed_last':False,
-            'target_winsor':None}  # X33 A1: [lo,hi] quantiles of the TRAIN target per fold (train rows only)
+            'target_winsor':None,  # X33 A1: quantiles of TRAIN target only.
+            'angular_target':'noisy', 'angular_aggregation':'members'}
 
 
 def read_config(path):
@@ -37,6 +38,10 @@ def read_config(path):
         raise ValueError('Audited CPU/CUDA/XLA use the SAME per-epoch schedule')
     if config['weight_target'] not in ('clean','noisy','uniform'):
         raise ValueError('Unknown weight_target')
+    if config['angular_target'] not in ('noisy','clean'):
+        raise ValueError('Unknown angular_target')
+    if config['angular_aggregation'] not in ('members','mean'):
+        raise ValueError('Unknown angular_aggregation')
     if config['epochs'] < 1 or config['patience'] < 1 or config['batch_size'] < 1 or config['n_ens'] < 2:
         raise ValueError('Invalid training dimensions')
     if config['lr'] <= 0 or config['noise_std'] < 0 or config['lambda_cos'] < 0:
@@ -188,7 +193,8 @@ def run_job(job, config, data, out, device, run_sig, deadline):
             opt.zero_grad(set_to_none=True)
             pred = model(xtr_t[ix])
             loss,mse,angular = loss_parts(pred,clean,noisy,config['weight_target'],
-                                         config['angular_loss'],config['lambda_cos'])
+                                         config['angular_loss'],config['lambda_cos'],
+                                         config['angular_target'],config['angular_aggregation'])
             if start == 0 and config['gradient_diagnostics']:
                 params = list(model.parameters())
                 ep_diag = {'mse':float(mse.detach().cpu()), 'angular':float(angular.detach().cpu()),

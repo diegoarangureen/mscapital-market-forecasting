@@ -57,7 +57,8 @@ def apply_scale(x, med, fac):
     return (s / np.sqrt(1 + (s / 3) ** 2)).astype(np.float32)
 
 
-def loss_parts(pred, clean, noisy, weight_target='clean', angular='pearson', lambda_cos=1.):
+def loss_parts(pred, clean, noisy, weight_target='clean', angular='pearson', lambda_cos=1.,
+               angular_target='noisy', angular_aggregation='members'):
     p = pred.reshape(-1)
     y = noisy[:, None].expand_as(pred).reshape(-1)
     clean_flat = clean[:, None].expand_as(pred).reshape(-1)
@@ -69,6 +70,18 @@ def loss_parts(pred, clean, noisy, weight_target='clean', angular='pearson', lam
     else:
         raise ValueError('Unknown weight_target')
     mse = (w * (p - y).square()).mean()
+    # H1 changes only the angular target; MSE targets AND weights above stay fixed.
+    if angular_target not in ('noisy', 'clean'):
+        raise ValueError('Unknown angular_target')
+    if angular_aggregation == 'mean':
+        # H2 aligns the angular term with inference, retaining individual MSE.
+        p = pred.mean(dim=1)
+        y = clean if angular_target == 'clean' else noisy
+    elif angular_aggregation == 'members':
+        if angular_target == 'clean':
+            y = clean_flat
+    else:
+        raise ValueError('Unknown angular_aggregation')
     if angular == 'pearson':
         p, y = p - p.mean(), y - y.mean()
     elif angular != 'cosine':

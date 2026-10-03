@@ -1,0 +1,18 @@
+{
+  "mode": "screen",
+  "arms": ["flow31"],
+  "seeds": [2026, 42],
+  "folds": [0, 4],
+  "metric": "cosine",
+  "metric_verified": true,
+  "metric_source": "Official evaluation tab: uncentered cos(prediction, target). Verified 2026-09-25; source https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting/overview/evaluation",
+  "weight_target": "noisy",
+  "angular_loss": "pearson",
+  "angular_target": "noisy",
+  "angular_aggregation": "members",
+  "noise_std": 0.005,
+  "schedule": "epoch",
+  "clip_quantiles": null,
+  "target_winsor": null,
+  "frozen_from": "X34: submitted no-clip champion LB 0.142; one angular-loss change per candidate, 2026-10-03."
+}

@@ -12,6 +12,21 @@ from summarize_audited import summarize
 from bundle_audited import bundle
 
 
+def test_h1_clean_angular_runs_and_records_configuration(tmp_path,dataset,monkeypatch):
+    torch.set_num_threads(1); monkeypatch.setattr(runner,'RealMLP',Tiny)
+    cfg=config_file(tmp_path,seeds=[7],angular_target='clean',clip_quantiles=None)
+    out=tmp_path/'h1'
+    runner.run(args(cfg,dataset,out))
+    result=summarize(summarize_args(dataset,out))
+    assert result['complete']
+    meta=json.loads((out/'run_worker_00.json').read_text())
+    assert meta['config']['angular_target']=='clean'
+    assert meta['config']['angular_aggregation']=='members'
+    bad=config_file(tmp_path,angular_target='invalid')
+    with pytest.raises(ValueError,match='angular_target'):
+        runner.read_config(bad)
+
+
 @pytest.fixture
 def dataset(tmp_path):
     out=tmp_path/'data'; out.mkdir()
