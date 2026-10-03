@@ -1,6 +1,11 @@
-# flow31 without prediction clipping — candidate, not submitted
+# flow31 without prediction clipping — public LB 0.142
 
-Date: 2026-10-02. Champion remains public LB **0.141**.
+Created 2026-10-02; submitted and scored 2026-10-03.
+New best public LB **0.142**, versus previous **0.141** (+0.001).
+Submission ref **56794864**, status COMPLETE, verified via authenticated Kaggle
+API. The submitted CSV matches the recorded candidate SHA256. The prior
+submission 56634145 is retained. Private score is unknown.
+Receipt: `submission_no_clip_2026-10-03.json`.
 
 ## Update — 2026-10-03: third-seed confirmation complete
 
@@ -25,7 +30,8 @@ or retrospectively changing ensemble weights.
 Recommendation: submit the already prepared **flow31_no_clip.csv** candidate for
 one leaderboard test, preserving the 0.141 champion. This is a postprocessing
 candidate; additional confirmation models do not change the final CSV. The
-candidate SHA256 remains unchanged, and no submission has been made.
+candidate SHA256 remains unchanged. Subsequently submitted with Diego's request
+to proceed with submission versus further training; result recorded above.
 
 Verified copy: `runs/candidate-no-clip-third-seed/flow31_no_clip.csv`.
 The original `runs/candidate-no-clip/flow31_no_clip.csv` is identical.
@@ -67,7 +73,7 @@ checkpoint-external windows but are not a new holdout.
 - Official template order and columns; 647,896 rows, all finite.
 - Same 15 models and arithmetic mean; only prediction clipping removed.
 - 742 rows differ from the champion; 17 no-data rows remain zero.
-- No submission has been made.
+- Submission completed on 2026-10-03: public LB 0.142.
 
 ## Completed experiment design
 
@@ -81,7 +87,7 @@ Kernel: https://www.kaggle.com/code/diegoaranguren/mscapital-confirm-seed123
 
 `seed123_status.json` records COMPLETE / review_complete, and
 `seed123_review.json` contains the verified combined review. No replacement
-kernel or submission was launched.
+kernel was launched. A single submission was subsequently sent and scored.
 
 ## Reproduce
 

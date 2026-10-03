@@ -1,0 +1,20 @@
+{
+  "competition": "ms-capital-real-financial-market-forecasting",
+  "submission_ref": 56794864,
+  "submitted_at_utc": "2026-10-03T09:37:22.950Z",
+  "status": "COMPLETE",
+  "public_score": 0.142,
+  "previous_champion_public_score": 0.141,
+  "public_score_delta": 0.001,
+  "previous_champion_submission_ref": 56634145,
+  "filename": "flow31_no_clip.csv",
+  "sha256": "7c59c37ec4de110ac368f2bc6bde4d31f1202b97480720081e52de2a1b7611ee",
+  "rows": 647896,
+  "changed_rows_vs_previous_champion": 742,
+  "retained_no_data_zeros": 17,
+  "models": 15,
+  "change": "Remove prediction clipping; same trained models, direct ensemble mean, and no-data zeros.",
+  "validation_delta_on_reused_windows": 0.005920410044574526,
+  "source": "Authenticated Kaggle competition_submissions API; matching submission ref and artifact hash.",
+  "note": "Public leaderboard only; private score unknown. Prior champion retained. No additional training launched."
+}
