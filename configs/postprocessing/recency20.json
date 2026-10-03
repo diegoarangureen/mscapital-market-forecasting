@@ -1,0 +1,18 @@
+{
+  "name": "flow31_no_clip_recency20",
+  "baseline_public_score": 0.142,
+  "baseline_submission_ref": 56794864,
+  "baseline_sha256": "7c59c37ec4de110ac368f2bc6bde4d31f1202b97480720081e52de2a1b7611ee",
+  "half_life_periods": 20,
+  "seeds": [42, 123, 2026],
+  "folds": [0, 1, 2, 3, 4],
+  "origins": [59, 64],
+  "min_delta_each_origin": 0.002,
+  "min_delta_each_seed_pooled": 0.002,
+  "min_positive_months": 6,
+  "all_lomo_positive": true,
+  "clip": false,
+  "zero_nodata": true,
+  "parameter_search": false,
+  "note": "Single preregistered hypothesis. Same already-consulted confirmation windows; no claim of untouched holdout. No architecture, training, seed-selection or target changes."
+}
