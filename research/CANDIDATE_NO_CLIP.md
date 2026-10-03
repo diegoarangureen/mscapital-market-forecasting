@@ -2,6 +2,42 @@
 
 Date: 2026-10-02. Champion remains public LB **0.141**.
 
+## Update — 2026-10-03: third-seed confirmation complete
+
+All 10 additional TPU models completed. Their code, runtime, data, prediction
+checksums and complete temporal coverage passed verification. Combined with
+the original 20 flow31 confirmation models, the review now covers all three
+seeds used by the final champion. Exact report: `seed123_review.json`.
+
+| Three-seed confirmation | Original clipping | No clipping + no-data zeros | Delta |
+|---|---:|---:|---:|
+| All months 62–70 | 0.160361 | 0.166282 | +0.005920 |
+| Origin 59, months 62–66 | 0.174104 | 0.180422 | +0.006318 |
+| Origin 64, months 67–70 | 0.144534 | 0.149810 | +0.005276 |
+
+Delta is positive in 6/9 months and all 9 leave-one-month-out comparisons.
+Without month 66, delta remains +0.003489. Paired month-bootstrap 95% interval:
+[+0.001000, +0.008331], subject to dependent months and prior selection.
+The three-seed raw ensemble improves +0.000660 over the original two-seed raw
+ensemble. These observations do not justify selecting the best individual seed
+or retrospectively changing ensemble weights.
+
+Recommendation: submit the already prepared **flow31_no_clip.csv** candidate for
+one leaderboard test, preserving the 0.141 champion. This is a postprocessing
+candidate; additional confirmation models do not change the final CSV. The
+candidate SHA256 remains unchanged, and no submission has been made.
+
+Verified copy: `runs/candidate-no-clip-third-seed/flow31_no_clip.csv`.
+The original `runs/candidate-no-clip/flow31_no_clip.csv` is identical.
+Kaggle reports 2.23 TPU hours used in the refreshed quota; summed model timers
+are 2.127 h excluding overhead. No GPU training was launched by this agent.
+Quota refreshed to GPU 30 h / TPU 17.77 h available, but the existing user budget
+is not automatically expanded. No further training has been launched.
+
+The overnight local monitor stopped recording while the kernel was queued.
+Completion was recovered and published manually in the next active session;
+delivery of a Windows notification is not verified.
+
 Recovered all 15 final and 40 original confirmation prediction artifacts from
 the owner's completed Kaggle kernels. Verified prepared label/ID hashes,
 prediction checksums, job manifests, temporal masks and ensemble coverage.
@@ -33,7 +69,7 @@ checkpoint-external windows but are not a new holdout.
 - 742 rows differ from the champion; 17 no-data rows remain zero.
 - No submission has been made.
 
-## In progress
+## Completed experiment design
 
 Third-seed confirmation uses seed 123 already present in the final champion,
 with the original archived source and TPU runtime. Ten models, all five folds
@@ -43,10 +79,9 @@ seed robustness, not unseen temporal data or a new feature/loss candidate.
 
 Kernel: https://www.kaggle.com/code/diegoaranguren/mscapital-confirm-seed123
 
-`seed123_status.json` records remote status; `seed123_review.json` will be written
-only after all ten additional models complete and artifact verification passes.
-The local watcher can publish these reports and request a Windows notification.
-It does not submit, launch a replacement kernel or spend additional quota.
+`seed123_status.json` records COMPLETE / review_complete, and
+`seed123_review.json` contains the verified combined review. No replacement
+kernel or submission was launched.
 
 ## Reproduce
 
