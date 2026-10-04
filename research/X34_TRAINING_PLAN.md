@@ -72,3 +72,46 @@ transitions. Desktop notification requires an awake, connected local computer;
 it is not a guaranteed future chat message. Kaggle-side comparison still runs
 without the watcher. Terminal failures or incomplete panels require inspection;
 the watcher does not spend additional quota or submit predictions.
+
+## H1 result — 2026-10-04: complete, not promoted
+
+All eight models completed. Remote review recovered and recomputed locally with
+checksum/row/recipe verification; deltas agree to floating-point precision.
+
+| Pair | H1 minus control |
+|---|---:|
+| fold 0, seed 2026 | -0.000794 |
+| fold 0, seed 42 | +0.001310 |
+| fold 4, seed 2026 | +0.001616 |
+| fold 4, seed 42 | +0.001766 |
+| fold 0, two-seed mean | +0.000278 |
+| fold 4, two-seed mean | +0.001574 |
+| pooled rows | +0.002029 |
+
+The pooled cosine is not an average of fold cosines. Its +0.002029 does not
+override the fixed per-fold/seed gates, which FAIL. Month 66's delta is +0.007319;
+do not infer broad transfer from the pooled number. No H1 confirmation or
+submission. Machine-readable result: `x34_h1_review.json`.
+
+Kaggle quota increased from 2.23 to 4.18 TPU hours used: about 1.95 h for H1
+including overhead. Model timers sum to 1.797 h. No GPU training consumed.
+Local watcher again did not deliver a verified completion notification; the
+Kaggle-side comparison persisted correctly and was recovered in this session.
+
+## H2 execution — next isolated hypothesis
+
+Train only four H2 models (folds 0/4, seeds 2026/42), using the exact archived H1
+trainer/modules byte-for-byte. Change only `angular_aggregation: members -> mean`.
+Keep `angular_target: noisy`; do not combine H1 and H2.
+
+Reuse H1's four complete controls after verifying their run signature, all
+prediction checksums, dataset, source hashes, runtime and recipe. Controls are
+attached read-only as a Kaggle kernel source; H1 predictions are not used as the
+baseline. Reuse is justified because training code does not change at all.
+
+Kernel: https://www.kaggle.com/code/diegoaranguren/mscapital-x34-h2-tpu
+Soft stop 1.75 h; platform hard timeout 2 h. The cumulative maximum is then
+4.18 + 2 = 6.18 TPU hours, within the previous 8.5 h authorization. GPU untouched.
+The same fixed gates apply. Kaggle computes `x34_h2_review.json` after all four
+new models complete. No next experiment or submission launches automatically.
+Provenance: `x34_h2_stage.json`; status: `x34_h2_status.json`.
