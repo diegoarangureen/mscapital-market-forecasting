@@ -1,0 +1,12 @@
+{
+  "kernel": "diegoaranguren/mscapital-x34-h2-tpu",
+  "url": "https://www.kaggle.com/code/diegoaranguren/mscapital-x34-h2-tpu",
+  "version": 1,
+  "phase": "monitoring",
+  "submitted": false,
+  "max_tpu_hours": 2,
+  "monitor_pid": 11612,
+  "monitor_started_utc": "2026-10-04T08:57:31.474901+00:00",
+  "kaggle_status": "QUEUED",
+  "last_checked_utc": "2026-10-04T08:57:31.667066+00:00"
+}
