@@ -2,11 +2,16 @@
   "kernel": "diegoaranguren/mscapital-x34-h1-tpu",
   "url": "https://www.kaggle.com/code/diegoaranguren/mscapital-x34-h1-tpu",
   "version": 1,
-  "phase": "monitoring",
+  "phase": "review_complete",
   "submitted": false,
   "max_tpu_hours": 3.5,
   "monitor_pid": 13540,
   "monitor_started_utc": "2026-10-04T08:49:33.349595+00:00",
   "kaggle_status": "COMPLETE",
-  "last_checked_utc": "2026-10-04T08:49:33.504520+00:00"
+  "last_checked_utc": "2026-10-04T08:49:33.504520+00:00",
+  "models": 8,
+  "delta": 0.002028770582460232,
+  "screen_gate_passed": false,
+  "note": "Screen only. No confirmation, next hypothesis, or submission launched automatically.",
+  "monitor_finished_utc": "2026-10-04T08:49:48.704280+00:00"
 }
