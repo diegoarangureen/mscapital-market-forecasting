@@ -115,3 +115,30 @@ Soft stop 1.75 h; platform hard timeout 2 h. The cumulative maximum is then
 The same fixed gates apply. Kaggle computes `x34_h2_review.json` after all four
 new models complete. No next experiment or submission launches automatically.
 Provenance: `x34_h2_stage.json`; status: `x34_h2_status.json`.
+
+## H2 result — 2026-10-05: complete, rejected
+
+All four new models completed. Recovered Kaggle predictions were reviewed locally
+against the archived H1 controls, checking checksums, rows, runtime, code and the
+single configuration change. Local and remote deltas agree within 2e-16.
+
+| Comparison | H2 minus control |
+|---|---:|
+| fold 0, seed 2026 | -0.007382 |
+| fold 0, seed 42 | -0.005477 |
+| fold 4, seed 2026 | -0.010284 |
+| fold 4, seed 42 | -0.008953 |
+| fold 0, two-seed mean | -0.004141 |
+| fold 4, two-seed mean | -0.008151 |
+| pooled rows | -0.005524 |
+
+Pooled control cosine: 0.166237; H2: 0.160712. Eight of eleven months
+deteriorate, and all leave-one-month-out deltas are negative. All promotion
+criteria fail. These are screening scores, not leaderboard scores or independent
+confirmation. Report: `x34_h2_review.json`.
+
+Close H2 without confirmation, retraining or submission. Preserve the LB 0.142
+champion. The next proposed isolated hypothesis remains H3 (end target noise
+before the learning rate reaches zero); it has not been staged or launched.
+No new quota estimate is recorded: the quota CLI was blocked by Windows
+Application Control during this review; no security policy was changed.
