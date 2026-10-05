@@ -5,8 +5,8 @@
   "phase": "monitoring",
   "submitted": false,
   "max_tpu_hours": 2,
-  "monitor_pid": 11612,
-  "monitor_started_utc": "2026-10-04T08:57:31.474901+00:00",
-  "kaggle_status": "QUEUED",
-  "last_checked_utc": "2026-10-04T08:57:31.667066+00:00"
+  "monitor_pid": 4204,
+  "monitor_started_utc": "2026-10-05T09:37:04.338183+00:00",
+  "kaggle_status": "COMPLETE",
+  "last_checked_utc": "2026-10-05T09:37:04.608004+00:00"
 }
