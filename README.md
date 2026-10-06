@@ -15,11 +15,14 @@ evaluation tab).
 
 ![MSCapital audited training pipeline](docs/pipeline.svg)
 
-*Audited pipeline, as implemented in [TRAINING_AGENT.md](TRAINING_AGENT.md). Reusable exports: [`docs/pipeline.svg`](docs/pipeline.svg), [`docs/pipeline.png`](docs/pipeline.png).*
+*Audited pipeline, as implemented in [TRAINING_AGENT.md](TRAINING_AGENT.md). Reusable exports: [`docs/pipeline.svg`](docs/pipeline.svg), [`docs/pipeline.png`](docs/pipeline.png). The diagram still shows the final percentile clip; the current champion (Oct 3) skips that step, see below.*
 
-**Current standing: public leaderboard 0.141, rank ~125/253** (as of Sep 28, 2026).
-Top of board is 0.183; top-10 cut is 0.167; top-20 is 0.158. Work is active
-and updated daily. Competition deadline: Oct 9, 2026 16:00 UTC.
+**Current standing: public leaderboard 0.142** (submission 56794864, scored
+Oct 3, 2026; previous best 0.141). Leaderboard rank is not recorded here: the
+last verified rank and top-10 cut figures date from Sep 28 and have not been
+re-checked. Work is active and updated daily. Competition deadline: Oct 9,
+2026 16:00 UTC. The public score is public leaderboard only; the private score
+is unknown.
 
 ## Results trajectory
 
@@ -30,7 +33,8 @@ and updated daily. Competition deadline: Oct 9, 2026 16:00 UTC.
 | Sep 17 | v13 | RealMLP 450f, 5 purged folds x 3 seeds, holdout + early stopping, 15-model average | 0.139 |
 | Sep 18 | v14 | v13 + 75 cross-sectional rank features (XS75) | 0.135 (negative; see below) |
 | Sep 20 | v15 | v13 recipe, 5 folds x 5 seeds (25 models) | 0.138 (flat; OOF +0.0005 did not transfer) |
-| Sep 28 | flow31 v1 | **Audited pipeline:** RealMLP 486f (450f + FLOW + X31v2), 5 folds x 3 seeds, origin 70, 15-model mean post-clamp (ref 56634145) | **0.141** |
+| Sep 28 | flow31 v1 | **Audited pipeline:** RealMLP 486f (450f + FLOW + X31v2), 5 folds x 3 seeds, origin 70, 15-model mean post-clamp (ref 56634145) | 0.141 |
+| Oct 3 | flow31 no-clip | Same 15 models and mean, **prediction clipping removed**, no-data rows kept at zero (ref 56794864) | **0.142** |
 
 The Sep 28 submission is the first one produced by the post-audit pipeline
 (TRAINING_AGENT.md). Its confirmation experiment (40 models, base vs flow31,
@@ -42,7 +46,7 @@ positive in both blocks, both seeds, and all 9 leave-one-month-out folds
 the direction transferred, the magnitude came out somewhat smaller than the
 fit-window estimate, which is the expected bias of non-independent CV.
 
-## Current champion (flow31, LB 0.141)
+## Current champion (flow31 no-clip, LB 0.142)
 
 - **Features (486).** The 450-feature audited champion set (298 proprietary
   microstructure + 152 public domain) plus the FLOW order-flow pack
@@ -60,8 +64,42 @@ fit-window estimate, which is the expected bias of non-independent CV.
   trained to origin 70 (mode `final`), equal-weight mean of the 15 models,
   post-clamp. This is the protocol that transferred validation gains to the
   leaderboard in v13 and again in flow31 v1.
-- **Post-processing.** Zero the 17 no-data test rows, clip to the 0.1/99.9
-  percentile band of train predictions.
+- **Post-processing.** Zero the 17 no-data test rows. No clipping: the Oct 3
+  submission is the same 15 models and the same arithmetic mean as the Sep 28
+  one, with only the 0.1/99.9 percentile clip removed (742 of 647,896 rows
+  differ). The Sep 28 champion (0.141) used the clip.
+
+The clip removal came out of the X33 post-processing audit
+([research/x33/POSTPROC_AUDIT.md](research/x33/POSTPROC_AUDIT.md)). On the
+already-consulted confirmation windows (months 62-70, three seeds) the clip
+cost cosine: 0.160361 clipped vs 0.166282 unclipped, **+0.005920**, positive in
+all 9 leave-one-month-out comparisons
+([research/CANDIDATE_NO_CLIP.md](research/CANDIDATE_NO_CLIP.md)). Those windows
+had been used before, so this is selection on consulted data. On the public
+leaderboard the same change moved the score by +0.001 (0.141 -> 0.142): the
+direction held, the size did not. Do not read the CV gain as the expected
+leaderboard gain.
+
+## Experiments since the champion (Sep 30 - Oct 5)
+
+Each one is a single-change screen against a fresh or verified control, folds
+0 and 4, two seeds (2026, 42), with a fixed promotion gate (delta >= +0.002,
+stable). Screening scores are measured on checkpoint-selection windows, so even
+a pass would only earn a temporal confirmation, never a submission by itself.
+All four closed without a submission.
+
+| Experiment | Change | Result | Outcome |
+|---|---|---|---|
+| X32 (Sep 30) | ctx and per variants of flow31 | ctx: +0.0008 (f0) / +0.0007 (f4) with seed 2026, but two-seed ensemble -0.0007 (f0) / +0.0009 (f4); per: no signal | Closed, gate not met ([results](research/SCREEN_X32_RESULTS.md), [seed 42](research/SCREEN_X32_S42.md)) |
+| X33 (Oct 2) | A1: winsorize the train target at q0.5/q99.5. A2: cosine loss | A1 hurts: f4 ensemble -0.0068, f0 -0.00006. A2 incomplete (2 of 4 models), stopped | Closed ([results](research/x33/SCREEN_RESULTS.md)). The tail carries about 29% of the sum of squared targets, so trimming it loses signal the metric rewards |
+| Recency ensemble (Oct 3) | Weight the five final train ends by recency (fixed half-life 20) | Delta +0.000795 | Closed, below +0.002 ([plan](research/RECENCY20_PLAN.md), [review](research/recency20_review.json)) |
+| X34 H1 (Oct 4) | Angular loss against the clean target | Pooled +0.002029, but per fold/seed -0.0008, +0.0013, +0.0016, +0.0018 and fold ensembles +0.0003 / +0.0016 | Not promoted: the per-pair and per-fold gates fail ([review](research/x34_h1_review.json)) |
+| X34 H2 (Oct 5) | Angular loss with mean aggregation | Pooled -0.005524; all four pairs negative; 3 of 11 months positive | Rejected ([review](research/x34_h2_review.json)) |
+
+Details and the decision rule are in
+[research/X34_TRAINING_PLAN.md](research/X34_TRAINING_PLAN.md). H3 (end target
+noise before the learning rate reaches zero) is proposed there but has not been
+staged or launched.
 
 ## Pre-audit history (v13 era and earlier)
 
@@ -97,18 +135,15 @@ screens, confirms and submits goes through this audited path.
 Every experiment - including the dead ends - is logged with numbers in
 [research/LOG.md](research/LOG.md) and [EXPERIMENTS.md](EXPERIMENTS.md).
 
-## Roadmap (as of Sep 28; owner decision pending)
+## Status and next steps (as of Oct 6)
 
-With 11 days to the deadline and remaining weekly budget (~16h GPU of 30h,
-~8.6h TPU of 20h, reset Oct 3), three options are open:
-
-1. **Second final** with more seeds/ensemble over flow31 - expected gain
-   small (+0.001 at most), low risk.
-2. **New signal research** (advanced order-flow / microstructure) through the
-   audited screen -> confirm -> gate pipeline - more upside, more risk.
-3. **Stop here** and bank the 0.141.
-
-Gap to the top-10 cut: +0.026; to top-20: +0.017.
+The champion is flow31 no-clip at 0.142. Nothing is running or queued for
+submission. The deadline is Oct 9, 2026 16:00 UTC. Any new training run, a
+second final, or a final submission needs an explicit decision from the
+repository owner. The recent screens (above) found no change that clears the
+promotion gate, so the leaderboard gap to the top of the board is not expected
+to close with small recipe tweaks. Earlier Sep 28 figures for rank and the
+top-10 cut are not repeated here because they have not been re-verified.
 
 ## The problem
 
@@ -154,7 +189,9 @@ engineering is where the gains live.
   canonical training entrypoint `src/kaggle/train_audited.py`
 - `research/` - experiment log, confirmation/final artifacts
   (`confirm_flow31_2026-09-27.json`, `final_flow31_2026-09-28.json`,
-  `submission_flow31_v1.csv`), discussion mining, reference reimplementations
+  `submission_flow31_v1.csv`, `submission_no_clip_2026-10-03.json`), the X33
+  and X34 screen reports (`research/x33/`, `x34_h*_review.json`), discussion
+  mining, reference reimplementations
 - `TRAINING_AGENT.md` - the audited training protocol (governing document)
 - `EXPERIMENTS.md` - the 30+ experiment ledger with numbers
 - `STATE.md`, `STATE_UPDATE.md` - historical snapshots (Sep 12-13, pre-audit);
