@@ -36,7 +36,7 @@
 <text x="105" y="595" font-weight="bold" font-size="26">RealMLP</text>
 <text x="105" y="630">PBLD embeddings,</text><text x="105" y="660">NTP-linear, EMA 0.998</text><text x="105" y="690">weighted MSE, label noise</text>
 <text x="1215" y="595" font-weight="bold" font-size="26">Clean-up</text>
-<text x="1215" y="630">zero the 17 no-data rows</text><text x="1215" y="660">clip to 0.1 / 99.9</text><text x="1215" y="690">percentile of train preds</text>
+<text x="1215" y="630">zero the 17 no-data rows</text><text x="1215" y="660">no clipping</text>
 </g>
 <g stroke="#B5472F" stroke-width="3.5" fill="none">
 <path d="M382,305 H440"/><path d="M752,305 H810"/><path d="M1122,305 H1180"/>

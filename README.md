@@ -15,7 +15,7 @@ evaluation tab).
 
 ![MSCapital audited training pipeline](docs/pipeline.svg)
 
-*Audited pipeline, as implemented in [TRAINING_AGENT.md](TRAINING_AGENT.md). Reusable exports: [`docs/pipeline.svg`](docs/pipeline.svg), [`docs/pipeline.png`](docs/pipeline.png). The diagram still shows the final percentile clip; the current champion (Oct 3) skips that step, see below.*
+*Audited pipeline, as implemented in [TRAINING_AGENT.md](TRAINING_AGENT.md). Reusable exports: [`docs/pipeline.svg`](docs/pipeline.svg), [`docs/pipeline.png`](docs/pipeline.png).*
 
 **Current standing: public leaderboard 0.142** (submission 56794864, scored
 Oct 3, 2026; previous best 0.141). Leaderboard rank is not recorded here: the
@@ -137,10 +137,12 @@ Every experiment - including the dead ends - is logged with numbers in
 
 ## Status and next steps (as of Oct 6)
 
-The champion is flow31 no-clip at 0.142. Nothing is running or queued for
-submission. The deadline is Oct 9, 2026 16:00 UTC. Any new training run, a
-second final, or a final submission needs an explicit decision from the
-repository owner. The recent screens (above) found no change that clears the
+The champion is flow31 no-clip at 0.142. The deadline is Oct 9, 2026 16:00 UTC.
+Since Oct 6 the repository owner has delegated runs, compute use and
+submissions to the agent, within the competition rules and the daily cap.
+A final H1 (clean angular target) set is training on GPU for a blend with
+the flow31 final.
+The recent screens (above) found no change that clears the
 promotion gate, so the leaderboard gap to the top of the board is not expected
 to close with small recipe tweaks. Earlier Sep 28 figures for rank and the
 top-10 cut are not repeated here because they have not been re-verified.
