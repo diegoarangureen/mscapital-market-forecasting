@@ -831,3 +831,6 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 - Paso 1/3 (auditoría CPU post-procesado, cola) y paso 2 (X32 media directa): research/x33/POSTPROC_AUDIT.md.
 - Screen GPU: control reproduce X32 bit a bit; A1 (winsorize target) no pasa la puerta; A2 (cosine) incompleto (2/4 modelos, cancelado por Diego). Detalle en research/x33/SCREEN_RESULTS.md.
 - GPU ~5.7h. Ningún submission. Campeón 0.141 intacto. Sin nuevas ejecuciones hasta decisión de Diego.
+
+## 2026-10-06 - Compute budget decision (Diego autonomy grant, WhatsApp 15:20-15:21 CEST)
+Launched two GPU kernels, mscapital-final-h1-a (seeds 2026,42) and mscapital-final-h1-b (seed 123): flow31 final recipe with angular_target=clean (X34 H1), 5 folds each, ~15 models total, ~10h GPU within the final budget. Reason: H1 screen pooled +0.0020 (gate not met), control+H1 blend on f0/f4 beat either alone (+0.0006, +0.0019). Plan: equal-weight blend with flow31 final, no clip, selection on CV evidence. TPU quota kept as reserve.

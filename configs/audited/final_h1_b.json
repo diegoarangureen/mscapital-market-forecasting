@@ -1,0 +1,24 @@
+{
+  "mode": "final",
+  "arms": [
+    "flow31"
+  ],
+  "seeds": [
+    123
+  ],
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "metric": "cosine",
+  "metric_verified": true,
+  "metric_source": "Official evaluation tab, https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting/overview/evaluation, fetched 2026-09-25 14:20 CEST: stated formula `cos(prediction, target)` = uncentered cosine similarity over the full prediction vector. API tag confirms 'custom metric defined under the Evaluation tab'. Executable scorer not published by host.",
+  "weight_target": "noisy",
+  "angular_loss": "pearson",
+  "schedule": "epoch",
+  "frozen_from": "X34 H1 (angular loss vs clean target) final: same recipe as flow31 final (LB 0.142) with one change, angular_target=clean. Decided 2026-10-06 under Diego autonomy grant: H1 screen pooled +0.0020 (3 of 4 pairs positive, gate not met); control+H1 blend on f0/f4 exceeded either alone. Intended use: equal-weight blend with the flow31 final, selected on CV evidence, not on LB.",
+  "angular_target": "clean"
+}
