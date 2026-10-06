@@ -834,3 +834,7 @@ Paso 1 HECHO: research/CHAMPION_FLOW31.md (config, features, checkpoints, predic
 
 ## 2026-10-06 - Compute budget decision (Diego autonomy grant, WhatsApp 15:20-15:21 CEST)
 Launched two GPU kernels, mscapital-final-h1-a (seeds 2026,42) and mscapital-final-h1-b (seed 123): flow31 final recipe with angular_target=clean (X34 H1), 5 folds each, ~15 models total, ~10h GPU within the final budget. Reason: H1 screen pooled +0.0020 (gate not met), control+H1 blend on f0/f4 beat either alone (+0.0006, +0.0019). Plan: equal-weight blend with flow31 final, no clip, selection on CV evidence. TPU quota kept as reserve.
+
+## 2026-10-06 - Submission ref 56887584: flow31 + H1 blend, public LB 0.143 (new best, prev 0.142)
+Equal-weight mean of the flow31 final aggregate (15 models, reproduces sha 7c59c37e bit-exact) and the X34-H1 final aggregate (15 models, kernels mscapital-final-h1-a/b), no clip, 17 no-data rows zeroed. Blend CSV sha256 6df4c6fd8b89e60083ccd653165367770cc57eebc3bcd8621ddb2aac2d3f8eaa. Correlation of the two aggregates 0.9966. Basis: CV blend evidence on folds 0/4 (+0.0006/+0.0019 over control), diversity argument. Under Diego's 6 Oct autonomy grant.
+Final-selection decision: candidate for final pick is ref 56887584 (best LB and CV-supported); final choice recorded at the deadline.
