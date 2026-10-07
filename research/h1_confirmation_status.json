@@ -3,6 +3,14 @@
   "response": "{\"ref\": \"/code/diegoaranguren/mscapital-h1-blend-confirm-tpu\", \"url\": \"https://www.kaggle.com/code/diegoaranguren/mscapital-h1-blend-confirm-tpu\", \"versionNumber\": 1, \"error\": null, \"invalidTags\": [], \"invalidDatasetSources\": [], \"invalidCompetitionSources\": [], \"invalidKernelSources\": [], \"invalidModelSources\": [], \"kernelId\": 137417624}",
   "hard_hours": 12,
   "submitted": false,
-  "status": "KernelWorkerStatus.QUEUED",
-  "last_checked_utc": "2026-10-07T07:01:18.016890+00:00"
+  "status": "KernelWorkerStatus.ERROR",
+  "last_checked_utc": "2026-10-07T08:01:51.854646+00:00",
+  "phase": "platform_queue_failure_closed",
+  "failure_message": null,
+  "output_files": 0,
+  "log": "[]",
+  "tpu_used_seconds_before": 17716.324,
+  "tpu_used_seconds_after": 17716.324,
+  "no_training_started": true,
+  "relaunch": false
 }
