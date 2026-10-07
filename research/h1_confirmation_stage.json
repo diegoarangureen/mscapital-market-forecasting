@@ -1,0 +1,33 @@
+{
+  "models": 40,
+  "soft_tpu_hours": 11.5,
+  "hard_tpu_hours": 12,
+  "fixed_blend_weights": [
+    0.5,
+    0.5
+  ],
+  "runtime": {
+    "torch_version": "2.8.0+cpu",
+    "torch_xla_version": "2.8.0",
+    "dataset_fingerprint": "d75b4a02c2255723362e48f884d43271ce99eb6f57570fb89a9c06b48ff7b313"
+  },
+  "source_hashes": {
+    "audit/metrics.py": "c0209ee7b69d13ce9d552882e21bf51b9bb2dc78fe461d727fac1aac819c101a",
+    "audit/dataset.py": "e57c03aaed6780a55a525dafdb104252d05de195688908b86462fb2f6252d288",
+    "audit/launcher.py": "bce7d9dc97501d773a515088ef4f0438414c74adcec11ac2e347163ce8b8b321",
+    "audit/protocol.py": "f46225f31d43a824c95d0cc53804da3729ef014bcd5237de2a68ccc4c3323e60",
+    "audit/io.py": "36a1f0b22fbd206959a9037a1627ceb0da5cd37e65d636e86560203ebdca34f8",
+    "audit/training.py": "2d1497d104176d5ee06e8c8304c802d10424ce97ab24cc00909f1f5c2efa830f",
+    "audit/__init__.py": "409a156df2a1cdc50723bc65978f61c04d2153f2d255570832c8475bff31f78b",
+    "audit/model.py": "4a317d5fe55a24bf7d8632778ea5d7edc250bd0a29a9d08cef75a1ec365bebb4",
+    "audit/flows.py": "03cb1cc953a5d1a7e0e5a03e2cc108d6beea20aec39b703a3009fccf61d26e3b",
+    "train_audited.py": "289546165f78e8dd67c7da64b6d92d681adf0d67cd14ef673791ecaf6485b321",
+    "summarize_audited.py": "7cbd8ac37c1cec0ded64558d77eea628211d29ff32f2954fa35baa626e44708e",
+    "compare_audited.py": "616be371d375f37ff736983efffbf27a3681aae30fa12a195c74249bdaa6331f",
+    "control.json": "c83d3bf0959e79e6b16caf092be0c58984b5af3bfddd5782d7852998461a945b",
+    "h1.json": "9ea5d0c8713f278e2b1e7d7e728af81e8dae472b76dcde14e1f3a38d76747170",
+    "runtime.json": "dd6f559028eba95d569dfb37df31fdcb82ef29eac306fdfe33126b1c95d6f78d",
+    "run_main.py": "7e34f70a18c906c0a2ef398a031a1569eed59e36c3a67c7a41b60e5234e7449b"
+  },
+  "bundle_sha256": "ae3c2f61ad885909b72a3161e64a98940572bc57b94686dbf62db2acafcb140f"
+}

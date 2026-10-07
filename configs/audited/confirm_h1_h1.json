@@ -1,0 +1,41 @@
+{
+  "mode": "confirm",
+  "arms": [
+    "flow31"
+  ],
+  "seeds": [
+    2026,
+    42
+  ],
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "metric": "cosine",
+  "metric_verified": true,
+  "metric_source": "Official evaluation tab: uncentered cos(prediction, target). Verified 2026-09-25; source https://www.kaggle.com/competitions/ms-capital-real-financial-market-forecasting/overview/evaluation",
+  "weight_target": "noisy",
+  "angular_loss": "pearson",
+  "angular_target": "clean",
+  "angular_aggregation": "members",
+  "noise_std": 0.005,
+  "schedule": "epoch",
+  "clip_quantiles": null,
+  "target_winsor": null,
+  "frozen_from": "2026-10-07 fixed 50:50 flow31+H1 blend confirmation; paired full temporal ensemble, no weight search",
+  "origins": [
+    {
+      "origin": 59,
+      "score_start": 62,
+      "score_end": 66
+    },
+    {
+      "origin": 64,
+      "score_start": 67,
+      "score_end": 70
+    }
+  ]
+}
