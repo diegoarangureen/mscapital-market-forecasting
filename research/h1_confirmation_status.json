@@ -2,5 +2,7 @@
   "kernel": "diegoaranguren/mscapital-h1-blend-confirm-tpu",
   "response": "{\"ref\": \"/code/diegoaranguren/mscapital-h1-blend-confirm-tpu\", \"url\": \"https://www.kaggle.com/code/diegoaranguren/mscapital-h1-blend-confirm-tpu\", \"versionNumber\": 1, \"error\": null, \"invalidTags\": [], \"invalidDatasetSources\": [], \"invalidCompetitionSources\": [], \"invalidKernelSources\": [], \"invalidModelSources\": [], \"kernelId\": 137417624}",
   "hard_hours": 12,
-  "submitted": false
+  "submitted": false,
+  "status": "KernelWorkerStatus.QUEUED",
+  "last_checked_utc": "2026-10-07T07:01:18.016890+00:00"
 }
