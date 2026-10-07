@@ -1,0 +1,6 @@
+{
+  "kernel": "diegoaranguren/mscapital-h1-blend-confirm-tpu",
+  "response": "{\"ref\": \"/code/diegoaranguren/mscapital-h1-blend-confirm-tpu\", \"url\": \"https://www.kaggle.com/code/diegoaranguren/mscapital-h1-blend-confirm-tpu\", \"versionNumber\": 1, \"error\": null, \"invalidTags\": [], \"invalidDatasetSources\": [], \"invalidCompetitionSources\": [], \"invalidKernelSources\": [], \"invalidModelSources\": [], \"kernelId\": 137417624}",
+  "hard_hours": 12,
+  "submitted": false
+}
