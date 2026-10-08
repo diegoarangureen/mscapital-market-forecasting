@@ -17,8 +17,9 @@ evaluation tab).
 
 *Audited pipeline, as implemented in [TRAINING_AGENT.md](TRAINING_AGENT.md). Reusable exports: [`docs/pipeline.svg`](docs/pipeline.svg), [`docs/pipeline.png`](docs/pipeline.png).*
 
-**Current standing: public leaderboard 0.142** (submission 56794864, scored
-Oct 3, 2026; previous best 0.141). Leaderboard rank is not recorded here: the
+**Current standing: public leaderboard 0.143** (submission 56887584, scored
+Oct 6, 2026; previous best 0.142, ref 56794864). This is a candidate, not a
+final selection. Leaderboard rank is not recorded here: the
 last verified rank and top-10 cut figures date from Sep 28 and have not been
 re-checked. Work is active and updated daily. Competition deadline: Oct 9,
 2026 16:00 UTC. The public score is public leaderboard only; the private score
@@ -34,7 +35,8 @@ is unknown.
 | Sep 18 | v14 | v13 + 75 cross-sectional rank features (XS75) | 0.135 (negative; see below) |
 | Sep 20 | v15 | v13 recipe, 5 folds x 5 seeds (25 models) | 0.138 (flat; OOF +0.0005 did not transfer) |
 | Sep 28 | flow31 v1 | **Audited pipeline:** RealMLP 486f (450f + FLOW + X31v2), 5 folds x 3 seeds, origin 70, 15-model mean post-clamp (ref 56634145) | 0.141 |
-| Oct 3 | flow31 no-clip | Same 15 models and mean, **prediction clipping removed**, no-data rows kept at zero (ref 56794864) | **0.142** |
+| Oct 3 | flow31 no-clip | Same 15 models and mean, **prediction clipping removed**, no-data rows kept at zero (ref 56794864) | 0.142 |
+| Oct 6 | flow31 + X34 H1 blend | Fixed equal-weight blend of the flow31 final (15 models) and the X34 H1 clean-angular final (15 models), no clipping, 17 no-data rows zeroed (ref 56887584) | **0.143** |
 
 The Sep 28 submission is the first one produced by the post-audit pipeline
 (TRAINING_AGENT.md). Its confirmation experiment (40 models, base vs flow31,
@@ -46,7 +48,20 @@ positive in both blocks, both seeds, and all 9 leave-one-month-out folds
 the direction transferred, the magnitude came out somewhat smaller than the
 fit-window estimate, which is the expected bias of non-independent CV.
 
-## Current champion (flow31 no-clip, LB 0.142)
+## Current candidate (flow31 + H1 blend, LB 0.143)
+
+Submission 56887584 is an equal-weight mean of two 15-model finals: the flow31
+final (below) and the X34 H1 final (angular loss against the clean target,
+same features, 5 folds x 3 seeds, origin 70). No clipping; the 17 no-data test
+rows are zeroed. The weights were fixed in advance (50:50), not tuned. The
++0.001 over 0.142 is within the leaderboard and seed noise (~0.003-0.004).
+Its support is the screening-window evidence for H1 plus the public score; no
+independent temporal confirmation exists. An outer-window confirmation of the
+fixed blend was staged on TPU on Oct 7 but failed in the Kaggle queue with a
+platform error, no output and no quota used (commit 19a2bd6); it was not
+relaunched. The public score says nothing certain about the private score.
+
+## Previous champion (flow31 no-clip, LB 0.142)
 
 - **Features (486).** The 450-feature audited champion set (298 proprietary
   microstructure + 152 public domain) plus the FLOW order-flow pack
@@ -135,13 +150,16 @@ screens, confirms and submits goes through this audited path.
 Every experiment - including the dead ends - is logged with numbers in
 [research/LOG.md](research/LOG.md) and [EXPERIMENTS.md](EXPERIMENTS.md).
 
-## Status and next steps (as of Oct 6)
+## Status and next steps (as of Oct 8)
 
-The champion is flow31 no-clip at 0.142. The deadline is Oct 9, 2026 16:00 UTC.
+The best public candidate is the flow31 + H1 blend at 0.143; the previous
+champion is flow31 no-clip at 0.142. The deadline is Oct 9, 2026 16:00 UTC.
 Since Oct 6 the repository owner has delegated runs, compute use and
 submissions to the agent, within the competition rules and the daily cap.
-A final H1 (clean angular target) set is training on GPU for a blend with
-the flow31 final.
+The final H1 (clean angular target) set finished and was blended 50:50 with
+the flow31 final (LB 0.143). The TPU confirmation of that blend failed in the
+queue without a result. The final selection is still open and will be decided
+before the deadline from the CV evidence and the competition rules.
 The recent screens (above) found no change that clears the
 promotion gate, so the leaderboard gap to the top of the board is not expected
 to close with small recipe tweaks. Earlier Sep 28 figures for rank and the
