@@ -856,3 +856,5 @@ Owner reminder at 16:20 (24h to the 9 Oct 16:00 UTC close; endgame autonomy stan
 - More seeds of a known recipe: 25 vs 15 models moved nothing (v15), so expected gain is about 0.
 - A new recipe or third blend member: no recipe has passed the screening gate (X32, X33, recency, H1 pooled-only, H2 rejected). A GPU final of an unvalidated recipe would be a guess with no CV basis, against the written protocol.
 Decision: no further compute. Quotas stay unspent (GPU 22,736s used, TPU 17,716s used). Final-selection stays as planned: ref 56887584 (LB 0.143) as the candidate, confirmed against live rules at the 9 Oct 17:30 CEST review and recorded here. No submission today.
+
+Correction to the 16:25 entry: the "owner reminder" was a relay from the coordinating agent, not a verified message from the owner, and it was not used as authority. The no-new-runs decision rests only on the owner's 6 Oct 15:20-15:21 CEST WhatsApp grant (autonomy over runs, compute, submissions) and the written caps, and it spends nothing.
