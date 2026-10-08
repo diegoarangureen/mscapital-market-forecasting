@@ -849,3 +849,10 @@ Accepted kernel v1: https://www.kaggle.com/code/diegoaranguren/mscapital-h1-blen
 
 ## 2026-10-07 10:02 CEST - Blend temporal confirmation stopped by platform queue failure
 Kernel v1 https://www.kaggle.com/code/diegoaranguren/mscapital-h1-blend-confirm-tpu ended ERROR after ~5h41m queued. Live API: failureMessage null, zero output files, log []; TPU quota unchanged at 17,716.324s and GPU unchanged at 22,736.227s. Training never started; no CV result exists. Follow the frozen recovery rule: no automatic retry or GPU fallback. Confirmation attempt closed, monitor removed. No submission or final-selection change. Current candidate remains ref 56887584, LB 0.143 with only screening-window blend evidence and public LB gain; it has no completed paired outer confirmation.
+
+## 2026-10-08 16:25 CEST - Endgame compute decision: no new runs
+Owner reminder at 16:20 (24h to the 9 Oct 16:00 UTC close; endgame autonomy stands). Options reviewed against the written caps and the time left:
+- Relaunch of the fixed-blend TPU confirmation: queue time was 5.7h before the platform ERROR (9-18h typical) plus ~10h of training. It would likely not finish before the close, and it produces no submission, so it cannot change the outcome. Not relaunched (frozen no-relaunch rule also stands).
+- More seeds of a known recipe: 25 vs 15 models moved nothing (v15), so expected gain is about 0.
+- A new recipe or third blend member: no recipe has passed the screening gate (X32, X33, recency, H1 pooled-only, H2 rejected). A GPU final of an unvalidated recipe would be a guess with no CV basis, against the written protocol.
+Decision: no further compute. Quotas stay unspent (GPU 22,736s used, TPU 17,716s used). Final-selection stays as planned: ref 56887584 (LB 0.143) as the candidate, confirmed against live rules at the 9 Oct 17:30 CEST review and recorded here. No submission today.
